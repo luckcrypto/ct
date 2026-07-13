@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#f6f4ef">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Calculate — 70+ Free Calculators for Money, Health & Life</title>
+<meta name="description" content="70+ free, instant calculators — mortgages, inflation, BMI, GPA, time zones, recipes and more. No ads, no sign-up, every answer verified. Works on any device.">
+<link rel="canonical" href="https://calculate.to/">
+<meta property="og:title" content="Calculate — Fast, Free Everyday Calculators">
+<meta property="og:description" content="Free everyday calculators — percentages, tips, loans, BMI, dates and more. No sign-up, instant, in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Calculate">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://calculate.to/">
+<meta property="og:image" content="https://calculate.to/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* palette — "instrument": warm paper, graphite ink, a single signal amber, cool slate accents */
+  --paper:#f6f4ef;
+  --paper-2:#efece4;
+  --ink:#1c1b19;
+  --ink-2:#4a4843;
+  --muted:#8a877e;
+  --hair:#dcd8cf;
+  --hair-2:#cbc6bb;
+  --signal:#c96a1b;      /* amber — the "=" and live results */
+  --signal-deep:#a5540f;
+  --slate:#2f4858;       /* cool counterpoint for tool accents */
+  --good:#3f7d54;
+  --card:#fbfaf7;
+  --shadow:22,20,16;
+
+  /* type scale (ethos) */
+  --fs-11:11px; --fs-13:13px; --fs-15:15px; --fs-17:17px; --fs-21:21px; --fs-28:28px;
+  --fs-40:clamp(30px,4.4vw,40px); --fs-56:clamp(38px,6.5vw,56px); --fs-84:clamp(46px,9vw,82px);
+  --lh-display:1.02; --lh-head:1.15; --lh-ui:1.4; --lh-body:1.6;
+
+  --content:1040px;
+  --r:18px; --r-btn:12px;
+  --sans:'Space Grotesk',system-ui,-apple-system,sans-serif;
+  --display:'Space Grotesk',system-ui,sans-serif;
+  --mono:'Space Grotesk',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:#f6f4ef;color-scheme:light}
+html,body{color-scheme:light}
+/* honor our palette even under Windows High Contrast / forced-colors (what the preview panel triggers) */
+html{forced-color-adjust:none}
+*{forced-color-adjust:none}
+body{
+  margin:0;
+  background-color:#f6f4ef;
+  color:#1c1b19;
+  font-family:var(--sans);font-size:var(--fs-15);line-height:var(--lh-body);
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(1100px 500px at 82% -8%, rgba(201,106,27,.06), transparent 60%),
+    radial-gradient(760px 460px at -5% 0%, rgba(47,72,88,.05), transparent 55%);
+  background-repeat:no-repeat;
+}
+/* absolute guarantee: paper base behind everything, even if a client kills bg-color */
+html::before{content:"";position:fixed;inset:0;background:#f6f4ef;z-index:-1;pointer-events:none}
+.wrap{max-width:var(--content);margin:0 auto;padding:0 22px}
+a{color:inherit}
+::selection{background:rgba(201,106,27,.22)}
+
+/* skip link */
+.skip{position:absolute;left:-9999px;top:0;background:var(--signal);color:#fff;padding:.7em 1.1em;border-radius:0 0 10px 0;z-index:50}
+.skip:focus{left:0}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:40;background:#f6f4ef;background:rgba(246,244,239,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--hair)}
+.top-in{display:flex;align-items:center;gap:16px;height:62px}
+.brand{display:inline-flex;align-items:baseline;gap:.02em;font-family:var(--display);font-weight:600;font-size:var(--fs-21);letter-spacing:-.01em;text-decoration:none}
+.brand .eq{color:var(--signal);font-family:var(--mono);font-weight:500;margin-right:.12em;transform:translateY(-1px)}
+.top nav{margin-left:auto;display:flex;gap:6px;align-items:center}
+.top nav a{font-size:var(--fs-13);font-weight:500;color:var(--ink-2);text-decoration:none;padding:.5em .8em;border-radius:9px;line-height:var(--lh-ui)}
+.top nav a:hover{background:var(--paper-2);color:var(--ink)}
+.nav-toggle{cursor:pointer;border:0;font-family:inherit;display:inline-flex;align-items:center;gap:.35em}
+.nav-toggle .chev{display:inline-block;transition:transform .28s ease}
+.top.menu-open .nav-toggle .chev{transform:rotate(180deg)}
+@media(max-width:620px){.top nav a:not(.pill){display:none}}
+.pill{border:1px solid var(--hair-2);background:linear-gradient(180deg,#fff,rgba(28,27,25,.03));box-shadow:inset 0 1px 0 #fff}
+
+/* ---------- hero ---------- */
+.hero{padding:58px 0 30px;background:#f6f4ef}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:32px}}
+.eyebrow{font-family:var(--mono);font-size:var(--fs-13);letter-spacing:.16em;text-transform:uppercase;color:var(--signal-deep);line-height:var(--lh-ui)}
+h1{font-family:var(--display);font-weight:600;font-size:var(--fs-84);line-height:var(--lh-display);letter-spacing:-.02em;margin:.24em 0 .3em}
+h1 .thin{font-weight:400;color:var(--ink-2)}
+.hero p.lead{font-size:var(--fs-17);color:var(--ink-2);max-width:44ch;margin:0 0 26px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+
+/* buttons */
+.btn{font-family:var(--sans);font-weight:700;font-size:14px;line-height:var(--lh-ui);
+  padding:.82em 1.3em;border-radius:var(--r-btn);border:1px solid var(--hair-2);cursor:pointer;
+  color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:.5em;
+  background:radial-gradient(120% 95% at 50% 14%,#fff,rgba(255,255,255,0) 60%),linear-gradient(180deg,#fff,rgba(28,27,25,.04));
+  box-shadow:inset 0 1.5px 1px #fff,inset 0 -2px 3px rgba(22,20,16,.10),0 4px 10px -8px rgba(22,20,16,.3);
+  transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease}
+.btn:hover{transform:translateY(1px);border-color:color-mix(in srgb,var(--signal) 45%,var(--hair-2))}
+.btn:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(22,20,16,.16),0 2px 6px -6px rgba(22,20,16,.3)}
+.btn.solid{color:#fff;border-color:transparent;
+  background:radial-gradient(120% 95% at 50% 14%,rgba(255,255,255,.28),rgba(255,255,255,0) 55%),linear-gradient(180deg,var(--signal),var(--signal-deep));
+  box-shadow:inset 0 1.5px 1px rgba(255,255,255,.4),inset 0 -2px 3px rgba(120,60,0,.4),0 6px 14px -8px rgba(201,106,27,.5)}
+.btn.solid:hover{border-color:transparent}
+
+/* ---------- hero live calculator (the signature) ---------- */
+.calc-hero{background:#fbfaf7;background:var(--card);border:1px solid var(--hair);border-radius:var(--r);
+  box-shadow:inset 0 1.5px 0 #fff,inset 0 -3px 6px rgba(22,20,16,.05),0 24px 50px -30px rgba(22,20,16,.4);
+  padding:24px}
+.ch-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.ch-tabs{display:inline-flex;gap:2px;background:#efece4;background:var(--paper-2);border:1px solid var(--hair);border-radius:11px;padding:3px}
+.ch-tab{font-family:var(--sans);font-size:var(--fs-13);font-weight:600;color:var(--muted);
+  border:0;background:transparent;padding:.42em .78em;border-radius:8px;cursor:pointer;line-height:var(--lh-ui)}
+.ch-tab.on{background:#fff;color:#1c1b19;box-shadow:0 1px 3px rgba(22,20,16,.12)}
+.ch-chip{font-family:var(--mono);font-size:var(--fs-11);color:var(--muted);letter-spacing:.04em}
+
+.readout{font-family:var(--mono);text-align:right;padding:14px 4px 18px;border-bottom:1px solid var(--hair);margin-bottom:18px}
+.readout .expr{font-size:var(--fs-13);color:var(--muted);min-height:1.3em;line-height:var(--lh-ui)}
+.readout .result{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:clamp(34px,7vw,48px);font-weight:500;line-height:1;letter-spacing:-.01em;
+  color:var(--ink);transition:color .2s}
+.readout .result .amber{color:var(--signal)}
+
+.field{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;margin:12px 0}
+.field label{font-size:var(--fs-13);color:var(--ink-2);font-weight:500;line-height:var(--lh-ui)}
+.field .in{position:relative}
+.field input{font-family:var(--mono);font-size:var(--fs-17);width:120px;text-align:right;
+  padding:.5em .7em;border:1px solid var(--hair-2);border-radius:10px;background:#f6f4ef;background:var(--paper);color:#1c1b19;
+  outline:none;transition:border-color .15s, box-shadow .15s}
+.field input:focus{border-color:var(--signal);box-shadow:0 0 0 3px rgba(201,106,27,.14)}
+.field .unit{position:absolute;left:.7em;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:var(--fs-13);color:var(--muted);pointer-events:none}
+.field.hasunit input{text-align:right;padding-left:1.4em}
+
+.seg{display:inline-flex;border:1px solid var(--hair-2);border-radius:10px;overflow:hidden}
+.seg button{font-family:var(--sans);font-size:var(--fs-13);font-weight:600;border:0;background:#f6f4ef;background:var(--paper);color:#4a4843;padding:.5em .8em;cursor:pointer;line-height:var(--lh-ui)}
+.seg button+button{border-left:1px solid var(--hair-2)}
+.seg button.on{background:#2f4858;background:var(--slate);color:#fff}
+
+.ch-out{display:flex;justify-content:space-between;gap:14px;margin-top:18px;padding-top:16px;border-top:1px solid var(--hair)}
+.ch-out .cell{flex:1}
+.ch-out .k{font-size:var(--fs-11);color:var(--muted);font-family:var(--mono);letter-spacing:.05em;text-transform:uppercase;line-height:var(--lh-ui)}
+.ch-out .v{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-family:var(--mono);font-size:var(--fs-21);color:var(--ink);margin-top:2px}
+.ch-out .v.amber{color:var(--signal)}
+
+/* ---------- section scaffolding ---------- */
+section{padding:44px 0;background:#f6f4ef}
+.sec-head{margin-bottom:26px}
+.sec-head .eyebrow{display:block;margin-bottom:8px}
+.sec-head h2{font-family:var(--display);font-weight:600;font-size:var(--fs-40);line-height:var(--lh-head);letter-spacing:-.015em;margin:0}
+.sec-head p{color:var(--ink-2);max-width:52ch;margin:10px 0 0}
+
+/* directory grid */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+.tool{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:#1c1b19;
+  background:#fbfaf7;background:var(--card);border:1px solid var(--hair);border-radius:var(--r);padding:18px 18px 16px;
+  box-shadow:inset 0 1.5px 0 #fff,inset 0 -3px 5px rgba(22,20,16,.04);
+  transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease}
+.tool:hover{transform:translateY(-3px);border-color:var(--hair-2);
+  box-shadow:inset 0 1.5px 0 #fff,0 16px 30px -20px rgba(22,20,16,.4)}
+.tool .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  font-family:var(--mono);font-size:var(--fs-15);font-weight:500;color:#2f4858;
+  background:#fff;background:linear-gradient(180deg,#fff,var(--paper-2));border:1px solid var(--hair);margin-bottom:4px}
+.tool h3{font-size:var(--fs-15);font-weight:600;margin:0;line-height:var(--lh-ui)}
+.tool p{font-size:var(--fs-13);color:var(--muted);margin:0;line-height:var(--lh-ui)}
+.tool .go{margin-top:auto;font-family:var(--mono);font-size:var(--fs-11);color:var(--signal-deep);letter-spacing:.03em;padding-top:8px}
+
+/* categories label row */
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.cat{font-family:var(--mono);font-size:var(--fs-11);letter-spacing:.06em;text-transform:uppercase;color:#4a4843;
+  border:1px solid var(--hair-2);background:#fbfaf7;background:var(--card);padding:.5em .8em;border-radius:999px;line-height:1}
+
+/* why row */
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:760px){.why{grid-template-columns:1fr}}
+.why .item{padding:0}
+.why .n{font-family:var(--mono);font-size:var(--fs-13);color:var(--signal);letter-spacing:.1em}
+.why h4{font-family:var(--display);font-weight:600;font-size:var(--fs-21);margin:.5em 0 .3em;line-height:var(--lh-head)}
+.why p{color:var(--ink-2);font-size:var(--fs-15);margin:0}
+
+/* footer */
+footer{border-top:1px solid var(--hair);padding:40px 0 56px;margin-top:20px}
+.foot-note{margin-top:30px;font-size:var(--fs-11);color:var(--muted);font-family:var(--mono)}
+
+
+/* ---------- accordion ---------- */
+.acc{border-top:1px solid var(--hair);margin-top:4px}
+.acc-item{border-bottom:1px solid var(--hair)}
+.acc-head{width:100%;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:14px;
+  background:transparent;border:0;cursor:pointer;text-align:left;padding:15px 4px;font-family:var(--sans);color:var(--ink)}
+.acc-head:hover .acc-name{color:var(--signal-deep)}
+.acc-head:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:8px}
+.acc-ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex:none;
+  font-family:var(--mono);font-size:var(--fs-15);font-weight:500;color:#2f4858;color:var(--slate);
+  background:#fff;background:linear-gradient(180deg,#fff,var(--paper-2));border:1px solid var(--hair)}
+.acc-txt{display:flex;flex-direction:column;gap:1px;min-width:0}
+.acc-name{font-size:var(--fs-17);font-weight:600;line-height:var(--lh-ui)}
+.acc-sum{font-size:var(--fs-13);color:var(--muted);line-height:var(--lh-ui);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acc-tag{font-family:var(--mono);font-size:var(--fs-11);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);
+  border:1px solid var(--hair-2);border-radius:999px;padding:.32em .7em;line-height:1}
+.acc-chev{font-family:var(--mono);font-size:22px;color:var(--muted);width:20px;text-align:center;transition:transform .25s ease,color .25s ease;line-height:1}
+.acc-item.open .acc-chev{transform:rotate(45deg);color:var(--signal)}
+@media(max-width:640px){.acc-sum{display:none}.acc-tag{display:none}.acc-head{grid-template-columns:auto 1fr auto}}
+.acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease}
+.acc-item.open .acc-panel{grid-template-rows:1fr}
+.acc-panel>.acc-body{overflow:hidden;min-height:0}
+.acc-inner{padding:2px 4px 22px}
+/* mini calc block (single card level — parent rows are dividers, not cards) */
+.mini{display:grid;grid-template-columns:1.05fr 1fr;gap:22px;align-items:center;
+  background:#efece4;background:var(--paper-2);border:1px solid var(--hair);border-radius:14px;padding:18px 20px}
+@media(max-width:640px){.mini{grid-template-columns:1fr;gap:18px;padding:16px}}
+.mini-fields{display:flex;flex-direction:column;gap:11px}
+.mf{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px}
+.mf label{font-size:var(--fs-13);color:var(--ink-2);font-weight:500;line-height:var(--lh-ui)}
+.mf-in{position:relative}
+.mf input{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-family:var(--mono);font-size:var(--fs-15);width:112px;text-align:right;
+  padding:.46em .66em;border:1px solid var(--hair-2);border-radius:9px;background:#fff;color:#1c1b19;color:var(--ink);outline:none;
+  transition:border-color .15s,box-shadow .15s}
+.mf input[type=date]{width:158px;text-align:left}
+.mf input:focus{border-color:var(--signal);box-shadow:0 0 0 3px rgba(201,106,27,.14)}
+.mf-u{position:absolute;right:.6em;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:var(--fs-13);color:var(--muted);pointer-events:none}
+.mf-l input{text-align:right;padding-left:1.5em}
+.mf-ul{right:auto;left:.6em}
+.mf-frac{display:inline-flex;align-items:center;gap:8px;justify-self:end}
+.mf-frac input{width:56px;text-align:center}
+.mf-frac span{font-family:var(--mono);color:var(--muted)}
+.mo{min-width:0}
+.mo-expr{font-family:var(--mono);font-size:var(--fs-11);color:var(--muted);min-height:1.2em;line-height:var(--lh-ui);letter-spacing:.02em}
+.mo-main{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-family:var(--mono);font-size:clamp(22px,3.4vw,29px);font-weight:500;color:var(--signal);line-height:1.1;margin:4px 0 12px;word-break:break-word}
+.mo-sub{display:flex;gap:22px;flex-wrap:wrap}
+.moc{display:flex;flex-direction:column;gap:2px}
+.mok{font-family:var(--mono);font-size:var(--fs-11);color:var(--muted);text-transform:uppercase;letter-spacing:.05em;line-height:1}
+.mov{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-family:var(--mono);font-size:var(--fs-15);color:var(--ink)}
+.acc-cta{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:var(--fs-13);color:var(--signal-deep);text-decoration:none;line-height:var(--lh-ui)}
+.acc-cta:hover{text-decoration:none}
+.acc-cta b{font-weight:500}
+/* preview panels */
+.mini-pv{grid-template-columns:1fr;text-align:left}
+.pv-ex{font-family:var(--mono);font-size:var(--fs-11);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.pv-main{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-family:var(--mono);font-size:clamp(22px,3.6vw,30px);font-weight:500;color:var(--ink);line-height:1.1}
+.pv-note{font-size:var(--fs-13);color:var(--ink-2);margin-top:10px;max-width:56ch;line-height:var(--lh-ui)}
+.pv-keys{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.pv-keys span{font-family:var(--mono);font-size:var(--fs-13);color:var(--slate);background:#fff;border:1px solid var(--hair);border-radius:8px;padding:.4em .6em;min-width:2.2em;text-align:center}
+
+/* ===== featured Fed-rate banner + money & markets strip ===== */
+.feat-sec{padding:16px 0 0;background:#f6f4ef}
+.feat{display:flex;align-items:center;gap:26px;justify-content:space-between;text-decoration:none;color:#1c1b19;color:var(--ink);
+  background:#fbfaf7;background:linear-gradient(180deg,#fbfaf7,#f4efe6);border:1px solid var(--hair);border-radius:var(--r);
+  padding:22px 24px;box-shadow:inset 0 1.5px 0 #fff,inset 0 -3px 6px rgba(22,20,16,.05),0 18px 40px -28px rgba(22,20,16,.4);
+  transition:transform .14s ease,box-shadow .14s ease,border-color .14s ease}
+.feat:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--signal) 40%,var(--hair));
+  box-shadow:inset 0 1.5px 0 #fff,0 22px 44px -26px rgba(22,20,16,.45)}
+.feat-l{min-width:0}
+.feat-tag{font-family:var(--mono);font-size:var(--fs-11);letter-spacing:.14em;text-transform:uppercase;color:var(--signal-deep)}
+.feat h3{font-family:var(--display);font-weight:600;font-size:var(--fs-28);line-height:var(--lh-head);letter-spacing:-.01em;margin:.3em 0 .3em}
+.feat p{color:var(--ink-2);font-size:var(--fs-15);margin:0;max-width:52ch}
+.feat-go{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:var(--fs-13);color:var(--signal-deep)}
+.feat:hover .feat-go{text-decoration:none}
+.feat-r{flex:none;text-align:center}
+.feat-rate{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:clamp(22px,3.4vw,30px);font-weight:500;display:flex;align-items:center;gap:.35em}
+.feat-from{color:var(--muted)}
+.feat-arw{color:var(--signal)}
+.feat-to{color:var(--signal)}
+.feat-cap{font-family:var(--mono);font-size:var(--fs-11);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+@media(max-width:680px){.feat{flex-direction:column;align-items:flex-start;gap:16px}.feat-r{text-align:left}}
+.mm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+@media(max-width:900px){.mm-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.mm-grid{grid-template-columns:1fr}}
+
+/* keep the light "paper" identity even if the client forces dark mode */
+@media (prefers-color-scheme: dark){
+  html,body{background:#f6f4ef;color:#1c1b19}
+  :root{
+    --paper:#f6f4ef;--paper-2:#efece4;--ink:#1c1b19;--ink-2:#4a4843;--muted:#8a877e;
+    --hair:#dcd8cf;--hair-2:#cbc6bb;--card:#fbfaf7;
+  }
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== mega menu (full-width, responsive; trigger = Browse all pill) ===== */
+.top{overflow:visible}
+.mega{position:absolute;left:0;right:0;top:100%;z-index:39;
+  background:#f6f4ef;background:rgba(246,244,239,.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--hair);box-shadow:0 24px 40px -28px rgba(22,20,16,.35);
+  display:grid;grid-template-rows:0fr;visibility:hidden;
+  transition:grid-template-rows .28s ease,visibility 0s linear .28s}
+.top.menu-open .mega{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .28s ease}
+.mega>.mega-clip{overflow:hidden;min-height:0}
+.mega-grid{columns:4 210px;column-gap:26px;padding-top:26px;padding-bottom:30px}
+.mega-col{break-inside:avoid;margin-bottom:20px}
+
+
+.mega>.mega-clip{max-height:calc(100vh - 62px);overflow-y:auto;overscroll-behavior:contain}
+.mega-col h5{font-size:var(--fs-11);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;border-bottom:1px solid var(--hair);padding-bottom:8px}
+.mg-item{display:flex;align-items:flex-start;gap:10px;text-decoration:none;color:var(--ink);padding:7px 6px;margin:0 -6px;border-radius:10px}
+.mg-item:hover{background:#efece4;background:var(--paper-2)}
+.mg-ic{width:26px;height:26px;flex:none;border-radius:8px;display:grid;place-items:center;
+  font-family:var(--mono);font-size:var(--fs-13);font-weight:500;color:#2f4858;color:var(--slate);
+  background:#fff;background:linear-gradient(180deg,#fff,var(--paper-2));border:1px solid var(--hair);margin-top:1px}
+.mg-t{min-width:0}
+.mg-n{display:block;font-size:var(--fs-15);font-weight:600;line-height:var(--lh-ui)}
+.mg-item:hover .mg-n{color:var(--signal-deep)}
+.mg-d{display:block;font-size:var(--fs-11);color:var(--muted);line-height:var(--lh-ui)}
+
+/* ===== dimming veil ===== */
+.mega-veil{position:fixed;left:0;right:0;top:62px;bottom:0;z-index:35;background:rgba(28,27,25,.28);
+  opacity:0;pointer-events:none;transition:opacity .25s ease}
+.mega-veil.on{opacity:1;pointer-events:auto}
+
+/* ===== mega footer (mirrors the mega nav language) ===== */
+.ftop{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  padding-bottom:26px;border-bottom:1px solid var(--hair);margin-bottom:26px}
+.fbrand .brand{font-size:var(--fs-17)}
+.fbrand p{color:var(--muted);font-size:var(--fs-13);margin:.6em 0 0;max-width:28ch}
+.ftg{columns:4 210px;column-gap:26px}
+.ftcol{break-inside:avoid;margin-bottom:20px}
+
+
+.ftcol h5{font-size:var(--fs-11);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 8px;border-bottom:1px solid var(--hair);padding-bottom:8px}
+.fbar{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;
+  border-top:1px solid var(--hair);margin-top:30px;padding-top:18px}
+.fbar .foot-note{margin:0}
+.ftl{font-family:var(--mono);font-size:var(--fs-11);color:var(--ink-2);text-decoration:none;letter-spacing:.04em;white-space:nowrap}
+.ftl:hover{color:var(--signal-deep)}
+
+/* ---- cursor policy: arrow everywhere, pointer only on interactive things ---- */
+* { cursor: default; }
+
+a, button, label, summary, select,
+[role="button"], [role="link"], [role="tab"],
+.btn, [onclick] {
+  cursor: pointer;
+}
+
+/* text fields keep the I-beam */
+input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+textarea,
+[contenteditable="true"] {
+  cursor: text;
+}
+
+/* clickable inputs */
+input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: pointer; }
+
+/* disabled controls */
+:disabled, [disabled], [aria-disabled="true"] { cursor: not-allowed; }
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebSite", "name": "Calculate", "alternateName": "calculate.to", "url": "https://calculate.to/", "description": "Free, instant, ad-free calculators for money, health, home, school and everyday life.", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "Calculate", "url": "https://calculate.to/"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Organization", "name": "Calculate", "url": "https://calculate.to/", "logo": "https://calculate.to/og.png", "description": "Everyday math, done properly. 70+ free calculators with honest, verified answers."}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "ItemList", "name": "All calculators on Calculate", "numberOfItems": 76, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Fed rate cut", "url": "https://calculate.to/fed-rate-calculator.html"}, {"@type": "ListItem", "position": 2, "name": "M2 money supply", "url": "https://calculate.to/m2-money-supply-calculator.html"}, {"@type": "ListItem", "position": 3, "name": "Gold vs USD", "url": "https://calculate.to/gold-vs-usd-calculator.html"}, {"@type": "ListItem", "position": 4, "name": "Inflation", "url": "https://calculate.to/inflation-calculator.html"}, {"@type": "ListItem", "position": 5, "name": "Gold / M2 ratio", "url": "https://calculate.to/gold-m2-ratio-calculator.html"}, {"@type": "ListItem", "position": 6, "name": "Dow-to-Gold", "url": "https://calculate.to/dow-to-gold-calculator.html"}, {"@type": "ListItem", "position": 7, "name": "S&P 500 since inception", "url": "https://calculate.to/sp500-dca-calculator.html"}, {"@type": "ListItem", "position": 8, "name": "S&P 1 vs S&P 500", "url": "https://calculate.to/sp1-vs-sp500-calculator.html"}, {"@type": "ListItem", "position": 9, "name": "CAGR", "url": "https://calculate.to/cagr-calculator.html"}, {"@type": "ListItem", "position": 10, "name": "Dividend reinvestment", "url": "https://calculate.to/drip-calculator.html"}, {"@type": "ListItem", "position": 11, "name": "Retirement / FIRE", "url": "https://calculate.to/retirement-calculator.html"}, {"@type": "ListItem", "position": 12, "name": "ROI", "url": "https://calculate.to/roi-calculator.html"}, {"@type": "ListItem", "position": 13, "name": "Rule of 72", "url": "https://calculate.to/rule-of-72-calculator.html"}, {"@type": "ListItem", "position": 14, "name": "Mortgage", "url": "https://calculate.to/mortgage-calculator.html"}, {"@type": "ListItem", "position": 15, "name": "Loan payment", "url": "https://calculate.to/loan-calculator.html"}, {"@type": "ListItem", "position": 16, "name": "Car loan", "url": "https://calculate.to/car-loan-calculator.html"}, {"@type": "ListItem", "position": 17, "name": "Debt payoff", "url": "https://calculate.to/debt-payoff-calculator.html"}, {"@type": "ListItem", "position": 18, "name": "Simple interest", "url": "https://calculate.to/simple-interest-calculator.html"}, {"@type": "ListItem", "position": 19, "name": "APR ↔ APY", "url": "https://calculate.to/apr-apy-calculator.html"}, {"@type": "ListItem", "position": 20, "name": "Percentage", "url": "https://calculate.to/percentage-calculator.html"}, {"@type": "ListItem", "position": 21, "name": "Tip & split", "url": "https://calculate.to/tip-calculator.html"}, {"@type": "ListItem", "position": 22, "name": "VAT / sales tax", "url": "https://calculate.to/vat-calculator.html"}, {"@type": "ListItem", "position": 23, "name": "Discount", "url": "https://calculate.to/discount-calculator.html"}, {"@type": "ListItem", "position": 24, "name": "Margin & markup", "url": "https://calculate.to/margin-markup-calculator.html"}, {"@type": "ListItem", "position": 25, "name": "Salary ↔ hourly", "url": "https://calculate.to/salary-to-hourly-calculator.html"}, {"@type": "ListItem", "position": 26, "name": "Savings goal", "url": "https://calculate.to/savings-goal-calculator.html"}, {"@type": "ListItem", "position": 27, "name": "Currency", "url": "https://calculate.to/currency-converter.html"}, {"@type": "ListItem", "position": 28, "name": "Compound interest", "url": "https://calculate.to/compound-interest-calculator.html"}, {"@type": "ListItem", "position": 29, "name": "BMI", "url": "https://calculate.to/bmi-calculator.html"}, {"@type": "ListItem", "position": 30, "name": "Calorie needs", "url": "https://calculate.to/calorie-calculator.html"}, {"@type": "ListItem", "position": 31, "name": "TDEE", "url": "https://calculate.to/tdee-calculator.html"}, {"@type": "ListItem", "position": 32, "name": "BMR", "url": "https://calculate.to/bmr-calculator.html"}, {"@type": "ListItem", "position": 33, "name": "Body fat %", "url": "https://calculate.to/body-fat-calculator.html"}, {"@type": "ListItem", "position": 34, "name": "Ideal weight", "url": "https://calculate.to/ideal-weight-calculator.html"}, {"@type": "ListItem", "position": 35, "name": "Macros", "url": "https://calculate.to/macro-calculator.html"}, {"@type": "ListItem", "position": 36, "name": "Water intake", "url": "https://calculate.to/water-intake-calculator.html"}, {"@type": "ListItem", "position": 37, "name": "Running pace", "url": "https://calculate.to/pace-calculator.html"}, {"@type": "ListItem", "position": 38, "name": "One-rep max", "url": "https://calculate.to/one-rep-max-calculator.html"}, {"@type": "ListItem", "position": 39, "name": "Heart-rate zones", "url": "https://calculate.to/heart-rate-zone-calculator.html"}, {"@type": "ListItem", "position": 40, "name": "Sleep cycles", "url": "https://calculate.to/sleep-calculator.html"}, {"@type": "ListItem", "position": 41, "name": "Age", "url": "https://calculate.to/age-calculator.html"}, {"@type": "ListItem", "position": 42, "name": "Date difference", "url": "https://calculate.to/date-difference-calculator.html"}, {"@type": "ListItem", "position": 43, "name": "Day of the week", "url": "https://calculate.to/day-of-week-calculator.html"}, {"@type": "ListItem", "position": 44, "name": "Days from today", "url": "https://calculate.to/days-from-today-calculator.html"}, {"@type": "ListItem", "position": 45, "name": "Time & hours", "url": "https://calculate.to/time-calculator.html"}, {"@type": "ListItem", "position": 46, "name": "Time zones", "url": "https://calculate.to/time-zone-converter.html"}, {"@type": "ListItem", "position": 47, "name": "Fraction", "url": "https://calculate.to/fraction-calculator.html"}, {"@type": "ListItem", "position": 48, "name": "Scientific", "url": "https://calculate.to/scientific-calculator.html"}, {"@type": "ListItem", "position": 49, "name": "Average", "url": "https://calculate.to/average-calculator.html"}, {"@type": "ListItem", "position": 50, "name": "Ratio", "url": "https://calculate.to/ratio-calculator.html"}, {"@type": "ListItem", "position": 51, "name": "GCF & LCM", "url": "https://calculate.to/gcf-lcm-calculator.html"}, {"@type": "ListItem", "position": 52, "name": "Binary / hex", "url": "https://calculate.to/binary-hex-converter.html"}, {"@type": "ListItem", "position": 53, "name": "GPA", "url": "https://calculate.to/gpa-calculator.html"}, {"@type": "ListItem", "position": 54, "name": "Final grade", "url": "https://calculate.to/final-grade-calculator.html"}, {"@type": "ListItem", "position": 55, "name": "Temperature", "url": "https://calculate.to/temperature-converter.html"}, {"@type": "ListItem", "position": 56, "name": "Length", "url": "https://calculate.to/length-converter.html"}, {"@type": "ListItem", "position": 57, "name": "Weight", "url": "https://calculate.to/weight-converter.html"}, {"@type": "ListItem", "position": 58, "name": "Cups to grams", "url": "https://calculate.to/cups-to-grams-converter.html"}, {"@type": "ListItem", "position": 59, "name": "Recipe scaler", "url": "https://calculate.to/recipe-converter.html"}, {"@type": "ListItem", "position": 60, "name": "Pan conversion", "url": "https://calculate.to/pan-conversion-calculator.html"}, {"@type": "ListItem", "position": 61, "name": "Coffee ratio", "url": "https://calculate.to/coffee-ratio-calculator.html"}, {"@type": "ListItem", "position": 62, "name": "Square footage", "url": "https://calculate.to/square-footage-calculator.html"}, {"@type": "ListItem", "position": 63, "name": "Concrete", "url": "https://calculate.to/concrete-calculator.html"}, {"@type": "ListItem", "position": 64, "name": "Paint", "url": "https://calculate.to/paint-calculator.html"}, {"@type": "ListItem", "position": 65, "name": "Flooring", "url": "https://calculate.to/flooring-calculator.html"}, {"@type": "ListItem", "position": 66, "name": "Mulch", "url": "https://calculate.to/mulch-calculator.html"}, {"@type": "ListItem", "position": 67, "name": "Fuel cost", "url": "https://calculate.to/fuel-cost-calculator.html"}, {"@type": "ListItem", "position": 68, "name": "MPG", "url": "https://calculate.to/mpg-calculator.html"}, {"@type": "ListItem", "position": 69, "name": "EV charging", "url": "https://calculate.to/ev-charging-cost-calculator.html"}, {"@type": "ListItem", "position": 70, "name": "Due date", "url": "https://calculate.to/due-date-calculator.html"}, {"@type": "ListItem", "position": 71, "name": "Ovulation", "url": "https://calculate.to/ovulation-calculator.html"}, {"@type": "ListItem", "position": 72, "name": "Random number", "url": "https://calculate.to/random-number-generator.html"}, {"@type": "ListItem", "position": 73, "name": "Dice roller", "url": "https://calculate.to/dice-roller.html"}, {"@type": "ListItem", "position": 74, "name": "Coin flip", "url": "https://calculate.to/coin-flip.html"}, {"@type": "ListItem", "position": 75, "name": "Random picker", "url": "https://calculate.to/random-picker.html"}, {"@type": "ListItem", "position": 76, "name": "Password", "url": "https://calculate.to/password-generator.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are the calculators on Calculate really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — every calculator is completely free with no ads, no accounts and no locked features. The site is supported by optional donations only."}}, {"@type": "Question", "name": "How accurate are the results?", "acceptedAnswer": {"@type": "Answer", "text": "Every tool is verified against known benchmarks before publishing — loan math against standard amortization tables, inflation against official BLS CPI data, health formulas against their original published equations. Where a result is an estimate, the page says so plainly."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Completely. Calculations run entirely in your browser using JavaScript — the numbers you type never leave your device, and the site uses no cookies or tracking."}}, {"@type": "Question", "name": "Do the calculators work on mobile?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — every page is built for phones first and works instantly in any modern browser, with no app or sign-up required."}}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#tools">Skip to calculators</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#top"><span class="eq">=</span>Calculate</a>
+    <nav>
+      <a href="#tools">All tools</a>
+      <a href="#money">Money &amp; markets</a>
+      <button class="btn pill nav-toggle" type="button" aria-expanded="false" aria-controls="mega">Browse all <span class="chev">↓</span></button>
+    </nav>
+  </div>
+  <div class="mega" id="mega">
+    <div class="mega-clip">
+      <div class="wrap mega-grid" role="navigation" aria-label="All calculators">
+      <div class="mega-col">
+        <h5>Money &amp; the Fed</h5>
+        <a class="mg-item" href="fed-rate-calculator.html"><span class="mg-ic">↓</span><span class="mg-t"><span class="mg-n">Fed rate cut</span><span class="mg-d">One cut, four ripples</span></span></a>
+        <a class="mg-item" href="m2-money-supply-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">M2 money supply</span><span class="mg-d">Growth, doubling, dilution</span></span></a>
+        <a class="mg-item" href="gold-vs-usd-calculator.html"><span class="mg-ic">◆</span><span class="mg-t"><span class="mg-n">Gold vs USD</span><span class="mg-d">The dollar since 1971</span></span></a>
+        <a class="mg-item" href="inflation-calculator.html"><span class="mg-ic">▴</span><span class="mg-t"><span class="mg-n">Inflation</span><span class="mg-d">Dollar value, 1913–2025</span></span></a>
+        <a class="mg-item" href="gold-m2-ratio-calculator.html"><span class="mg-ic">⚖</span><span class="mg-t"><span class="mg-n">Gold / M2 ratio</span><span class="mg-d">Is gold cheap vs money?</span></span></a>
+        <a class="mg-item" href="dow-to-gold-calculator.html"><span class="mg-ic">⚔</span><span class="mg-t"><span class="mg-n">Dow-to-Gold</span><span class="mg-d">Stocks priced in gold</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Investing</h5>
+        <a class="mg-item" href="sp500-dca-calculator.html"><span class="mg-ic">▲</span><span class="mg-t"><span class="mg-n">S&P 500 since inception</span><span class="mg-d">Real returns 1928–2025</span></span></a>
+        <a class="mg-item" href="sp1-vs-sp500-calculator.html"><span class="mg-ic">№1</span><span class="mg-t"><span class="mg-n">S&P 1 vs S&P 500</span><span class="mg-d">Throne vs kingdom</span></span></a>
+        <a class="mg-item" href="cagr-calculator.html"><span class="mg-ic">↗</span><span class="mg-t"><span class="mg-n">CAGR</span><span class="mg-d">Compound annual growth</span></span></a>
+        <a class="mg-item" href="drip-calculator.html"><span class="mg-ic">♻</span><span class="mg-t"><span class="mg-n">Dividend reinvestment</span><span class="mg-d">DRIP compounding</span></span></a>
+        <a class="mg-item" href="retirement-calculator.html"><span class="mg-ic">⌂</span><span class="mg-t"><span class="mg-n">Retirement / FIRE</span><span class="mg-d">Nest egg & the 4% rule</span></span></a>
+        <a class="mg-item" href="roi-calculator.html"><span class="mg-ic">±</span><span class="mg-t"><span class="mg-n">ROI</span><span class="mg-d">Return on investment</span></span></a>
+        <a class="mg-item" href="rule-of-72-calculator.html"><span class="mg-ic">72</span><span class="mg-t"><span class="mg-n">Rule of 72</span><span class="mg-d">Doubling time shortcut</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Loans &amp; debt</h5>
+        <a class="mg-item" href="mortgage-calculator.html"><span class="mg-ic">⌂</span><span class="mg-t"><span class="mg-n">Mortgage</span><span class="mg-d">Full monthly payment</span></span></a>
+        <a class="mg-item" href="loan-calculator.html"><span class="mg-ic">≈</span><span class="mg-t"><span class="mg-n">Loan payment</span><span class="mg-d">Monthly cost & interest</span></span></a>
+        <a class="mg-item" href="car-loan-calculator.html"><span class="mg-ic">⚙</span><span class="mg-t"><span class="mg-n">Car loan</span><span class="mg-d">With down & trade-in</span></span></a>
+        <a class="mg-item" href="debt-payoff-calculator.html"><span class="mg-ic">✂</span><span class="mg-t"><span class="mg-n">Debt payoff</span><span class="mg-d">Snowball vs avalanche</span></span></a>
+        <a class="mg-item" href="simple-interest-calculator.html"><span class="mg-ic">·</span><span class="mg-t"><span class="mg-n">Simple interest</span><span class="mg-d">I = P·r·t</span></span></a>
+        <a class="mg-item" href="apr-apy-calculator.html"><span class="mg-ic">⇄</span><span class="mg-t"><span class="mg-n">APR ↔ APY</span><span class="mg-d">Compounding conversions</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Everyday money</h5>
+        <a class="mg-item" href="percentage-calculator.html"><span class="mg-ic">%</span><span class="mg-t"><span class="mg-n">Percentage</span><span class="mg-d">Of, change, add & subtract</span></span></a>
+        <a class="mg-item" href="tip-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">Tip & split</span><span class="mg-d">Tip and divide the bill</span></span></a>
+        <a class="mg-item" href="vat-calculator.html"><span class="mg-ic">◷</span><span class="mg-t"><span class="mg-n">VAT / sales tax</span><span class="mg-d">Add or remove tax</span></span></a>
+        <a class="mg-item" href="discount-calculator.html"><span class="mg-ic">✂</span><span class="mg-t"><span class="mg-n">Discount</span><span class="mg-d">Sale price & savings</span></span></a>
+        <a class="mg-item" href="margin-markup-calculator.html"><span class="mg-ic">◨</span><span class="mg-t"><span class="mg-n">Margin & markup</span><span class="mg-d">Price, cost, profit</span></span></a>
+        <a class="mg-item" href="salary-to-hourly-calculator.html"><span class="mg-ic">⏱</span><span class="mg-t"><span class="mg-n">Salary ↔ hourly</span><span class="mg-d">Pay, converted both ways</span></span></a>
+        <a class="mg-item" href="savings-goal-calculator.html"><span class="mg-ic">◎</span><span class="mg-t"><span class="mg-n">Savings goal</span><span class="mg-d">Time or monthly needed</span></span></a>
+        <a class="mg-item" href="currency-converter.html"><span class="mg-ic">↔</span><span class="mg-t"><span class="mg-n">Currency</span><span class="mg-d">21 major currencies</span></span></a>
+        <a class="mg-item" href="compound-interest-calculator.html"><span class="mg-ic">△</span><span class="mg-t"><span class="mg-n">Compound interest</span><span class="mg-d">Growth over time</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Health &amp; body</h5>
+        <a class="mg-item" href="bmi-calculator.html"><span class="mg-ic">◐</span><span class="mg-t"><span class="mg-n">BMI</span><span class="mg-d">With healthy range</span></span></a>
+        <a class="mg-item" href="calorie-calculator.html"><span class="mg-ic">⊙</span><span class="mg-t"><span class="mg-n">Calorie needs</span><span class="mg-d">Mifflin–St Jeor</span></span></a>
+        <a class="mg-item" href="tdee-calculator.html"><span class="mg-ic">⚡</span><span class="mg-t"><span class="mg-n">TDEE</span><span class="mg-d">Total daily energy</span></span></a>
+        <a class="mg-item" href="bmr-calculator.html"><span class="mg-ic">☀</span><span class="mg-t"><span class="mg-n">BMR</span><span class="mg-d">Calories at rest</span></span></a>
+        <a class="mg-item" href="body-fat-calculator.html"><span class="mg-ic">◑</span><span class="mg-t"><span class="mg-n">Body fat %</span><span class="mg-d">US Navy method</span></span></a>
+        <a class="mg-item" href="ideal-weight-calculator.html"><span class="mg-ic">⚕</span><span class="mg-t"><span class="mg-n">Ideal weight</span><span class="mg-d">Four classic formulas</span></span></a>
+        <a class="mg-item" href="macro-calculator.html"><span class="mg-ic">◲</span><span class="mg-t"><span class="mg-n">Macros</span><span class="mg-d">Protein, carbs, fat split</span></span></a>
+        <a class="mg-item" href="water-intake-calculator.html"><span class="mg-ic">≋</span><span class="mg-t"><span class="mg-n">Water intake</span><span class="mg-d">Daily hydration</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Fitness &amp; sleep</h5>
+        <a class="mg-item" href="pace-calculator.html"><span class="mg-ic">⏵</span><span class="mg-t"><span class="mg-n">Running pace</span><span class="mg-d">Pace, time, distance</span></span></a>
+        <a class="mg-item" href="one-rep-max-calculator.html"><span class="mg-ic">⚑</span><span class="mg-t"><span class="mg-n">One-rep max</span><span class="mg-d">Epley & Brzycki</span></span></a>
+        <a class="mg-item" href="heart-rate-zone-calculator.html"><span class="mg-ic">❤</span><span class="mg-t"><span class="mg-n">Heart-rate zones</span><span class="mg-d">Training zones</span></span></a>
+        <a class="mg-item" href="sleep-calculator.html"><span class="mg-ic">☾</span><span class="mg-t"><span class="mg-n">Sleep cycles</span><span class="mg-d">When to sleep or wake</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Dates &amp; time</h5>
+        <a class="mg-item" href="age-calculator.html"><span class="mg-ic">◔</span><span class="mg-t"><span class="mg-n">Age</span><span class="mg-d">Years, months, days</span></span></a>
+        <a class="mg-item" href="date-difference-calculator.html"><span class="mg-ic">▦</span><span class="mg-t"><span class="mg-n">Date difference</span><span class="mg-d">Days & working days</span></span></a>
+        <a class="mg-item" href="day-of-week-calculator.html"><span class="mg-ic">□</span><span class="mg-t"><span class="mg-n">Day of the week</span><span class="mg-d">What day was any date</span></span></a>
+        <a class="mg-item" href="days-from-today-calculator.html"><span class="mg-ic">⇢</span><span class="mg-t"><span class="mg-n">Days from today</span><span class="mg-d">Add days & business days</span></span></a>
+        <a class="mg-item" href="time-calculator.html"><span class="mg-ic">⏰</span><span class="mg-t"><span class="mg-n">Time & hours</span><span class="mg-d">Durations & work hours</span></span></a>
+        <a class="mg-item" href="time-zone-converter.html"><span class="mg-ic">⏲</span><span class="mg-t"><span class="mg-n">Time zones</span><span class="mg-d">Difference between cities</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Math &amp; numbers</h5>
+        <a class="mg-item" href="fraction-calculator.html"><span class="mg-ic">÷</span><span class="mg-t"><span class="mg-n">Fraction</span><span class="mg-d">Four ops, simplified</span></span></a>
+        <a class="mg-item" href="scientific-calculator.html"><span class="mg-ic">√</span><span class="mg-t"><span class="mg-n">Scientific</span><span class="mg-d">Full keypad</span></span></a>
+        <a class="mg-item" href="average-calculator.html"><span class="mg-ic">x̄</span><span class="mg-t"><span class="mg-n">Average</span><span class="mg-d">Mean, median, std dev</span></span></a>
+        <a class="mg-item" href="ratio-calculator.html"><span class="mg-ic">::</span><span class="mg-t"><span class="mg-n">Ratio</span><span class="mg-d">Solve & simplify a:b</span></span></a>
+        <a class="mg-item" href="gcf-lcm-calculator.html"><span class="mg-ic">∧</span><span class="mg-t"><span class="mg-n">GCF & LCM</span><span class="mg-d">Factors & multiples</span></span></a>
+        <a class="mg-item" href="binary-hex-converter.html"><span class="mg-ic">01</span><span class="mg-t"><span class="mg-n">Binary / hex</span><span class="mg-d">Dec, bin, hex, octal</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>School</h5>
+        <a class="mg-item" href="gpa-calculator.html"><span class="mg-ic">☆</span><span class="mg-t"><span class="mg-n">GPA</span><span class="mg-d">Weighted 4.0 scale</span></span></a>
+        <a class="mg-item" href="final-grade-calculator.html"><span class="mg-ic">✓</span><span class="mg-t"><span class="mg-n">Final grade</span><span class="mg-d">What you need on the final</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Converters</h5>
+        <a class="mg-item" href="temperature-converter.html"><span class="mg-ic">°</span><span class="mg-t"><span class="mg-n">Temperature</span><span class="mg-d">°C, °F and kelvin</span></span></a>
+        <a class="mg-item" href="length-converter.html"><span class="mg-ic">↔</span><span class="mg-t"><span class="mg-n">Length</span><span class="mg-d">mm to miles</span></span></a>
+        <a class="mg-item" href="weight-converter.html"><span class="mg-ic">⚖</span><span class="mg-t"><span class="mg-n">Weight</span><span class="mg-d">Grams to tons & stone</span></span></a>
+        <a class="mg-item" href="cups-to-grams-converter.html"><span class="mg-ic">☕</span><span class="mg-t"><span class="mg-n">Cups to grams</span><span class="mg-d">Real ingredient densities</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Kitchen</h5>
+        <a class="mg-item" href="recipe-converter.html"><span class="mg-ic">×</span><span class="mg-t"><span class="mg-n">Recipe scaler</span><span class="mg-d">Resize any recipe</span></span></a>
+        <a class="mg-item" href="pan-conversion-calculator.html"><span class="mg-ic">▢</span><span class="mg-t"><span class="mg-n">Pan conversion</span><span class="mg-d">Swap baking pans</span></span></a>
+        <a class="mg-item" href="coffee-ratio-calculator.html"><span class="mg-ic">☕</span><span class="mg-t"><span class="mg-n">Coffee ratio</span><span class="mg-d">Water, beans, strength</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Home &amp; garden</h5>
+        <a class="mg-item" href="square-footage-calculator.html"><span class="mg-ic">▤</span><span class="mg-t"><span class="mg-n">Square footage</span><span class="mg-d">Area & cost per sq ft</span></span></a>
+        <a class="mg-item" href="concrete-calculator.html"><span class="mg-ic">▧</span><span class="mg-t"><span class="mg-n">Concrete</span><span class="mg-d">Volume & bags</span></span></a>
+        <a class="mg-item" href="paint-calculator.html"><span class="mg-ic">▨</span><span class="mg-t"><span class="mg-n">Paint</span><span class="mg-d">Coverage & cans</span></span></a>
+        <a class="mg-item" href="flooring-calculator.html"><span class="mg-ic">▥</span><span class="mg-t"><span class="mg-n">Flooring</span><span class="mg-d">Boxes with waste</span></span></a>
+        <a class="mg-item" href="mulch-calculator.html"><span class="mg-ic">✿</span><span class="mg-t"><span class="mg-n">Mulch</span><span class="mg-d">Cubic yards & bags</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Cars &amp; travel</h5>
+        <a class="mg-item" href="fuel-cost-calculator.html"><span class="mg-ic">⛽</span><span class="mg-t"><span class="mg-n">Fuel cost</span><span class="mg-d">Trip cost & split</span></span></a>
+        <a class="mg-item" href="mpg-calculator.html"><span class="mg-ic">⏱</span><span class="mg-t"><span class="mg-n">MPG</span><span class="mg-d">And L/100km</span></span></a>
+        <a class="mg-item" href="ev-charging-cost-calculator.html"><span class="mg-ic">⚡</span><span class="mg-t"><span class="mg-n">EV charging</span><span class="mg-d">Cost per charge & mile</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Family</h5>
+        <a class="mg-item" href="due-date-calculator.html"><span class="mg-ic">♡</span><span class="mg-t"><span class="mg-n">Due date</span><span class="mg-d">Naegele's rule</span></span></a>
+        <a class="mg-item" href="ovulation-calculator.html"><span class="mg-ic">♡</span><span class="mg-t"><span class="mg-n">Ovulation</span><span class="mg-d">Fertile window</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Random &amp; fun</h5>
+        <a class="mg-item" href="random-number-generator.html"><span class="mg-ic">#</span><span class="mg-t"><span class="mg-n">Random number</span><span class="mg-d">True random, any range</span></span></a>
+        <a class="mg-item" href="dice-roller.html"><span class="mg-ic">⚄</span><span class="mg-t"><span class="mg-n">Dice roller</span><span class="mg-d">d4 to d100, many dice</span></span></a>
+        <a class="mg-item" href="coin-flip.html"><span class="mg-ic">●</span><span class="mg-t"><span class="mg-n">Coin flip</span><span class="mg-d">Heads or tails, fairly</span></span></a>
+        <a class="mg-item" href="random-picker.html"><span class="mg-ic">✧</span><span class="mg-t"><span class="mg-n">Random picker</span><span class="mg-d">Pick winners from a list</span></span></a>
+        <a class="mg-item" href="password-generator.html"><span class="mg-ic">*</span><span class="mg-t"><span class="mg-n">Password</span><span class="mg-d">Strong, generated locally</span></span></a>
+      </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="mega-veil" aria-hidden="true"></div>
+
+<main id="top">
+<!-- ============ HERO with live calculator ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Everyday math, done properly</span>
+      <h1>The answer,<br><span class="thin">before you finish</span> typing.</h1>
+      <p class="lead">A calm set of everyday calculators — percentages, tips, loans, dates and more. No sign-up, no clutter, no waiting. They run the moment you type.</p>
+      <div class="hero-cta">
+        <a class="btn solid" href="#tools">Browse all calculators</a>
+        <a class="btn" href="#money">Money &amp; markets</a>
+      </div>
+    </div>
+
+    <!-- SIGNATURE: a working multi-mode calculator -->
+    <div class="calc-hero" id="live">
+      <div class="ch-head">
+        <div class="ch-tabs" role="tablist" aria-label="Quick calculator">
+          <button class="ch-tab on" role="tab" aria-selected="true" data-mode="tip">Tip</button>
+          <button class="ch-tab" role="tab" aria-selected="false" data-mode="pct">Percent</button>
+          <button class="ch-tab" role="tab" aria-selected="false" data-mode="loan">Loan</button>
+        </div>
+        <span class="ch-chip" id="chChip">splits evenly</span>
+      </div>
+
+      <div class="readout">
+        <div class="expr" id="expr">$60.00 · 18% · ÷ 2</div>
+        <div class="result" id="result">$35.40</div>
+      </div>
+
+      <!-- TIP fields -->
+      <div data-panel="tip">
+        <div class="field hasunit">
+          <label for="bill">Bill amount</label>
+          <div class="in"><span class="unit">$</span><input id="bill" type="number" inputmode="decimal" value="60" min="0" step="0.01"></div>
+        </div>
+        <div class="field">
+          <label>Tip</label>
+          <div class="seg" id="tipSeg" role="group" aria-label="Tip percent">
+            <button data-tip="15">15%</button>
+            <button class="on" data-tip="18">18%</button>
+            <button data-tip="20">20%</button>
+            <button data-tip="25">25%</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="people">Split between</label>
+          <div class="in"><input id="people" type="number" inputmode="numeric" value="2" min="1" step="1" style="width:80px"></div>
+        </div>
+        <div class="ch-out">
+          <div class="cell"><div class="k">Tip total</div><div class="v" id="tipTotal">$10.80</div></div>
+          <div class="cell"><div class="k">Total bill</div><div class="v" id="tipBill">$70.80</div></div>
+          <div class="cell"><div class="k">Each pays</div><div class="v amber" id="tipEach">$35.40</div></div>
+        </div>
+      </div>
+
+      <!-- PERCENT fields -->
+      <div data-panel="pct" hidden>
+        <div class="field"><label for="pctA">What is</label>
+          <div class="in hasunit"><input id="pctA" type="number" inputmode="decimal" value="18"><span class="unit" style="left:auto;right:.7em">%</span></div></div>
+        <div class="field hasunit"><label for="pctB">of</label>
+          <div class="in"><span class="unit">#</span><input id="pctB" type="number" inputmode="decimal" value="250"></div></div>
+        <div class="ch-out">
+          <div class="cell"><div class="k">Result</div><div class="v amber" id="pctRes">45</div></div>
+          <div class="cell"><div class="k">As a fraction</div><div class="v" id="pctFrac">45 / 250</div></div>
+        </div>
+      </div>
+
+      <!-- LOAN fields -->
+      <div data-panel="loan" hidden>
+        <div class="field hasunit"><label for="amt">Loan amount</label>
+          <div class="in"><span class="unit">$</span><input id="amt" type="number" inputmode="decimal" value="20000"></div></div>
+        <div class="field"><label for="rate">Interest rate</label>
+          <div class="in hasunit"><input id="rate" type="number" inputmode="decimal" value="6.5" step="0.1"><span class="unit" style="left:auto;right:.7em">%</span></div></div>
+        <div class="field"><label for="term">Term (years)</label>
+          <div class="in"><input id="term" type="number" inputmode="numeric" value="5" style="width:80px"></div></div>
+        <div class="ch-out">
+          <div class="cell"><div class="k">Monthly</div><div class="v amber" id="loanMo">$391.32</div></div>
+          <div class="cell"><div class="k">Total interest</div><div class="v" id="loanInt">$3,479</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED: Money & markets ============ -->
+<section class="feat-sec" id="money" aria-label="Money and markets calculators">
+  <div class="wrap">
+    <a class="feat" href="fed-rate-calculator.html">
+      <div class="feat-l">
+        <span class="feat-tag">New · Featured</span>
+        <h3>What does a Fed rate cut actually do?</h3>
+        <p>Follow a single rate cut as it ripples through your loans, your savings, the money supply and asset prices — live and interactive.</p>
+        <span class="feat-go">Open the Rate Cut Ripple →</span>
+      </div>
+      <div class="feat-r" aria-hidden="true">
+        <div class="feat-rate"><span class="feat-from">3.75%</span><span class="feat-arw">→</span><span class="feat-to">3.50%</span></div>
+        <div class="feat-cap">one −25 bps cut</div>
+      </div>
+    </a>
+    <div class="mm-grid">
+      <a class="tool" href="m2-money-supply-calculator.html"><span class="ic">$</span><h3>M2 money supply</h3><p>Growth, doubling time, and what expansion does to fixed cash.</p><span class="go">Open →</span></a>
+      <a class="tool" href="gold-vs-usd-calculator.html"><span class="ic">◆</span><h3>Gold vs USD</h3><p>The dollar's value in gold since 1971 — or any year.</p><span class="go">Open →</span></a>
+      <a class="tool" href="sp500-dca-calculator.html"><span class="ic">▲</span><h3>S&amp;P 500 since inception</h3><p>Invest every year since 1928 — with real annual returns.</p><span class="go">Open →</span></a>
+      <a class="tool" href="sp1-vs-sp500-calculator.html"><span class="ic">№1</span><h3>S&amp;P 1 vs S&amp;P 500</h3><p>Only ever buying the biggest company — versus the index.</p><span class="go">Open →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIRECTORY ============ -->
+<section id="tools">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The full set</span>
+      <h2>Every calculator, one tap away</h2>
+      <p>Grouped by what you're actually trying to work out. Each one opens instantly and remembers nothing — your numbers stay on your device.</p>
+    </div>
+
+    <div class="cats">
+      <span class="cat">Finance</span>
+      <span class="cat">Money &amp; markets</span>
+      <span class="cat">Health</span>
+      <span class="cat">Date &amp; time</span>
+      <span class="cat">Math</span>
+      <span class="cat">Everyday</span>
+    </div>
+
+    <div class="acc" id="finance">
+
+      <!-- Percentage (open by default) -->
+      <div class="acc-item open" data-calc="pct">
+        <button class="acc-head" aria-expanded="true">
+          <span class="acc-ic">%</span>
+          <span class="acc-txt"><span class="acc-name">Percentage</span><span class="acc-sum">Increase, decrease, "% of", and the change between two numbers.</span></span>
+          <span class="acc-tag">Finance</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>What is</label><div class="mf-in"><input data-f="a" type="number" inputmode="decimal" value="15"><span class="mf-u">%</span></div></div>
+              <div class="mf"><label>of</label><div class="mf-in"><input data-f="b" type="number" inputmode="decimal" value="200"></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">—</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="percentage-calculator.html">Open the full <b>Percentage</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <!-- Tip & split -->
+      <div class="acc-item" data-calc="tip">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-ic">$</span>
+          <span class="acc-txt"><span class="acc-name">Tip &amp; split</span><span class="acc-sum">Tip by percent and divide the bill evenly across the table.</span></span>
+          <span class="acc-tag">Finance</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>Bill</label><div class="mf-in mf-l"><span class="mf-u mf-ul">$</span><input data-f="bill" type="number" inputmode="decimal" value="60"></div></div>
+              <div class="mf"><label>Tip</label><div class="mf-in"><input data-f="tip" type="number" inputmode="decimal" value="18"><span class="mf-u">%</span></div></div>
+              <div class="mf"><label>Split between</label><div class="mf-in"><input data-f="ppl" type="number" inputmode="numeric" value="2"></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">—</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="tip-calculator.html">Open the full <b>Tip &amp; split</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <!-- Loan payment -->
+      <div class="acc-item" data-calc="loan">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-ic">≈</span>
+          <span class="acc-txt"><span class="acc-name">Loan payment</span><span class="acc-sum">Monthly repayment and total interest over the full term.</span></span>
+          <span class="acc-tag">Finance</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>Loan amount</label><div class="mf-in mf-l"><span class="mf-u mf-ul">$</span><input data-f="amt" type="number" inputmode="decimal" value="20000"></div></div>
+              <div class="mf"><label>Interest rate</label><div class="mf-in"><input data-f="rate" type="number" inputmode="decimal" step="0.1" value="6.5"><span class="mf-u">%</span></div></div>
+              <div class="mf"><label>Term (years)</label><div class="mf-in"><input data-f="years" type="number" inputmode="numeric" value="5"></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">—</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="loan-calculator.html">Open the full <b>Loan</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <!-- Compound interest -->
+      <div class="acc-item" data-calc="comp">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-ic">△</span>
+          <span class="acc-txt"><span class="acc-name">Compound interest</span><span class="acc-sum">Watch a lump sum grow, compounded monthly, over any period.</span></span>
+          <span class="acc-tag">Finance</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>Starting amount</label><div class="mf-in mf-l"><span class="mf-u mf-ul">$</span><input data-f="p" type="number" inputmode="decimal" value="5000"></div></div>
+              <div class="mf"><label>Annual rate</label><div class="mf-in"><input data-f="rate" type="number" inputmode="decimal" step="0.1" value="7"><span class="mf-u">%</span></div></div>
+              <div class="mf"><label>Years</label><div class="mf-in"><input data-f="years" type="number" inputmode="numeric" value="10"></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">—</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="compound-interest-calculator.html">Open the full <b>Compound interest</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <!-- VAT / sales tax -->
+      <div class="acc-item" data-calc="vat">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-ic">◷</span>
+          <span class="acc-txt"><span class="acc-name">VAT / sales tax</span><span class="acc-sum">Add tax to a net amount — see the tax and the gross total.</span></span>
+          <span class="acc-tag">Finance</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>Net amount</label><div class="mf-in mf-l"><span class="mf-u mf-ul">$</span><input data-f="amt" type="number" inputmode="decimal" value="100"></div></div>
+              <div class="mf"><label>Tax rate</label><div class="mf-in"><input data-f="rate" type="number" inputmode="decimal" step="0.1" value="20"><span class="mf-u">%</span></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">—</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="vat-calculator.html">Open the full <b>VAT / tax</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <!-- Currency (preview) -->
+      <div class="acc-item" data-calc="currency">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-ic">↔</span>
+          <span class="acc-txt"><span class="acc-name">Currency</span><span class="acc-sum">Convert between currencies using the latest reference rates.</span></span>
+          <span class="acc-tag">Finance</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner">
+          <div class="mini mini-pv">
+            <div><div class="pv-ex">Example conversion</div><div class="pv-main">$100 &nbsp;→&nbsp; <span class="amber">€92.40</span></div>
+            <div class="pv-note">The full tool converts 21 major currencies with indicative reference rates and updates as you type.</div></div>
+          </div>
+          <a class="acc-cta" href="currency-converter.html">Open the full <b>Currency</b> converter →</a>
+        </div></div></div>
+      </div>
+
+      <!-- BMI -->
+      <div class="acc-item" data-calc="bmi" id="health">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-ic">◐</span>
+          <span class="acc-txt"><span class="acc-name">BMI</span><span class="acc-sum">Body mass index with a clear, honest healthy-range band.</span></span>
+          <span class="acc-tag">Health</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>Weight</label><div class="mf-in"><input data-f="w" type="number" inputmode="decimal" value="75"><span class="mf-u">kg</span></div></div>
+              <div class="mf"><label>Height</label><div class="mf-in"><input data-f="h" type="number" inputmode="decimal" value="175"><span class="mf-u">cm</span></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">—</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="bmi-calculator.html">Open the full <b>BMI</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <!-- Calorie needs (preview) -->
+      <div class="acc-item" data-calc="cal">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-ic">⊙</span>
+          <span class="acc-txt"><span class="acc-name">Calorie needs</span><span class="acc-sum">Daily maintenance calories from height, weight and activity.</span></span>
+          <span class="acc-tag">Health</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner">
+          <div class="mini mini-pv">
+            <div><div class="pv-ex">Example — 30&nbsp;yrs, 175&nbsp;cm, 75&nbsp;kg, moderately active</div><div class="pv-main">≈ <span class="amber">2,633</span> kcal / day</div>
+            <div class="pv-note">The full tool uses the Mifflin–St Jeor equation with your sex, age and activity level.</div></div>
+          </div>
+          <a class="acc-cta" href="calorie-calculator.html">Open the full <b>Calorie</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <!-- Age -->
+      <div class="acc-item" data-calc="age">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-ic">◔</span>
+          <span class="acc-txt"><span class="acc-name">Age</span><span class="acc-sum">Your exact age in years, months, weeks and days.</span></span>
+          <span class="acc-tag">Everyday</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>Date of birth</label><div class="mf-in"><input data-f="date" type="date" value="1990-06-15"></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">—</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="age-calculator.html">Open the full <b>Age</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <!-- Date difference -->
+      <div class="acc-item" data-calc="ddiff">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-ic">▦</span>
+          <span class="acc-txt"><span class="acc-name">Date difference</span><span class="acc-sum">Calendar days, weeks and working days between two dates.</span></span>
+          <span class="acc-tag">Date</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>From</label><div class="mf-in"><input data-f="d1" type="date" value="2026-01-01"></div></div>
+              <div class="mf"><label>To</label><div class="mf-in"><input data-f="d2" type="date" value="2026-12-25"></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">—</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="date-difference-calculator.html">Open the full <b>Date difference</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <!-- Fraction -->
+      <div class="acc-item" data-calc="frac">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-ic">÷</span>
+          <span class="acc-txt"><span class="acc-name">Fraction</span><span class="acc-sum">Add two fractions, simplify, and convert to a decimal.</span></span>
+          <span class="acc-tag">Math</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>First fraction</label><div class="mf-frac"><input data-f="a" type="number" inputmode="numeric" value="1"><span>/</span><input data-f="b" type="number" inputmode="numeric" value="2"></div></div>
+              <div class="mf"><label>Second fraction</label><div class="mf-frac"><input data-f="c" type="number" inputmode="numeric" value="1"><span>/</span><input data-f="d" type="number" inputmode="numeric" value="3"></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">—</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="fraction-calculator.html">Open the full <b>Fraction</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <!-- Scientific (preview) -->
+      <div class="acc-item" data-calc="sci">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-ic">√</span>
+          <span class="acc-txt"><span class="acc-name">Scientific</span><span class="acc-sum">A full keypad for roots, powers, logs and trigonometry.</span></span>
+          <span class="acc-tag">Math</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner">
+          <div class="mini mini-pv">
+            <div><div class="pv-ex">Full keypad</div><div class="pv-keys"><span>√</span><span>x²</span><span>xʸ</span><span>log</span><span>ln</span><span>sin</span><span>cos</span><span>tan</span><span>π</span><span>e</span><span>(</span><span>)</span></div>
+            <div class="pv-note">Everything you'd expect from a scientific calculator, with a running tape of your working.</div></div>
+          </div>
+          <a class="acc-cta" href="scientific-calculator.html">Open the full <b>Scientific</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Why it feels different</span>
+      <h2>Instruments, not forms</h2>
+    </div>
+    <div class="why">
+      <div class="item">
+        <span class="n">— 01</span>
+        <h4>Answers as you type</h4>
+        <p>No "calculate" button to hunt for. Every field is live, so the result moves the instant a number does.</p>
+      </div>
+      <div class="item">
+        <span class="n">— 02</span>
+        <h4>Nothing to sign up for</h4>
+        <p>No account, no email wall, no cookie banner theatre. Open a tool, get your answer, close the tab.</p>
+      </div>
+      <div class="item">
+        <span class="n">— 03</span>
+        <h4>Your numbers stay yours</h4>
+        <p>Everything runs on your device. We never see the bill you split or the loan you're weighing up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="all"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">The full collection</span><h2>Every calculator on the site</h2></div>
+  <div class="mega-grid" style="padding-top:0">
+      <div class="mega-col">
+        <h5>Money &amp; the Fed</h5>
+        <a class="mg-item" href="fed-rate-calculator.html"><span class="mg-ic">↓</span><span class="mg-t"><span class="mg-n">Fed rate cut</span><span class="mg-d">One cut, four ripples</span></span></a>
+        <a class="mg-item" href="m2-money-supply-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">M2 money supply</span><span class="mg-d">Growth, doubling, dilution</span></span></a>
+        <a class="mg-item" href="gold-vs-usd-calculator.html"><span class="mg-ic">◆</span><span class="mg-t"><span class="mg-n">Gold vs USD</span><span class="mg-d">The dollar since 1971</span></span></a>
+        <a class="mg-item" href="inflation-calculator.html"><span class="mg-ic">▴</span><span class="mg-t"><span class="mg-n">Inflation</span><span class="mg-d">Dollar value, 1913–2025</span></span></a>
+        <a class="mg-item" href="gold-m2-ratio-calculator.html"><span class="mg-ic">⚖</span><span class="mg-t"><span class="mg-n">Gold / M2 ratio</span><span class="mg-d">Is gold cheap vs money?</span></span></a>
+        <a class="mg-item" href="dow-to-gold-calculator.html"><span class="mg-ic">⚔</span><span class="mg-t"><span class="mg-n">Dow-to-Gold</span><span class="mg-d">Stocks priced in gold</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Investing</h5>
+        <a class="mg-item" href="sp500-dca-calculator.html"><span class="mg-ic">▲</span><span class="mg-t"><span class="mg-n">S&P 500 since inception</span><span class="mg-d">Real returns 1928–2025</span></span></a>
+        <a class="mg-item" href="sp1-vs-sp500-calculator.html"><span class="mg-ic">№1</span><span class="mg-t"><span class="mg-n">S&P 1 vs S&P 500</span><span class="mg-d">Throne vs kingdom</span></span></a>
+        <a class="mg-item" href="cagr-calculator.html"><span class="mg-ic">↗</span><span class="mg-t"><span class="mg-n">CAGR</span><span class="mg-d">Compound annual growth</span></span></a>
+        <a class="mg-item" href="drip-calculator.html"><span class="mg-ic">♻</span><span class="mg-t"><span class="mg-n">Dividend reinvestment</span><span class="mg-d">DRIP compounding</span></span></a>
+        <a class="mg-item" href="retirement-calculator.html"><span class="mg-ic">⌂</span><span class="mg-t"><span class="mg-n">Retirement / FIRE</span><span class="mg-d">Nest egg & the 4% rule</span></span></a>
+        <a class="mg-item" href="roi-calculator.html"><span class="mg-ic">±</span><span class="mg-t"><span class="mg-n">ROI</span><span class="mg-d">Return on investment</span></span></a>
+        <a class="mg-item" href="rule-of-72-calculator.html"><span class="mg-ic">72</span><span class="mg-t"><span class="mg-n">Rule of 72</span><span class="mg-d">Doubling time shortcut</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Loans &amp; debt</h5>
+        <a class="mg-item" href="mortgage-calculator.html"><span class="mg-ic">⌂</span><span class="mg-t"><span class="mg-n">Mortgage</span><span class="mg-d">Full monthly payment</span></span></a>
+        <a class="mg-item" href="loan-calculator.html"><span class="mg-ic">≈</span><span class="mg-t"><span class="mg-n">Loan payment</span><span class="mg-d">Monthly cost & interest</span></span></a>
+        <a class="mg-item" href="car-loan-calculator.html"><span class="mg-ic">⚙</span><span class="mg-t"><span class="mg-n">Car loan</span><span class="mg-d">With down & trade-in</span></span></a>
+        <a class="mg-item" href="debt-payoff-calculator.html"><span class="mg-ic">✂</span><span class="mg-t"><span class="mg-n">Debt payoff</span><span class="mg-d">Snowball vs avalanche</span></span></a>
+        <a class="mg-item" href="simple-interest-calculator.html"><span class="mg-ic">·</span><span class="mg-t"><span class="mg-n">Simple interest</span><span class="mg-d">I = P·r·t</span></span></a>
+        <a class="mg-item" href="apr-apy-calculator.html"><span class="mg-ic">⇄</span><span class="mg-t"><span class="mg-n">APR ↔ APY</span><span class="mg-d">Compounding conversions</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Everyday money</h5>
+        <a class="mg-item" href="percentage-calculator.html"><span class="mg-ic">%</span><span class="mg-t"><span class="mg-n">Percentage</span><span class="mg-d">Of, change, add & subtract</span></span></a>
+        <a class="mg-item" href="tip-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">Tip & split</span><span class="mg-d">Tip and divide the bill</span></span></a>
+        <a class="mg-item" href="vat-calculator.html"><span class="mg-ic">◷</span><span class="mg-t"><span class="mg-n">VAT / sales tax</span><span class="mg-d">Add or remove tax</span></span></a>
+        <a class="mg-item" href="discount-calculator.html"><span class="mg-ic">✂</span><span class="mg-t"><span class="mg-n">Discount</span><span class="mg-d">Sale price & savings</span></span></a>
+        <a class="mg-item" href="margin-markup-calculator.html"><span class="mg-ic">◨</span><span class="mg-t"><span class="mg-n">Margin & markup</span><span class="mg-d">Price, cost, profit</span></span></a>
+        <a class="mg-item" href="salary-to-hourly-calculator.html"><span class="mg-ic">⏱</span><span class="mg-t"><span class="mg-n">Salary ↔ hourly</span><span class="mg-d">Pay, converted both ways</span></span></a>
+        <a class="mg-item" href="savings-goal-calculator.html"><span class="mg-ic">◎</span><span class="mg-t"><span class="mg-n">Savings goal</span><span class="mg-d">Time or monthly needed</span></span></a>
+        <a class="mg-item" href="currency-converter.html"><span class="mg-ic">↔</span><span class="mg-t"><span class="mg-n">Currency</span><span class="mg-d">21 major currencies</span></span></a>
+        <a class="mg-item" href="compound-interest-calculator.html"><span class="mg-ic">△</span><span class="mg-t"><span class="mg-n">Compound interest</span><span class="mg-d">Growth over time</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Health &amp; body</h5>
+        <a class="mg-item" href="bmi-calculator.html"><span class="mg-ic">◐</span><span class="mg-t"><span class="mg-n">BMI</span><span class="mg-d">With healthy range</span></span></a>
+        <a class="mg-item" href="calorie-calculator.html"><span class="mg-ic">⊙</span><span class="mg-t"><span class="mg-n">Calorie needs</span><span class="mg-d">Mifflin–St Jeor</span></span></a>
+        <a class="mg-item" href="tdee-calculator.html"><span class="mg-ic">⚡</span><span class="mg-t"><span class="mg-n">TDEE</span><span class="mg-d">Total daily energy</span></span></a>
+        <a class="mg-item" href="bmr-calculator.html"><span class="mg-ic">☀</span><span class="mg-t"><span class="mg-n">BMR</span><span class="mg-d">Calories at rest</span></span></a>
+        <a class="mg-item" href="body-fat-calculator.html"><span class="mg-ic">◑</span><span class="mg-t"><span class="mg-n">Body fat %</span><span class="mg-d">US Navy method</span></span></a>
+        <a class="mg-item" href="ideal-weight-calculator.html"><span class="mg-ic">⚕</span><span class="mg-t"><span class="mg-n">Ideal weight</span><span class="mg-d">Four classic formulas</span></span></a>
+        <a class="mg-item" href="macro-calculator.html"><span class="mg-ic">◲</span><span class="mg-t"><span class="mg-n">Macros</span><span class="mg-d">Protein, carbs, fat split</span></span></a>
+        <a class="mg-item" href="water-intake-calculator.html"><span class="mg-ic">≋</span><span class="mg-t"><span class="mg-n">Water intake</span><span class="mg-d">Daily hydration</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Fitness &amp; sleep</h5>
+        <a class="mg-item" href="pace-calculator.html"><span class="mg-ic">⏵</span><span class="mg-t"><span class="mg-n">Running pace</span><span class="mg-d">Pace, time, distance</span></span></a>
+        <a class="mg-item" href="one-rep-max-calculator.html"><span class="mg-ic">⚑</span><span class="mg-t"><span class="mg-n">One-rep max</span><span class="mg-d">Epley & Brzycki</span></span></a>
+        <a class="mg-item" href="heart-rate-zone-calculator.html"><span class="mg-ic">❤</span><span class="mg-t"><span class="mg-n">Heart-rate zones</span><span class="mg-d">Training zones</span></span></a>
+        <a class="mg-item" href="sleep-calculator.html"><span class="mg-ic">☾</span><span class="mg-t"><span class="mg-n">Sleep cycles</span><span class="mg-d">When to sleep or wake</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Dates &amp; time</h5>
+        <a class="mg-item" href="age-calculator.html"><span class="mg-ic">◔</span><span class="mg-t"><span class="mg-n">Age</span><span class="mg-d">Years, months, days</span></span></a>
+        <a class="mg-item" href="date-difference-calculator.html"><span class="mg-ic">▦</span><span class="mg-t"><span class="mg-n">Date difference</span><span class="mg-d">Days & working days</span></span></a>
+        <a class="mg-item" href="day-of-week-calculator.html"><span class="mg-ic">□</span><span class="mg-t"><span class="mg-n">Day of the week</span><span class="mg-d">What day was any date</span></span></a>
+        <a class="mg-item" href="days-from-today-calculator.html"><span class="mg-ic">⇢</span><span class="mg-t"><span class="mg-n">Days from today</span><span class="mg-d">Add days & business days</span></span></a>
+        <a class="mg-item" href="time-calculator.html"><span class="mg-ic">⏰</span><span class="mg-t"><span class="mg-n">Time & hours</span><span class="mg-d">Durations & work hours</span></span></a>
+        <a class="mg-item" href="time-zone-converter.html"><span class="mg-ic">⏲</span><span class="mg-t"><span class="mg-n">Time zones</span><span class="mg-d">Difference between cities</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Math &amp; numbers</h5>
+        <a class="mg-item" href="fraction-calculator.html"><span class="mg-ic">÷</span><span class="mg-t"><span class="mg-n">Fraction</span><span class="mg-d">Four ops, simplified</span></span></a>
+        <a class="mg-item" href="scientific-calculator.html"><span class="mg-ic">√</span><span class="mg-t"><span class="mg-n">Scientific</span><span class="mg-d">Full keypad</span></span></a>
+        <a class="mg-item" href="average-calculator.html"><span class="mg-ic">x̄</span><span class="mg-t"><span class="mg-n">Average</span><span class="mg-d">Mean, median, std dev</span></span></a>
+        <a class="mg-item" href="ratio-calculator.html"><span class="mg-ic">::</span><span class="mg-t"><span class="mg-n">Ratio</span><span class="mg-d">Solve & simplify a:b</span></span></a>
+        <a class="mg-item" href="gcf-lcm-calculator.html"><span class="mg-ic">∧</span><span class="mg-t"><span class="mg-n">GCF & LCM</span><span class="mg-d">Factors & multiples</span></span></a>
+        <a class="mg-item" href="binary-hex-converter.html"><span class="mg-ic">01</span><span class="mg-t"><span class="mg-n">Binary / hex</span><span class="mg-d">Dec, bin, hex, octal</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>School</h5>
+        <a class="mg-item" href="gpa-calculator.html"><span class="mg-ic">☆</span><span class="mg-t"><span class="mg-n">GPA</span><span class="mg-d">Weighted 4.0 scale</span></span></a>
+        <a class="mg-item" href="final-grade-calculator.html"><span class="mg-ic">✓</span><span class="mg-t"><span class="mg-n">Final grade</span><span class="mg-d">What you need on the final</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Converters</h5>
+        <a class="mg-item" href="temperature-converter.html"><span class="mg-ic">°</span><span class="mg-t"><span class="mg-n">Temperature</span><span class="mg-d">°C, °F and kelvin</span></span></a>
+        <a class="mg-item" href="length-converter.html"><span class="mg-ic">↔</span><span class="mg-t"><span class="mg-n">Length</span><span class="mg-d">mm to miles</span></span></a>
+        <a class="mg-item" href="weight-converter.html"><span class="mg-ic">⚖</span><span class="mg-t"><span class="mg-n">Weight</span><span class="mg-d">Grams to tons & stone</span></span></a>
+        <a class="mg-item" href="cups-to-grams-converter.html"><span class="mg-ic">☕</span><span class="mg-t"><span class="mg-n">Cups to grams</span><span class="mg-d">Real ingredient densities</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Kitchen</h5>
+        <a class="mg-item" href="recipe-converter.html"><span class="mg-ic">×</span><span class="mg-t"><span class="mg-n">Recipe scaler</span><span class="mg-d">Resize any recipe</span></span></a>
+        <a class="mg-item" href="pan-conversion-calculator.html"><span class="mg-ic">▢</span><span class="mg-t"><span class="mg-n">Pan conversion</span><span class="mg-d">Swap baking pans</span></span></a>
+        <a class="mg-item" href="coffee-ratio-calculator.html"><span class="mg-ic">☕</span><span class="mg-t"><span class="mg-n">Coffee ratio</span><span class="mg-d">Water, beans, strength</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Home &amp; garden</h5>
+        <a class="mg-item" href="square-footage-calculator.html"><span class="mg-ic">▤</span><span class="mg-t"><span class="mg-n">Square footage</span><span class="mg-d">Area & cost per sq ft</span></span></a>
+        <a class="mg-item" href="concrete-calculator.html"><span class="mg-ic">▧</span><span class="mg-t"><span class="mg-n">Concrete</span><span class="mg-d">Volume & bags</span></span></a>
+        <a class="mg-item" href="paint-calculator.html"><span class="mg-ic">▨</span><span class="mg-t"><span class="mg-n">Paint</span><span class="mg-d">Coverage & cans</span></span></a>
+        <a class="mg-item" href="flooring-calculator.html"><span class="mg-ic">▥</span><span class="mg-t"><span class="mg-n">Flooring</span><span class="mg-d">Boxes with waste</span></span></a>
+        <a class="mg-item" href="mulch-calculator.html"><span class="mg-ic">✿</span><span class="mg-t"><span class="mg-n">Mulch</span><span class="mg-d">Cubic yards & bags</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Cars &amp; travel</h5>
+        <a class="mg-item" href="fuel-cost-calculator.html"><span class="mg-ic">⛽</span><span class="mg-t"><span class="mg-n">Fuel cost</span><span class="mg-d">Trip cost & split</span></span></a>
+        <a class="mg-item" href="mpg-calculator.html"><span class="mg-ic">⏱</span><span class="mg-t"><span class="mg-n">MPG</span><span class="mg-d">And L/100km</span></span></a>
+        <a class="mg-item" href="ev-charging-cost-calculator.html"><span class="mg-ic">⚡</span><span class="mg-t"><span class="mg-n">EV charging</span><span class="mg-d">Cost per charge & mile</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Family</h5>
+        <a class="mg-item" href="due-date-calculator.html"><span class="mg-ic">♡</span><span class="mg-t"><span class="mg-n">Due date</span><span class="mg-d">Naegele's rule</span></span></a>
+        <a class="mg-item" href="ovulation-calculator.html"><span class="mg-ic">♡</span><span class="mg-t"><span class="mg-n">Ovulation</span><span class="mg-d">Fertile window</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Random &amp; fun</h5>
+        <a class="mg-item" href="random-number-generator.html"><span class="mg-ic">#</span><span class="mg-t"><span class="mg-n">Random number</span><span class="mg-d">True random, any range</span></span></a>
+        <a class="mg-item" href="dice-roller.html"><span class="mg-ic">⚄</span><span class="mg-t"><span class="mg-n">Dice roller</span><span class="mg-d">d4 to d100, many dice</span></span></a>
+        <a class="mg-item" href="coin-flip.html"><span class="mg-ic">●</span><span class="mg-t"><span class="mg-n">Coin flip</span><span class="mg-d">Heads or tails, fairly</span></span></a>
+        <a class="mg-item" href="random-picker.html"><span class="mg-ic">✧</span><span class="mg-t"><span class="mg-n">Random picker</span><span class="mg-d">Pick winners from a list</span></span></a>
+        <a class="mg-item" href="password-generator.html"><span class="mg-ic">*</span><span class="mg-t"><span class="mg-n">Password</span><span class="mg-d">Strong, generated locally</span></span></a>
+      </div>
+  </div>
+</div></section>
+<section id="site-faq"><div class="wrap prose">
+  <h2>Common questions about Calculate</h2>
+    <h3>Are the calculators on Calculate really free?</h3>
+    <p>Yes — every calculator is completely free with no ads, no accounts and no locked features. The site is supported by optional donations only.</p>
+    <h3>How accurate are the results?</h3>
+    <p>Every tool is verified against known benchmarks before publishing — loan math against standard amortization tables, inflation against official BLS CPI data, health formulas against their original published equations. Where a result is an estimate, the page says so plainly.</p>
+    <h3>Is my data private?</h3>
+    <p>Completely. Calculations run entirely in your browser using JavaScript — the numbers you type never leave your device, and the site uses no cookies or tracking.</p>
+    <h3>Do the calculators work on mobile?</h3>
+    <p>Yes — every page is built for phones first and works instantly in any modern browser, with no app or sign-up required.</p>
+</div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ftop">
+      <div class="fbrand">
+        <a class="brand" href="#top"><span class="eq">=</span>Calculate</a>
+        <p>Everyday math, done properly. Free, instant, private.</p>
+      </div>
+      <a class="btn pill" href="#tools" style="padding:.5em .9em">Browse all →</a>
+    </div>
+    <div class="ftg">
+      <div class="ftcol">
+        <h5>Money &amp; the Fed</h5>
+        <a class="mg-item" href="fed-rate-calculator.html"><span class="mg-ic">↓</span><span class="mg-t"><span class="mg-n">Fed rate cut</span><span class="mg-d">One cut, four ripples</span></span></a>
+        <a class="mg-item" href="m2-money-supply-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">M2 money supply</span><span class="mg-d">Growth, doubling, dilution</span></span></a>
+        <a class="mg-item" href="gold-vs-usd-calculator.html"><span class="mg-ic">◆</span><span class="mg-t"><span class="mg-n">Gold vs USD</span><span class="mg-d">The dollar since 1971</span></span></a>
+        <a class="mg-item" href="inflation-calculator.html"><span class="mg-ic">▴</span><span class="mg-t"><span class="mg-n">Inflation</span><span class="mg-d">Dollar value, 1913–2025</span></span></a>
+        <a class="mg-item" href="gold-m2-ratio-calculator.html"><span class="mg-ic">⚖</span><span class="mg-t"><span class="mg-n">Gold / M2 ratio</span><span class="mg-d">Is gold cheap vs money?</span></span></a>
+        <a class="mg-item" href="dow-to-gold-calculator.html"><span class="mg-ic">⚔</span><span class="mg-t"><span class="mg-n">Dow-to-Gold</span><span class="mg-d">Stocks priced in gold</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Investing</h5>
+        <a class="mg-item" href="sp500-dca-calculator.html"><span class="mg-ic">▲</span><span class="mg-t"><span class="mg-n">S&P 500 since inception</span><span class="mg-d">Real returns 1928–2025</span></span></a>
+        <a class="mg-item" href="sp1-vs-sp500-calculator.html"><span class="mg-ic">№1</span><span class="mg-t"><span class="mg-n">S&P 1 vs S&P 500</span><span class="mg-d">Throne vs kingdom</span></span></a>
+        <a class="mg-item" href="cagr-calculator.html"><span class="mg-ic">↗</span><span class="mg-t"><span class="mg-n">CAGR</span><span class="mg-d">Compound annual growth</span></span></a>
+        <a class="mg-item" href="drip-calculator.html"><span class="mg-ic">♻</span><span class="mg-t"><span class="mg-n">Dividend reinvestment</span><span class="mg-d">DRIP compounding</span></span></a>
+        <a class="mg-item" href="retirement-calculator.html"><span class="mg-ic">⌂</span><span class="mg-t"><span class="mg-n">Retirement / FIRE</span><span class="mg-d">Nest egg & the 4% rule</span></span></a>
+        <a class="mg-item" href="roi-calculator.html"><span class="mg-ic">±</span><span class="mg-t"><span class="mg-n">ROI</span><span class="mg-d">Return on investment</span></span></a>
+        <a class="mg-item" href="rule-of-72-calculator.html"><span class="mg-ic">72</span><span class="mg-t"><span class="mg-n">Rule of 72</span><span class="mg-d">Doubling time shortcut</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Loans &amp; debt</h5>
+        <a class="mg-item" href="mortgage-calculator.html"><span class="mg-ic">⌂</span><span class="mg-t"><span class="mg-n">Mortgage</span><span class="mg-d">Full monthly payment</span></span></a>
+        <a class="mg-item" href="loan-calculator.html"><span class="mg-ic">≈</span><span class="mg-t"><span class="mg-n">Loan payment</span><span class="mg-d">Monthly cost & interest</span></span></a>
+        <a class="mg-item" href="car-loan-calculator.html"><span class="mg-ic">⚙</span><span class="mg-t"><span class="mg-n">Car loan</span><span class="mg-d">With down & trade-in</span></span></a>
+        <a class="mg-item" href="debt-payoff-calculator.html"><span class="mg-ic">✂</span><span class="mg-t"><span class="mg-n">Debt payoff</span><span class="mg-d">Snowball vs avalanche</span></span></a>
+        <a class="mg-item" href="simple-interest-calculator.html"><span class="mg-ic">·</span><span class="mg-t"><span class="mg-n">Simple interest</span><span class="mg-d">I = P·r·t</span></span></a>
+        <a class="mg-item" href="apr-apy-calculator.html"><span class="mg-ic">⇄</span><span class="mg-t"><span class="mg-n">APR ↔ APY</span><span class="mg-d">Compounding conversions</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Everyday money</h5>
+        <a class="mg-item" href="percentage-calculator.html"><span class="mg-ic">%</span><span class="mg-t"><span class="mg-n">Percentage</span><span class="mg-d">Of, change, add & subtract</span></span></a>
+        <a class="mg-item" href="tip-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">Tip & split</span><span class="mg-d">Tip and divide the bill</span></span></a>
+        <a class="mg-item" href="vat-calculator.html"><span class="mg-ic">◷</span><span class="mg-t"><span class="mg-n">VAT / sales tax</span><span class="mg-d">Add or remove tax</span></span></a>
+        <a class="mg-item" href="discount-calculator.html"><span class="mg-ic">✂</span><span class="mg-t"><span class="mg-n">Discount</span><span class="mg-d">Sale price & savings</span></span></a>
+        <a class="mg-item" href="margin-markup-calculator.html"><span class="mg-ic">◨</span><span class="mg-t"><span class="mg-n">Margin & markup</span><span class="mg-d">Price, cost, profit</span></span></a>
+        <a class="mg-item" href="salary-to-hourly-calculator.html"><span class="mg-ic">⏱</span><span class="mg-t"><span class="mg-n">Salary ↔ hourly</span><span class="mg-d">Pay, converted both ways</span></span></a>
+        <a class="mg-item" href="savings-goal-calculator.html"><span class="mg-ic">◎</span><span class="mg-t"><span class="mg-n">Savings goal</span><span class="mg-d">Time or monthly needed</span></span></a>
+        <a class="mg-item" href="currency-converter.html"><span class="mg-ic">↔</span><span class="mg-t"><span class="mg-n">Currency</span><span class="mg-d">21 major currencies</span></span></a>
+        <a class="mg-item" href="compound-interest-calculator.html"><span class="mg-ic">△</span><span class="mg-t"><span class="mg-n">Compound interest</span><span class="mg-d">Growth over time</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Health &amp; body</h5>
+        <a class="mg-item" href="bmi-calculator.html"><span class="mg-ic">◐</span><span class="mg-t"><span class="mg-n">BMI</span><span class="mg-d">With healthy range</span></span></a>
+        <a class="mg-item" href="calorie-calculator.html"><span class="mg-ic">⊙</span><span class="mg-t"><span class="mg-n">Calorie needs</span><span class="mg-d">Mifflin–St Jeor</span></span></a>
+        <a class="mg-item" href="tdee-calculator.html"><span class="mg-ic">⚡</span><span class="mg-t"><span class="mg-n">TDEE</span><span class="mg-d">Total daily energy</span></span></a>
+        <a class="mg-item" href="bmr-calculator.html"><span class="mg-ic">☀</span><span class="mg-t"><span class="mg-n">BMR</span><span class="mg-d">Calories at rest</span></span></a>
+        <a class="mg-item" href="body-fat-calculator.html"><span class="mg-ic">◑</span><span class="mg-t"><span class="mg-n">Body fat %</span><span class="mg-d">US Navy method</span></span></a>
+        <a class="mg-item" href="ideal-weight-calculator.html"><span class="mg-ic">⚕</span><span class="mg-t"><span class="mg-n">Ideal weight</span><span class="mg-d">Four classic formulas</span></span></a>
+        <a class="mg-item" href="macro-calculator.html"><span class="mg-ic">◲</span><span class="mg-t"><span class="mg-n">Macros</span><span class="mg-d">Protein, carbs, fat split</span></span></a>
+        <a class="mg-item" href="water-intake-calculator.html"><span class="mg-ic">≋</span><span class="mg-t"><span class="mg-n">Water intake</span><span class="mg-d">Daily hydration</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Fitness &amp; sleep</h5>
+        <a class="mg-item" href="pace-calculator.html"><span class="mg-ic">⏵</span><span class="mg-t"><span class="mg-n">Running pace</span><span class="mg-d">Pace, time, distance</span></span></a>
+        <a class="mg-item" href="one-rep-max-calculator.html"><span class="mg-ic">⚑</span><span class="mg-t"><span class="mg-n">One-rep max</span><span class="mg-d">Epley & Brzycki</span></span></a>
+        <a class="mg-item" href="heart-rate-zone-calculator.html"><span class="mg-ic">❤</span><span class="mg-t"><span class="mg-n">Heart-rate zones</span><span class="mg-d">Training zones</span></span></a>
+        <a class="mg-item" href="sleep-calculator.html"><span class="mg-ic">☾</span><span class="mg-t"><span class="mg-n">Sleep cycles</span><span class="mg-d">When to sleep or wake</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Dates &amp; time</h5>
+        <a class="mg-item" href="age-calculator.html"><span class="mg-ic">◔</span><span class="mg-t"><span class="mg-n">Age</span><span class="mg-d">Years, months, days</span></span></a>
+        <a class="mg-item" href="date-difference-calculator.html"><span class="mg-ic">▦</span><span class="mg-t"><span class="mg-n">Date difference</span><span class="mg-d">Days & working days</span></span></a>
+        <a class="mg-item" href="day-of-week-calculator.html"><span class="mg-ic">□</span><span class="mg-t"><span class="mg-n">Day of the week</span><span class="mg-d">What day was any date</span></span></a>
+        <a class="mg-item" href="days-from-today-calculator.html"><span class="mg-ic">⇢</span><span class="mg-t"><span class="mg-n">Days from today</span><span class="mg-d">Add days & business days</span></span></a>
+        <a class="mg-item" href="time-calculator.html"><span class="mg-ic">⏰</span><span class="mg-t"><span class="mg-n">Time & hours</span><span class="mg-d">Durations & work hours</span></span></a>
+        <a class="mg-item" href="time-zone-converter.html"><span class="mg-ic">⏲</span><span class="mg-t"><span class="mg-n">Time zones</span><span class="mg-d">Difference between cities</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Math &amp; numbers</h5>
+        <a class="mg-item" href="fraction-calculator.html"><span class="mg-ic">÷</span><span class="mg-t"><span class="mg-n">Fraction</span><span class="mg-d">Four ops, simplified</span></span></a>
+        <a class="mg-item" href="scientific-calculator.html"><span class="mg-ic">√</span><span class="mg-t"><span class="mg-n">Scientific</span><span class="mg-d">Full keypad</span></span></a>
+        <a class="mg-item" href="average-calculator.html"><span class="mg-ic">x̄</span><span class="mg-t"><span class="mg-n">Average</span><span class="mg-d">Mean, median, std dev</span></span></a>
+        <a class="mg-item" href="ratio-calculator.html"><span class="mg-ic">::</span><span class="mg-t"><span class="mg-n">Ratio</span><span class="mg-d">Solve & simplify a:b</span></span></a>
+        <a class="mg-item" href="gcf-lcm-calculator.html"><span class="mg-ic">∧</span><span class="mg-t"><span class="mg-n">GCF & LCM</span><span class="mg-d">Factors & multiples</span></span></a>
+        <a class="mg-item" href="binary-hex-converter.html"><span class="mg-ic">01</span><span class="mg-t"><span class="mg-n">Binary / hex</span><span class="mg-d">Dec, bin, hex, octal</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>School</h5>
+        <a class="mg-item" href="gpa-calculator.html"><span class="mg-ic">☆</span><span class="mg-t"><span class="mg-n">GPA</span><span class="mg-d">Weighted 4.0 scale</span></span></a>
+        <a class="mg-item" href="final-grade-calculator.html"><span class="mg-ic">✓</span><span class="mg-t"><span class="mg-n">Final grade</span><span class="mg-d">What you need on the final</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Converters</h5>
+        <a class="mg-item" href="temperature-converter.html"><span class="mg-ic">°</span><span class="mg-t"><span class="mg-n">Temperature</span><span class="mg-d">°C, °F and kelvin</span></span></a>
+        <a class="mg-item" href="length-converter.html"><span class="mg-ic">↔</span><span class="mg-t"><span class="mg-n">Length</span><span class="mg-d">mm to miles</span></span></a>
+        <a class="mg-item" href="weight-converter.html"><span class="mg-ic">⚖</span><span class="mg-t"><span class="mg-n">Weight</span><span class="mg-d">Grams to tons & stone</span></span></a>
+        <a class="mg-item" href="cups-to-grams-converter.html"><span class="mg-ic">☕</span><span class="mg-t"><span class="mg-n">Cups to grams</span><span class="mg-d">Real ingredient densities</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Kitchen</h5>
+        <a class="mg-item" href="recipe-converter.html"><span class="mg-ic">×</span><span class="mg-t"><span class="mg-n">Recipe scaler</span><span class="mg-d">Resize any recipe</span></span></a>
+        <a class="mg-item" href="pan-conversion-calculator.html"><span class="mg-ic">▢</span><span class="mg-t"><span class="mg-n">Pan conversion</span><span class="mg-d">Swap baking pans</span></span></a>
+        <a class="mg-item" href="coffee-ratio-calculator.html"><span class="mg-ic">☕</span><span class="mg-t"><span class="mg-n">Coffee ratio</span><span class="mg-d">Water, beans, strength</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Home &amp; garden</h5>
+        <a class="mg-item" href="square-footage-calculator.html"><span class="mg-ic">▤</span><span class="mg-t"><span class="mg-n">Square footage</span><span class="mg-d">Area & cost per sq ft</span></span></a>
+        <a class="mg-item" href="concrete-calculator.html"><span class="mg-ic">▧</span><span class="mg-t"><span class="mg-n">Concrete</span><span class="mg-d">Volume & bags</span></span></a>
+        <a class="mg-item" href="paint-calculator.html"><span class="mg-ic">▨</span><span class="mg-t"><span class="mg-n">Paint</span><span class="mg-d">Coverage & cans</span></span></a>
+        <a class="mg-item" href="flooring-calculator.html"><span class="mg-ic">▥</span><span class="mg-t"><span class="mg-n">Flooring</span><span class="mg-d">Boxes with waste</span></span></a>
+        <a class="mg-item" href="mulch-calculator.html"><span class="mg-ic">✿</span><span class="mg-t"><span class="mg-n">Mulch</span><span class="mg-d">Cubic yards & bags</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Cars &amp; travel</h5>
+        <a class="mg-item" href="fuel-cost-calculator.html"><span class="mg-ic">⛽</span><span class="mg-t"><span class="mg-n">Fuel cost</span><span class="mg-d">Trip cost & split</span></span></a>
+        <a class="mg-item" href="mpg-calculator.html"><span class="mg-ic">⏱</span><span class="mg-t"><span class="mg-n">MPG</span><span class="mg-d">And L/100km</span></span></a>
+        <a class="mg-item" href="ev-charging-cost-calculator.html"><span class="mg-ic">⚡</span><span class="mg-t"><span class="mg-n">EV charging</span><span class="mg-d">Cost per charge & mile</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Family</h5>
+        <a class="mg-item" href="due-date-calculator.html"><span class="mg-ic">♡</span><span class="mg-t"><span class="mg-n">Due date</span><span class="mg-d">Naegele's rule</span></span></a>
+        <a class="mg-item" href="ovulation-calculator.html"><span class="mg-ic">♡</span><span class="mg-t"><span class="mg-n">Ovulation</span><span class="mg-d">Fertile window</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Random &amp; fun</h5>
+        <a class="mg-item" href="random-number-generator.html"><span class="mg-ic">#</span><span class="mg-t"><span class="mg-n">Random number</span><span class="mg-d">True random, any range</span></span></a>
+        <a class="mg-item" href="dice-roller.html"><span class="mg-ic">⚄</span><span class="mg-t"><span class="mg-n">Dice roller</span><span class="mg-d">d4 to d100, many dice</span></span></a>
+        <a class="mg-item" href="coin-flip.html"><span class="mg-ic">●</span><span class="mg-t"><span class="mg-n">Coin flip</span><span class="mg-d">Heads or tails, fairly</span></span></a>
+        <a class="mg-item" href="random-picker.html"><span class="mg-ic">✧</span><span class="mg-t"><span class="mg-n">Random picker</span><span class="mg-d">Pick winners from a list</span></span></a>
+        <a class="mg-item" href="password-generator.html"><span class="mg-ic">*</span><span class="mg-t"><span class="mg-n">Password</span><span class="mg-d">Strong, generated locally</span></span></a>
+      </div>
+    </div>
+    <div class="fbar">
+      <p class="foot-note">© 2026 Calculate · Answers are for general use — check anything important with a professional. · Made with 🤎</p>
+      <span style="display:flex;gap:16px;flex-wrap:wrap;align-items:baseline"><a class="ftl" href="about.html">About</a><a class="ftl" href="privacy.html">Privacy</a><a class="ftl" href="support.html">Support</a><a class="ftl" href="https://buymeacoffee.com/YOUR-BMC-HANDLE" rel="noopener">Buy me a coffee ☕</a><a class="ftl" href="#top">Back to top ↑</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var money=function(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+  var money0=function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+  // ----- mode switching -----
+  var tabs=[].slice.call(document.querySelectorAll('.ch-tab'));
+  var chips={tip:'splits evenly',pct:'any two numbers',loan:'fixed monthly'};
+  function setMode(m){
+    tabs.forEach(function(t){var on=t.dataset.mode===m;t.classList.toggle('on',on);t.setAttribute('aria-selected',on?'true':'false');});
+    document.querySelectorAll('[data-panel]').forEach(function(p){p.hidden=p.dataset.panel!==m;});
+    $('chChip').textContent=chips[m];
+    if(m==='tip')calcTip(); else if(m==='pct')calcPct(); else calcLoan();
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){setMode(t.dataset.mode);});
+    t.addEventListener('keydown',function(e){var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(!d)return;e.preventDefault();
+      var i=tabs.indexOf(t);setMode(tabs[(i+d+tabs.length)%tabs.length].dataset.mode);tabs[(i+d+tabs.length)%tabs.length].focus();});});
+
+  // ----- TIP -----
+  var tip=18;
+  var seg=$('tipSeg');
+  seg.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+    [].forEach.call(seg.children,function(x){x.classList.remove('on');});b.classList.add('on');tip=+b.dataset.tip;calcTip();});
+  function calcTip(){
+    var bill=parseFloat($('bill').value)||0, ppl=Math.max(1,parseInt($('people').value)||1);
+    var tipAmt=bill*tip/100, total=bill+tipAmt, each=total/ppl;
+    $('tipTotal').textContent=money(tipAmt);
+    $('tipBill').textContent=money(total);
+    $('tipEach').textContent=money(each);
+    $('expr').textContent=money(bill)+' · '+tip+'% · ÷ '+ppl;
+    $('result').innerHTML='<span class="amber">'+money(each)+'</span>';
+  }
+  ['bill','people'].forEach(function(id){$(id).addEventListener('input',calcTip);});
+
+  // ----- PERCENT -----
+  function calcPct(){
+    var a=parseFloat($('pctA').value)||0, b=parseFloat($('pctB').value)||0;
+    var r=a/100*b;
+    var disp=(Math.round(r*100)/100).toLocaleString('en-US');
+    $('pctRes').textContent=disp;
+    $('pctFrac').textContent=disp+' / '+b.toLocaleString('en-US');
+    $('expr').textContent=a+'% of '+b.toLocaleString('en-US');
+    $('result').innerHTML='<span class="amber">'+disp+'</span>';
+  }
+  ['pctA','pctB'].forEach(function(id){$(id).addEventListener('input',calcPct);});
+
+  // ----- LOAN -----
+  function calcLoan(){
+    var P=parseFloat($('amt').value)||0, r=(parseFloat($('rate').value)||0)/100/12, n=(parseInt($('term').value)||0)*12;
+    var m = r===0 ? (n?P/n:0) : P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+    if(!isFinite(m))m=0;
+    var totalInt=m*n-P;
+    $('loanMo').textContent=money(m);
+    $('loanInt').textContent=money0(Math.max(0,totalInt));
+    $('expr').textContent=money0(P)+' · '+(parseFloat($('rate').value)||0)+'% · '+(parseInt($('term').value)||0)+'yr';
+    $('result').innerHTML='<span class="amber">'+money(m)+'</span><span style="font-size:.4em;color:var(--muted)"> /mo</span>';
+  }
+  ['amt','rate','term'].forEach(function(id){$(id).addEventListener('input',calcLoan);});
+
+  calcTip();
+})();
+</script>
+
+<script>
+/* ===== accordion mini-calculators ===== */
+(function(){
+  var money=function(n){return '$'+(isFinite(n)?n:0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+  var money0=function(n){return '$'+Math.round(isFinite(n)?n:0).toLocaleString('en-US');};
+  var num=function(n){return (Math.round((isFinite(n)?n:0)*100)/100).toLocaleString('en-US');};
+  var num1=function(n){return (isFinite(n)?n:0).toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+  var num2=function(n){return (isFinite(n)?n:0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+  function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){var t=b;b=a%b;a=t;}return a||1;}
+  function pdate(s){if(!s)return null;var d=new Date(s+'T00:00:00');return isNaN(d)?null:d;}
+
+  var F={
+    pct:function(v){var r=v.a/100*v.b;return {expr:num(v.a)+'% of '+num(v.b),main:num(r),
+      s1:{k:'Result',v:num(r)},s2:{k:'As fraction',v:num(r)+' / '+num(v.b)}};},
+    tip:function(v){var ppl=Math.max(1,v.ppl||1),t=v.bill*v.tip/100,tot=v.bill+t,each=tot/ppl;
+      return {expr:money(v.bill)+' · '+num(v.tip)+'% · ÷'+ppl,main:money(each)+' each',
+        s1:{k:'Tip total',v:money(t)},s2:{k:'Bill total',v:money(tot)}};},
+    loan:function(v){var r=v.rate/100/12,n=v.years*12,m=r===0?(n?v.amt/n:0):v.amt*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+      if(!isFinite(m))m=0;return {expr:money0(v.amt)+' · '+num(v.rate)+'% · '+num(v.years)+'yr',main:money(m)+' /mo',
+        s1:{k:'Total interest',v:money0(Math.max(0,m*n-v.amt))},s2:{k:'Total paid',v:money0(m*n)}};},
+    comp:function(v){var r=v.rate/100/12,n=v.years*12,A=v.p*Math.pow(1+r,n);if(!isFinite(A))A=v.p;
+      return {expr:money0(v.p)+' · '+num(v.rate)+'% · '+num(v.years)+'yr',main:money(A),
+        s1:{k:'Interest earned',v:money0(A-v.p)},s2:{k:'Growth',v:num1((v.p?(A/v.p-1)*100:0))+'%'}};},
+    vat:function(v){var tax=v.amt*v.rate/100,gross=v.amt+tax;
+      return {expr:money(v.amt)+' + '+num(v.rate)+'% tax',main:money(gross)+' gross',
+        s1:{k:'Tax',v:money(tax)},s2:{k:'Net',v:money(v.amt)}};},
+    bmi:function(v){var m=v.h/100,b=m>0?v.w/(m*m):0;var cat=b<18.5?'Underweight':b<25?'Healthy':b<30?'Overweight':'Obese';
+      return {expr:num(v.w)+'kg · '+num(v.h)+'cm',main:num1(b)+' BMI',
+        s1:{k:'Category',v:cat},s2:{k:'Healthy range',v:'18.5–24.9'}};},
+    age:function(v){var bd=pdate(v.date),now=new Date();if(!bd||bd>now)return {expr:'',main:'—',s1:{k:'',v:''},s2:{k:'',v:''}};
+      var y=now.getFullYear()-bd.getFullYear(),mo=now.getMonth()-bd.getMonth(),d=now.getDate()-bd.getDate();
+      if(d<0){mo--;d+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}if(mo<0){y--;mo+=12;}
+      var days=Math.floor((now-bd)/86400000);
+      return {expr:'born '+v.date,main:y+'y '+mo+'m '+d+'d',
+        s1:{k:'Total days',v:num(days)},s2:{k:'In weeks',v:num(Math.floor(days/7))}};},
+    ddiff:function(v){var a=pdate(v.d1),b=pdate(v.d2);if(!a||!b)return {expr:'',main:'—',s1:{k:'',v:''},s2:{k:'',v:''}};
+      if(b<a){var t=a;a=b;b=t;}var days=Math.round((b-a)/86400000);
+      var wd=0,d=new Date(a),g=0;while(d<=b&&g<40000){var dow=d.getDay();if(dow!==0&&dow!==6)wd++;d.setDate(d.getDate()+1);g++;}
+      return {expr:num(days)+' days apart',main:num(days)+' days',
+        s1:{k:'In weeks',v:Math.floor(days/7)+'w '+(days%7)+'d'},s2:{k:'Working days',v:num(wd)}};},
+    frac:function(v){var nu=v.a*v.d+v.c*v.b,de=v.b*v.d;if(de===0)return {expr:'',main:'—',s1:{k:'',v:''},s2:{k:'',v:''}};
+      var g=gcd(nu,de);return {expr:v.a+'/'+v.b+' + '+v.c+'/'+v.d,main:(nu/g)+' / '+(de/g),
+        s1:{k:'Decimal',v:num2(nu/de)},s2:{k:'Unsimplified',v:nu+' / '+de}};}
+  };
+
+  document.querySelectorAll('.acc-item[data-calc]').forEach(function(item){
+    var fn=F[item.dataset.calc];if(!fn)return;
+    var ins=[].slice.call(item.querySelectorAll('[data-f]'));
+    function set(sel,val){var e=item.querySelector('[data-out="'+sel+'"]');if(e)e.textContent=val;}
+    function run(){
+      var v={};ins.forEach(function(i){v[i.dataset.f]=i.type==='date'?i.value:(parseFloat(i.value)||0);});
+      var o=fn(v);set('expr',o.expr||'');set('main',o.main);
+      if(o.s1){set('s1k',o.s1.k);set('s1v',o.s1.v);}if(o.s2){set('s2k',o.s2.k);set('s2v',o.s2.v);}
+    }
+    ins.forEach(function(i){i.addEventListener('input',run);i.addEventListener('change',run);});
+    item._run=run;
+    if(item.classList.contains('open'))run();
+  });
+
+  var heads=[].slice.call(document.querySelectorAll('.acc-head'));
+  heads.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item=btn.closest('.acc-item'),isOpen=item.classList.contains('open');
+      document.querySelectorAll('.acc-item.open').forEach(function(o){o.classList.remove('open');o.querySelector('.acc-head').setAttribute('aria-expanded','false');});
+      if(!isOpen){item.classList.add('open');btn.setAttribute('aria-expanded','true');if(item._run)item._run();}
+    });
+    btn.addEventListener('keydown',function(e){
+      var i=heads.indexOf(btn),d=e.key==='ArrowDown'?1:e.key==='ArrowUp'?-1:0;if(!d)return;
+      e.preventDefault();heads[(i+d+heads.length)%heads.length].focus();
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  var top=document.querySelector('header.top'),
+      tog=document.querySelector('.nav-toggle'),
+      veil=document.querySelector('.mega-veil');
+  if(!top||!tog)return;
+  function setOpen(on){
+    top.classList.toggle('menu-open',on);
+    if(veil)veil.classList.toggle('on',on);
+    tog.setAttribute('aria-expanded',on?'true':'false');
+  }
+  function isOpen(){return top.classList.contains('menu-open');}
+  tog.addEventListener('click',function(e){e.stopPropagation();setOpen(!isOpen());});
+  if(veil)veil.addEventListener('click',function(){setOpen(false);});
+  document.addEventListener('click',function(e){
+    if(isOpen()&&!top.contains(e.target))setOpen(false);
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&isOpen()){setOpen(false);tog.focus();}
+  });
+  top.querySelectorAll('.mg-item').forEach(function(a){a.addEventListener('click',function(){setOpen(false);});});
+})();
+</script>
+<script>
+/* featured card: random calculator each load (Fed card is the no-JS default) */
+(function(){
+  var T=[{"u": "fed-rate-calculator", "i": "↓", "n": "Fed rate cut", "d": "One cut, four ripples"}, {"u": "m2-money-supply-calculator", "i": "$", "n": "M2 money supply", "d": "Growth, doubling, dilution"}, {"u": "gold-vs-usd-calculator", "i": "◆", "n": "Gold vs USD", "d": "The dollar since 1971"}, {"u": "inflation-calculator", "i": "▴", "n": "Inflation", "d": "Dollar value, 1913–2025"}, {"u": "gold-m2-ratio-calculator", "i": "⚖", "n": "Gold / M2 ratio", "d": "Is gold cheap vs money?"}, {"u": "dow-to-gold-calculator", "i": "⚔", "n": "Dow-to-Gold", "d": "Stocks priced in gold"}, {"u": "sp500-dca-calculator", "i": "▲", "n": "S&P 500 since inception", "d": "Real returns 1928–2025"}, {"u": "sp1-vs-sp500-calculator", "i": "№1", "n": "S&P 1 vs S&P 500", "d": "Throne vs kingdom"}, {"u": "cagr-calculator", "i": "↗", "n": "CAGR", "d": "Compound annual growth"}, {"u": "drip-calculator", "i": "♻", "n": "Dividend reinvestment", "d": "DRIP compounding"}, {"u": "retirement-calculator", "i": "⌂", "n": "Retirement / FIRE", "d": "Nest egg & the 4% rule"}, {"u": "roi-calculator", "i": "±", "n": "ROI", "d": "Return on investment"}, {"u": "rule-of-72-calculator", "i": "72", "n": "Rule of 72", "d": "Doubling time shortcut"}, {"u": "mortgage-calculator", "i": "⌂", "n": "Mortgage", "d": "Full monthly payment"}, {"u": "loan-calculator", "i": "≈", "n": "Loan payment", "d": "Monthly cost & interest"}, {"u": "car-loan-calculator", "i": "⚙", "n": "Car loan", "d": "With down & trade-in"}, {"u": "debt-payoff-calculator", "i": "✂", "n": "Debt payoff", "d": "Snowball vs avalanche"}, {"u": "simple-interest-calculator", "i": "·", "n": "Simple interest", "d": "I = P·r·t"}, {"u": "apr-apy-calculator", "i": "⇄", "n": "APR ↔ APY", "d": "Compounding conversions"}, {"u": "percentage-calculator", "i": "%", "n": "Percentage", "d": "Of, change, add & subtract"}, {"u": "tip-calculator", "i": "$", "n": "Tip & split", "d": "Tip and divide the bill"}, {"u": "vat-calculator", "i": "◷", "n": "VAT / sales tax", "d": "Add or remove tax"}, {"u": "discount-calculator", "i": "✂", "n": "Discount", "d": "Sale price & savings"}, {"u": "margin-markup-calculator", "i": "◨", "n": "Margin & markup", "d": "Price, cost, profit"}, {"u": "salary-to-hourly-calculator", "i": "⏱", "n": "Salary ↔ hourly", "d": "Pay, converted both ways"}, {"u": "savings-goal-calculator", "i": "◎", "n": "Savings goal", "d": "Time or monthly needed"}, {"u": "currency-converter", "i": "↔", "n": "Currency", "d": "21 major currencies"}, {"u": "compound-interest-calculator", "i": "△", "n": "Compound interest", "d": "Growth over time"}, {"u": "bmi-calculator", "i": "◐", "n": "BMI", "d": "With healthy range"}, {"u": "calorie-calculator", "i": "⊙", "n": "Calorie needs", "d": "Mifflin–St Jeor"}, {"u": "tdee-calculator", "i": "⚡", "n": "TDEE", "d": "Total daily energy"}, {"u": "bmr-calculator", "i": "☀", "n": "BMR", "d": "Calories at rest"}, {"u": "body-fat-calculator", "i": "◑", "n": "Body fat %", "d": "US Navy method"}, {"u": "ideal-weight-calculator", "i": "⚕", "n": "Ideal weight", "d": "Four classic formulas"}, {"u": "macro-calculator", "i": "◲", "n": "Macros", "d": "Protein, carbs, fat split"}, {"u": "water-intake-calculator", "i": "≋", "n": "Water intake", "d": "Daily hydration"}, {"u": "pace-calculator", "i": "⏵", "n": "Running pace", "d": "Pace, time, distance"}, {"u": "one-rep-max-calculator", "i": "⚑", "n": "One-rep max", "d": "Epley & Brzycki"}, {"u": "heart-rate-zone-calculator", "i": "❤", "n": "Heart-rate zones", "d": "Training zones"}, {"u": "sleep-calculator", "i": "☾", "n": "Sleep cycles", "d": "When to sleep or wake"}, {"u": "age-calculator", "i": "◔", "n": "Age", "d": "Years, months, days"}, {"u": "date-difference-calculator", "i": "▦", "n": "Date difference", "d": "Days & working days"}, {"u": "day-of-week-calculator", "i": "□", "n": "Day of the week", "d": "What day was any date"}, {"u": "days-from-today-calculator", "i": "⇢", "n": "Days from today", "d": "Add days & business days"}, {"u": "time-calculator", "i": "⏰", "n": "Time & hours", "d": "Durations & work hours"}, {"u": "time-zone-converter", "i": "⏲", "n": "Time zones", "d": "Difference between cities"}, {"u": "fraction-calculator", "i": "÷", "n": "Fraction", "d": "Four ops, simplified"}, {"u": "scientific-calculator", "i": "√", "n": "Scientific", "d": "Full keypad"}, {"u": "average-calculator", "i": "x̄", "n": "Average", "d": "Mean, median, std dev"}, {"u": "ratio-calculator", "i": "::", "n": "Ratio", "d": "Solve & simplify a:b"}, {"u": "gcf-lcm-calculator", "i": "∧", "n": "GCF & LCM", "d": "Factors & multiples"}, {"u": "binary-hex-converter", "i": "01", "n": "Binary / hex", "d": "Dec, bin, hex, octal"}, {"u": "gpa-calculator", "i": "☆", "n": "GPA", "d": "Weighted 4.0 scale"}, {"u": "final-grade-calculator", "i": "✓", "n": "Final grade", "d": "What you need on the final"}, {"u": "temperature-converter", "i": "°", "n": "Temperature", "d": "°C, °F and kelvin"}, {"u": "length-converter", "i": "↔", "n": "Length", "d": "mm to miles"}, {"u": "weight-converter", "i": "⚖", "n": "Weight", "d": "Grams to tons & stone"}, {"u": "cups-to-grams-converter", "i": "☕", "n": "Cups to grams", "d": "Real ingredient densities"}, {"u": "recipe-converter", "i": "×", "n": "Recipe scaler", "d": "Resize any recipe"}, {"u": "pan-conversion-calculator", "i": "▢", "n": "Pan conversion", "d": "Swap baking pans"}, {"u": "coffee-ratio-calculator", "i": "☕", "n": "Coffee ratio", "d": "Water, beans, strength"}, {"u": "square-footage-calculator", "i": "▤", "n": "Square footage", "d": "Area & cost per sq ft"}, {"u": "concrete-calculator", "i": "▧", "n": "Concrete", "d": "Volume & bags"}, {"u": "paint-calculator", "i": "▨", "n": "Paint", "d": "Coverage & cans"}, {"u": "flooring-calculator", "i": "▥", "n": "Flooring", "d": "Boxes with waste"}, {"u": "mulch-calculator", "i": "✿", "n": "Mulch", "d": "Cubic yards & bags"}, {"u": "fuel-cost-calculator", "i": "⛽", "n": "Fuel cost", "d": "Trip cost & split"}, {"u": "mpg-calculator", "i": "⏱", "n": "MPG", "d": "And L/100km"}, {"u": "ev-charging-cost-calculator", "i": "⚡", "n": "EV charging", "d": "Cost per charge & mile"}, {"u": "due-date-calculator", "i": "♡", "n": "Due date", "d": "Naegele's rule"}, {"u": "ovulation-calculator", "i": "♡", "n": "Ovulation", "d": "Fertile window"}, {"u": "random-number-generator", "i": "#", "n": "Random number", "d": "True random, any range"}, {"u": "dice-roller", "i": "⚄", "n": "Dice roller", "d": "d4 to d100, many dice"}, {"u": "coin-flip", "i": "●", "n": "Coin flip", "d": "Heads or tails, fairly"}, {"u": "random-picker", "i": "✧", "n": "Random picker", "d": "Pick winners from a list"}, {"u": "password-generator", "i": "*", "n": "Password", "d": "Strong, generated locally"}];
+  var a=document.querySelector('.feat'); if(!a||!window.crypto)return;
+  function rand(n){var max=Math.floor(4294967296/n)*n,u=new Uint32Array(1);
+    do{crypto.getRandomValues(u);}while(u[0]>=max);return u[0]%n;}
+  var t=T[rand(T.length)];
+  a.href=t.u+'.html';
+  a.querySelector('h3').textContent=t.n;
+  var p=a.querySelector('.feat-l p'); if(p)p.textContent=t.d+' \u2014 free, instant, no sign-up.';
+  var g=a.querySelector('.feat-go'); if(g)g.textContent='Open '+t.n+' \u2192';
+  var r=a.querySelector('.feat-rate');
+  if(r){r.innerHTML='';var s=document.createElement('span');s.className='feat-from';s.textContent=t.i;r.appendChild(s);}
+  var c=a.querySelector('.feat-cap'); if(c)c.textContent='random pick \u00b7 refresh for another';
+})();
+</script>
+</body>
+</html>

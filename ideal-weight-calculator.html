@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<title>Ideal Weight Calculator — Four Classic Formulas</title>
+<meta name="description" content="See your ideal body weight by the Devine, Robinson, Miller and Hamwi formulas, plus the healthy BMI range for your height — all from one input.">
+<link rel="canonical" href="https://calculate.to/ideal-weight-calculator.html">
+<meta name="theme-color" content="#f6f4ef">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Ideal Weight Calculator — Four Classic Formulas">
+<meta property="og:description" content="See your ideal body weight by the Devine, Robinson, Miller and Hamwi formulas, plus the healthy BMI range for your height — all from one input.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Calculate">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://calculate.to/ideal-weight-calculator.html">
+<meta property="og:image" content="https://calculate.to/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   Calculate — shared design system  (calculate.to)
+   "instrument, not form" · ONE font (Space Grotesk) · single amber signal
+   Source of truth for every tool page. Change tokens HERE, not per-page.
+   ============================================================ */
+
+:root{
+  /* palette — warm paper, graphite ink, single signal amber, cool slate accents */
+  --paper:#f6f4ef;
+  --paper-2:#efece4;
+  --ink:#1c1b19;
+  --ink-2:#4a4843;
+  --muted:#8a877e;
+  --hair:#dcd8cf;
+  --hair-2:#cbc6bb;
+  --signal:#c96a1b;      /* amber — the "=" and live results */
+  --signal-deep:#a5540f;
+  --slate:#2f4858;       /* cool counterpoint for tool accents */
+  --good:#3f7d54;
+  --card:#fbfaf7;
+  --shadow:22,20,16;
+
+  /* type scale (ethos) */
+  --fs-11:11px; --fs-13:13px; --fs-15:15px; --fs-17:17px; --fs-21:21px; --fs-28:28px;
+  --fs-40:clamp(30px,4.4vw,40px); --fs-56:clamp(38px,6.5vw,56px); --fs-84:clamp(46px,9vw,82px);
+  --lh-display:1.02; --lh-head:1.15; --lh-ui:1.4; --lh-body:1.6;
+
+  --content:1040px;
+  --r:18px; --r-btn:12px;
+  --sans:'Space Grotesk',system-ui,-apple-system,sans-serif;
+  --display:'Space Grotesk',system-ui,sans-serif;
+  --mono:'Space Grotesk',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:#f6f4ef;color-scheme:light}
+html,body{color-scheme:light}
+/* honor our palette even under Windows High Contrast / forced-colors (preview panel triggers this) */
+html{forced-color-adjust:none}
+*{forced-color-adjust:none}
+body{
+  margin:0;
+  background-color:#f6f4ef;
+  color:#1c1b19;
+  font-family:var(--sans);font-size:var(--fs-15);line-height:var(--lh-body);
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(1100px 500px at 82% -8%, rgba(201,106,27,.06), transparent 60%),
+    radial-gradient(760px 460px at -5% 0%, rgba(47,72,88,.05), transparent 55%);
+  background-repeat:no-repeat;
+}
+/* absolute guarantee: paper base behind everything, even if a client kills bg-color */
+html::before{content:"";position:fixed;inset:0;background:#f6f4ef;z-index:-1;pointer-events:none}
+.wrap{max-width:var(--content);margin:0 auto;padding:0 22px}
+a{color:inherit}
+::selection{background:rgba(201,106,27,.22)}
+img{max-width:100%;height:auto}
+
+/* skip link */
+.skip{position:absolute;left:-9999px;top:0;background:var(--signal);color:#fff;padding:.7em 1.1em;border-radius:0 0 10px 0;z-index:50}
+.skip:focus{left:0}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:40;background:#f6f4ef;background:rgba(246,244,239,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--hair)}
+.top-in{display:flex;align-items:center;gap:16px;height:62px}
+.brand{display:inline-flex;align-items:baseline;gap:.02em;font-family:var(--display);font-weight:600;font-size:var(--fs-21);letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+.brand .eq{color:var(--signal);font-family:var(--mono);font-weight:500;margin-right:.12em;transform:translateY(-1px)}
+.top nav{margin-left:auto;display:flex;gap:6px;align-items:center}
+.top nav a{font-size:var(--fs-13);font-weight:500;color:var(--ink-2);text-decoration:none;padding:.5em .8em;border-radius:9px;line-height:var(--lh-ui)}
+.top nav a:hover{background:var(--paper-2);color:var(--ink)}
+.nav-toggle{cursor:pointer;border:0;font-family:inherit;display:inline-flex;align-items:center;gap:.35em}
+.nav-toggle .chev{display:inline-block;transition:transform .28s ease}
+.top.menu-open .nav-toggle .chev{transform:rotate(180deg)}
+@media(max-width:620px){.top nav a:not(.pill){display:none}}
+.pill{border:1px solid var(--hair-2);background:linear-gradient(180deg,#fff,rgba(28,27,25,.03));box-shadow:inset 0 1px 0 #fff}
+
+/* ---------- buttons ---------- */
+.btn{font-family:var(--sans);font-weight:700;font-size:14px;line-height:var(--lh-ui);
+  padding:.82em 1.3em;border-radius:var(--r-btn);border:1px solid var(--hair-2);cursor:pointer;
+  color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:.5em;
+  background:radial-gradient(120% 95% at 50% 14%,#fff,rgba(255,255,255,0) 60%),linear-gradient(180deg,#fff,rgba(28,27,25,.04));
+  box-shadow:inset 0 1.5px 1px #fff,inset 0 -2px 3px rgba(22,20,16,.10),0 4px 10px -8px rgba(22,20,16,.3);
+  transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease}
+.btn:hover{transform:translateY(1px);border-color:color-mix(in srgb,var(--signal) 45%,var(--hair-2))}
+.btn:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(22,20,16,.16),0 2px 6px -6px rgba(22,20,16,.3)}
+.btn.solid{color:#fff;border-color:transparent;
+  background:radial-gradient(120% 95% at 50% 14%,rgba(255,255,255,.28),rgba(255,255,255,0) 55%),linear-gradient(180deg,var(--signal),var(--signal-deep));
+  box-shadow:inset 0 1.5px 1px rgba(255,255,255,.4),inset 0 -2px 3px rgba(120,60,0,.4),0 6px 14px -8px rgba(201,106,27,.5)}
+.btn.solid:hover{border-color:transparent}
+
+/* ---------- section scaffolding ---------- */
+section{padding:44px 0;background:#f6f4ef}
+.sec-head{margin-bottom:26px}
+.sec-head .eyebrow{display:block;margin-bottom:8px}
+.eyebrow{font-family:var(--mono);font-size:var(--fs-13);letter-spacing:.16em;text-transform:uppercase;color:var(--signal-deep);line-height:var(--lh-ui)}
+.sec-head h2{font-family:var(--display);font-weight:600;font-size:var(--fs-40);line-height:var(--lh-head);letter-spacing:-.015em;margin:0}
+.sec-head p{color:var(--ink-2);max-width:52ch;margin:10px 0 0}
+
+/* ============================================================
+   TOOL-PAGE COMPONENTS  (used by individual calculator pages)
+   ============================================================ */
+
+/* breadcrumb */
+.crumbs{padding:20px 0 0}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;font-family:var(--mono);font-size:var(--fs-11);letter-spacing:.04em;color:var(--muted)}
+.crumbs li{display:inline-flex;align-items:center;gap:6px}
+.crumbs li+li::before{content:"›";color:var(--hair-2)}
+.crumbs a{color:var(--ink-2);text-decoration:none}
+.crumbs a:hover{color:var(--signal-deep)}
+.crumbs [aria-current]{color:var(--ink)}
+
+/* tool hero: title/lead left, live calculator right */
+.tool-hero{padding:24px 0 34px}
+.tool-hero-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:44px;align-items:start}
+@media(max-width:900px){.tool-hero-grid{grid-template-columns:1fr;gap:28px}}
+.tool-hero h1{font-family:var(--display);font-weight:600;font-size:var(--fs-56);line-height:var(--lh-display);letter-spacing:-.02em;margin:.18em 0 .32em}
+.tool-hero h1 .thin{font-weight:400;color:var(--ink-2)}
+.tool-hero p.lead{font-size:var(--fs-17);color:var(--ink-2);max-width:46ch;margin:0}
+.tool-hero .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.chipm{font-family:var(--mono);font-size:var(--fs-11);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);
+  border:1px solid var(--hair-2);background:#fbfaf7;background:var(--card);padding:.5em .8em;border-radius:999px;line-height:1}
+
+/* the working calculator card (one card level — no nesting) */
+.calc{background:#fbfaf7;background:var(--card);border:1px solid var(--hair);border-radius:var(--r);
+  box-shadow:inset 0 1.5px 0 #fff,inset 0 -3px 6px rgba(22,20,16,.05),0 24px 50px -30px rgba(22,20,16,.4);
+  padding:24px}
+.calc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.calc-tabs{display:inline-flex;gap:2px;background:#efece4;background:var(--paper-2);border:1px solid var(--hair);border-radius:11px;padding:3px;flex-wrap:wrap}
+.calc-tab{font-family:var(--sans);font-size:var(--fs-13);font-weight:600;color:var(--muted);
+  border:0;background:transparent;padding:.42em .78em;border-radius:8px;cursor:pointer;line-height:var(--lh-ui)}
+.calc-tab.on{background:#fff;color:#1c1b19;box-shadow:0 1px 3px rgba(22,20,16,.12)}
+.calc-chip{font-family:var(--mono);font-size:var(--fs-11);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
+
+.readout{font-family:var(--mono);text-align:right;padding:14px 4px 18px;border-bottom:1px solid var(--hair);margin-bottom:18px}
+.readout .expr{font-size:var(--fs-13);color:var(--muted);min-height:1.3em;line-height:var(--lh-ui);word-break:break-word}
+.readout .result{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:clamp(34px,7vw,48px);font-weight:500;line-height:1;letter-spacing:-.01em;color:var(--ink);transition:color .2s;word-break:break-word}
+.readout .result .amber{color:var(--signal)}
+.readout .result .small{font-size:.4em;color:var(--muted)}
+
+.field{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;margin:12px 0}
+.field label{font-size:var(--fs-13);color:var(--ink-2);font-weight:500;line-height:var(--lh-ui)}
+.field .in{position:relative}
+.field input{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-17);width:140px;text-align:right;
+  padding:.5em .7em;border:1px solid var(--hair-2);border-radius:10px;background:#f6f4ef;background:var(--paper);color:#1c1b19;
+  outline:none;transition:border-color .15s, box-shadow .15s}
+.field input[type=date]{text-align:left;width:170px}
+.field input:focus{border-color:var(--signal);box-shadow:0 0 0 3px rgba(201,106,27,.14)}
+.field .unit{position:absolute;left:.7em;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:var(--fs-13);color:var(--muted);pointer-events:none}
+.field .unit.r{left:auto;right:.7em}
+.field.hasunit input{padding-left:1.4em}
+.field.hasunit.r input{padding-left:.7em;padding-right:1.5em}
+
+.ch-out{display:flex;justify-content:space-between;gap:14px;margin-top:18px;padding-top:16px;border-top:1px solid var(--hair);flex-wrap:wrap}
+.ch-out .cell{flex:1;min-width:90px}
+.ch-out .k{font-size:var(--fs-11);color:var(--muted);font-family:var(--mono);letter-spacing:.05em;text-transform:uppercase;line-height:var(--lh-ui)}
+.ch-out .v{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-family:var(--mono);font-size:var(--fs-21);color:var(--ink);margin-top:2px;word-break:break-word}
+.ch-out .v.amber{color:var(--signal)}
+
+/* segmented control (in-calculator toggles) */
+.seg{display:inline-flex;border:1px solid var(--hair-2);border-radius:10px;overflow:hidden;flex-wrap:wrap}
+.seg button{font-family:var(--sans);font-size:var(--fs-13);font-weight:600;border:0;background:#f6f4ef;background:var(--paper);color:#4a4843;padding:.5em .8em;cursor:pointer;line-height:var(--lh-ui)}
+.seg button+button{border-left:1px solid var(--hair-2)}
+.seg button.on{background:#2f4858;background:var(--slate);color:#fff}
+
+/* ---------- prose / explainer ---------- */
+.prose{max-width:68ch}
+.prose h2{font-family:var(--display);font-weight:600;font-size:var(--fs-28);line-height:var(--lh-head);letter-spacing:-.01em;margin:1.6em 0 .5em}
+.prose h2:first-child{margin-top:0}
+.prose h3{font-family:var(--display);font-weight:600;font-size:var(--fs-21);line-height:var(--lh-head);margin:1.3em 0 .4em}
+.prose p{color:var(--ink-2);margin:0 0 1em}
+.prose ul{color:var(--ink-2);margin:0 0 1em;padding-left:1.2em}
+.prose li{margin:.3em 0}
+.prose strong{color:var(--ink);font-weight:600}
+.prose a{color:var(--signal-deep);text-decoration:none;text-underline-offset:2px}
+/* a formula / worked-example plate — tinted block, not a nested card */
+.plate{background:#efece4;background:var(--paper-2);border:1px solid var(--hair);border-radius:14px;padding:16px 18px;margin:0 0 1em}
+.plate .lbl{font-family:var(--mono);font-size:var(--fs-11);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.formula{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-17);color:var(--ink);line-height:var(--lh-ui);word-break:break-word}
+.formula .amber{color:var(--signal)}
+.eg{font-family:var(--mono);font-size:var(--fs-15);color:var(--ink-2);line-height:1.7}
+.eg b{color:var(--ink);font-weight:500}
+
+/* ---------- FAQ accordion (reused pattern, single-open) ---------- */
+.acc{border-top:1px solid var(--hair);margin-top:4px}
+.acc-item{border-bottom:1px solid var(--hair)}
+.acc-head{width:100%;display:grid;grid-template-columns:1fr auto;align-items:center;gap:14px;
+  background:transparent;border:0;cursor:pointer;text-align:left;padding:16px 4px;font-family:var(--display);color:var(--ink);
+  font-size:var(--fs-17);font-weight:600;line-height:var(--lh-ui)}
+.acc-head:hover{color:var(--signal-deep)}
+.acc-head:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:8px}
+.acc-chev{font-family:var(--mono);font-size:22px;color:var(--muted);width:20px;text-align:center;transition:transform .25s ease,color .25s ease;line-height:1;flex:none}
+.acc-item.open .acc-chev{transform:rotate(45deg);color:var(--signal)}
+.acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease}
+.acc-item.open .acc-panel{grid-template-rows:1fr}
+.acc-panel>.acc-body{overflow:hidden;min-height:0}
+.acc-inner{padding:0 4px 20px;color:var(--ink-2);max-width:70ch}
+.acc-inner p{margin:0 0 .8em}
+.acc-inner p:last-child{margin-bottom:0}
+
+/* ---------- related calculators grid ---------- */
+.rel{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:820px){.rel{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.rel{grid-template-columns:1fr}}
+.tool{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:#1c1b19;
+  background:#fbfaf7;background:var(--card);border:1px solid var(--hair);border-radius:var(--r);padding:18px 18px 16px;
+  box-shadow:inset 0 1.5px 0 #fff,inset 0 -3px 5px rgba(22,20,16,.04);
+  transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease}
+.tool:hover{transform:translateY(-3px);border-color:var(--hair-2);
+  box-shadow:inset 0 1.5px 0 #fff,0 16px 30px -20px rgba(22,20,16,.4)}
+.tool .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  font-family:var(--mono);font-size:var(--fs-15);font-weight:500;color:#2f4858;color:var(--slate);
+  background:#fff;background:linear-gradient(180deg,#fff,var(--paper-2));border:1px solid var(--hair);margin-bottom:4px}
+.tool h3{font-size:var(--fs-15);font-weight:600;margin:0;line-height:var(--lh-ui)}
+.tool p{font-size:var(--fs-13);color:var(--muted);margin:0;line-height:var(--lh-ui)}
+.tool .go{margin-top:auto;font-family:var(--mono);font-size:var(--fs-11);color:var(--signal-deep);letter-spacing:.03em;padding-top:8px}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--hair);padding:40px 0 56px;margin-top:20px}
+.foot-note{margin-top:30px;font-size:var(--fs-11);color:var(--muted);font-family:var(--mono)}
+
+/* keep the light "paper" identity even if the client forces dark mode */
+@media (prefers-color-scheme: dark){
+  html,body{background:#f6f4ef;color:#1c1b19}
+  :root{
+    --paper:#f6f4ef;--paper-2:#efece4;--ink:#1c1b19;--ink-2:#4a4843;--muted:#8a877e;
+    --hair:#dcd8cf;--hair-2:#cbc6bb;--card:#fbfaf7;
+  }
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+
+/* ===== mega menu (full-width, responsive; trigger = Browse all pill) ===== */
+.top{overflow:visible}
+.mega{position:absolute;left:0;right:0;top:100%;z-index:39;
+  background:#f6f4ef;background:rgba(246,244,239,.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--hair);box-shadow:0 24px 40px -28px rgba(22,20,16,.35);
+  display:grid;grid-template-rows:0fr;visibility:hidden;
+  transition:grid-template-rows .28s ease,visibility 0s linear .28s}
+.top.menu-open .mega{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .28s ease}
+.mega>.mega-clip{overflow:hidden;min-height:0}
+.mega-grid{columns:4 210px;column-gap:26px;padding-top:26px;padding-bottom:30px}
+
+
+.mega>.mega-clip{max-height:calc(100vh - 62px);overflow-y:auto;overscroll-behavior:contain}
+.mega-col h5{font-size:var(--fs-11);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;border-bottom:1px solid var(--hair);padding-bottom:8px}
+.mg-item{display:flex;align-items:flex-start;gap:10px;text-decoration:none;color:var(--ink);padding:7px 6px;margin:0 -6px;border-radius:10px}
+.mg-item:hover{background:#efece4;background:var(--paper-2)}
+.mg-ic{width:26px;height:26px;flex:none;border-radius:8px;display:grid;place-items:center;
+  font-family:var(--mono);font-size:var(--fs-13);font-weight:500;color:#2f4858;color:var(--slate);
+  background:#fff;background:linear-gradient(180deg,#fff,var(--paper-2));border:1px solid var(--hair);margin-top:1px}
+.mg-t{min-width:0}
+.mg-n{display:block;font-size:var(--fs-15);font-weight:600;line-height:var(--lh-ui)}
+.mg-item:hover .mg-n{color:var(--signal-deep)}
+.mg-d{display:block;font-size:var(--fs-11);color:var(--muted);line-height:var(--lh-ui)}
+
+/* ===== dimming veil ===== */
+.mega-veil{position:fixed;left:0;right:0;top:62px;bottom:0;z-index:35;background:rgba(28,27,25,.28);
+  opacity:0;pointer-events:none;transition:opacity .25s ease}
+.mega-veil.on{opacity:1;pointer-events:auto}
+
+/* ===== mega footer (mirrors the mega nav language) ===== */
+.ftop{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  padding-bottom:26px;border-bottom:1px solid var(--hair);margin-bottom:26px}
+.fbrand .brand{font-size:var(--fs-17)}
+.fbrand p{color:var(--muted);font-size:var(--fs-13);margin:.6em 0 0;max-width:28ch}
+.ftg{columns:4 210px;column-gap:26px}
+
+
+.ftcol h5{font-size:var(--fs-11);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 8px;border-bottom:1px solid var(--hair);padding-bottom:8px}
+.fbar{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;
+  border-top:1px solid var(--hair);margin-top:30px;padding-top:18px}
+.fbar .foot-note{margin:0}
+.ftl{font-family:var(--mono);font-size:var(--fs-11);color:var(--ink-2);text-decoration:none;letter-spacing:.04em;white-space:nowrap}
+.ftl:hover{color:var(--signal-deep)}
+
+.mega-col,.ftcol{break-inside:avoid;margin-bottom:20px}
+/* ripple rows + selects + sliders (shared calc widgets) */
+.ripple{margin-top:18px;padding-top:2px;border-top:1px solid var(--hair)}
+.rip{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 2px;border-bottom:1px solid var(--hair)}
+.rip:last-child{border-bottom:0}
+.rip-name{font-size:var(--fs-15);font-weight:600;color:var(--ink);line-height:var(--lh-ui);display:block}
+.rip-mech{font-size:var(--fs-11);color:var(--muted);line-height:var(--lh-ui);margin-top:3px}
+.rip-val{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-17);white-space:nowrap;text-align:right;flex:none;color:var(--ink)}
+.rip-val.amber{color:var(--signal)}
+.rip-val.cool{color:var(--slate)}
+.selin{position:relative}
+.selin select{font-family:var(--sans);font-size:var(--fs-13);font-weight:600;padding:.5em 2em .5em .7em;border:1px solid var(--hair-2);border-radius:10px;background:#f6f4ef;background:var(--paper);color:#1c1b19;color:var(--ink);outline:none;cursor:pointer;appearance:none;-webkit-appearance:none}
+.selin select:focus{border-color:var(--signal);box-shadow:0 0 0 3px rgba(201,106,27,.14)}
+.selin::after{content:"\25be";position:absolute;right:.7em;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:var(--fs-13)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:150px;height:4px;border-radius:99px;background:#dcd8cf;background:var(--hair);outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:#c96a1b;background:var(--signal);border:2px solid #fff;box-shadow:0 1px 4px rgba(22,20,16,.3)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#c96a1b;background:var(--signal);border:2px solid #fff;box-shadow:0 1px 4px rgba(22,20,16,.3)}
+
+
+/* ---- cursor policy: arrow everywhere, pointer only on interactive things ---- */
+* { cursor: default; }
+
+a, button, label, summary, select,
+[role="button"], [role="link"], [role="tab"],
+.btn, [onclick] {
+  cursor: pointer;
+}
+
+/* text fields keep the I-beam */
+input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+textarea,
+[contenteditable="true"] {
+  cursor: text;
+}
+
+/* clickable inputs */
+input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: pointer; }
+
+/* disabled controls */
+:disabled, [disabled], [aria-disabled="true"] { cursor: not-allowed; }
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebApplication", "name": "Ideal Weight Calculator", "url": "https://calculate.to/ideal-weight-calculator.html", "applicationCategory": "HealthApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "description": "See your ideal body weight by the Devine, Robinson, Miller and Hamwi formulas, plus the healthy BMI range for your height — all from one input.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "Calculate", "url": "https://calculate.to/"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Calculate", "item": "https://calculate.to/"}, {"@type": "ListItem", "position": 2, "name": "Ideal Weight Calculator", "item": "https://calculate.to/ideal-weight-calculator.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the Devine formula?", "acceptedAnswer": {"@type": "Answer", "text": "The 1974 formula behind most 'ideal body weight' references: 50 kg (men) or 45.5 kg (women) plus 2.3 kg per inch of height above 5 feet. It was originally designed for calculating medication doses."}}, {"@type": "Question", "name": "Why do the formulas disagree?", "acceptedAnswer": {"@type": "Answer", "text": "Each was fitted differently — Hamwi (1964) as a quick clinical rule, Devine (1974) for dosing, Robinson and Miller (1983) as statistical refits. The few-kilogram spread reflects genuine uncertainty in the concept."}}, {"@type": "Question", "name": "Is ideal weight the same as healthy weight?", "acceptedAnswer": {"@type": "Answer", "text": "Not exactly. The formulas give single reference points; health guidance uses ranges like BMI 18.5–24.9, shown above, and composition matters more than either — muscle and fat weigh the same on a scale."}}, {"@type": "Question", "name": "I'm above every formula — should I worry?", "acceptedAnswer": {"@type": "Answer", "text": "Not from this alone. The formulas ignore muscle and frame entirely. Look at body fat percentage, waist measurements and health markers with a professional before drawing conclusions."}}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#calc">Skip to the calculator</a>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="index.html"><span class="eq">=</span>Calculate</a>
+    <nav>
+      <a href="index.html#tools">All tools</a>
+      <a href="index.html#money">Money &amp; markets</a>
+      <button class="btn pill nav-toggle" type="button" aria-expanded="false" aria-controls="mega">Browse all <span class="chev">↓</span></button>
+    </nav>
+  </div>
+  <div class="mega" id="mega">
+    <div class="mega-clip">
+      <div class="wrap mega-grid" role="navigation" aria-label="All calculators">
+      <div class="mega-col">
+        <h5>Money &amp; the Fed</h5>
+        <a class="mg-item" href="fed-rate-calculator.html"><span class="mg-ic">↓</span><span class="mg-t"><span class="mg-n">Fed rate cut</span><span class="mg-d">One cut, four ripples</span></span></a>
+        <a class="mg-item" href="m2-money-supply-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">M2 money supply</span><span class="mg-d">Growth, doubling, dilution</span></span></a>
+        <a class="mg-item" href="gold-vs-usd-calculator.html"><span class="mg-ic">◆</span><span class="mg-t"><span class="mg-n">Gold vs USD</span><span class="mg-d">The dollar since 1971</span></span></a>
+        <a class="mg-item" href="inflation-calculator.html"><span class="mg-ic">▴</span><span class="mg-t"><span class="mg-n">Inflation</span><span class="mg-d">Dollar value, 1913–2025</span></span></a>
+        <a class="mg-item" href="gold-m2-ratio-calculator.html"><span class="mg-ic">⚖</span><span class="mg-t"><span class="mg-n">Gold / M2 ratio</span><span class="mg-d">Is gold cheap vs money?</span></span></a>
+        <a class="mg-item" href="dow-to-gold-calculator.html"><span class="mg-ic">⚔</span><span class="mg-t"><span class="mg-n">Dow-to-Gold</span><span class="mg-d">Stocks priced in gold</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Investing</h5>
+        <a class="mg-item" href="sp500-dca-calculator.html"><span class="mg-ic">▲</span><span class="mg-t"><span class="mg-n">S&P 500 since inception</span><span class="mg-d">Real returns 1928–2025</span></span></a>
+        <a class="mg-item" href="sp1-vs-sp500-calculator.html"><span class="mg-ic">№1</span><span class="mg-t"><span class="mg-n">S&P 1 vs S&P 500</span><span class="mg-d">Throne vs kingdom</span></span></a>
+        <a class="mg-item" href="cagr-calculator.html"><span class="mg-ic">↗</span><span class="mg-t"><span class="mg-n">CAGR</span><span class="mg-d">Compound annual growth</span></span></a>
+        <a class="mg-item" href="drip-calculator.html"><span class="mg-ic">♻</span><span class="mg-t"><span class="mg-n">Dividend reinvestment</span><span class="mg-d">DRIP compounding</span></span></a>
+        <a class="mg-item" href="retirement-calculator.html"><span class="mg-ic">⌂</span><span class="mg-t"><span class="mg-n">Retirement / FIRE</span><span class="mg-d">Nest egg & the 4% rule</span></span></a>
+        <a class="mg-item" href="roi-calculator.html"><span class="mg-ic">±</span><span class="mg-t"><span class="mg-n">ROI</span><span class="mg-d">Return on investment</span></span></a>
+        <a class="mg-item" href="rule-of-72-calculator.html"><span class="mg-ic">72</span><span class="mg-t"><span class="mg-n">Rule of 72</span><span class="mg-d">Doubling time shortcut</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Loans &amp; debt</h5>
+        <a class="mg-item" href="mortgage-calculator.html"><span class="mg-ic">⌂</span><span class="mg-t"><span class="mg-n">Mortgage</span><span class="mg-d">Full monthly payment</span></span></a>
+        <a class="mg-item" href="loan-calculator.html"><span class="mg-ic">≈</span><span class="mg-t"><span class="mg-n">Loan payment</span><span class="mg-d">Monthly cost & interest</span></span></a>
+        <a class="mg-item" href="car-loan-calculator.html"><span class="mg-ic">⚙</span><span class="mg-t"><span class="mg-n">Car loan</span><span class="mg-d">With down & trade-in</span></span></a>
+        <a class="mg-item" href="debt-payoff-calculator.html"><span class="mg-ic">✂</span><span class="mg-t"><span class="mg-n">Debt payoff</span><span class="mg-d">Snowball vs avalanche</span></span></a>
+        <a class="mg-item" href="simple-interest-calculator.html"><span class="mg-ic">·</span><span class="mg-t"><span class="mg-n">Simple interest</span><span class="mg-d">I = P·r·t</span></span></a>
+        <a class="mg-item" href="apr-apy-calculator.html"><span class="mg-ic">⇄</span><span class="mg-t"><span class="mg-n">APR ↔ APY</span><span class="mg-d">Compounding conversions</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Everyday money</h5>
+        <a class="mg-item" href="percentage-calculator.html"><span class="mg-ic">%</span><span class="mg-t"><span class="mg-n">Percentage</span><span class="mg-d">Of, change, add & subtract</span></span></a>
+        <a class="mg-item" href="tip-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">Tip & split</span><span class="mg-d">Tip and divide the bill</span></span></a>
+        <a class="mg-item" href="vat-calculator.html"><span class="mg-ic">◷</span><span class="mg-t"><span class="mg-n">VAT / sales tax</span><span class="mg-d">Add or remove tax</span></span></a>
+        <a class="mg-item" href="discount-calculator.html"><span class="mg-ic">✂</span><span class="mg-t"><span class="mg-n">Discount</span><span class="mg-d">Sale price & savings</span></span></a>
+        <a class="mg-item" href="margin-markup-calculator.html"><span class="mg-ic">◨</span><span class="mg-t"><span class="mg-n">Margin & markup</span><span class="mg-d">Price, cost, profit</span></span></a>
+        <a class="mg-item" href="salary-to-hourly-calculator.html"><span class="mg-ic">⏱</span><span class="mg-t"><span class="mg-n">Salary ↔ hourly</span><span class="mg-d">Pay, converted both ways</span></span></a>
+        <a class="mg-item" href="savings-goal-calculator.html"><span class="mg-ic">◎</span><span class="mg-t"><span class="mg-n">Savings goal</span><span class="mg-d">Time or monthly needed</span></span></a>
+        <a class="mg-item" href="currency-converter.html"><span class="mg-ic">↔</span><span class="mg-t"><span class="mg-n">Currency</span><span class="mg-d">21 major currencies</span></span></a>
+        <a class="mg-item" href="compound-interest-calculator.html"><span class="mg-ic">△</span><span class="mg-t"><span class="mg-n">Compound interest</span><span class="mg-d">Growth over time</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Health &amp; body</h5>
+        <a class="mg-item" href="bmi-calculator.html"><span class="mg-ic">◐</span><span class="mg-t"><span class="mg-n">BMI</span><span class="mg-d">With healthy range</span></span></a>
+        <a class="mg-item" href="calorie-calculator.html"><span class="mg-ic">⊙</span><span class="mg-t"><span class="mg-n">Calorie needs</span><span class="mg-d">Mifflin–St Jeor</span></span></a>
+        <a class="mg-item" href="tdee-calculator.html"><span class="mg-ic">⚡</span><span class="mg-t"><span class="mg-n">TDEE</span><span class="mg-d">Total daily energy</span></span></a>
+        <a class="mg-item" href="bmr-calculator.html"><span class="mg-ic">☀</span><span class="mg-t"><span class="mg-n">BMR</span><span class="mg-d">Calories at rest</span></span></a>
+        <a class="mg-item" href="body-fat-calculator.html"><span class="mg-ic">◑</span><span class="mg-t"><span class="mg-n">Body fat %</span><span class="mg-d">US Navy method</span></span></a>
+        <a class="mg-item" href="ideal-weight-calculator.html"><span class="mg-ic">⚕</span><span class="mg-t"><span class="mg-n">Ideal weight</span><span class="mg-d">Four classic formulas</span></span></a>
+        <a class="mg-item" href="macro-calculator.html"><span class="mg-ic">◲</span><span class="mg-t"><span class="mg-n">Macros</span><span class="mg-d">Protein, carbs, fat split</span></span></a>
+        <a class="mg-item" href="water-intake-calculator.html"><span class="mg-ic">≋</span><span class="mg-t"><span class="mg-n">Water intake</span><span class="mg-d">Daily hydration</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Fitness &amp; sleep</h5>
+        <a class="mg-item" href="pace-calculator.html"><span class="mg-ic">⏵</span><span class="mg-t"><span class="mg-n">Running pace</span><span class="mg-d">Pace, time, distance</span></span></a>
+        <a class="mg-item" href="one-rep-max-calculator.html"><span class="mg-ic">⚑</span><span class="mg-t"><span class="mg-n">One-rep max</span><span class="mg-d">Epley & Brzycki</span></span></a>
+        <a class="mg-item" href="heart-rate-zone-calculator.html"><span class="mg-ic">❤</span><span class="mg-t"><span class="mg-n">Heart-rate zones</span><span class="mg-d">Training zones</span></span></a>
+        <a class="mg-item" href="sleep-calculator.html"><span class="mg-ic">☾</span><span class="mg-t"><span class="mg-n">Sleep cycles</span><span class="mg-d">When to sleep or wake</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Dates &amp; time</h5>
+        <a class="mg-item" href="age-calculator.html"><span class="mg-ic">◔</span><span class="mg-t"><span class="mg-n">Age</span><span class="mg-d">Years, months, days</span></span></a>
+        <a class="mg-item" href="date-difference-calculator.html"><span class="mg-ic">▦</span><span class="mg-t"><span class="mg-n">Date difference</span><span class="mg-d">Days & working days</span></span></a>
+        <a class="mg-item" href="day-of-week-calculator.html"><span class="mg-ic">□</span><span class="mg-t"><span class="mg-n">Day of the week</span><span class="mg-d">What day was any date</span></span></a>
+        <a class="mg-item" href="days-from-today-calculator.html"><span class="mg-ic">⇢</span><span class="mg-t"><span class="mg-n">Days from today</span><span class="mg-d">Add days & business days</span></span></a>
+        <a class="mg-item" href="time-calculator.html"><span class="mg-ic">⏰</span><span class="mg-t"><span class="mg-n">Time & hours</span><span class="mg-d">Durations & work hours</span></span></a>
+        <a class="mg-item" href="time-zone-converter.html"><span class="mg-ic">⏲</span><span class="mg-t"><span class="mg-n">Time zones</span><span class="mg-d">Difference between cities</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Math &amp; numbers</h5>
+        <a class="mg-item" href="fraction-calculator.html"><span class="mg-ic">÷</span><span class="mg-t"><span class="mg-n">Fraction</span><span class="mg-d">Four ops, simplified</span></span></a>
+        <a class="mg-item" href="scientific-calculator.html"><span class="mg-ic">√</span><span class="mg-t"><span class="mg-n">Scientific</span><span class="mg-d">Full keypad</span></span></a>
+        <a class="mg-item" href="average-calculator.html"><span class="mg-ic">x̄</span><span class="mg-t"><span class="mg-n">Average</span><span class="mg-d">Mean, median, std dev</span></span></a>
+        <a class="mg-item" href="ratio-calculator.html"><span class="mg-ic">::</span><span class="mg-t"><span class="mg-n">Ratio</span><span class="mg-d">Solve & simplify a:b</span></span></a>
+        <a class="mg-item" href="gcf-lcm-calculator.html"><span class="mg-ic">∧</span><span class="mg-t"><span class="mg-n">GCF & LCM</span><span class="mg-d">Factors & multiples</span></span></a>
+        <a class="mg-item" href="binary-hex-converter.html"><span class="mg-ic">01</span><span class="mg-t"><span class="mg-n">Binary / hex</span><span class="mg-d">Dec, bin, hex, octal</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>School</h5>
+        <a class="mg-item" href="gpa-calculator.html"><span class="mg-ic">☆</span><span class="mg-t"><span class="mg-n">GPA</span><span class="mg-d">Weighted 4.0 scale</span></span></a>
+        <a class="mg-item" href="final-grade-calculator.html"><span class="mg-ic">✓</span><span class="mg-t"><span class="mg-n">Final grade</span><span class="mg-d">What you need on the final</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Converters</h5>
+        <a class="mg-item" href="temperature-converter.html"><span class="mg-ic">°</span><span class="mg-t"><span class="mg-n">Temperature</span><span class="mg-d">°C, °F and kelvin</span></span></a>
+        <a class="mg-item" href="length-converter.html"><span class="mg-ic">↔</span><span class="mg-t"><span class="mg-n">Length</span><span class="mg-d">mm to miles</span></span></a>
+        <a class="mg-item" href="weight-converter.html"><span class="mg-ic">⚖</span><span class="mg-t"><span class="mg-n">Weight</span><span class="mg-d">Grams to tons & stone</span></span></a>
+        <a class="mg-item" href="cups-to-grams-converter.html"><span class="mg-ic">☕</span><span class="mg-t"><span class="mg-n">Cups to grams</span><span class="mg-d">Real ingredient densities</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Kitchen</h5>
+        <a class="mg-item" href="recipe-converter.html"><span class="mg-ic">×</span><span class="mg-t"><span class="mg-n">Recipe scaler</span><span class="mg-d">Resize any recipe</span></span></a>
+        <a class="mg-item" href="pan-conversion-calculator.html"><span class="mg-ic">▢</span><span class="mg-t"><span class="mg-n">Pan conversion</span><span class="mg-d">Swap baking pans</span></span></a>
+        <a class="mg-item" href="coffee-ratio-calculator.html"><span class="mg-ic">☕</span><span class="mg-t"><span class="mg-n">Coffee ratio</span><span class="mg-d">Water, beans, strength</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Home &amp; garden</h5>
+        <a class="mg-item" href="square-footage-calculator.html"><span class="mg-ic">▤</span><span class="mg-t"><span class="mg-n">Square footage</span><span class="mg-d">Area & cost per sq ft</span></span></a>
+        <a class="mg-item" href="concrete-calculator.html"><span class="mg-ic">▧</span><span class="mg-t"><span class="mg-n">Concrete</span><span class="mg-d">Volume & bags</span></span></a>
+        <a class="mg-item" href="paint-calculator.html"><span class="mg-ic">▨</span><span class="mg-t"><span class="mg-n">Paint</span><span class="mg-d">Coverage & cans</span></span></a>
+        <a class="mg-item" href="flooring-calculator.html"><span class="mg-ic">▥</span><span class="mg-t"><span class="mg-n">Flooring</span><span class="mg-d">Boxes with waste</span></span></a>
+        <a class="mg-item" href="mulch-calculator.html"><span class="mg-ic">✿</span><span class="mg-t"><span class="mg-n">Mulch</span><span class="mg-d">Cubic yards & bags</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Cars &amp; travel</h5>
+        <a class="mg-item" href="fuel-cost-calculator.html"><span class="mg-ic">⛽</span><span class="mg-t"><span class="mg-n">Fuel cost</span><span class="mg-d">Trip cost & split</span></span></a>
+        <a class="mg-item" href="mpg-calculator.html"><span class="mg-ic">⏱</span><span class="mg-t"><span class="mg-n">MPG</span><span class="mg-d">And L/100km</span></span></a>
+        <a class="mg-item" href="ev-charging-cost-calculator.html"><span class="mg-ic">⚡</span><span class="mg-t"><span class="mg-n">EV charging</span><span class="mg-d">Cost per charge & mile</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Family</h5>
+        <a class="mg-item" href="due-date-calculator.html"><span class="mg-ic">♡</span><span class="mg-t"><span class="mg-n">Due date</span><span class="mg-d">Naegele's rule</span></span></a>
+        <a class="mg-item" href="ovulation-calculator.html"><span class="mg-ic">♡</span><span class="mg-t"><span class="mg-n">Ovulation</span><span class="mg-d">Fertile window</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Random &amp; fun</h5>
+        <a class="mg-item" href="random-number-generator.html"><span class="mg-ic">#</span><span class="mg-t"><span class="mg-n">Random number</span><span class="mg-d">True random, any range</span></span></a>
+        <a class="mg-item" href="dice-roller.html"><span class="mg-ic">⚄</span><span class="mg-t"><span class="mg-n">Dice roller</span><span class="mg-d">d4 to d100, many dice</span></span></a>
+        <a class="mg-item" href="coin-flip.html"><span class="mg-ic">●</span><span class="mg-t"><span class="mg-n">Coin flip</span><span class="mg-d">Heads or tails, fairly</span></span></a>
+        <a class="mg-item" href="random-picker.html"><span class="mg-ic">✧</span><span class="mg-t"><span class="mg-n">Random picker</span><span class="mg-d">Pick winners from a list</span></span></a>
+        <a class="mg-item" href="password-generator.html"><span class="mg-ic">*</span><span class="mg-t"><span class="mg-n">Password</span><span class="mg-d">Strong, generated locally</span></span></a>
+      </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="mega-veil" aria-hidden="true"></div>
+<main id="top">
+<nav class="crumbs" aria-label="Breadcrumb"><div class="wrap"><ol>
+  <li><a href="index.html">Calculate</a></li>
+  <li><span aria-current="page">Ideal weight</span></li>
+</ol></div></nav>
+<section class="tool-hero"><div class="wrap tool-hero-grid">
+  <div>
+    <span class="eyebrow">Health & body · Reference</span>
+    <h1>Ideal weight<br><span class="thin">calculator</span></h1>
+    <p class="lead">Four medical formulas, four slightly different answers — that spread is the honest truth about 'ideal weight.' Enter your height and see all of them, plus the healthy-BMI band.</p>
+    <div class="meta"><span class="chipm">Devine · Robinson · more</span><span class="chipm">BMI range too</span><span class="chipm">No sign-up</span></div>
+  </div>
+  <div class="calc" id="calc">
+      <div class="calc-head"><span class="calc-chip" style="font-size:var(--fs-13);color:var(--ink-2)">Reference weights</span><span class="calc-chip">four formulas</span></div>
+      <div class="field"><label for="sex">Sex</label><div class="in selin"><select id="sex"><option value="m" selected>Male</option><option value="f">Female</option></select></div></div>
+      <div class="field hasunit r"><label for="ht">Height</label><div class="in"><input id="ht" type="number" inputmode="decimal" value="178"><span class="unit r">cm</span></div></div>
+      <div class="readout"><div class="expr" id="expr">—</div><div class="result" id="result">—</div></div>
+      <div class="ripple">
+        <div class="rip"><div><span class="rip-name">Robinson (1983)</span><span class="rip-mech">widely used clinically</span></div><span class="rip-val" id="r1">—</span></div>
+        <div class="rip"><div><span class="rip-name">Miller (1983)</span><span class="rip-mech">gentler slope with height</span></div><span class="rip-val" id="r2">—</span></div>
+        <div class="rip"><div><span class="rip-name">Hamwi (1964)</span><span class="rip-mech">the original quick rule</span></div><span class="rip-val" id="r3">—</span></div>
+        <div class="rip"><div><span class="rip-name">Healthy BMI range</span><span class="rip-mech">BMI 18.5–24.9 at your height</span></div><span class="rip-val amber" id="r4">—</span></div>
+      </div>
+  </div>
+</div></section>
+<section><div class="wrap prose">
+    <h2>Where "ideal weight" formulas come from</h2>
+    <p>These equations were built for medicine, not aesthetics — the best-known, <strong>Devine (1974)</strong>, was created for drug dosing. Each takes a base weight at 5 feet and adds a fixed amount per inch above it, which is why they only need height and sex.</p>
+    <div class="plate"><div class="lbl">Devine</div><div class="formula">men: 50 + 2.3·in over 5ft · women: 45.5 + <span class="amber">2.3</span>·in</div></div>
+    <h3>Why four answers</h3>
+    <p>Robinson and Miller re-fitted the idea in 1983 with different slopes; Hamwi's 1964 rule came first as a bedside shortcut. At most heights they cluster within a few kilograms — the spread is a feature, honestly showing that "ideal" is a band, not a point.</p>
+    <h3>Reading it sensibly</h3>
+    <p>None of these formulas see muscle, frame or body composition — an athletic person can sit "over" every formula while being in excellent shape. The healthy-BMI band shown alongside is the broader population reference; <a href="body-fat-calculator.html">body fat percentage</a> says far more about composition than any height-based number. Use these as reference points, not verdicts.</p>
+</div></section>
+<section><div class="wrap">
+  <div class="sec-head" style="max-width:68ch"><span class="eyebrow">Common questions</span><h2>Ideal weight FAQ</h2></div>
+  <div class="acc" id="faq">
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false">What is the Devine formula?<span class="acc-chev" aria-hidden="true">+</span></button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>The 1974 formula behind most 'ideal body weight' references: 50 kg (men) or 45.5 kg (women) plus 2.3 kg per inch of height above 5 feet. It was originally designed for calculating medication doses.</p></div></div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false">Why do the formulas disagree?<span class="acc-chev" aria-hidden="true">+</span></button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>Each was fitted differently — Hamwi (1964) as a quick clinical rule, Devine (1974) for dosing, Robinson and Miller (1983) as statistical refits. The few-kilogram spread reflects genuine uncertainty in the concept.</p></div></div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false">Is ideal weight the same as healthy weight?<span class="acc-chev" aria-hidden="true">+</span></button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>Not exactly. The formulas give single reference points; health guidance uses ranges like BMI 18.5–24.9, shown above, and composition matters more than either — muscle and fat weigh the same on a scale.</p></div></div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false">I'm above every formula — should I worry?<span class="acc-chev" aria-hidden="true">+</span></button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>Not from this alone. The formulas ignore muscle and frame entirely. Look at body fat percentage, waist measurements and health markers with a professional before drawing conclusions.</p></div></div></div>
+      </div>
+  </div>
+</div></section>
+<section><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">Keep going</span><h2>Related calculators</h2></div>
+  <div class="rel">
+      <a class="tool" href="bmi-calculator.html"><span class="ic">◐</span><h3>BMI</h3><p>With healthy range</p><span class="go">Open →</span></a>
+      <a class="tool" href="body-fat-calculator.html"><span class="ic">◑</span><h3>Body fat %</h3><p>US Navy method</p><span class="go">Open →</span></a>
+      <a class="tool" href="calorie-calculator.html"><span class="ic">⊙</span><h3>Calorie needs</h3><p>Mifflin–St Jeor</p><span class="go">Open →</span></a>
+  </div>
+</div></section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="ftop">
+      <div class="fbrand">
+        <a class="brand" href="#top"><span class="eq">=</span>Calculate</a>
+        <p>Everyday math, done properly. Free, instant, private.</p>
+      </div>
+      <a class="btn pill" href="index.html#tools" style="padding:.5em .9em">Browse all →</a>
+    </div>
+    <div class="ftg">
+      <div class="ftcol">
+        <h5>Money &amp; the Fed</h5>
+        <a class="mg-item" href="fed-rate-calculator.html"><span class="mg-ic">↓</span><span class="mg-t"><span class="mg-n">Fed rate cut</span><span class="mg-d">One cut, four ripples</span></span></a>
+        <a class="mg-item" href="m2-money-supply-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">M2 money supply</span><span class="mg-d">Growth, doubling, dilution</span></span></a>
+        <a class="mg-item" href="gold-vs-usd-calculator.html"><span class="mg-ic">◆</span><span class="mg-t"><span class="mg-n">Gold vs USD</span><span class="mg-d">The dollar since 1971</span></span></a>
+        <a class="mg-item" href="inflation-calculator.html"><span class="mg-ic">▴</span><span class="mg-t"><span class="mg-n">Inflation</span><span class="mg-d">Dollar value, 1913–2025</span></span></a>
+        <a class="mg-item" href="gold-m2-ratio-calculator.html"><span class="mg-ic">⚖</span><span class="mg-t"><span class="mg-n">Gold / M2 ratio</span><span class="mg-d">Is gold cheap vs money?</span></span></a>
+        <a class="mg-item" href="dow-to-gold-calculator.html"><span class="mg-ic">⚔</span><span class="mg-t"><span class="mg-n">Dow-to-Gold</span><span class="mg-d">Stocks priced in gold</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Investing</h5>
+        <a class="mg-item" href="sp500-dca-calculator.html"><span class="mg-ic">▲</span><span class="mg-t"><span class="mg-n">S&P 500 since inception</span><span class="mg-d">Real returns 1928–2025</span></span></a>
+        <a class="mg-item" href="sp1-vs-sp500-calculator.html"><span class="mg-ic">№1</span><span class="mg-t"><span class="mg-n">S&P 1 vs S&P 500</span><span class="mg-d">Throne vs kingdom</span></span></a>
+        <a class="mg-item" href="cagr-calculator.html"><span class="mg-ic">↗</span><span class="mg-t"><span class="mg-n">CAGR</span><span class="mg-d">Compound annual growth</span></span></a>
+        <a class="mg-item" href="drip-calculator.html"><span class="mg-ic">♻</span><span class="mg-t"><span class="mg-n">Dividend reinvestment</span><span class="mg-d">DRIP compounding</span></span></a>
+        <a class="mg-item" href="retirement-calculator.html"><span class="mg-ic">⌂</span><span class="mg-t"><span class="mg-n">Retirement / FIRE</span><span class="mg-d">Nest egg & the 4% rule</span></span></a>
+        <a class="mg-item" href="roi-calculator.html"><span class="mg-ic">±</span><span class="mg-t"><span class="mg-n">ROI</span><span class="mg-d">Return on investment</span></span></a>
+        <a class="mg-item" href="rule-of-72-calculator.html"><span class="mg-ic">72</span><span class="mg-t"><span class="mg-n">Rule of 72</span><span class="mg-d">Doubling time shortcut</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Loans &amp; debt</h5>
+        <a class="mg-item" href="mortgage-calculator.html"><span class="mg-ic">⌂</span><span class="mg-t"><span class="mg-n">Mortgage</span><span class="mg-d">Full monthly payment</span></span></a>
+        <a class="mg-item" href="loan-calculator.html"><span class="mg-ic">≈</span><span class="mg-t"><span class="mg-n">Loan payment</span><span class="mg-d">Monthly cost & interest</span></span></a>
+        <a class="mg-item" href="car-loan-calculator.html"><span class="mg-ic">⚙</span><span class="mg-t"><span class="mg-n">Car loan</span><span class="mg-d">With down & trade-in</span></span></a>
+        <a class="mg-item" href="debt-payoff-calculator.html"><span class="mg-ic">✂</span><span class="mg-t"><span class="mg-n">Debt payoff</span><span class="mg-d">Snowball vs avalanche</span></span></a>
+        <a class="mg-item" href="simple-interest-calculator.html"><span class="mg-ic">·</span><span class="mg-t"><span class="mg-n">Simple interest</span><span class="mg-d">I = P·r·t</span></span></a>
+        <a class="mg-item" href="apr-apy-calculator.html"><span class="mg-ic">⇄</span><span class="mg-t"><span class="mg-n">APR ↔ APY</span><span class="mg-d">Compounding conversions</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Everyday money</h5>
+        <a class="mg-item" href="percentage-calculator.html"><span class="mg-ic">%</span><span class="mg-t"><span class="mg-n">Percentage</span><span class="mg-d">Of, change, add & subtract</span></span></a>
+        <a class="mg-item" href="tip-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">Tip & split</span><span class="mg-d">Tip and divide the bill</span></span></a>
+        <a class="mg-item" href="vat-calculator.html"><span class="mg-ic">◷</span><span class="mg-t"><span class="mg-n">VAT / sales tax</span><span class="mg-d">Add or remove tax</span></span></a>
+        <a class="mg-item" href="discount-calculator.html"><span class="mg-ic">✂</span><span class="mg-t"><span class="mg-n">Discount</span><span class="mg-d">Sale price & savings</span></span></a>
+        <a class="mg-item" href="margin-markup-calculator.html"><span class="mg-ic">◨</span><span class="mg-t"><span class="mg-n">Margin & markup</span><span class="mg-d">Price, cost, profit</span></span></a>
+        <a class="mg-item" href="salary-to-hourly-calculator.html"><span class="mg-ic">⏱</span><span class="mg-t"><span class="mg-n">Salary ↔ hourly</span><span class="mg-d">Pay, converted both ways</span></span></a>
+        <a class="mg-item" href="savings-goal-calculator.html"><span class="mg-ic">◎</span><span class="mg-t"><span class="mg-n">Savings goal</span><span class="mg-d">Time or monthly needed</span></span></a>
+        <a class="mg-item" href="currency-converter.html"><span class="mg-ic">↔</span><span class="mg-t"><span class="mg-n">Currency</span><span class="mg-d">21 major currencies</span></span></a>
+        <a class="mg-item" href="compound-interest-calculator.html"><span class="mg-ic">△</span><span class="mg-t"><span class="mg-n">Compound interest</span><span class="mg-d">Growth over time</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Health &amp; body</h5>
+        <a class="mg-item" href="bmi-calculator.html"><span class="mg-ic">◐</span><span class="mg-t"><span class="mg-n">BMI</span><span class="mg-d">With healthy range</span></span></a>
+        <a class="mg-item" href="calorie-calculator.html"><span class="mg-ic">⊙</span><span class="mg-t"><span class="mg-n">Calorie needs</span><span class="mg-d">Mifflin–St Jeor</span></span></a>
+        <a class="mg-item" href="tdee-calculator.html"><span class="mg-ic">⚡</span><span class="mg-t"><span class="mg-n">TDEE</span><span class="mg-d">Total daily energy</span></span></a>
+        <a class="mg-item" href="bmr-calculator.html"><span class="mg-ic">☀</span><span class="mg-t"><span class="mg-n">BMR</span><span class="mg-d">Calories at rest</span></span></a>
+        <a class="mg-item" href="body-fat-calculator.html"><span class="mg-ic">◑</span><span class="mg-t"><span class="mg-n">Body fat %</span><span class="mg-d">US Navy method</span></span></a>
+        <a class="mg-item" href="ideal-weight-calculator.html"><span class="mg-ic">⚕</span><span class="mg-t"><span class="mg-n">Ideal weight</span><span class="mg-d">Four classic formulas</span></span></a>
+        <a class="mg-item" href="macro-calculator.html"><span class="mg-ic">◲</span><span class="mg-t"><span class="mg-n">Macros</span><span class="mg-d">Protein, carbs, fat split</span></span></a>
+        <a class="mg-item" href="water-intake-calculator.html"><span class="mg-ic">≋</span><span class="mg-t"><span class="mg-n">Water intake</span><span class="mg-d">Daily hydration</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Fitness &amp; sleep</h5>
+        <a class="mg-item" href="pace-calculator.html"><span class="mg-ic">⏵</span><span class="mg-t"><span class="mg-n">Running pace</span><span class="mg-d">Pace, time, distance</span></span></a>
+        <a class="mg-item" href="one-rep-max-calculator.html"><span class="mg-ic">⚑</span><span class="mg-t"><span class="mg-n">One-rep max</span><span class="mg-d">Epley & Brzycki</span></span></a>
+        <a class="mg-item" href="heart-rate-zone-calculator.html"><span class="mg-ic">❤</span><span class="mg-t"><span class="mg-n">Heart-rate zones</span><span class="mg-d">Training zones</span></span></a>
+        <a class="mg-item" href="sleep-calculator.html"><span class="mg-ic">☾</span><span class="mg-t"><span class="mg-n">Sleep cycles</span><span class="mg-d">When to sleep or wake</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Dates &amp; time</h5>
+        <a class="mg-item" href="age-calculator.html"><span class="mg-ic">◔</span><span class="mg-t"><span class="mg-n">Age</span><span class="mg-d">Years, months, days</span></span></a>
+        <a class="mg-item" href="date-difference-calculator.html"><span class="mg-ic">▦</span><span class="mg-t"><span class="mg-n">Date difference</span><span class="mg-d">Days & working days</span></span></a>
+        <a class="mg-item" href="day-of-week-calculator.html"><span class="mg-ic">□</span><span class="mg-t"><span class="mg-n">Day of the week</span><span class="mg-d">What day was any date</span></span></a>
+        <a class="mg-item" href="days-from-today-calculator.html"><span class="mg-ic">⇢</span><span class="mg-t"><span class="mg-n">Days from today</span><span class="mg-d">Add days & business days</span></span></a>
+        <a class="mg-item" href="time-calculator.html"><span class="mg-ic">⏰</span><span class="mg-t"><span class="mg-n">Time & hours</span><span class="mg-d">Durations & work hours</span></span></a>
+        <a class="mg-item" href="time-zone-converter.html"><span class="mg-ic">⏲</span><span class="mg-t"><span class="mg-n">Time zones</span><span class="mg-d">Difference between cities</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Math &amp; numbers</h5>
+        <a class="mg-item" href="fraction-calculator.html"><span class="mg-ic">÷</span><span class="mg-t"><span class="mg-n">Fraction</span><span class="mg-d">Four ops, simplified</span></span></a>
+        <a class="mg-item" href="scientific-calculator.html"><span class="mg-ic">√</span><span class="mg-t"><span class="mg-n">Scientific</span><span class="mg-d">Full keypad</span></span></a>
+        <a class="mg-item" href="average-calculator.html"><span class="mg-ic">x̄</span><span class="mg-t"><span class="mg-n">Average</span><span class="mg-d">Mean, median, std dev</span></span></a>
+        <a class="mg-item" href="ratio-calculator.html"><span class="mg-ic">::</span><span class="mg-t"><span class="mg-n">Ratio</span><span class="mg-d">Solve & simplify a:b</span></span></a>
+        <a class="mg-item" href="gcf-lcm-calculator.html"><span class="mg-ic">∧</span><span class="mg-t"><span class="mg-n">GCF & LCM</span><span class="mg-d">Factors & multiples</span></span></a>
+        <a class="mg-item" href="binary-hex-converter.html"><span class="mg-ic">01</span><span class="mg-t"><span class="mg-n">Binary / hex</span><span class="mg-d">Dec, bin, hex, octal</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>School</h5>
+        <a class="mg-item" href="gpa-calculator.html"><span class="mg-ic">☆</span><span class="mg-t"><span class="mg-n">GPA</span><span class="mg-d">Weighted 4.0 scale</span></span></a>
+        <a class="mg-item" href="final-grade-calculator.html"><span class="mg-ic">✓</span><span class="mg-t"><span class="mg-n">Final grade</span><span class="mg-d">What you need on the final</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Converters</h5>
+        <a class="mg-item" href="temperature-converter.html"><span class="mg-ic">°</span><span class="mg-t"><span class="mg-n">Temperature</span><span class="mg-d">°C, °F and kelvin</span></span></a>
+        <a class="mg-item" href="length-converter.html"><span class="mg-ic">↔</span><span class="mg-t"><span class="mg-n">Length</span><span class="mg-d">mm to miles</span></span></a>
+        <a class="mg-item" href="weight-converter.html"><span class="mg-ic">⚖</span><span class="mg-t"><span class="mg-n">Weight</span><span class="mg-d">Grams to tons & stone</span></span></a>
+        <a class="mg-item" href="cups-to-grams-converter.html"><span class="mg-ic">☕</span><span class="mg-t"><span class="mg-n">Cups to grams</span><span class="mg-d">Real ingredient densities</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Kitchen</h5>
+        <a class="mg-item" href="recipe-converter.html"><span class="mg-ic">×</span><span class="mg-t"><span class="mg-n">Recipe scaler</span><span class="mg-d">Resize any recipe</span></span></a>
+        <a class="mg-item" href="pan-conversion-calculator.html"><span class="mg-ic">▢</span><span class="mg-t"><span class="mg-n">Pan conversion</span><span class="mg-d">Swap baking pans</span></span></a>
+        <a class="mg-item" href="coffee-ratio-calculator.html"><span class="mg-ic">☕</span><span class="mg-t"><span class="mg-n">Coffee ratio</span><span class="mg-d">Water, beans, strength</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Home &amp; garden</h5>
+        <a class="mg-item" href="square-footage-calculator.html"><span class="mg-ic">▤</span><span class="mg-t"><span class="mg-n">Square footage</span><span class="mg-d">Area & cost per sq ft</span></span></a>
+        <a class="mg-item" href="concrete-calculator.html"><span class="mg-ic">▧</span><span class="mg-t"><span class="mg-n">Concrete</span><span class="mg-d">Volume & bags</span></span></a>
+        <a class="mg-item" href="paint-calculator.html"><span class="mg-ic">▨</span><span class="mg-t"><span class="mg-n">Paint</span><span class="mg-d">Coverage & cans</span></span></a>
+        <a class="mg-item" href="flooring-calculator.html"><span class="mg-ic">▥</span><span class="mg-t"><span class="mg-n">Flooring</span><span class="mg-d">Boxes with waste</span></span></a>
+        <a class="mg-item" href="mulch-calculator.html"><span class="mg-ic">✿</span><span class="mg-t"><span class="mg-n">Mulch</span><span class="mg-d">Cubic yards & bags</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Cars &amp; travel</h5>
+        <a class="mg-item" href="fuel-cost-calculator.html"><span class="mg-ic">⛽</span><span class="mg-t"><span class="mg-n">Fuel cost</span><span class="mg-d">Trip cost & split</span></span></a>
+        <a class="mg-item" href="mpg-calculator.html"><span class="mg-ic">⏱</span><span class="mg-t"><span class="mg-n">MPG</span><span class="mg-d">And L/100km</span></span></a>
+        <a class="mg-item" href="ev-charging-cost-calculator.html"><span class="mg-ic">⚡</span><span class="mg-t"><span class="mg-n">EV charging</span><span class="mg-d">Cost per charge & mile</span></span></a>
+      </div>
+      <div class="ftcol">
+        <h5>Family</h5>
+        <a class="mg-item" href="due-date-calculator.html"><span class="mg-ic">♡</span><span class="mg-t"><span class="mg-n">Due date</span><span class="mg-d">Naegele's rule</span></span></a>
+        <a class="mg-item" href="ovulation-calculator.html"><span class="mg-ic">♡</span><span class="mg-t"><span class="mg-n">Ovulation</span><span class="mg-d">Fertile window</span></span></a>
+      </div>
+      <div class="mega-col">
+        <h5>Random &amp; fun</h5>
+        <a class="mg-item" href="random-number-generator.html"><span class="mg-ic">#</span><span class="mg-t"><span class="mg-n">Random number</span><span class="mg-d">True random, any range</span></span></a>
+        <a class="mg-item" href="dice-roller.html"><span class="mg-ic">⚄</span><span class="mg-t"><span class="mg-n">Dice roller</span><span class="mg-d">d4 to d100, many dice</span></span></a>
+        <a class="mg-item" href="coin-flip.html"><span class="mg-ic">●</span><span class="mg-t"><span class="mg-n">Coin flip</span><span class="mg-d">Heads or tails, fairly</span></span></a>
+        <a class="mg-item" href="random-picker.html"><span class="mg-ic">✧</span><span class="mg-t"><span class="mg-n">Random picker</span><span class="mg-d">Pick winners from a list</span></span></a>
+        <a class="mg-item" href="password-generator.html"><span class="mg-ic">*</span><span class="mg-t"><span class="mg-n">Password</span><span class="mg-d">Strong, generated locally</span></span></a>
+      </div>
+    </div>
+    <div class="fbar">
+      <p class="foot-note">© 2026 Calculate · General-information estimates, not medical advice — consult a healthcare professional for personal guidance. · Made with 🤎</p>
+      <span style="display:flex;gap:16px;flex-wrap:wrap;align-items:baseline"><a class="ftl" href="about.html">About</a><a class="ftl" href="privacy.html">Privacy</a><a class="ftl" href="support.html">Support</a><a class="ftl" href="https://buymeacoffee.com/YOUR-BMC-HANDLE" rel="noopener">Buy me a coffee ☕</a><a class="ftl" href="#top">Back to top ↑</a></span>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){var $=function(i){return document.getElementById(i);};
+function kg(x){return (Math.round(x*10)/10)+' kg';}
+function run(){var s=$('sex').value,h=parseFloat($('ht').value)||0;
+ if(h<=100){$('result').innerHTML='<span class="amber">—</span>';return;}
+ var inch=h/2.54,over=Math.max(0,inch-60),m=s==='m';
+ var devine=(m?50:45.5)+2.3*over;
+ var robinson=(m?52:49)+(m?1.9:1.7)*over;
+ var miller=(m?56.2:53.1)+(m?1.41:1.36)*over;
+ var hamwi=(m?48:45.5)+(m?2.7:2.2)*over;
+ var hm=h/100,lo=18.5*hm*hm,hi=24.9*hm*hm;
+ $('expr').textContent=(m?'male':'female')+' · '+h+' cm · Devine';
+ $('result').innerHTML='<span class="amber">'+kg(devine)+'</span>';
+ $('r1').textContent=kg(robinson);
+ $('r2').textContent=kg(miller);
+ $('r3').textContent=kg(hamwi);
+ $('r4').textContent=(Math.round(lo*10)/10)+' – '+(Math.round(hi*10)/10)+' kg';}
+['sex','ht'].forEach(function(i){$(i).addEventListener('input',run);$(i).addEventListener('change',run);});run();})();
+</script>
+<script>
+(function(){
+  var top=document.querySelector('header.top'),
+      tog=document.querySelector('.nav-toggle'),
+      veil=document.querySelector('.mega-veil');
+  if(!top||!tog)return;
+  function setOpen(on){
+    top.classList.toggle('menu-open',on);
+    if(veil)veil.classList.toggle('on',on);
+    tog.setAttribute('aria-expanded',on?'true':'false');
+  }
+  function isOpen(){return top.classList.contains('menu-open');}
+  tog.addEventListener('click',function(e){e.stopPropagation();setOpen(!isOpen());});
+  if(veil)veil.addEventListener('click',function(){setOpen(false);});
+  document.addEventListener('click',function(e){
+    if(isOpen()&&!top.contains(e.target))setOpen(false);
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&isOpen()){setOpen(false);tog.focus();}
+  });
+  top.querySelectorAll('.mg-item').forEach(function(a){a.addEventListener('click',function(){setOpen(false);});});
+})();
+</script>
+<script>
+(function(){
+  var heads=[].slice.call(document.querySelectorAll('#faq .acc-head'));
+  heads.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item=btn.closest('.acc-item'),o=item.classList.contains('open');
+      document.querySelectorAll('#faq .acc-item.open').forEach(function(x){x.classList.remove('open');x.querySelector('.acc-head').setAttribute('aria-expanded','false');});
+      if(!o){item.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+    btn.addEventListener('keydown',function(e){var i=heads.indexOf(btn),d=e.key==='ArrowDown'?1:e.key==='ArrowUp'?-1:0;if(!d)return;
+      e.preventDefault();heads[(i+d+heads.length)%heads.length].focus();});
+  });
+})();
+</script>
+</body>
+</html>
