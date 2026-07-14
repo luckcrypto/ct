@@ -405,7 +405,7 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
       "name": "Would buying only the biggest company beat the S&P 500?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "History says no. Studies by Dimensional Fund Advisors and Research Affiliates found that companies tend to lag the market in the years after becoming one of the very largest — roughly one to two percentage points a year over the following decade."
+        "text": "Over the long run, history says no — Dimensional Fund Advisors and Research Affiliates found the very largest companies lag the market by roughly one to two percentage points a year in the following decade. The big exception is 2013–2025, when the crown (Apple, then Microsoft and Nvidia) beat the index for years — set a negative drag to model that regime."
       }
     },
     {
@@ -600,7 +600,7 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
       <div class="field hasunit"><label for="amt">Invest each year</label>
         <div class="in"><span class="unit">$</span><input id="amt" type="number" inputmode="decimal" value="1000" style="padding-left:1.4em;text-align:right"></div></div>
       <div class="field"><label for="drag">Top-dog drag <span id="dragv" style="font-family:var(--mono);color:var(--signal-deep)">1.5%</span>/yr</label>
-        <div class="in"><input id="drag" type="range" min="0" max="5" step="0.1" value="1.5" aria-label="Annual underperformance of the largest stock"></div></div>
+        <div class="in"><input id="drag" type="range" min="-5" max="5" step="0.1" value="1.5" aria-label="Annual under- or out-performance of the largest stock (negative = the crown wins)"></div></div>
       <div class="readout"><div class="expr" id="expr">—</div><div class="result" id="result">—</div></div>
       <div class="ripple">
         <div class="rip"><div class="rip-txt"><span class="rip-name">S&amp;P 500 — the kingdom</span>
@@ -645,7 +645,10 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
 </div></section>
 
 <section><div class="wrap">
-  <div class="sec-head" style="max-width:68ch"><span class="eyebrow">Common questions</span><h2>S&P 1 vs S&P 500 FAQ</h2></div>
+  <div class="sec-head" style="max-width:68ch"><span class="eyebrow">Common questions</span>    <h2>The exception era: when the crown actually won</h2>
+    <p>The drag is a long-run average, not a law of physics — and the 2013–2025 stretch is the great counterexample. Apple, then Microsoft and Nvidia, kept compounding after taking the top spot, and the biggest company handily beat the index for over a decade. If you want to model that regime, drag the slider negative: the crown gets an annual edge instead of a penalty.</p>
+    <div class="plate"><div class="lbl">Both regimes, honestly</div><div class="eg">Long-run studies (1920s–2010s): the #1 stock lags by ~1–2%/yr after taking the crown<br>2013–2025: the crown beat the index — the exception the averages hide<br>Nobody knows which regime comes next — that uncertainty is the point</div></div>
+<h2>S&P 1 vs S&P 500 FAQ</h2></div>
   <div class="acc" id="faq">
       <div class="acc-item">
         <button class="acc-head" aria-expanded="false">What is the biggest company in the S&P 500?<span class="acc-chev" aria-hidden="true">+</span></button>
@@ -653,7 +656,7 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
       </div>
       <div class="acc-item">
         <button class="acc-head" aria-expanded="false">Would buying only the biggest company beat the S&P 500?<span class="acc-chev" aria-hidden="true">+</span></button>
-        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>History says no. Studies by Dimensional Fund Advisors and Research Affiliates found that companies tend to lag the market in the years after becoming one of the very largest — roughly one to two percentage points a year over the following decade.</p></div></div></div>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>Over the long run, history says no — Dimensional Fund Advisors and Research Affiliates found the very largest companies lag the market by roughly one to two percentage points a year in the following decade. The big exception is 2013–2025, when the crown (Apple, then Microsoft and Nvidia) beat the index for years — set a negative drag to model that regime.</p></div></div></div>
       </div>
       <div class="acc-item">
         <button class="acc-head" aria-expanded="false">Why do the biggest companies underperform after reaching #1?<span class="acc-chev" aria-hidden="true">+</span></button>
@@ -826,7 +829,7 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
   function run(){
     var start=parseInt($('start').value)||1990, amt=parseFloat($('amt').value)||0, drag=parseFloat($('drag').value)||0;
     if(start<FIRST)start=FIRST; if(start>LAST)start=LAST;
-    $('dragv').textContent=drag.toFixed(1)+'%';
+    $('dragv').textContent=(drag>=0?drag.toFixed(1)+'%':'+'+Math.abs(drag).toFixed(1)+'% edge');
     var sp500=0,sp1=0,invested=0,years=0;
     for(var y=start;y<=LAST;y++){
       var r=RET[y]/100;
@@ -837,11 +840,11 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
       years++;
     }
     var gap=sp500-sp1, gapPct=sp500>0?gap/sp500*100:0;
-    $('expr').textContent=money0(amt)+'/yr · '+start+' → 2025 ('+years+' yrs) · drag −'+drag.toFixed(1)+'%/yr';
-    $('result').innerHTML='<span class="amber">'+money0(gap)+'</span><span class="small"> left on the table</span>';
+    $('expr').textContent=money0(amt)+'/yr · '+start+' → 2025 ('+years+' yrs) · '+(drag>=0?'drag −':'edge +')+Math.abs(drag).toFixed(1)+'%/yr';
+    $('result').innerHTML=gap>=0?'<span class="amber">'+money0(gap)+'</span><span class="small"> left on the table</span>':'<span class="amber">'+money0(-gap)+'</span><span class="small"> ahead of the index</span>';
     $('r1').textContent=money0(sp500);
     $('r2').textContent=money0(sp1);
-    $('r3').textContent='−'+(Math.round(gapPct*10)/10)+'% vs the index';
+    $('r3').textContent=(gapPct>=0?'−':'+')+Math.abs(Math.round(gapPct*10)/10)+'% vs the index';
     $('r4').textContent=money0(invested)+' each';
   }
   ['start','amt','drag'].forEach(function(id){$(id).addEventListener('input',run);});
