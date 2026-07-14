@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light only">
-<title>S&P 1 vs S&P 500 — What If You Only Bought the Biggest Stock?</title>
-<meta name="description" content="What if you only ever invested in the largest company — the 'S&P 1' — versus the whole S&P 500? The history, the research, a live simulator.">
+<title>S&P 1 vs S&P 500 — Real Backtest of Buying the Biggest Stock</title>
+<meta name="description" content="What if you only ever held America's biggest company — the 'S&P 1'? A real backtest with actual crown-holders and returns, 1995–2025, versus the index.">
 <link rel="canonical" href="https://calculate.to/sp1-vs-sp500-calculator.html">
 <meta name="theme-color" content="#f6f4ef">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -405,7 +405,7 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
       "name": "Would buying only the biggest company beat the S&P 500?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Over the long run, history says no — Dimensional Fund Advisors and Research Affiliates found the very largest companies lag the market by roughly one to two percentage points a year in the following decade. The big exception is 2013–2025, when the crown (Apple, then Microsoft and Nvidia) beat the index for years — set a negative drag to model that regime."
+        "text": "In the real 1995–2025 backtest on this page, mostly yes: $10,000 in the crown strategy from 1995 grew to about $449,000 versus $257,000 in the index (13.1% vs 11.0% a year). The big exception is starting at the 2000 dot-com peak, where the index wins. Century-long studies still find the crown lags on average — this window was the concentration era."
       }
     },
     {
@@ -429,7 +429,7 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
       "name": "Is this simulator based on real top-stock returns?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Partly. The S&P 500 side uses real published annual total returns from 1928 to 2025. A clean month-by-month return series for whichever stock was #1 doesn't exist publicly, so the S&P 1 side applies the documented underperformance drag to the same real returns — an honest model of the effect rather than invented precision."
+        "text": "Yes — in real-data mode. The crown each year is the largest US company by Q1 market cap (American Business History Center records), and its annual total returns with dividends come from SEC proxy statements and published return tables, 1995–2025. The S&P 500 side uses real published annual total returns. Model mode additionally lets you apply any drag or edge to explore other assumptions."
       }
     }
   ]
@@ -587,7 +587,7 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
   <div>
     <span class="eyebrow">Money & markets · Index investing</span>
     <h1>S&amp;P 1<br><span class="thin">vs S&amp;P 500</span></h1>
-    <p class="lead">Imagine a one-stock index: each month you buy whichever company is the biggest in America. AT&amp;T, then IBM, then Exxon, GE, Microsoft, Apple, Nvidia… How does the throne compare with the whole kingdom? History has a clear answer.</p>
+    <p class="lead">Imagine a one-stock index: each month you buy whichever company is the biggest in America. AT&amp;T, then IBM, then Exxon, GE, Microsoft, Apple, Nvidia… How does the throne compare with the whole kingdom? We backtested it with real crown-holders and real returns — and the answer surprised us.</p>
     <div class="meta"><span class="chipm">Real index returns</span><span class="chipm">Documented top-dog drag</span><span class="chipm">No sign-up</span></div>
   </div>
   <div class="calc" id="calc">
@@ -595,11 +595,13 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
         <span class="calc-chip" style="font-size:var(--fs-13);color:var(--ink-2)">Throne vs kingdom</span>
         <span class="calc-chip">yearly investing</span>
       </div>
+      <div class="field"><label for="mode">Mode</label>
+        <div class="in selin"><select id="mode"><option value="real" selected>Real data 1995–2025</option><option value="model">Model (drag slider)</option></select></div></div>
       <div class="field"><label for="start">Start year</label>
-        <div class="in"><input id="start" type="number" inputmode="numeric" min="1928" max="2025" value="1990" style="width:110px"></div></div>
+        <div class="in"><input id="start" type="number" inputmode="numeric" min="1928" max="2025" value="1995" style="width:110px"></div></div>
       <div class="field hasunit"><label for="amt">Invest each year</label>
         <div class="in"><span class="unit">$</span><input id="amt" type="number" inputmode="decimal" value="1000" style="padding-left:1.4em;text-align:right"></div></div>
-      <div class="field"><label for="drag">Top-dog drag <span id="dragv" style="font-family:var(--mono);color:var(--signal-deep)">1.5%</span>/yr</label>
+      <div class="field" id="dragfield"><label for="drag">Top-dog drag <span id="dragv" style="font-family:var(--mono);color:var(--signal-deep)">1.5%</span>/yr</label>
         <div class="in"><input id="drag" type="range" min="-5" max="5" step="0.1" value="1.5" aria-label="Annual under- or out-performance of the largest stock (negative = the crown wins)"></div></div>
       <div class="readout"><div class="expr" id="expr">—</div><div class="result" id="result">—</div></div>
       <div class="ripple">
@@ -609,6 +611,8 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
           <span class="rip-mech">same returns minus the drag, each year</span></div><span class="rip-val cool" id="r2">—</span></div>
         <div class="rip"><div class="rip-txt"><span class="rip-name">The gap</span>
           <span class="rip-mech">what chasing the crown costs</span></div><span class="rip-val" id="r3">—</span></div>
+        <div class="rip"><div class="rip-txt"><span class="rip-name">Crown path</span>
+          <span class="rip-mech">who the strategy actually held</span></div><span class="rip-val" id="r5" style="font-size:var(--fs-13);white-space:normal;text-align:right;flex:1 1 0%;min-width:0;overflow-wrap:anywhere">—</span></div>
         <div class="rip"><div class="rip-txt"><span class="rip-name">Total invested</span>
           <span class="rip-mech">same money into both strategies</span></div><span class="rip-val" id="r4">—</span></div>
       </div>
@@ -616,8 +620,10 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
 </div></section>
 
 <section><div class="wrap prose">
-    <h2>The one-stock index nobody should own</h2>
-    <p>Call it the <strong>S&amp;P 1</strong>: a strategy that holds exactly one stock — whichever company is the largest in the American market — and switches whenever the crown changes hands. It sounds like buying pure strength. The record says otherwise: by the time a company becomes the biggest, its fastest growth is usually already behind it.</p>
+    <h2>The one-stock index — tested with real data</h2>
+    <p>Call it the <strong>S&amp;P 1</strong>: a strategy that holds exactly one stock — whichever company is the largest in the American market — and switches whenever the crown changes hands. Academic studies long suggested the crown lags the market. So we tested it properly: real crown-holders each year (largest US company by first-quarter market cap, per American Business History Center records) and real annual total returns with dividends, sourced from SEC proxy statements and published return tables, 1995–2025.</p>
+    <div class="plate"><div class="lbl">$10,000 lump sum, held to end of 2025</div><div class="eg">From 1995: crown <span class="amber">$449,420</span> vs index $256,813 — crown wins 1.75×<br>From 2000 (dot-com peak): crown $61,412 vs index $73,885 — index wins<br>From 2005: crown <span class="amber">$242,121</span> vs index $83,070 — crown wins 2.9×<br>From 2012: crown <span class="amber">$126,190</span> vs index $69,367 — crown wins 1.8×</div></div>
+    <p>Over the full 31 years the crown compounded at <strong>13.1% a year against the index's 11.0%</strong>. The strategy's one kill-zone is entering at a mania peak: a 2000 start buys Microsoft at its dot-com top (−63% that year) and never fully recovers the gap. From nearly every other start, the throne beat the kingdom — the annual switching even routed around Microsoft's lost decade by holding ExxonMobil from 2005 to 2011.</p>
 
     <h3>Who has worn the crown</h3>
     <p>The throne has changed dynasties roughly once a technological era:</p>
@@ -645,9 +651,9 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
 </div></section>
 
 <section><div class="wrap">
-  <div class="sec-head" style="max-width:68ch"><span class="eyebrow">Common questions</span>    <h2>The exception era: when the crown actually won</h2>
-    <p>The drag is a long-run average, not a law of physics — and the 2013–2025 stretch is the great counterexample. Apple, then Microsoft and Nvidia, kept compounding after taking the top spot, and the biggest company handily beat the index for over a decade. If you want to model that regime, drag the slider negative: the crown gets an annual edge instead of a penalty.</p>
-    <div class="plate"><div class="lbl">Both regimes, honestly</div><div class="eg">Long-run studies (1920s–2010s): the #1 stock lags by ~1–2%/yr after taking the crown<br>2013–2025: the crown beat the index — the exception the averages hide<br>Nobody knows which regime comes next — that uncertainty is the point</div></div>
+  <div class="sec-head" style="max-width:68ch"><span class="eyebrow">Common questions</span>    <h2>Two truths, honestly held</h2>
+    <p>The century-long academic studies (Dimensional, Research Affiliates) still stand: measured from the 1920s onward, companies on average lag the market after reaching the very top — AT&amp;T, IBM and GE all eventually proved it. But the 1995–2025 window is the concentration era, and in it the implementable strategy won. Both facts belong on this page. Nobody knows which regime the next thirty years brings — that uncertainty is the honest takeaway.</p>
+    <div class="plate"><div class="lbl">What the backtest ignores (fine print)</div><div class="eg">Taxes: every crown switch is a taxable sale in real life — the index barely trades<br>Switching is annual, on Q1 market caps — Nvidia's mid-year crown moments never register<br>One stock = one company's blow-up risk; the index diversifies it away</div></div>
 <h2>S&P 1 vs S&P 500 FAQ</h2></div>
   <div class="acc" id="faq">
       <div class="acc-item">
@@ -656,7 +662,7 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
       </div>
       <div class="acc-item">
         <button class="acc-head" aria-expanded="false">Would buying only the biggest company beat the S&P 500?<span class="acc-chev" aria-hidden="true">+</span></button>
-        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>Over the long run, history says no — Dimensional Fund Advisors and Research Affiliates found the very largest companies lag the market by roughly one to two percentage points a year in the following decade. The big exception is 2013–2025, when the crown (Apple, then Microsoft and Nvidia) beat the index for years — set a negative drag to model that regime.</p></div></div></div>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>In the real 1995–2025 backtest on this page, mostly yes: $10,000 in the crown strategy from 1995 grew to about $449,000 versus $257,000 in the index (13.1% vs 11.0% a year). The big exception is starting at the 2000 dot-com peak, where the index wins. Century-long studies still find the crown lags on average — this window was the concentration era.</p></div></div></div>
       </div>
       <div class="acc-item">
         <button class="acc-head" aria-expanded="false">Why do the biggest companies underperform after reaching #1?<span class="acc-chev" aria-hidden="true">+</span></button>
@@ -668,7 +674,7 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
       </div>
       <div class="acc-item">
         <button class="acc-head" aria-expanded="false">Is this simulator based on real top-stock returns?<span class="acc-chev" aria-hidden="true">+</span></button>
-        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>Partly. The S&P 500 side uses real published annual total returns from 1928 to 2025. A clean month-by-month return series for whichever stock was #1 doesn't exist publicly, so the S&P 1 side applies the documented underperformance drag to the same real returns — an honest model of the effect rather than invented precision.</p></div></div></div>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>Yes — in real-data mode. The crown each year is the largest US company by Q1 market cap (American Business History Center records), and its annual total returns with dividends come from SEC proxy statements and published return tables, 1995–2025. The S&P 500 side uses real published annual total returns. Model mode additionally lets you apply any drag or edge to explore other assumptions.</p></div></div></div>
       </div>
   </div>
 </div></section>
@@ -824,30 +830,48 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
 (function(){
   var $=function(id){return document.getElementById(id);};
   var RET={1928:43.81,1929:-8.3,1930:-25.12,1931:-43.84,1932:-8.64,1933:49.98,1934:-1.19,1935:46.74,1936:31.94,1937:-35.34,1938:29.28,1939:-1.1,1940:-10.67,1941:-12.77,1942:19.17,1943:25.06,1944:19.03,1945:35.82,1946:-8.43,1947:5.2,1948:5.7,1949:18.3,1950:30.81,1951:23.68,1952:18.15,1953:-1.21,1954:52.56,1955:32.6,1956:7.44,1957:-10.46,1958:43.72,1959:12.06,1960:0.34,1961:26.64,1962:-8.81,1963:22.61,1964:16.42,1965:12.4,1966:-9.97,1967:23.8,1968:10.81,1969:-8.24,1970:3.56,1971:14.22,1972:18.76,1973:-14.31,1974:-25.9,1975:37.0,1976:23.83,1977:-6.98,1978:6.51,1979:18.52,1980:31.74,1981:-4.7,1982:20.42,1983:22.34,1984:6.15,1985:31.24,1986:18.49,1987:5.81,1988:16.54,1989:31.48,1990:-3.06,1991:30.23,1992:7.49,1993:9.97,1994:1.33,1995:37.2,1996:22.68,1997:33.1,1998:28.34,1999:20.89,2000:-9.03,2001:-11.85,2002:-21.97,2003:28.36,2004:10.74,2005:4.83,2006:15.61,2007:5.48,2008:-36.55,2009:25.94,2010:14.82,2011:2.1,2012:15.89,2013:32.15,2014:13.52,2015:1.38,2016:11.77,2017:21.61,2018:-4.23,2019:31.21,2020:18.02,2021:28.47,2022:-18.04,2023:26.29,2024:25.02,2025:17.44};
+  /* Real crown data 1995-2025. Crown = largest US company by Q1 market cap (American Business
+     History Center / Visual Capitalist). Returns = annual total returns incl. dividends:
+     GE from GE's SEC DEF 14A cumulative-return tables; XOM from ExxonMobil SEC proxies;
+     MSFT/AAPL from published total-return records. */
+  var CR={1995:['GE',45.26],1996:['GE',40.37],1997:['GE',51.09],1998:['GE',41.06],
+   1999:['MSFT',68.4],2000:['MSFT',-62.8],2001:['GE',-15.1],2002:['GE',-37.7],
+   2003:['MSFT',6.8],2004:['GE',20.7],2005:['XOM',11.8],2006:['XOM',39.1],
+   2007:['XOM',24.3],2008:['XOM',-13.1],2009:['XOM',-12.6],2010:['XOM',10.1],
+   2011:['XOM',18.7],2012:['AAPL',32.7],2013:['AAPL',8.1],2014:['AAPL',40.6],
+   2015:['AAPL',-3.0],2016:['AAPL',12.5],2017:['AAPL',48.5],2018:['AAPL',-5.4],
+   2019:['MSFT',57.6],2020:['MSFT',42.5],2021:['AAPL',34.6],2022:['AAPL',-26.4],
+   2023:['AAPL',49.0],2024:['MSFT',12.9],2025:['AAPL',9.05]};
   var FIRST=1928,LAST=2025;
   function money0(n){return '$'+Math.round(isFinite(n)?n:0).toLocaleString('en-US');}
   function run(){
-    var start=parseInt($('start').value)||1990, amt=parseFloat($('amt').value)||0, drag=parseFloat($('drag').value)||0;
-    if(start<FIRST)start=FIRST; if(start>LAST)start=LAST;
+    var real=$('mode').value==='real';
+    $('dragfield').style.display=real?'none':'';
+    var start=parseInt($('start').value)||1995, amt=parseFloat($('amt').value)||0, drag=parseFloat($('drag').value)||0;
+    var lo=real?1995:FIRST;
+    if(start<lo)start=lo; if(start>LAST)start=LAST;
     $('dragv').textContent=(drag>=0?drag.toFixed(1)+'%':'+'+Math.abs(drag).toFixed(1)+'% edge');
-    var sp500=0,sp1=0,invested=0,years=0;
+    var sp500=0,sp1=0,invested=0,years=0,path=[];
     for(var y=start;y<=LAST;y++){
       var r=RET[y]/100;
+      var r1=real?CR[y][1]/100:(r-drag/100);
+      if(real&&(!path.length||path[path.length-1]!==CR[y][0]))path.push(CR[y][0]);
       sp500+=amt; sp1+=amt; invested+=amt;
-      sp500*=(1+r);
-      sp1*=(1+r-drag/100);
+      sp500*=(1+r); sp1*=(1+r1);
       if(sp1<0)sp1=0;
       years++;
     }
     var gap=sp500-sp1, gapPct=sp500>0?gap/sp500*100:0;
-    $('expr').textContent=money0(amt)+'/yr · '+start+' → 2025 ('+years+' yrs) · '+(drag>=0?'drag −':'edge +')+Math.abs(drag).toFixed(1)+'%/yr';
+    $('expr').textContent=money0(amt)+'/yr · '+start+' → 2025 ('+years+' yrs) · '+(real?'real crown returns':(drag>=0?'drag −':'edge +')+Math.abs(drag).toFixed(1)+'%/yr');
     $('result').innerHTML=gap>=0?'<span class="amber">'+money0(gap)+'</span><span class="small"> left on the table</span>':'<span class="amber">'+money0(-gap)+'</span><span class="small"> ahead of the index</span>';
     $('r1').textContent=money0(sp500);
     $('r2').textContent=money0(sp1);
     $('r3').textContent=(gapPct>=0?'−':'+')+Math.abs(Math.round(gapPct*10)/10)+'% vs the index';
+    $('r5').textContent=real?path.join(' → '):'— (model mode)';
     $('r4').textContent=money0(invested)+' each';
   }
   ['start','amt','drag'].forEach(function(id){$(id).addEventListener('input',run);});
+  $('mode').addEventListener('change',run);
   run();
 })();
 </script>
