@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light only">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="theme-color" content="#f6f4ef">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-96.png" type="image/png" sizes="96x96">
@@ -357,6 +358,26 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
 
 /* disabled controls */
 :disabled, [disabled], [aria-disabled="true"] { cursor: not-allowed; }
+
+/* ---- physical-calculator shelf (affiliate, contextual) ---- */
+.shelf{margin:2.5em 0 0}
+.shelf-h{font-size:var(--fs-13);letter-spacing:.02em;color:var(--muted);margin:0 0 2px}
+.shelf-d{font-size:var(--fs-11);color:var(--muted);margin:0 0 14px}
+.shelf-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.shelf-card{display:flex;flex-direction:column;gap:8px;background:#fbfaf7;background:var(--card);border:1px solid var(--hair-2);border-radius:14px;padding:12px;box-shadow:inset 0 1px 0 #fff;min-width:0;text-decoration:none}
+.shelf-card:hover .shelf-name{color:var(--signal-deep)}
+.shelf-imgwrap{aspect-ratio:1/1;border-radius:10px;background:#efece4;background:var(--paper-2);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.shelf-imgwrap img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+.shelf-name{font-size:var(--fs-15);font-weight:700;color:var(--ink);line-height:var(--lh-ui);padding:0 3px}
+.shelf-copy{font-size:var(--fs-13);color:var(--ink-2);line-height:1.5;flex:1;padding:0 3px}
+.shelf-go{font-size:var(--fs-13);font-weight:700;color:var(--signal-deep);padding:0 3px 2px}
+@media(max-width:640px){
+  .shelf-grid{display:flex;grid-template-columns:none;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scroll-padding:0 22px;scrollbar-width:none;
+    margin:0 -22px;padding:4px 22px 8px}
+  .shelf-grid::-webkit-scrollbar{display:none}
+  .shelf-card{flex:0 0 78%;scroll-snap-align:center}
+}
 </style>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "WebSite", "name": "Calculate", "alternateName": "calculate.to", "url": "https://calculate.to/", "description": "Free, instant, ad-free calculators for money, health, home, school and everyday life.", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "Calculate", "url": "https://calculate.to/"}}
@@ -1039,6 +1060,38 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
     <h3>Do the calculators work on mobile?</h3>
     <p>Yes — every page is built for phones first and works instantly in any modern browser, with no app or sign-up required.</p>
 </div></section>
+<section><div class="wrap">
+      <div class="shelf">
+        <p class="shelf-h">Prefer a physical calculator?</p>
+        <p class="shelf-d">A few solid picks. As an Amazon Associate, Calculate earns from qualifying purchases — at no extra cost to you.</p>
+        <div class="shelf-grid">
+        <a class="shelf-card" href="https://amzn.to/3RbvOFU" rel="sponsored nofollow noopener" target="_blank">
+          <span class="shelf-imgwrap"><img src="prod-osalo.jpg" alt="OSALO Desktop Calculator" loading="lazy" width="400" height="400"></span>
+          <span class="shelf-name">OSALO Desktop Calculator</span>
+          <span class="shelf-copy">Extra-large 12-digit LCD, giant buttons, solar + battery — the classic office desk workhorse.</span>
+          <span class="shelf-go">View on Amazon →</span>
+        </a>
+        <a class="shelf-card" href="https://amzn.to/4bGAoTm" rel="sponsored nofollow noopener" target="_blank">
+          <span class="shelf-imgwrap"><img src="prod-helix.jpg" alt="Helix Oxford Scientific" loading="lazy" width="400" height="400"></span>
+          <span class="shelf-name">Helix Oxford Scientific</span>
+          <span class="shelf-copy">240-function scientific calculator for KS3–KS4 maths, with hard cover. Exam-friendly, plastic-free packaging.</span>
+          <span class="shelf-go">View on Amazon →</span>
+        </a>
+        <a class="shelf-card" href="https://amzn.to/4yoBOf7" rel="sponsored nofollow noopener" target="_blank">
+          <span class="shelf-imgwrap"><img src="prod-casio.jpg" alt="Casio fx-83GTCW+" loading="lazy" width="400" height="400"></span>
+          <span class="shelf-name">Casio fx-83GTCW+</span>
+          <span class="shelf-copy">The UK classroom-standard scientific calculator (also in pink) — allowed in most UK exams.</span>
+          <span class="shelf-go">View on Amazon →</span>
+        </a>
+        <a class="shelf-card" href="https://amzn.to/4aVhBDE" rel="sponsored nofollow noopener" target="_blank">
+          <span class="shelf-imgwrap"><img src="prod-roatee.jpg" alt="ROATEE Construction Calc" loading="lazy" width="400" height="400"></span>
+          <span class="shelf-name">ROATEE Construction Calc</span>
+          <span class="shelf-copy">Feet-inch-fraction engineering calculator for carpenters, framers and contractors on site.</span>
+          <span class="shelf-go">View on Amazon →</span>
+        </a>
+        </div>
+      </div>
+    </div></section>
 </main>
 
 <footer>
@@ -1175,7 +1228,7 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
     </div>
     <div class="fbar">
       <p class="foot-note">© 2026 Calculate · Answers are for general use — check anything important with a professional. · Made with 🤎</p>
-      <span style="display:flex;gap:16px;flex-wrap:wrap;align-items:baseline"><a class="ftl" href="about.html">About</a><a class="ftl" href="privacy.html">Privacy</a><a class="ftl" href="support.html">Support</a><a class="ftl" href="#top">Back to top ↑</a></span>
+      <span style="display:flex;gap:16px;flex-wrap:wrap;align-items:baseline"><a class="ftl" href="about.html">About</a><a class="ftl" href="privacy.html">Privacy</a><a class="ftl" href="support.html">Support</a><a class="ftl" href="https://luck.fyi" rel="nofollow noopener" title="From the same builder — probability &amp; crypto tools">luck.fyi ↗</a><a class="ftl" href="#top">Back to top ↑</a></span>
     </div>
   </div>
 </footer>

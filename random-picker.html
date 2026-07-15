@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light only">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <title>Random Picker — Choose Winners From Any List</title>
 <meta name="description" content="Paste any list of names or options and pick one or more winners at random — fair, instant, and private, with nothing uploaded anywhere. Giveaways sorted.">
 <link rel="canonical" href="https://calculate.to/random-picker.html">
@@ -525,7 +526,7 @@ Elena</textarea></div>
     <p>Your list is shuffled with a <strong>Fisher–Yates shuffle</strong> driven by cryptographic randomness — the textbook-correct method where every ordering is exactly equally likely — and the top of the shuffle wins. Multiple winners are just the top n, so nobody can win twice and every entry has an identical chance.</p>
     <div class="plate"><div class="lbl">The odds</div><div class="formula">each entry's chance = winners ÷ <span class="amber">entries</span></div></div>
     <h2>Private by construction</h2>
-    <p>The list never leaves your browser — nothing is uploaded, stored or logged, which matters when the list is customer names or students. It also means there's no receipt: for a public giveaway where entrants want proof, run the pick live on a stream or screen recording, which is the standard practice.</p>
+    <p>The list never leaves your browser — nothing is uploaded, stored or logged, which matters when the list is customer names or students. It also means there's no receipt: for a public giveaway where entrants want proof, run the pick live on a stream or screen recording, which is the standard practice. The cryptographic alternative is a provably fair draw with hash receipts, like the SHA-256 generators at <a href="https://luck.fyi" rel="noopener">luck.fyi</a>.</p>
     <h2>Weighted entries</h2>
     <p>Want someone to have double the chance (say, two raffle tickets)? Paste their name twice — duplicates are legitimate entries, and the math handles it naturally. For numbered draws instead of names, the <a href="random-number-generator.html">random number generator</a> covers ranges directly.</p>
 </div></section>
@@ -693,7 +694,7 @@ Elena</textarea></div>
     </div>
     <div class="fbar">
       <p class="foot-note">© 2026 Calculate · Answers are for general use — check anything important with a professional. · Made with 🤎</p>
-      <span style="display:flex;gap:16px;flex-wrap:wrap;align-items:baseline"><a class="ftl" href="about.html">About</a><a class="ftl" href="privacy.html">Privacy</a><a class="ftl" href="support.html">Support</a><a class="ftl" href="#top">Back to top ↑</a></span>
+      <span style="display:flex;gap:16px;flex-wrap:wrap;align-items:baseline"><a class="ftl" href="about.html">About</a><a class="ftl" href="privacy.html">Privacy</a><a class="ftl" href="support.html">Support</a><a class="ftl" href="https://luck.fyi" rel="nofollow noopener" title="From the same builder — probability &amp; crypto tools">luck.fyi ↗</a><a class="ftl" href="#top">Back to top ↑</a></span>
     </div>
   </div>
 </footer>
