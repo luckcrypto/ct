@@ -22,12 +22,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
 /* ============================================================
    Calculate — shared design system  (calculate.to)
-   "instrument, not form" · ONE font (Space Grotesk) · single amber signal
+   "instrument, not form" · ONE family (IBM Plex Sans + Plex Mono) · single amber signal
    Source of truth for every tool page. Change tokens HERE, not per-page.
    ============================================================ */
 
@@ -48,15 +48,15 @@
   --shadow:22,20,16;
 
   /* type scale (ethos) */
-  --fs-11:11px; --fs-13:13px; --fs-15:15px; --fs-17:17px; --fs-21:21px; --fs-28:28px;
-  --fs-40:clamp(30px,4.4vw,40px); --fs-56:clamp(38px,6.5vw,56px); --fs-84:clamp(46px,9vw,82px);
+  --fs-m:16px;--fs-l:20px;     --fs-xl:28px;
+  --fs-2xl:clamp(38px,6.5vw,64px);  
   --lh-display:1.02; --lh-head:1.15; --lh-ui:1.4; --lh-body:1.6;
 
   --content:1040px;
   --r:18px; --r-btn:12px;
-  --sans:'Space Grotesk',system-ui,-apple-system,sans-serif;
-  --display:'Space Grotesk',system-ui,sans-serif;
-  --mono:'Space Grotesk',system-ui,sans-serif;
+  --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --display:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;background:#f6f4ef;color-scheme:light}
@@ -68,7 +68,7 @@ body{
   margin:0;
   background-color:#f6f4ef;
   color:#1c1b19;
-  font-family:var(--sans);font-size:var(--fs-15);line-height:var(--lh-body);
+  font-family:var(--sans);font-size:var(--fs-m);line-height:var(--lh-body);
   -webkit-font-smoothing:antialiased;
   background-image:
     radial-gradient(1100px 500px at 82% -8%, rgba(201,106,27,.06), transparent 60%),
@@ -78,30 +78,23 @@ body{
 /* absolute guarantee: paper base behind everything, even if a client kills bg-color */
 html::before{content:"";position:fixed;inset:0;background:#f6f4ef;z-index:-1;pointer-events:none}
 .wrap{max-width:var(--content);margin:0 auto;padding:0 22px}
-a{color:inherit}
+a{color:inherit;text-decoration:none}
 ::selection{background:rgba(201,106,27,.22)}
 img{max-width:100%;height:auto}
 
 /* skip link */
-.skip{position:absolute;left:-9999px;top:0;background:var(--signal);color:#fff;padding:.7em 1.1em;border-radius:0 0 10px 0;z-index:50}
+.skip{position:absolute;left:-9999px;top:0;background:var(--signal);color:#fff;text-decoration:none;padding:.7em 1.1em;border-radius:0 0 10px 0;z-index:50}
 .skip:focus{left:0}
 
 /* ---------- top bar ---------- */
-.top{position:sticky;top:0;z-index:40;background:#f6f4ef;background:rgba(246,244,239,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--hair)}
-.top-in{display:flex;align-items:center;gap:16px;height:62px}
-.brand{display:inline-flex;align-items:baseline;gap:.02em;font-family:var(--display);font-weight:600;font-size:var(--fs-21);letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+.brand{display:inline-flex;align-items:baseline;gap:.02em;font-family:var(--display);font-weight:600;font-size:var(--fs-l);letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
 .brand .eq{color:var(--signal);font-family:var(--mono);font-weight:500;margin-right:.12em;transform:translateY(-1px)}
-.top nav{margin-left:auto;display:flex;gap:6px;align-items:center}
-.top nav a{font-size:var(--fs-13);font-weight:500;color:var(--ink-2);text-decoration:none;padding:.5em .8em;border-radius:9px;line-height:var(--lh-ui)}
-.top nav a:hover{background:var(--paper-2);color:var(--ink)}
-.nav-toggle{cursor:pointer;border:0;font-family:inherit;display:inline-flex;align-items:center;gap:.35em}
-.nav-toggle .chev{display:inline-block;transition:transform .28s ease}
-.top.menu-open .nav-toggle .chev{transform:rotate(180deg)}
+.top.menu-open 
 @media(max-width:620px){.top nav a:not(.pill){display:none}}
 .pill{border:1px solid var(--hair-2);background:linear-gradient(180deg,#fff,rgba(28,27,25,.03));box-shadow:inset 0 1px 0 #fff}
 
 /* ---------- buttons ---------- */
-.btn{font-family:var(--sans);font-weight:700;font-size:14px;line-height:var(--lh-ui);
+.btn{font-family:var(--sans);font-weight:700;font-size:var(--fs-m);line-height:var(--lh-ui);
   padding:.82em 1.3em;border-radius:var(--r-btn);border:1px solid var(--hair-2);cursor:pointer;
   color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:.5em;
   background:radial-gradient(120% 95% at 50% 14%,#fff,rgba(255,255,255,0) 60%),linear-gradient(180deg,#fff,rgba(28,27,25,.04));
@@ -118,8 +111,8 @@ img{max-width:100%;height:auto}
 section{padding:44px 0;background:#f6f4ef}
 .sec-head{margin-bottom:26px}
 .sec-head .eyebrow{display:block;margin-bottom:8px}
-.eyebrow{font-family:var(--mono);font-size:var(--fs-13);letter-spacing:.16em;text-transform:uppercase;color:var(--signal-deep);line-height:var(--lh-ui)}
-.sec-head h2{font-family:var(--display);font-weight:600;font-size:var(--fs-40);line-height:var(--lh-head);letter-spacing:-.015em;margin:0}
+.eyebrow{font-family:var(--mono);font-size:var(--fs-m);letter-spacing:.16em;text-transform:uppercase;color:var(--signal-deep);line-height:var(--lh-ui)}
+.sec-head h2{font-family:var(--display);font-weight:600;font-size:var(--fs-xl);line-height:var(--lh-head);letter-spacing:-.015em;margin:0}
 .sec-head p{color:var(--ink-2);max-width:52ch;margin:10px 0 0}
 
 /* ============================================================
@@ -128,7 +121,7 @@ section{padding:44px 0;background:#f6f4ef}
 
 /* breadcrumb */
 .crumbs{padding:20px 0 0}
-.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;font-family:var(--mono);font-size:var(--fs-11);letter-spacing:.04em;color:var(--muted)}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;font-family:var(--mono);font-size:var(--fs-m);letter-spacing:.04em;color:var(--muted)}
 .crumbs li{display:inline-flex;align-items:center;gap:6px}
 .crumbs li+li::before{content:"›";color:var(--hair-2)}
 .crumbs a{color:var(--ink-2);text-decoration:none}
@@ -139,11 +132,11 @@ section{padding:44px 0;background:#f6f4ef}
 .tool-hero{padding:24px 0 34px}
 .tool-hero-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:44px;align-items:start}
 @media(max-width:900px){.tool-hero-grid{grid-template-columns:1fr;gap:28px}}
-.tool-hero h1{font-family:var(--display);font-weight:600;font-size:var(--fs-56);line-height:var(--lh-display);letter-spacing:-.02em;margin:.18em 0 .32em}
+.tool-hero h1{font-family:var(--display);font-weight:600;font-size:var(--fs-2xl);line-height:var(--lh-display);letter-spacing:-.02em;margin:.18em 0 .32em}
 .tool-hero h1 .thin{font-weight:400;color:var(--ink-2)}
-.tool-hero p.lead{font-size:var(--fs-17);color:var(--ink-2);max-width:46ch;margin:0}
+.tool-hero p.lead{font-size:var(--fs-l);color:var(--ink-2);max-width:46ch;margin:0}
 .tool-hero .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
-.chipm{font-family:var(--mono);font-size:var(--fs-11);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);
+.chipm{font-family:var(--mono);font-size:var(--fs-m);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);
   border:1px solid var(--hair-2);background:#fbfaf7;background:var(--card);padding:.5em .8em;border-radius:999px;line-height:1}
 
 /* the working calculator card (one card level — no nesting) */
@@ -152,47 +145,47 @@ section{padding:44px 0;background:#f6f4ef}
   padding:24px}
 .calc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
 .calc-tabs{display:inline-flex;gap:2px;background:#efece4;background:var(--paper-2);border:1px solid var(--hair);border-radius:11px;padding:3px;flex-wrap:wrap}
-.calc-tab{font-family:var(--sans);font-size:var(--fs-13);font-weight:600;color:var(--muted);
+.calc-tab{font-family:var(--sans);font-size:var(--fs-m);font-weight:600;color:var(--muted);
   border:0;background:transparent;padding:.42em .78em;border-radius:8px;cursor:pointer;line-height:var(--lh-ui)}
 .calc-tab.on{background:#fff;color:#1c1b19;box-shadow:0 1px 3px rgba(22,20,16,.12)}
-.calc-chip{font-family:var(--mono);font-size:var(--fs-11);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
+.calc-chip{font-family:var(--mono);font-size:var(--fs-m);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
 
 .readout{font-family:var(--mono);text-align:right;padding:14px 4px 18px;border-bottom:1px solid var(--hair);margin-bottom:18px}
-.readout .expr{font-size:var(--fs-13);color:var(--muted);min-height:1.3em;line-height:var(--lh-ui);word-break:break-word}
-.readout .result{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:clamp(34px,7vw,48px);font-weight:500;line-height:1;letter-spacing:-.01em;color:var(--ink);transition:color .2s;word-break:break-word}
+.readout .expr{font-size:var(--fs-m);color:var(--muted);min-height:1.3em;line-height:var(--lh-ui);word-break:break-word}
+.readout .result{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-xl);font-weight:500;line-height:1;letter-spacing:-.01em;color:var(--ink);transition:color .2s;word-break:break-word}
 .readout .result .amber{color:var(--signal)}
 .readout .result .small{font-size:.4em;color:var(--muted)}
 
 .field{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;margin:12px 0}
-.field label{font-size:var(--fs-13);color:var(--ink-2);font-weight:500;line-height:var(--lh-ui)}
+.field label{font-size:var(--fs-m);color:var(--ink-2);font-weight:500;line-height:var(--lh-ui)}
 .field .in{position:relative}
-.field input{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-17);width:140px;text-align:right;
+.field input{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-l);width:140px;text-align:right;
   padding:.5em .7em;border:1px solid var(--hair-2);border-radius:10px;background:#f6f4ef;background:var(--paper);color:#1c1b19;
   outline:none;transition:border-color .15s, box-shadow .15s}
 .field input[type=date]{text-align:left;width:170px}
 .field input:focus{border-color:var(--signal);box-shadow:0 0 0 3px rgba(201,106,27,.14)}
-.field .unit{position:absolute;left:.7em;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:var(--fs-13);color:var(--muted);pointer-events:none}
+.field .unit{position:absolute;left:.7em;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:var(--fs-m);color:var(--muted);pointer-events:none}
 .field .unit.r{left:auto;right:.7em}
 .field.hasunit input{padding-left:1.4em}
 .field.hasunit.r input{padding-left:.7em;padding-right:1.5em}
 
 .ch-out{display:flex;justify-content:space-between;gap:14px;margin-top:18px;padding-top:16px;border-top:1px solid var(--hair);flex-wrap:wrap}
 .ch-out .cell{flex:1;min-width:90px}
-.ch-out .k{font-size:var(--fs-11);color:var(--muted);font-family:var(--mono);letter-spacing:.05em;text-transform:uppercase;line-height:var(--lh-ui)}
-.ch-out .v{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-family:var(--mono);font-size:var(--fs-21);color:var(--ink);margin-top:2px;word-break:break-word}
+.ch-out .k{font-size:var(--fs-m);color:var(--muted);font-family:var(--mono);letter-spacing:.05em;text-transform:uppercase;line-height:var(--lh-ui)}
+.ch-out .v{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-family:var(--mono);font-size:var(--fs-l);color:var(--ink);margin-top:2px;word-break:break-word}
 .ch-out .v.amber{color:var(--signal)}
 
 /* segmented control (in-calculator toggles) */
 .seg{display:inline-flex;border:1px solid var(--hair-2);border-radius:10px;overflow:hidden;flex-wrap:wrap}
-.seg button{font-family:var(--sans);font-size:var(--fs-13);font-weight:600;border:0;background:#f6f4ef;background:var(--paper);color:#4a4843;padding:.5em .8em;cursor:pointer;line-height:var(--lh-ui)}
+.seg button{font-family:var(--sans);font-size:var(--fs-m);font-weight:600;border:0;background:#f6f4ef;background:var(--paper);color:#4a4843;padding:.5em .8em;cursor:pointer;line-height:var(--lh-ui)}
 .seg button+button{border-left:1px solid var(--hair-2)}
 .seg button.on{background:#2f4858;background:var(--slate);color:#fff}
 
 /* ---------- prose / explainer ---------- */
 .prose{max-width:68ch}
-.prose h2{font-family:var(--display);font-weight:600;font-size:var(--fs-28);line-height:var(--lh-head);letter-spacing:-.01em;margin:1.6em 0 .5em}
+.prose h2{font-family:var(--display);font-weight:600;font-size:var(--fs-xl);line-height:var(--lh-head);letter-spacing:-.01em;margin:1.6em 0 .5em}
 .prose h2:first-child{margin-top:0}
-.prose h3{font-family:var(--display);font-weight:600;font-size:var(--fs-21);line-height:var(--lh-head);margin:1.3em 0 .4em}
+.prose h3{font-family:var(--display);font-weight:600;font-size:var(--fs-l);line-height:var(--lh-head);margin:1.3em 0 .4em}
 .prose p{color:var(--ink-2);margin:0 0 1em}
 .prose ul{color:var(--ink-2);margin:0 0 1em;padding-left:1.2em}
 .prose li{margin:.3em 0}
@@ -200,10 +193,10 @@ section{padding:44px 0;background:#f6f4ef}
 .prose a{color:var(--signal-deep);text-decoration:none;text-underline-offset:2px}
 /* a formula / worked-example plate — tinted block, not a nested card */
 .plate{background:#efece4;background:var(--paper-2);border:1px solid var(--hair);border-radius:14px;padding:16px 18px;margin:0 0 1em}
-.plate .lbl{font-family:var(--mono);font-size:var(--fs-11);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.formula{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-17);color:var(--ink);line-height:var(--lh-ui);word-break:break-word}
+.plate .lbl{font-family:var(--mono);font-size:var(--fs-m);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.formula{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-l);color:var(--ink);line-height:var(--lh-ui);word-break:break-word}
 .formula .amber{color:var(--signal)}
-.eg{font-family:var(--mono);font-size:var(--fs-15);color:var(--ink-2);line-height:1.7}
+.eg{font-family:var(--mono);font-size:var(--fs-m);color:var(--ink-2);line-height:1.7}
 .eg b{color:var(--ink);font-weight:500}
 
 /* ---------- FAQ accordion (reused pattern, single-open) ---------- */
@@ -211,10 +204,10 @@ section{padding:44px 0;background:#f6f4ef}
 .acc-item{border-bottom:1px solid var(--hair)}
 .acc-head{width:100%;display:grid;grid-template-columns:1fr auto;align-items:center;gap:14px;
   background:transparent;border:0;cursor:pointer;text-align:left;padding:16px 4px;font-family:var(--display);color:var(--ink);
-  font-size:var(--fs-17);font-weight:600;line-height:var(--lh-ui)}
+  font-size:var(--fs-l);font-weight:600;line-height:var(--lh-ui)}
 .acc-head:hover{color:var(--signal-deep)}
 .acc-head:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:8px}
-.acc-chev{font-family:var(--mono);font-size:22px;color:var(--muted);width:20px;text-align:center;transition:transform .25s ease,color .25s ease;line-height:1;flex:none}
+.acc-chev{font-family:var(--mono);font-size:var(--fs-l);color:var(--muted);width:20px;text-align:center;transition:transform .25s ease,color .25s ease;line-height:1;flex:none}
 .acc-item.open .acc-chev{transform:rotate(45deg);color:var(--signal)}
 .acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease}
 .acc-item.open .acc-panel{grid-template-rows:1fr}
@@ -234,15 +227,15 @@ section{padding:44px 0;background:#f6f4ef}
 .tool:hover{transform:translateY(-3px);border-color:var(--hair-2);
   box-shadow:inset 0 1.5px 0 #fff,0 16px 30px -20px rgba(22,20,16,.4)}
 .tool .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
-  font-family:var(--mono);font-size:var(--fs-15);font-weight:500;color:#2f4858;color:var(--slate);
+  font-family:var(--mono);font-size:var(--fs-m);font-weight:500;color:#2f4858;color:var(--slate);line-height:1;text-align:center;overflow:hidden;
   background:#fff;background:linear-gradient(180deg,#fff,var(--paper-2));border:1px solid var(--hair);margin-bottom:4px}
-.tool h3{font-size:var(--fs-15);font-weight:600;margin:0;line-height:var(--lh-ui)}
-.tool p{font-size:var(--fs-13);color:var(--muted);margin:0;line-height:var(--lh-ui)}
-.tool .go{margin-top:auto;font-family:var(--mono);font-size:var(--fs-11);color:var(--signal-deep);letter-spacing:.03em;padding-top:8px}
+.tool h3{font-size:var(--fs-m);font-weight:600;margin:0;line-height:var(--lh-ui)}
+.tool p{font-size:var(--fs-m);color:var(--muted);margin:0;line-height:var(--lh-ui)}
+.tool .go{margin-top:auto;font-family:var(--mono);font-size:var(--fs-m);color:var(--signal-deep);letter-spacing:.03em;padding-top:8px}
 
 /* ---------- footer ---------- */
 footer{border-top:1px solid var(--hair);padding:40px 0 56px;margin-top:20px}
-.foot-note{margin-top:30px;font-size:var(--fs-11);color:var(--muted);font-family:var(--mono)}
+.foot-note{margin-top:30px;font-size:var(--fs-m);color:var(--muted);font-family:var(--mono)}
 
 /* keep the light "paper" identity even if the client forces dark mode */
 @media (prefers-color-scheme: dark){
@@ -256,48 +249,37 @@ footer{border-top:1px solid var(--hair);padding:40px 0 56px;margin-top:20px}
 
 
 /* ===== mega menu (full-width, responsive; trigger = Browse all pill) ===== */
-.top{overflow:visible}
-.mega{position:absolute;left:0;right:0;top:100%;z-index:39;
-  background:#f6f4ef;background:rgba(246,244,239,.97);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--hair);box-shadow:0 24px 40px -28px rgba(22,20,16,.35);
-  display:grid;grid-template-rows:0fr;visibility:hidden;
-  transition:grid-template-rows .28s ease,visibility 0s linear .28s}
-.top.menu-open .mega{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .28s ease}
-.mega>.mega-clip{overflow:hidden;min-height:0}
+.top.menu-open 
 .mega-grid{columns:4 210px;column-gap:26px;padding-top:26px;padding-bottom:30px}
 
 
-.mega>.mega-clip{max-height:calc(100vh - 62px);overflow-y:auto;overscroll-behavior:contain}
-.mega-col h5{font-size:var(--fs-11);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;border-bottom:1px solid var(--hair);padding-bottom:8px}
+.mega-col h5{font-size:var(--fs-m);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;border-bottom:1px solid var(--hair);padding-bottom:8px}
 .mg-item{display:flex;align-items:flex-start;gap:10px;text-decoration:none;color:var(--ink);padding:7px 6px;margin:0 -6px;border-radius:10px}
 .mg-item:hover{background:#efece4;background:var(--paper-2)}
 .mg-ic{width:26px;height:26px;flex:none;border-radius:8px;display:grid;place-items:center;
-  font-family:var(--mono);font-size:var(--fs-13);font-weight:500;color:#2f4858;color:var(--slate);
+  font-family:var(--mono);font-size:var(--fs-m);font-weight:500;color:#2f4858;color:var(--slate);line-height:1;text-align:center;overflow:hidden;
   background:#fff;background:linear-gradient(180deg,#fff,var(--paper-2));border:1px solid var(--hair);margin-top:1px}
 .mg-t{min-width:0}
-.mg-n{display:block;font-size:var(--fs-15);font-weight:600;line-height:var(--lh-ui)}
+.mg-n{display:block;font-size:var(--fs-m);font-weight:600;line-height:var(--lh-ui)}
 .mg-item:hover .mg-n{color:var(--signal-deep)}
-.mg-d{display:block;font-size:var(--fs-11);color:var(--muted);line-height:var(--lh-ui)}
+.mg-d{display:block;font-size:var(--fs-m);color:var(--muted);line-height:var(--lh-ui)}
 
 /* ===== dimming veil ===== */
-.mega-veil{position:fixed;left:0;right:0;top:62px;bottom:0;z-index:35;background:rgba(28,27,25,.28);
-  opacity:0;pointer-events:none;transition:opacity .25s ease}
-.mega-veil.on{opacity:1;pointer-events:auto}
 
 /* ===== mega footer (mirrors the mega nav language) ===== */
 .ftop{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;
   padding-bottom:26px;border-bottom:1px solid var(--hair);margin-bottom:26px}
-.fbrand .brand{font-size:var(--fs-17)}
-.fbrand p{color:var(--muted);font-size:var(--fs-13);margin:.6em 0 0;max-width:28ch}
+.fbrand .brand{font-size:var(--fs-l)}
+.fbrand p{color:var(--muted);font-size:var(--fs-m);margin:.6em 0 0;max-width:28ch}
 .ftg{columns:4 210px;column-gap:26px}
 
 
-.ftcol h5{font-size:var(--fs-11);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+.ftcol h5{font-size:var(--fs-m);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
   margin:0 0 8px;border-bottom:1px solid var(--hair);padding-bottom:8px}
 .fbar{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;
   border-top:1px solid var(--hair);margin-top:30px;padding-top:18px}
 .fbar .foot-note{margin:0}
-.ftl{font-family:var(--mono);font-size:var(--fs-11);color:var(--ink-2);text-decoration:none;letter-spacing:.04em;white-space:nowrap}
+.ftl{font-family:var(--mono);font-size:var(--fs-m);color:var(--ink-2);text-decoration:none;letter-spacing:.04em;white-space:nowrap}
 .ftl:hover{color:var(--signal-deep)}
 
 .mega-col,.ftcol{break-inside:avoid;margin-bottom:20px}
@@ -305,15 +287,15 @@ footer{border-top:1px solid var(--hair);padding:40px 0 56px;margin-top:20px}
 .ripple{margin-top:18px;padding-top:2px;border-top:1px solid var(--hair)}
 .rip{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 2px;border-bottom:1px solid var(--hair)}
 .rip:last-child{border-bottom:0}
-.rip-name{font-size:var(--fs-15);font-weight:600;color:var(--ink);line-height:var(--lh-ui);display:block}
-.rip-mech{font-size:var(--fs-11);color:var(--muted);line-height:var(--lh-ui);margin-top:3px}
-.rip-val{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-17);white-space:nowrap;text-align:right;flex:none;color:var(--ink)}
+.rip-name{font-size:var(--fs-m);font-weight:600;color:var(--ink);line-height:var(--lh-ui);display:block}
+.rip-mech{font-size:var(--fs-m);color:var(--muted);line-height:var(--lh-ui);margin-top:3px}
+.rip-val{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-l);white-space:nowrap;text-align:right;flex:none;color:var(--ink)}
 .rip-val.amber{color:var(--signal)}
 .rip-val.cool{color:var(--slate)}
 .selin{position:relative}
-.selin select{font-family:var(--sans);font-size:var(--fs-13);font-weight:600;padding:.5em 2em .5em .7em;border:1px solid var(--hair-2);border-radius:10px;background:#f6f4ef;background:var(--paper);color:#1c1b19;color:var(--ink);outline:none;cursor:pointer;appearance:none;-webkit-appearance:none}
+.selin select{font-family:var(--sans);font-size:var(--fs-m);font-weight:600;padding:.5em 2em .5em .7em;border:1px solid var(--hair-2);border-radius:10px;background:#f6f4ef;background:var(--paper);color:#1c1b19;color:var(--ink);outline:none;cursor:pointer;appearance:none;-webkit-appearance:none}
 .selin select:focus{border-color:var(--signal);box-shadow:0 0 0 3px rgba(201,106,27,.14)}
-.selin::after{content:"\25be";position:absolute;right:.7em;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:var(--fs-13)}
+.selin::after{content:"\25be";position:absolute;right:.7em;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:var(--fs-m)}
 input[type=range]{-webkit-appearance:none;appearance:none;width:150px;height:4px;border-radius:99px;background:#dcd8cf;background:var(--hair);outline:none;cursor:pointer}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:#c96a1b;background:var(--signal);border:2px solid #fff;box-shadow:0 1px 4px rgba(22,20,16,.3)}
 input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#c96a1b;background:var(--signal);border:2px solid #fff;box-shadow:0 1px 4px rgba(22,20,16,.3)}
@@ -340,6 +322,106 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
 
 /* disabled controls */
 :disabled, [disabled], [aria-disabled="true"] { cursor: not-allowed; }
+
+/* ===== mega nav (one Explore trigger + search; stamped by stamp.py) ===== */
+.mn{position:sticky;top:0;z-index:500}
+.mn-shell{position:relative;z-index:495;background:#f6f4ef;background:var(--paper);border-bottom:1px solid var(--hair);transition:box-shadow .3s}
+.mn.is-scrolled .mn-shell{box-shadow:0 16px 44px -26px rgba(22,20,16,.32)}
+.mn-bar{max-width:1000px;max-width:var(--content);margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:12px;height:74px;transition:height .3s}
+.mn.is-scrolled .mn-bar{height:60px}
+.mn-logo{display:inline-flex;align-items:baseline;gap:.02em;margin-right:auto;text-decoration:none;color:#1c1b19;color:var(--ink);font-family:var(--display);font-weight:600;font-size:var(--fs-l);letter-spacing:-.01em}
+.mn-mark{color:#c96a1b;color:var(--signal);font-family:var(--mono);font-weight:500;margin-right:.12em}
+.mn-groups{display:flex;align-items:center}
+.mn-group{position:static}
+.mn-top{display:inline-flex;align-items:center;gap:.45em;font-family:inherit;font-weight:600;font-size:var(--fs-m);color:#4a4843;color:var(--ink-2);background:none;border:0;padding:.6em .85em;border-radius:999px;line-height:var(--lh-ui);transition:color .18s,background .18s}
+.mn-group:hover .mn-top,.mn-group.is-open .mn-top{color:#a5540f;color:var(--signal-deep);background:#efece4;background:var(--paper-2)}
+.mn-top .gi{width:18px;height:18px;flex:none}
+.mn-top .caret{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;margin-left:.15em;transition:transform .26s ease}
+.mn-group.is-open .mn-top .caret{transform:rotate(180deg)}
+.mn-panel{position:absolute;top:100%;left:0;right:0;background:#f6f4ef;background:var(--paper);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);box-shadow:0 26px 56px -32px rgba(22,20,16,.34);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .24s,transform .26s cubic-bezier(.2,1,.3,1),visibility .26s;z-index:10}
+.mn-group.is-open .mn-panel{opacity:1;visibility:visible;transform:none}
+.mn-panel-inner{max-width:1000px;max-width:var(--content);margin:0 auto;padding:24px 22px 28px;display:grid;gap:24px;grid-template-columns:repeat(4,1fr);max-height:min(74vh,660px);overflow-y:auto;overscroll-behavior:contain}
+.mn-col-h{font-size:var(--fs-m);font-family:var(--mono);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#8a877e;color:var(--muted);padding:0 8px 8px;border-bottom:1px solid var(--hair);margin-bottom:6px}
+.mn-col-h.mt{margin-top:18px}
+.mn-link{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 8px;border-radius:10px;text-decoration:none;font-weight:600;font-size:var(--fs-m);color:#1c1b19;color:var(--ink);line-height:var(--lh-ui);transition:background .15s,color .15s}
+.mn-link:hover{background:#efece4;background:var(--paper-2);color:#a5540f;color:var(--signal-deep)}
+.mn-link .lbl{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mn-link .arr{opacity:0;transform:translateX(-4px);transition:opacity .15s,transform .15s;color:#c96a1b;color:var(--signal)}
+.mn-link:hover .arr{opacity:1;transform:none}
+.mn-link[aria-current="page"]{background:#efece4;background:var(--paper-2);color:#a5540f;color:var(--signal-deep)}
+.mn-search{display:inline-flex;align-items:center;gap:.5em;font-family:inherit;font-size:var(--fs-m);font-weight:500;color:#8a877e;color:var(--muted);background:#fbfaf7;background:var(--card);border:1px solid var(--hair);border-radius:999px;padding:.5em .9em;line-height:var(--lh-ui);transition:border-color .18s,color .18s}
+.mn-search:hover{border-color:var(--hair-2);color:var(--ink-2)}
+.mn-search svg{width:15px;height:15px;flex:none}
+.mn-search kbd{font-family:var(--mono);font-size:var(--fs-m);border:1px solid var(--hair);border-radius:5px;padding:0 .35em;background:#f6f4ef;background:var(--paper);color:var(--muted)}
+.mn-cta{display:inline-flex;align-items:center;text-decoration:none;font-size:var(--fs-m);font-weight:700;color:#f6f4ef;color:var(--paper);background:#1c1b19;background:var(--ink);border-radius:11px;padding:.62em 1em;line-height:var(--lh-ui);transition:background .18s}
+.mn-cta:hover{background:#a5540f;background:var(--signal-deep)}
+.mn-scrim{position:fixed;inset:0;background:rgba(22,20,16,.26);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .24s;z-index:1}
+html.mn-blur .mn-scrim{opacity:1;visibility:visible;pointer-events:auto}
+.mn-burger{display:none;width:42px;height:42px;flex:none;border:1px solid var(--hair);border-radius:12px;background:#fbfaf7;background:var(--card);position:relative;color:#8a877e;color:var(--muted);transition:border-color .18s,color .18s}
+.mn-burger:hover{border-color:var(--hair-2);color:#4a4843;color:var(--ink-2)}
+.mn-burger span,.mn-burger span:before,.mn-burger span:after{position:absolute;width:18px;height:1.5px;background:currentColor;border-radius:2px;transition:transform .28s ease,background .18s ease}
+.mn-burger span{left:calc(50% - 9px);top:calc(50% - .75px)}
+.mn-burger span:before{content:"";left:0;top:-6px}
+.mn-burger span:after{content:"";left:0;top:6px}
+.mn.is-drawer .mn-burger span{background:transparent}
+.mn.is-drawer .mn-burger span:before{transform:translateY(6px) rotate(45deg)}
+.mn.is-drawer .mn-burger span:after{transform:translateY(-6px) rotate(-45deg)}
+.mn-drawer{display:none}
+
+/* ---- search overlay ---- */
+.mns{position:fixed;inset:0;z-index:600;display:flex;align-items:flex-start;justify-content:center;padding:12vh 20px 20px;background:rgba(22,20,16,.34);opacity:0;visibility:hidden;transition:opacity .22s,visibility .22s}
+html.mns-open .mns{opacity:1;visibility:visible}
+.mns-box{width:100%;max-width:560px;background:#f6f4ef;background:var(--paper);border:1px solid var(--hair);border-radius:18px;box-shadow:0 30px 70px -30px rgba(22,20,16,.5);overflow:hidden;transform:translateY(-8px);transition:transform .26s cubic-bezier(.2,1,.3,1)}
+html.mns-open .mns-box{transform:none}
+.mns-in{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--hair)}
+.mns-in svg{width:17px;height:17px;flex:none;color:#8a877e;color:var(--muted)}
+.mns-in input{flex:1;min-width:0;font-family:inherit;font-size:var(--fs-l);color:#1c1b19;color:var(--ink);background:transparent;border:0;outline:none;line-height:var(--lh-ui)}
+.mns-in input::placeholder{color:#8a877e;color:var(--muted)}
+.mns-esc{font-family:var(--mono);font-size:var(--fs-m);color:#8a877e;color:var(--muted);border:1px solid var(--hair);border-radius:5px;padding:1px .4em;background:#fbfaf7;background:var(--card)}
+.mns-res{max-height:min(52vh,420px);overflow-y:auto;overscroll-behavior:contain;padding:8px}
+.mns-r{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px;border-radius:10px;text-decoration:none;color:#1c1b19;color:var(--ink)}
+.mns-r:hover,.mns-r.on{background:#efece4;background:var(--paper-2)}
+.mns-rn{font-size:var(--fs-m);font-weight:600;line-height:var(--lh-ui);min-width:0}
+.mns-rc{font-size:var(--fs-m);font-family:var(--mono);color:#8a877e;color:var(--muted);flex:none}
+.mns-r.on .mns-rn{color:#a5540f;color:var(--signal-deep)}
+.mns-none{padding:22px 12px;text-align:center;font-size:var(--fs-m);color:#8a877e;color:var(--muted)}
+
+@media(max-width:960px){
+  .mn-groups,.mn-search span,.mn-search kbd,.mn-cta{display:none}
+  .mn-search{width:42px;height:42px;flex:none;padding:0;border-radius:12px;justify-content:center}
+  .mn-search svg{width:17px;height:17px}
+  .mn-burger{display:block}
+  .mn-drawer{display:flex;position:fixed;inset:0;top:0;z-index:490;height:100dvh;background:#f6f4ef;background:var(--paper);opacity:0;visibility:hidden;transform:translateY(-2%);transition:opacity .34s,transform .36s cubic-bezier(.2,1,.3,1),visibility .36s;flex-direction:column;padding:74px 0 24px}
+  .mn.is-drawer .mn-drawer{opacity:1;visibility:visible;transform:none}
+  .mn-drawer-scroll{overflow-y:auto;overscroll-behavior:contain;flex:1;padding:8px 22px 24px;max-width:560px;width:100%;margin:0 auto}
+  .mn-acc{border-bottom:1px solid var(--hair)}
+  .mn-acc-top{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;background:none;border:0;font-family:inherit;font-weight:600;font-size:var(--fs-l);color:#1c1b19;color:var(--ink);padding:15px 4px;line-height:var(--lh-ui)}
+  .mn-acc-top .caret{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--muted);transition:transform .3s ease}
+  .mn-acc.is-open .mn-acc-top{color:#a5540f;color:var(--signal-deep)}
+  .mn-acc.is-open .mn-acc-top .caret{transform:rotate(180deg)}
+  .mn-acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s ease}
+  .mn-acc.is-open .mn-acc-body{grid-template-rows:1fr}
+  .mn-acc-in{overflow:hidden;min-height:0}
+  .mn-acc-in>div{padding:0 0 10px}
+  .mn-mlink{display:block;padding:10px 12px;border-radius:10px;text-decoration:none;font-size:var(--fs-m);font-weight:500;color:#4a4843;color:var(--ink-2);line-height:var(--lh-ui)}
+  .mn-mlink:hover,.mn-mlink[aria-current="page"]{background:#efece4;background:var(--paper-2);color:#a5540f;color:var(--signal-deep)}
+  .mn-acc-direct{display:flex;align-items:center;justify-content:space-between;padding:15px 4px;text-decoration:none;font-weight:600;font-size:var(--fs-l);color:#1c1b19;color:var(--ink);border-bottom:1px solid var(--hair)}
+}
+@media(max-width:420px){.mn-bar{gap:8px;padding:0 16px}}
+@media(prefers-reduced-motion:reduce){.mn-panel,.mn-drawer,.mn-acc-body,.mns,.mns-box{transition:none}}
+/* ===== /mega nav ===== */
+
+/* ---- IBM Plex: tabular numerals on every numeric surface ---- */
+input,select,textarea,kbd,table,th,td,time,output,
+.result,.expr,.readout,.rip-val,.rip-mech,.formula,.eg,.plate .lbl,
+.ch-out .k,.ch-out .v,.calc-chip,.chipm,.crumbs ol,.foot-note,
+.feat-res,.fm-in input,.mns-rc,.shelf-copy,.mg-d,
+[class$="-val"],[class$="-num"],.tnum{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1,"lnum" 1}
+/* mono surfaces are inherently tabular; lock lining figures too */
+.eyebrow,.mn-col-h,.mg-ic,.tool .ic,.tool .go,.ftl,.brand .eq,.mn-mark,.acc-chev{font-feature-settings:"lnum" 1}
+
+/* form controls never below 16px — iOS auto-zooms the page otherwise */
+input,select,textarea{font-size:max(16px,1em)}
 </style>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "WebApplication", "name": "Final Grade Calculator", "url": "https://calculate.to/final-grade-calculator.html", "applicationCategory": "UtilityApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "description": "Find the exam score you need: enter your current grade, the final's weight, and your target — and see the required score with an honest verdict on reachability.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "Calculate", "url": "https://calculate.to/"}}
@@ -353,144 +435,249 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
 </head>
 <body>
 <a class="skip" href="#calc">Skip to the calculator</a>
-<header class="top">
-  <div class="wrap top-in">
-    <a class="brand" href="index.html"><span class="eq">=</span>Calculate</a>
-    <nav>
-      <a href="index.html#tools">All tools</a>
-      <a href="index.html#money">Money &amp; markets</a>
-      <button class="btn pill nav-toggle" type="button" aria-expanded="false" aria-controls="mega">Browse all <span class="chev">↓</span></button>
-    </nav>
+<!--NAV:START-->
+<header class="mn" id="mn" data-current="final-grade-calculator">
+ <div class="mn-shell"><div class="mn-bar">
+  <a class="mn-logo" href="index.html" aria-label="Calculate home"><span class="mn-mark" aria-hidden="true">=</span>Calculate</a>
+  <div class="mn-groups">
+   <div class="mn-group" data-key="menu">
+    <button class="mn-top" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mnPanel"><svg class="gi" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h9"/></svg>Explore<span class="caret"></span></button>
+    <div class="mn-panel" id="mnPanel"><div class="mn-panel-inner" role="navigation" aria-label="All calculators">
+     <div>
+      <div class="mn-col-h">Money &amp; the Fed</div>
+      <a class="mn-link" href="fed-rate-calculator.html"><span class="lbl">Fed rate cut</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="m2-money-supply-calculator.html"><span class="lbl">M2 money supply</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="gold-vs-usd-calculator.html"><span class="lbl">Gold vs USD</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="inflation-calculator.html"><span class="lbl">Inflation</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="gold-m2-ratio-calculator.html"><span class="lbl">Gold / M2 ratio</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="dow-to-gold-calculator.html"><span class="lbl">Dow-to-Gold</span><span class="arr">&rarr;</span></a>
+      <div class="mn-col-h mt">Investing</div>
+      <a class="mn-link" href="sp500-dca-calculator.html"><span class="lbl">S&amp;P 500 since inception</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="sp1-vs-sp500-calculator.html"><span class="lbl">S&amp;P 1 vs S&amp;P 500</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="cagr-calculator.html"><span class="lbl">CAGR</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="drip-calculator.html"><span class="lbl">Dividend reinvestment</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="retirement-calculator.html"><span class="lbl">Retirement / FIRE</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="roi-calculator.html"><span class="lbl">ROI</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="rule-of-72-calculator.html"><span class="lbl">Rule of 72</span><span class="arr">&rarr;</span></a>
+      <div class="mn-col-h mt">Loans &amp; debt</div>
+      <a class="mn-link" href="mortgage-calculator.html"><span class="lbl">Mortgage</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="loan-calculator.html"><span class="lbl">Loan payment</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="car-loan-calculator.html"><span class="lbl">Car loan</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="debt-payoff-calculator.html"><span class="lbl">Debt payoff</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="simple-interest-calculator.html"><span class="lbl">Simple interest</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="apr-apy-calculator.html"><span class="lbl">APR ↔ APY</span><span class="arr">&rarr;</span></a>
+     </div>
+     <div>
+      <div class="mn-col-h">Everyday money</div>
+      <a class="mn-link" href="percentage-calculator.html"><span class="lbl">Percentage</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="tip-calculator.html"><span class="lbl">Tip &amp; split</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="vat-calculator.html"><span class="lbl">VAT / sales tax</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="discount-calculator.html"><span class="lbl">Discount</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="margin-markup-calculator.html"><span class="lbl">Margin &amp; markup</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="salary-to-hourly-calculator.html"><span class="lbl">Salary ↔ hourly</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="savings-goal-calculator.html"><span class="lbl">Savings goal</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="currency-converter.html"><span class="lbl">Currency</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="compound-interest-calculator.html"><span class="lbl">Compound interest</span><span class="arr">&rarr;</span></a>
+      <div class="mn-col-h mt">Health &amp; body</div>
+      <a class="mn-link" href="bmi-calculator.html"><span class="lbl">BMI</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="calorie-calculator.html"><span class="lbl">Calorie needs</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="tdee-calculator.html"><span class="lbl">TDEE</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="bmr-calculator.html"><span class="lbl">BMR</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="body-fat-calculator.html"><span class="lbl">Body fat %</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="ideal-weight-calculator.html"><span class="lbl">Ideal weight</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="macro-calculator.html"><span class="lbl">Macros</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="water-intake-calculator.html"><span class="lbl">Water intake</span><span class="arr">&rarr;</span></a>
+      <div class="mn-col-h mt">Fitness &amp; sleep</div>
+      <a class="mn-link" href="pace-calculator.html"><span class="lbl">Running pace</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="one-rep-max-calculator.html"><span class="lbl">One-rep max</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="heart-rate-zone-calculator.html"><span class="lbl">Heart-rate zones</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="sleep-calculator.html"><span class="lbl">Sleep cycles</span><span class="arr">&rarr;</span></a>
+     </div>
+     <div>
+      <div class="mn-col-h">Dates &amp; time</div>
+      <a class="mn-link" href="age-calculator.html"><span class="lbl">Age</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="date-difference-calculator.html"><span class="lbl">Date difference</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="day-of-week-calculator.html"><span class="lbl">Day of the week</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="days-from-today-calculator.html"><span class="lbl">Days from today</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="time-calculator.html"><span class="lbl">Time &amp; hours</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="time-zone-converter.html"><span class="lbl">Time zones</span><span class="arr">&rarr;</span></a>
+      <div class="mn-col-h mt">Math &amp; numbers</div>
+      <a class="mn-link" href="fraction-calculator.html"><span class="lbl">Fraction</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="scientific-calculator.html"><span class="lbl">Scientific</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="average-calculator.html"><span class="lbl">Average</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="ratio-calculator.html"><span class="lbl">Ratio</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="gcf-lcm-calculator.html"><span class="lbl">GCF &amp; LCM</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="binary-hex-converter.html"><span class="lbl">Binary / hex</span><span class="arr">&rarr;</span></a>
+      <div class="mn-col-h mt">School</div>
+      <a class="mn-link" href="gpa-calculator.html"><span class="lbl">GPA</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="final-grade-calculator.html" aria-current="page"><span class="lbl">Final grade</span><span class="arr">&rarr;</span></a>
+      <div class="mn-col-h mt">Converters</div>
+      <a class="mn-link" href="temperature-converter.html"><span class="lbl">Temperature</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="length-converter.html"><span class="lbl">Length</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="weight-converter.html"><span class="lbl">Weight</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="cups-to-grams-converter.html"><span class="lbl">Cups to grams</span><span class="arr">&rarr;</span></a>
+     </div>
+     <div>
+      <div class="mn-col-h">Kitchen</div>
+      <a class="mn-link" href="recipe-converter.html"><span class="lbl">Recipe scaler</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="pan-conversion-calculator.html"><span class="lbl">Pan conversion</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="coffee-ratio-calculator.html"><span class="lbl">Coffee ratio</span><span class="arr">&rarr;</span></a>
+      <div class="mn-col-h mt">Home &amp; garden</div>
+      <a class="mn-link" href="square-footage-calculator.html"><span class="lbl">Square footage</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="concrete-calculator.html"><span class="lbl">Concrete</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="paint-calculator.html"><span class="lbl">Paint</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="flooring-calculator.html"><span class="lbl">Flooring</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="mulch-calculator.html"><span class="lbl">Mulch</span><span class="arr">&rarr;</span></a>
+      <div class="mn-col-h mt">Cars &amp; travel</div>
+      <a class="mn-link" href="fuel-cost-calculator.html"><span class="lbl">Fuel cost</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="mpg-calculator.html"><span class="lbl">MPG</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="ev-charging-cost-calculator.html"><span class="lbl">EV charging</span><span class="arr">&rarr;</span></a>
+      <div class="mn-col-h mt">Family</div>
+      <a class="mn-link" href="due-date-calculator.html"><span class="lbl">Due date</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="ovulation-calculator.html"><span class="lbl">Ovulation</span><span class="arr">&rarr;</span></a>
+      <div class="mn-col-h mt">Random &amp; fun</div>
+      <a class="mn-link" href="random-number-generator.html"><span class="lbl">Random number</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="dice-roller.html"><span class="lbl">Dice roller</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="coin-flip.html"><span class="lbl">Coin flip</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="random-picker.html"><span class="lbl">Random picker</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="password-generator.html"><span class="lbl">Password</span><span class="arr">&rarr;</span></a>
+     </div>
+    </div></div>
+   </div>
   </div>
-  <div class="mega" id="mega">
-    <div class="mega-clip">
-      <div class="wrap mega-grid" role="navigation" aria-label="All calculators">
-      <div class="mega-col">
-        <h5>Money &amp; the Fed</h5>
-        <a class="mg-item" href="fed-rate-calculator.html"><span class="mg-ic">↓</span><span class="mg-t"><span class="mg-n">Fed rate cut</span><span class="mg-d">One cut, four ripples</span></span></a>
-        <a class="mg-item" href="m2-money-supply-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">M2 money supply</span><span class="mg-d">Growth, doubling, dilution</span></span></a>
-        <a class="mg-item" href="gold-vs-usd-calculator.html"><span class="mg-ic">◆</span><span class="mg-t"><span class="mg-n">Gold vs USD</span><span class="mg-d">The dollar since 1971</span></span></a>
-        <a class="mg-item" href="inflation-calculator.html"><span class="mg-ic">▴</span><span class="mg-t"><span class="mg-n">Inflation</span><span class="mg-d">Dollar value, 1913–2025</span></span></a>
-        <a class="mg-item" href="gold-m2-ratio-calculator.html"><span class="mg-ic">⚖</span><span class="mg-t"><span class="mg-n">Gold / M2 ratio</span><span class="mg-d">Is gold cheap vs money?</span></span></a>
-        <a class="mg-item" href="dow-to-gold-calculator.html"><span class="mg-ic">⚔</span><span class="mg-t"><span class="mg-n">Dow-to-Gold</span><span class="mg-d">Stocks priced in gold</span></span></a>
-      </div>
-      <div class="mega-col">
-        <h5>Investing</h5>
-        <a class="mg-item" href="sp500-dca-calculator.html"><span class="mg-ic">▲</span><span class="mg-t"><span class="mg-n">S&P 500 since inception</span><span class="mg-d">Real returns 1928–2025</span></span></a>
-        <a class="mg-item" href="sp1-vs-sp500-calculator.html"><span class="mg-ic">№1</span><span class="mg-t"><span class="mg-n">S&P 1 vs S&P 500</span><span class="mg-d">Throne vs kingdom</span></span></a>
-        <a class="mg-item" href="cagr-calculator.html"><span class="mg-ic">↗</span><span class="mg-t"><span class="mg-n">CAGR</span><span class="mg-d">Compound annual growth</span></span></a>
-        <a class="mg-item" href="drip-calculator.html"><span class="mg-ic">♻</span><span class="mg-t"><span class="mg-n">Dividend reinvestment</span><span class="mg-d">DRIP compounding</span></span></a>
-        <a class="mg-item" href="retirement-calculator.html"><span class="mg-ic">⌂</span><span class="mg-t"><span class="mg-n">Retirement / FIRE</span><span class="mg-d">Nest egg & the 4% rule</span></span></a>
-        <a class="mg-item" href="roi-calculator.html"><span class="mg-ic">±</span><span class="mg-t"><span class="mg-n">ROI</span><span class="mg-d">Return on investment</span></span></a>
-        <a class="mg-item" href="rule-of-72-calculator.html"><span class="mg-ic">72</span><span class="mg-t"><span class="mg-n">Rule of 72</span><span class="mg-d">Doubling time shortcut</span></span></a>
-      </div>
-      <div class="mega-col">
-        <h5>Loans &amp; debt</h5>
-        <a class="mg-item" href="mortgage-calculator.html"><span class="mg-ic">⌂</span><span class="mg-t"><span class="mg-n">Mortgage</span><span class="mg-d">Full monthly payment</span></span></a>
-        <a class="mg-item" href="loan-calculator.html"><span class="mg-ic">≈</span><span class="mg-t"><span class="mg-n">Loan payment</span><span class="mg-d">Monthly cost & interest</span></span></a>
-        <a class="mg-item" href="car-loan-calculator.html"><span class="mg-ic">⚙</span><span class="mg-t"><span class="mg-n">Car loan</span><span class="mg-d">With down & trade-in</span></span></a>
-        <a class="mg-item" href="debt-payoff-calculator.html"><span class="mg-ic">✂</span><span class="mg-t"><span class="mg-n">Debt payoff</span><span class="mg-d">Snowball vs avalanche</span></span></a>
-        <a class="mg-item" href="simple-interest-calculator.html"><span class="mg-ic">·</span><span class="mg-t"><span class="mg-n">Simple interest</span><span class="mg-d">I = P·r·t</span></span></a>
-        <a class="mg-item" href="apr-apy-calculator.html"><span class="mg-ic">⇄</span><span class="mg-t"><span class="mg-n">APR ↔ APY</span><span class="mg-d">Compounding conversions</span></span></a>
-      </div>
-      <div class="mega-col">
-        <h5>Everyday money</h5>
-        <a class="mg-item" href="percentage-calculator.html"><span class="mg-ic">%</span><span class="mg-t"><span class="mg-n">Percentage</span><span class="mg-d">Of, change, add & subtract</span></span></a>
-        <a class="mg-item" href="tip-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">Tip & split</span><span class="mg-d">Tip and divide the bill</span></span></a>
-        <a class="mg-item" href="vat-calculator.html"><span class="mg-ic">◷</span><span class="mg-t"><span class="mg-n">VAT / sales tax</span><span class="mg-d">Add or remove tax</span></span></a>
-        <a class="mg-item" href="discount-calculator.html"><span class="mg-ic">✂</span><span class="mg-t"><span class="mg-n">Discount</span><span class="mg-d">Sale price & savings</span></span></a>
-        <a class="mg-item" href="margin-markup-calculator.html"><span class="mg-ic">◨</span><span class="mg-t"><span class="mg-n">Margin & markup</span><span class="mg-d">Price, cost, profit</span></span></a>
-        <a class="mg-item" href="salary-to-hourly-calculator.html"><span class="mg-ic">⏱</span><span class="mg-t"><span class="mg-n">Salary ↔ hourly</span><span class="mg-d">Pay, converted both ways</span></span></a>
-        <a class="mg-item" href="savings-goal-calculator.html"><span class="mg-ic">◎</span><span class="mg-t"><span class="mg-n">Savings goal</span><span class="mg-d">Time or monthly needed</span></span></a>
-        <a class="mg-item" href="currency-converter.html"><span class="mg-ic">↔</span><span class="mg-t"><span class="mg-n">Currency</span><span class="mg-d">21 major currencies</span></span></a>
-        <a class="mg-item" href="compound-interest-calculator.html"><span class="mg-ic">△</span><span class="mg-t"><span class="mg-n">Compound interest</span><span class="mg-d">Growth over time</span></span></a>
-      </div>
-      <div class="mega-col">
-        <h5>Health &amp; body</h5>
-        <a class="mg-item" href="bmi-calculator.html"><span class="mg-ic">◐</span><span class="mg-t"><span class="mg-n">BMI</span><span class="mg-d">With healthy range</span></span></a>
-        <a class="mg-item" href="calorie-calculator.html"><span class="mg-ic">⊙</span><span class="mg-t"><span class="mg-n">Calorie needs</span><span class="mg-d">Mifflin–St Jeor</span></span></a>
-        <a class="mg-item" href="tdee-calculator.html"><span class="mg-ic">⚡</span><span class="mg-t"><span class="mg-n">TDEE</span><span class="mg-d">Total daily energy</span></span></a>
-        <a class="mg-item" href="bmr-calculator.html"><span class="mg-ic">☀</span><span class="mg-t"><span class="mg-n">BMR</span><span class="mg-d">Calories at rest</span></span></a>
-        <a class="mg-item" href="body-fat-calculator.html"><span class="mg-ic">◑</span><span class="mg-t"><span class="mg-n">Body fat %</span><span class="mg-d">US Navy method</span></span></a>
-        <a class="mg-item" href="ideal-weight-calculator.html"><span class="mg-ic">⚕</span><span class="mg-t"><span class="mg-n">Ideal weight</span><span class="mg-d">Four classic formulas</span></span></a>
-        <a class="mg-item" href="macro-calculator.html"><span class="mg-ic">◲</span><span class="mg-t"><span class="mg-n">Macros</span><span class="mg-d">Protein, carbs, fat split</span></span></a>
-        <a class="mg-item" href="water-intake-calculator.html"><span class="mg-ic">≋</span><span class="mg-t"><span class="mg-n">Water intake</span><span class="mg-d">Daily hydration</span></span></a>
-      </div>
-      <div class="mega-col">
-        <h5>Fitness &amp; sleep</h5>
-        <a class="mg-item" href="pace-calculator.html"><span class="mg-ic">⏵</span><span class="mg-t"><span class="mg-n">Running pace</span><span class="mg-d">Pace, time, distance</span></span></a>
-        <a class="mg-item" href="one-rep-max-calculator.html"><span class="mg-ic">⚑</span><span class="mg-t"><span class="mg-n">One-rep max</span><span class="mg-d">Epley & Brzycki</span></span></a>
-        <a class="mg-item" href="heart-rate-zone-calculator.html"><span class="mg-ic">❤</span><span class="mg-t"><span class="mg-n">Heart-rate zones</span><span class="mg-d">Training zones</span></span></a>
-        <a class="mg-item" href="sleep-calculator.html"><span class="mg-ic">☾</span><span class="mg-t"><span class="mg-n">Sleep cycles</span><span class="mg-d">When to sleep or wake</span></span></a>
-      </div>
-      <div class="mega-col">
-        <h5>Dates &amp; time</h5>
-        <a class="mg-item" href="age-calculator.html"><span class="mg-ic">◔</span><span class="mg-t"><span class="mg-n">Age</span><span class="mg-d">Years, months, days</span></span></a>
-        <a class="mg-item" href="date-difference-calculator.html"><span class="mg-ic">▦</span><span class="mg-t"><span class="mg-n">Date difference</span><span class="mg-d">Days & working days</span></span></a>
-        <a class="mg-item" href="day-of-week-calculator.html"><span class="mg-ic">□</span><span class="mg-t"><span class="mg-n">Day of the week</span><span class="mg-d">What day was any date</span></span></a>
-        <a class="mg-item" href="days-from-today-calculator.html"><span class="mg-ic">⇢</span><span class="mg-t"><span class="mg-n">Days from today</span><span class="mg-d">Add days & business days</span></span></a>
-        <a class="mg-item" href="time-calculator.html"><span class="mg-ic">⏰</span><span class="mg-t"><span class="mg-n">Time & hours</span><span class="mg-d">Durations & work hours</span></span></a>
-        <a class="mg-item" href="time-zone-converter.html"><span class="mg-ic">⏲</span><span class="mg-t"><span class="mg-n">Time zones</span><span class="mg-d">Difference between cities</span></span></a>
-      </div>
-      <div class="mega-col">
-        <h5>Math &amp; numbers</h5>
-        <a class="mg-item" href="fraction-calculator.html"><span class="mg-ic">÷</span><span class="mg-t"><span class="mg-n">Fraction</span><span class="mg-d">Four ops, simplified</span></span></a>
-        <a class="mg-item" href="scientific-calculator.html"><span class="mg-ic">√</span><span class="mg-t"><span class="mg-n">Scientific</span><span class="mg-d">Full keypad</span></span></a>
-        <a class="mg-item" href="average-calculator.html"><span class="mg-ic">x̄</span><span class="mg-t"><span class="mg-n">Average</span><span class="mg-d">Mean, median, std dev</span></span></a>
-        <a class="mg-item" href="ratio-calculator.html"><span class="mg-ic">::</span><span class="mg-t"><span class="mg-n">Ratio</span><span class="mg-d">Solve & simplify a:b</span></span></a>
-        <a class="mg-item" href="gcf-lcm-calculator.html"><span class="mg-ic">∧</span><span class="mg-t"><span class="mg-n">GCF & LCM</span><span class="mg-d">Factors & multiples</span></span></a>
-        <a class="mg-item" href="binary-hex-converter.html"><span class="mg-ic">01</span><span class="mg-t"><span class="mg-n">Binary / hex</span><span class="mg-d">Dec, bin, hex, octal</span></span></a>
-      </div>
-      <div class="mega-col">
-        <h5>School</h5>
-        <a class="mg-item" href="gpa-calculator.html"><span class="mg-ic">☆</span><span class="mg-t"><span class="mg-n">GPA</span><span class="mg-d">Weighted 4.0 scale</span></span></a>
-        <a class="mg-item" href="final-grade-calculator.html"><span class="mg-ic">✓</span><span class="mg-t"><span class="mg-n">Final grade</span><span class="mg-d">What you need on the final</span></span></a>
-      </div>
-      <div class="mega-col">
-        <h5>Converters</h5>
-        <a class="mg-item" href="temperature-converter.html"><span class="mg-ic">°</span><span class="mg-t"><span class="mg-n">Temperature</span><span class="mg-d">°C, °F and kelvin</span></span></a>
-        <a class="mg-item" href="length-converter.html"><span class="mg-ic">↔</span><span class="mg-t"><span class="mg-n">Length</span><span class="mg-d">mm to miles</span></span></a>
-        <a class="mg-item" href="weight-converter.html"><span class="mg-ic">⚖</span><span class="mg-t"><span class="mg-n">Weight</span><span class="mg-d">Grams to tons & stone</span></span></a>
-        <a class="mg-item" href="cups-to-grams-converter.html"><span class="mg-ic">☕</span><span class="mg-t"><span class="mg-n">Cups to grams</span><span class="mg-d">Real ingredient densities</span></span></a>
-      </div>
-      <div class="mega-col">
-        <h5>Kitchen</h5>
-        <a class="mg-item" href="recipe-converter.html"><span class="mg-ic">×</span><span class="mg-t"><span class="mg-n">Recipe scaler</span><span class="mg-d">Resize any recipe</span></span></a>
-        <a class="mg-item" href="pan-conversion-calculator.html"><span class="mg-ic">▢</span><span class="mg-t"><span class="mg-n">Pan conversion</span><span class="mg-d">Swap baking pans</span></span></a>
-        <a class="mg-item" href="coffee-ratio-calculator.html"><span class="mg-ic">☕</span><span class="mg-t"><span class="mg-n">Coffee ratio</span><span class="mg-d">Water, beans, strength</span></span></a>
-      </div>
-      <div class="mega-col">
-        <h5>Home &amp; garden</h5>
-        <a class="mg-item" href="square-footage-calculator.html"><span class="mg-ic">▤</span><span class="mg-t"><span class="mg-n">Square footage</span><span class="mg-d">Area & cost per sq ft</span></span></a>
-        <a class="mg-item" href="concrete-calculator.html"><span class="mg-ic">▧</span><span class="mg-t"><span class="mg-n">Concrete</span><span class="mg-d">Volume & bags</span></span></a>
-        <a class="mg-item" href="paint-calculator.html"><span class="mg-ic">▨</span><span class="mg-t"><span class="mg-n">Paint</span><span class="mg-d">Coverage & cans</span></span></a>
-        <a class="mg-item" href="flooring-calculator.html"><span class="mg-ic">▥</span><span class="mg-t"><span class="mg-n">Flooring</span><span class="mg-d">Boxes with waste</span></span></a>
-        <a class="mg-item" href="mulch-calculator.html"><span class="mg-ic">✿</span><span class="mg-t"><span class="mg-n">Mulch</span><span class="mg-d">Cubic yards & bags</span></span></a>
-      </div>
-      <div class="mega-col">
-        <h5>Cars &amp; travel</h5>
-        <a class="mg-item" href="fuel-cost-calculator.html"><span class="mg-ic">⛽</span><span class="mg-t"><span class="mg-n">Fuel cost</span><span class="mg-d">Trip cost & split</span></span></a>
-        <a class="mg-item" href="mpg-calculator.html"><span class="mg-ic">⏱</span><span class="mg-t"><span class="mg-n">MPG</span><span class="mg-d">And L/100km</span></span></a>
-        <a class="mg-item" href="ev-charging-cost-calculator.html"><span class="mg-ic">⚡</span><span class="mg-t"><span class="mg-n">EV charging</span><span class="mg-d">Cost per charge & mile</span></span></a>
-      </div>
-      <div class="mega-col">
-        <h5>Family</h5>
-        <a class="mg-item" href="due-date-calculator.html"><span class="mg-ic">♡</span><span class="mg-t"><span class="mg-n">Due date</span><span class="mg-d">Naegele's rule</span></span></a>
-        <a class="mg-item" href="ovulation-calculator.html"><span class="mg-ic">♡</span><span class="mg-t"><span class="mg-n">Ovulation</span><span class="mg-d">Fertile window</span></span></a>
-      </div>
-      <div class="mega-col">
-        <h5>Random &amp; fun</h5>
-        <a class="mg-item" href="random-number-generator.html"><span class="mg-ic">#</span><span class="mg-t"><span class="mg-n">Random number</span><span class="mg-d">True random, any range</span></span></a>
-        <a class="mg-item" href="dice-roller.html"><span class="mg-ic">⚄</span><span class="mg-t"><span class="mg-n">Dice roller</span><span class="mg-d">d4 to d100, many dice</span></span></a>
-        <a class="mg-item" href="coin-flip.html"><span class="mg-ic">●</span><span class="mg-t"><span class="mg-n">Coin flip</span><span class="mg-d">Heads or tails, fairly</span></span></a>
-        <a class="mg-item" href="random-picker.html"><span class="mg-ic">✧</span><span class="mg-t"><span class="mg-n">Random picker</span><span class="mg-d">Pick winners from a list</span></span></a>
-        <a class="mg-item" href="password-generator.html"><span class="mg-ic">*</span><span class="mg-t"><span class="mg-n">Password</span><span class="mg-d">Strong, generated locally</span></span></a>
-      </div>
-      </div>
-    </div>
+  <button class="mn-search" type="button" id="mnSearchBtn" aria-label="Search calculators"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.3 3.3"/></svg><span>Search</span><kbd>/</kbd></button>
+  <a class="mn-cta" href="index.html#all">All tools</a>
+  <button class="mn-burger" id="mnBurger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnDrawer"><span></span></button>
+ </div></div>
+ <div class="mn-scrim" aria-hidden="true"></div>
+ <div class="mn-drawer" id="mnDrawer">
+  <div class="mn-drawer-scroll">
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">Money &amp; the Fed<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="fed-rate-calculator.html">Fed rate cut</a>
+        <a class="mn-mlink" href="m2-money-supply-calculator.html">M2 money supply</a>
+        <a class="mn-mlink" href="gold-vs-usd-calculator.html">Gold vs USD</a>
+        <a class="mn-mlink" href="inflation-calculator.html">Inflation</a>
+        <a class="mn-mlink" href="gold-m2-ratio-calculator.html">Gold / M2 ratio</a>
+        <a class="mn-mlink" href="dow-to-gold-calculator.html">Dow-to-Gold</a>
+     </div></div></div></div>
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">Investing<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="sp500-dca-calculator.html">S&amp;P 500 since inception</a>
+        <a class="mn-mlink" href="sp1-vs-sp500-calculator.html">S&amp;P 1 vs S&amp;P 500</a>
+        <a class="mn-mlink" href="cagr-calculator.html">CAGR</a>
+        <a class="mn-mlink" href="drip-calculator.html">Dividend reinvestment</a>
+        <a class="mn-mlink" href="retirement-calculator.html">Retirement / FIRE</a>
+        <a class="mn-mlink" href="roi-calculator.html">ROI</a>
+        <a class="mn-mlink" href="rule-of-72-calculator.html">Rule of 72</a>
+     </div></div></div></div>
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">Loans &amp; debt<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="mortgage-calculator.html">Mortgage</a>
+        <a class="mn-mlink" href="loan-calculator.html">Loan payment</a>
+        <a class="mn-mlink" href="car-loan-calculator.html">Car loan</a>
+        <a class="mn-mlink" href="debt-payoff-calculator.html">Debt payoff</a>
+        <a class="mn-mlink" href="simple-interest-calculator.html">Simple interest</a>
+        <a class="mn-mlink" href="apr-apy-calculator.html">APR ↔ APY</a>
+     </div></div></div></div>
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">Everyday money<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="percentage-calculator.html">Percentage</a>
+        <a class="mn-mlink" href="tip-calculator.html">Tip &amp; split</a>
+        <a class="mn-mlink" href="vat-calculator.html">VAT / sales tax</a>
+        <a class="mn-mlink" href="discount-calculator.html">Discount</a>
+        <a class="mn-mlink" href="margin-markup-calculator.html">Margin &amp; markup</a>
+        <a class="mn-mlink" href="salary-to-hourly-calculator.html">Salary ↔ hourly</a>
+        <a class="mn-mlink" href="savings-goal-calculator.html">Savings goal</a>
+        <a class="mn-mlink" href="currency-converter.html">Currency</a>
+        <a class="mn-mlink" href="compound-interest-calculator.html">Compound interest</a>
+     </div></div></div></div>
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">Health &amp; body<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="bmi-calculator.html">BMI</a>
+        <a class="mn-mlink" href="calorie-calculator.html">Calorie needs</a>
+        <a class="mn-mlink" href="tdee-calculator.html">TDEE</a>
+        <a class="mn-mlink" href="bmr-calculator.html">BMR</a>
+        <a class="mn-mlink" href="body-fat-calculator.html">Body fat %</a>
+        <a class="mn-mlink" href="ideal-weight-calculator.html">Ideal weight</a>
+        <a class="mn-mlink" href="macro-calculator.html">Macros</a>
+        <a class="mn-mlink" href="water-intake-calculator.html">Water intake</a>
+     </div></div></div></div>
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">Fitness &amp; sleep<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="pace-calculator.html">Running pace</a>
+        <a class="mn-mlink" href="one-rep-max-calculator.html">One-rep max</a>
+        <a class="mn-mlink" href="heart-rate-zone-calculator.html">Heart-rate zones</a>
+        <a class="mn-mlink" href="sleep-calculator.html">Sleep cycles</a>
+     </div></div></div></div>
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">Dates &amp; time<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="age-calculator.html">Age</a>
+        <a class="mn-mlink" href="date-difference-calculator.html">Date difference</a>
+        <a class="mn-mlink" href="day-of-week-calculator.html">Day of the week</a>
+        <a class="mn-mlink" href="days-from-today-calculator.html">Days from today</a>
+        <a class="mn-mlink" href="time-calculator.html">Time &amp; hours</a>
+        <a class="mn-mlink" href="time-zone-converter.html">Time zones</a>
+     </div></div></div></div>
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">Math &amp; numbers<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="fraction-calculator.html">Fraction</a>
+        <a class="mn-mlink" href="scientific-calculator.html">Scientific</a>
+        <a class="mn-mlink" href="average-calculator.html">Average</a>
+        <a class="mn-mlink" href="ratio-calculator.html">Ratio</a>
+        <a class="mn-mlink" href="gcf-lcm-calculator.html">GCF &amp; LCM</a>
+        <a class="mn-mlink" href="binary-hex-converter.html">Binary / hex</a>
+     </div></div></div></div>
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">School<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="gpa-calculator.html">GPA</a>
+        <a class="mn-mlink" href="final-grade-calculator.html" aria-current="page">Final grade</a>
+     </div></div></div></div>
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">Converters<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="temperature-converter.html">Temperature</a>
+        <a class="mn-mlink" href="length-converter.html">Length</a>
+        <a class="mn-mlink" href="weight-converter.html">Weight</a>
+        <a class="mn-mlink" href="cups-to-grams-converter.html">Cups to grams</a>
+     </div></div></div></div>
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">Kitchen<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="recipe-converter.html">Recipe scaler</a>
+        <a class="mn-mlink" href="pan-conversion-calculator.html">Pan conversion</a>
+        <a class="mn-mlink" href="coffee-ratio-calculator.html">Coffee ratio</a>
+     </div></div></div></div>
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">Home &amp; garden<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="square-footage-calculator.html">Square footage</a>
+        <a class="mn-mlink" href="concrete-calculator.html">Concrete</a>
+        <a class="mn-mlink" href="paint-calculator.html">Paint</a>
+        <a class="mn-mlink" href="flooring-calculator.html">Flooring</a>
+        <a class="mn-mlink" href="mulch-calculator.html">Mulch</a>
+     </div></div></div></div>
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">Cars &amp; travel<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="fuel-cost-calculator.html">Fuel cost</a>
+        <a class="mn-mlink" href="mpg-calculator.html">MPG</a>
+        <a class="mn-mlink" href="ev-charging-cost-calculator.html">EV charging</a>
+     </div></div></div></div>
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">Family<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="due-date-calculator.html">Due date</a>
+        <a class="mn-mlink" href="ovulation-calculator.html">Ovulation</a>
+     </div></div></div></div>
+    <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">Random &amp; fun<span class="caret"></span></button>
+     <div class="mn-acc-body"><div class="mn-acc-in"><div>
+        <a class="mn-mlink" href="random-number-generator.html">Random number</a>
+        <a class="mn-mlink" href="dice-roller.html">Dice roller</a>
+        <a class="mn-mlink" href="coin-flip.html">Coin flip</a>
+        <a class="mn-mlink" href="random-picker.html">Random picker</a>
+        <a class="mn-mlink" href="password-generator.html">Password</a>
+     </div></div></div></div>
+    <a class="mn-acc-direct" href="index.html#all">All 76 calculators <span aria-hidden="true">&rarr;</span></a>
   </div>
+ </div>
 </header>
-<div class="mega-veil" aria-hidden="true"></div>
+<!--NAV:END-->
 <main id="top">
 <nav class="crumbs" aria-label="Breadcrumb"><div class="wrap"><ol>
   <li><a href="index.html">Calculate</a></li>
@@ -504,13 +691,13 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
     <div class="meta"><span class="chipm">Exact score needed</span><span class="chipm">Reachability verdict</span><span class="chipm">No sign-up</span></div>
   </div>
   <div class="calc" id="calc">
-      <div class="calc-head"><span class="calc-chip" style="font-size:var(--fs-13);color:var(--ink-2)">Required exam score</span><span class="calc-chip">weighted</span></div>
+      <div class="calc-head"><span class="calc-chip" style="font-size:var(--fs-m);color:var(--ink-2)">Required exam score</span><span class="calc-chip">weighted</span></div>
       <div class="field hasunit r"><label for="cur">Current grade</label><div class="in"><input id="cur" type="number" inputmode="decimal" value="78"><span class="unit r">%</span></div></div>
       <div class="field hasunit r"><label for="w">Final's weight</label><div class="in"><input id="w" type="number" inputmode="decimal" value="30"><span class="unit r">%</span></div></div>
       <div class="field hasunit r"><label for="tgt">Target grade</label><div class="in"><input id="tgt" type="number" inputmode="decimal" value="80"><span class="unit r">%</span></div></div>
       <div class="readout"><div class="expr" id="expr">—</div><div class="result" id="result">—</div></div>
       <div class="ripple">
-        <div class="rip"><div><span class="rip-name">Verdict</span><span class="rip-mech">honest reachability check</span></div><span class="rip-val" id="r1" style="font-size:var(--fs-13)">—</span></div>
+        <div class="rip"><div><span class="rip-name">Verdict</span><span class="rip-mech">honest reachability check</span></div><span class="rip-val" id="r1" style="font-size:var(--fs-m)">—</span></div>
         <div class="rip"><div><span class="rip-name">If you score 100%</span><span class="rip-mech">your ceiling this semester</span></div><span class="rip-val cool" id="r2">—</span></div>
         <div class="rip"><div><span class="rip-name">If you skip it (0%)</span><span class="rip-mech">the floor</span></div><span class="rip-val cool" id="r3">—</span></div>
       </div>
@@ -708,27 +895,7 @@ function run(){var cur=parseFloat($('cur').value)||0,w=(parseFloat($('w').value)
 ['cur','w','tgt'].forEach(function(i){$(i).addEventListener('input',run);});run();})();
 </script>
 <script>
-(function(){
-  var top=document.querySelector('header.top'),
-      tog=document.querySelector('.nav-toggle'),
-      veil=document.querySelector('.mega-veil');
-  if(!top||!tog)return;
-  function setOpen(on){
-    top.classList.toggle('menu-open',on);
-    if(veil)veil.classList.toggle('on',on);
-    tog.setAttribute('aria-expanded',on?'true':'false');
-  }
-  function isOpen(){return top.classList.contains('menu-open');}
-  tog.addEventListener('click',function(e){e.stopPropagation();setOpen(!isOpen());});
-  if(veil)veil.addEventListener('click',function(){setOpen(false);});
-  document.addEventListener('click',function(e){
-    if(isOpen()&&!top.contains(e.target))setOpen(false);
-  });
-  document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'&&isOpen()){setOpen(false);tog.focus();}
-  });
-  top.querySelectorAll('.mg-item').forEach(function(a){a.addEventListener('click',function(){setOpen(false);});});
-})();
+
 </script>
 <script>
 (function(){
@@ -742,6 +909,89 @@ function run(){var cur=parseFloat($('cur').value)||0,w=(parseFloat($('w').value)
     btn.addEventListener('keydown',function(e){var i=heads.indexOf(btn),d=e.key==='ArrowDown'?1:e.key==='ArrowUp'?-1:0;if(!d)return;
       e.preventDefault();heads[(i+d+heads.length)%heads.length].focus();});
   });
+})();
+</script>
+<div class="mns" id="mns" role="dialog" aria-modal="true" aria-label="Search calculators">
+  <div class="mns-box">
+    <div class="mns-in"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.3 3.3"/></svg><input id="mnsInput" type="text" placeholder="Search 76 calculators…" autocomplete="off" spellcheck="false"><span class="mns-esc">esc</span></div>
+    <div class="mns-res" id="mnsRes"></div>
+  </div>
+</div>
+<script>
+/* ===== mega nav: hover+click panel, burger drawer, accordions, search ===== */
+(function(){'use strict';
+ var mn=document.getElementById('mn'); if(!mn) return;
+ var groups=[].slice.call(mn.querySelectorAll('.mn-group'));
+ var desktop=window.matchMedia('(min-width:961px)'),hoverTimer=null;
+ function sync(){var o=desktop.matches&&groups.some(function(g){return g.classList.contains('is-open');});
+   document.documentElement.classList.toggle('mn-blur',o);}
+ function open(g){groups.forEach(function(o){if(o!==g)shut(o);});g.classList.add('is-open');
+   var t=g.querySelector('.mn-top');if(t)t.setAttribute('aria-expanded','true');sync();}
+ function shut(g){g.classList.remove('is-open');
+   var t=g.querySelector('.mn-top');if(t)t.setAttribute('aria-expanded','false');sync();}
+ function closeAll(){groups.forEach(shut);}
+ groups.forEach(function(g){
+  var top=g.querySelector('.mn-top'); if(!top)return;
+  top.addEventListener('click',function(e){e.stopPropagation();g.classList.contains('is-open')?shut(g):open(g);});
+  g.addEventListener('mouseenter',function(){if(!desktop.matches)return;clearTimeout(hoverTimer);open(g);});
+  g.addEventListener('mouseleave',function(){if(!desktop.matches)return;hoverTimer=setTimeout(function(){shut(g);},150);});
+ });
+ var scrim=mn.querySelector('.mn-scrim'); if(scrim)scrim.addEventListener('click',closeAll);
+ document.addEventListener('click',function(e){if(!mn.contains(e.target))closeAll();});
+ window.addEventListener('scroll',function(){mn.classList.toggle('is-scrolled',(window.scrollY||0)>12);},{passive:true});
+
+ /* drawer */
+ var burger=document.getElementById('mnBurger');
+ function openDrawer(){mn.classList.add('is-drawer');if(burger)burger.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+ function closeDrawer(){mn.classList.remove('is-drawer');if(burger)burger.setAttribute('aria-expanded','false');document.body.style.overflow='';}
+ if(burger)burger.addEventListener('click',function(){mn.classList.contains('is-drawer')?closeDrawer():openDrawer();});
+ if(desktop.addEventListener)desktop.addEventListener('change',function(e){e.matches?closeDrawer():closeAll();});
+ mn.querySelectorAll('.mn-mlink,.mn-acc-direct').forEach(function(a){a.addEventListener('click',closeDrawer);});
+
+ /* single-open accordions */
+ var accs=[].slice.call(mn.querySelectorAll('.mn-acc'));
+ accs.forEach(function(a){var t=a.querySelector('.mn-acc-top'); if(!t)return;
+  t.addEventListener('click',function(){var was=a.classList.contains('is-open');
+   accs.forEach(function(o){o.classList.remove('is-open');var x=o.querySelector('.mn-acc-top');if(x)x.setAttribute('aria-expanded','false');});
+   if(!was){a.classList.add('is-open');t.setAttribute('aria-expanded','true');}});});
+
+ /* search */
+ var IDX=[{"u": "fed-rate-calculator.html", "n": "Fed rate cut", "d": "One cut, four ripples", "c": "Money & the Fed"}, {"u": "m2-money-supply-calculator.html", "n": "M2 money supply", "d": "Growth, doubling, dilution", "c": "Money & the Fed"}, {"u": "gold-vs-usd-calculator.html", "n": "Gold vs USD", "d": "The dollar since 1971", "c": "Money & the Fed"}, {"u": "inflation-calculator.html", "n": "Inflation", "d": "Dollar value, 1913–2025", "c": "Money & the Fed"}, {"u": "gold-m2-ratio-calculator.html", "n": "Gold / M2 ratio", "d": "Is gold cheap vs money?", "c": "Money & the Fed"}, {"u": "dow-to-gold-calculator.html", "n": "Dow-to-Gold", "d": "Stocks priced in gold", "c": "Money & the Fed"}, {"u": "sp500-dca-calculator.html", "n": "S&P 500 since inception", "d": "Real returns 1928–2025", "c": "Investing"}, {"u": "sp1-vs-sp500-calculator.html", "n": "S&P 1 vs S&P 500", "d": "Throne vs kingdom", "c": "Investing"}, {"u": "cagr-calculator.html", "n": "CAGR", "d": "Compound annual growth", "c": "Investing"}, {"u": "drip-calculator.html", "n": "Dividend reinvestment", "d": "DRIP compounding", "c": "Investing"}, {"u": "retirement-calculator.html", "n": "Retirement / FIRE", "d": "Nest egg & the 4% rule", "c": "Investing"}, {"u": "roi-calculator.html", "n": "ROI", "d": "Return on investment", "c": "Investing"}, {"u": "rule-of-72-calculator.html", "n": "Rule of 72", "d": "Doubling time shortcut", "c": "Investing"}, {"u": "mortgage-calculator.html", "n": "Mortgage", "d": "Full monthly payment", "c": "Loans & debt"}, {"u": "loan-calculator.html", "n": "Loan payment", "d": "Monthly cost & interest", "c": "Loans & debt"}, {"u": "car-loan-calculator.html", "n": "Car loan", "d": "With down & trade-in", "c": "Loans & debt"}, {"u": "debt-payoff-calculator.html", "n": "Debt payoff", "d": "Snowball vs avalanche", "c": "Loans & debt"}, {"u": "simple-interest-calculator.html", "n": "Simple interest", "d": "I = P·r·t", "c": "Loans & debt"}, {"u": "apr-apy-calculator.html", "n": "APR ↔ APY", "d": "Compounding conversions", "c": "Loans & debt"}, {"u": "percentage-calculator.html", "n": "Percentage", "d": "Of, change, add & subtract", "c": "Everyday money"}, {"u": "tip-calculator.html", "n": "Tip & split", "d": "Tip and divide the bill", "c": "Everyday money"}, {"u": "vat-calculator.html", "n": "VAT / sales tax", "d": "Add or remove tax", "c": "Everyday money"}, {"u": "discount-calculator.html", "n": "Discount", "d": "Sale price & savings", "c": "Everyday money"}, {"u": "margin-markup-calculator.html", "n": "Margin & markup", "d": "Price, cost, profit", "c": "Everyday money"}, {"u": "salary-to-hourly-calculator.html", "n": "Salary ↔ hourly", "d": "Pay, converted both ways", "c": "Everyday money"}, {"u": "savings-goal-calculator.html", "n": "Savings goal", "d": "Time or monthly needed", "c": "Everyday money"}, {"u": "currency-converter.html", "n": "Currency", "d": "21 major currencies", "c": "Everyday money"}, {"u": "compound-interest-calculator.html", "n": "Compound interest", "d": "Growth over time", "c": "Everyday money"}, {"u": "bmi-calculator.html", "n": "BMI", "d": "With healthy range", "c": "Health & body"}, {"u": "calorie-calculator.html", "n": "Calorie needs", "d": "Mifflin–St Jeor", "c": "Health & body"}, {"u": "tdee-calculator.html", "n": "TDEE", "d": "Total daily energy", "c": "Health & body"}, {"u": "bmr-calculator.html", "n": "BMR", "d": "Calories at rest", "c": "Health & body"}, {"u": "body-fat-calculator.html", "n": "Body fat %", "d": "US Navy method", "c": "Health & body"}, {"u": "ideal-weight-calculator.html", "n": "Ideal weight", "d": "Four classic formulas", "c": "Health & body"}, {"u": "macro-calculator.html", "n": "Macros", "d": "Protein, carbs, fat split", "c": "Health & body"}, {"u": "water-intake-calculator.html", "n": "Water intake", "d": "Daily hydration", "c": "Health & body"}, {"u": "pace-calculator.html", "n": "Running pace", "d": "Pace, time, distance", "c": "Fitness & sleep"}, {"u": "one-rep-max-calculator.html", "n": "One-rep max", "d": "Epley & Brzycki", "c": "Fitness & sleep"}, {"u": "heart-rate-zone-calculator.html", "n": "Heart-rate zones", "d": "Training zones", "c": "Fitness & sleep"}, {"u": "sleep-calculator.html", "n": "Sleep cycles", "d": "When to sleep or wake", "c": "Fitness & sleep"}, {"u": "age-calculator.html", "n": "Age", "d": "Years, months, days", "c": "Dates & time"}, {"u": "date-difference-calculator.html", "n": "Date difference", "d": "Days & working days", "c": "Dates & time"}, {"u": "day-of-week-calculator.html", "n": "Day of the week", "d": "What day was any date", "c": "Dates & time"}, {"u": "days-from-today-calculator.html", "n": "Days from today", "d": "Add days & business days", "c": "Dates & time"}, {"u": "time-calculator.html", "n": "Time & hours", "d": "Durations & work hours", "c": "Dates & time"}, {"u": "time-zone-converter.html", "n": "Time zones", "d": "Difference between cities", "c": "Dates & time"}, {"u": "fraction-calculator.html", "n": "Fraction", "d": "Four ops, simplified", "c": "Math & numbers"}, {"u": "scientific-calculator.html", "n": "Scientific", "d": "Full keypad", "c": "Math & numbers"}, {"u": "average-calculator.html", "n": "Average", "d": "Mean, median, std dev", "c": "Math & numbers"}, {"u": "ratio-calculator.html", "n": "Ratio", "d": "Solve & simplify a:b", "c": "Math & numbers"}, {"u": "gcf-lcm-calculator.html", "n": "GCF & LCM", "d": "Factors & multiples", "c": "Math & numbers"}, {"u": "binary-hex-converter.html", "n": "Binary / hex", "d": "Dec, bin, hex, octal", "c": "Math & numbers"}, {"u": "gpa-calculator.html", "n": "GPA", "d": "Weighted 4.0 scale", "c": "School"}, {"u": "final-grade-calculator.html", "n": "Final grade", "d": "What you need on the final", "c": "School"}, {"u": "temperature-converter.html", "n": "Temperature", "d": "°C, °F and kelvin", "c": "Converters"}, {"u": "length-converter.html", "n": "Length", "d": "mm to miles", "c": "Converters"}, {"u": "weight-converter.html", "n": "Weight", "d": "Grams to tons & stone", "c": "Converters"}, {"u": "cups-to-grams-converter.html", "n": "Cups to grams", "d": "Real ingredient densities", "c": "Converters"}, {"u": "recipe-converter.html", "n": "Recipe scaler", "d": "Resize any recipe", "c": "Kitchen"}, {"u": "pan-conversion-calculator.html", "n": "Pan conversion", "d": "Swap baking pans", "c": "Kitchen"}, {"u": "coffee-ratio-calculator.html", "n": "Coffee ratio", "d": "Water, beans, strength", "c": "Kitchen"}, {"u": "square-footage-calculator.html", "n": "Square footage", "d": "Area & cost per sq ft", "c": "Home & garden"}, {"u": "concrete-calculator.html", "n": "Concrete", "d": "Volume & bags", "c": "Home & garden"}, {"u": "paint-calculator.html", "n": "Paint", "d": "Coverage & cans", "c": "Home & garden"}, {"u": "flooring-calculator.html", "n": "Flooring", "d": "Boxes with waste", "c": "Home & garden"}, {"u": "mulch-calculator.html", "n": "Mulch", "d": "Cubic yards & bags", "c": "Home & garden"}, {"u": "fuel-cost-calculator.html", "n": "Fuel cost", "d": "Trip cost & split", "c": "Cars & travel"}, {"u": "mpg-calculator.html", "n": "MPG", "d": "And L/100km", "c": "Cars & travel"}, {"u": "ev-charging-cost-calculator.html", "n": "EV charging", "d": "Cost per charge & mile", "c": "Cars & travel"}, {"u": "due-date-calculator.html", "n": "Due date", "d": "Naegele's rule", "c": "Family"}, {"u": "ovulation-calculator.html", "n": "Ovulation", "d": "Fertile window", "c": "Family"}, {"u": "random-number-generator.html", "n": "Random number", "d": "True random, any range", "c": "Random & fun"}, {"u": "dice-roller.html", "n": "Dice roller", "d": "d4 to d100, many dice", "c": "Random & fun"}, {"u": "coin-flip.html", "n": "Coin flip", "d": "Heads or tails, fairly", "c": "Random & fun"}, {"u": "random-picker.html", "n": "Random picker", "d": "Pick winners from a list", "c": "Random & fun"}, {"u": "password-generator.html", "n": "Password", "d": "Strong, generated locally", "c": "Random & fun"}];
+ var wrap=document.getElementById('mns'),input=document.getElementById('mnsInput'),
+     res=document.getElementById('mnsRes'),btn=document.getElementById('mnSearchBtn'),sel=0,shown=[];
+ function draw(q){
+  q=(q||'').trim().toLowerCase();
+  shown = !q ? IDX.slice(0,8) : IDX.filter(function(t){
+    return (t.n+' '+t.d+' '+t.c).toLowerCase().indexOf(q)>-1;
+  }).slice(0,40);
+  sel=0;
+  if(!shown.length){res.innerHTML='<div class="mns-none">No calculator matches that.</div>';return;}
+  res.innerHTML=shown.map(function(t,i){
+    return '<a class="mns-r'+(i===0?' on':'')+'" href="'+t.u+'"><span class="mns-rn">'+t.n+'</span><span class="mns-rc">'+t.c+'</span></a>';
+  }).join('');
+ }
+ function mark(){var rows=res.querySelectorAll('.mns-r');
+  for(var i=0;i<rows.length;i++)rows[i].classList.toggle('on',i===sel);
+  if(rows[sel])rows[sel].scrollIntoView({block:'nearest'});}
+ function openS(){document.documentElement.classList.add('mns-open');document.body.style.overflow='hidden';
+  input.value='';draw('');setTimeout(function(){input.focus();},40);closeAll();closeDrawer();}
+ function closeS(){document.documentElement.classList.remove('mns-open');document.body.style.overflow='';}
+ if(btn)btn.addEventListener('click',openS);
+ if(wrap)wrap.addEventListener('click',function(e){if(e.target===wrap)closeS();});
+ if(input){
+  input.addEventListener('input',function(){draw(input.value);});
+  input.addEventListener('keydown',function(e){
+   var rows=res.querySelectorAll('.mns-r');
+   if(e.key==='ArrowDown'){e.preventDefault();sel=Math.min(sel+1,rows.length-1);mark();}
+   else if(e.key==='ArrowUp'){e.preventDefault();sel=Math.max(sel-1,0);mark();}
+   else if(e.key==='Enter'&&rows[sel]){e.preventDefault();window.location.href=rows[sel].getAttribute('href');}
+  });
+ }
+ document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){closeAll();closeDrawer();closeS();}
+  if(e.key==='/'&&!/^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName||''))&&!e.target.isContentEditable){
+    e.preventDefault();openS();}
+ });
 })();
 </script>
 </body>
