@@ -64,6 +64,17 @@ a{text-decoration:none}
 
 /* form controls never below 16px — iOS auto-zooms the page otherwise */
 input,select,textarea{font-size:max(16px,1em)}
+
+@media(max-width:560px){.btn{display:flex;width:100%;justify-content:center;margin:0 0 10px}}
+
+/* number inputs: hide spinners — they render on top of a right-hand unit */
+.field input[type="number"],.in input[type="number"]{-moz-appearance:textfield;appearance:textfield}
+.field input[type="number"]::-webkit-outer-spin-button,.field input[type="number"]::-webkit-inner-spin-button,
+.in input[type="number"]::-webkit-outer-spin-button,.in input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+/* guarantee clearance for a right-hand unit even without :has() support */
+.field.hasunit.r input,.in.hasunit.r input{padding-left:.7em;padding-right:46px}
+.field .unit.r,.in .unit.r{left:auto;right:12px}
+.field .in:has(> .unit.r) input{padding-right:46px}
 </style>
 </head>
 <body>

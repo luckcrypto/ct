@@ -5,20 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light only">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<title>CAGR Calculator — Compound Annual Growth Rate</title>
-<meta name="description" content="Work out the compound annual growth rate between a starting and ending value over any number of years — the honest average that accounts for compounding.">
-<link rel="canonical" href="https://calculate.to/cagr-calculator.html">
-<meta name="theme-color" content="#f6f4ef">
+<title>Advanced Calculator — Variables, Equation Solver & Plotter</title>
+<meta name="description" content="A notebook calculator with variables, an equation solver, function plotting and numeric calculus. Runs in your browser, no sign-up, no external libraries.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-96.png" type="image/png" sizes="96x96">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta property="og:title" content="CAGR Calculator — Compound Annual Growth Rate">
-<meta property="og:description" content="Work out the compound annual growth rate between a starting and ending value over any number of years — the honest average that accounts for compounding.">
+<link rel="canonical" href="https://calculate.to/advanced-calculator.html">
+<meta name="theme-color" content="#f6f4ef">
+<meta property="og:title" content="Advanced Calculator — Variables, Equation Solver & Plotter">
+<meta property="og:description" content="A notebook calculator with variables, an equation solver, function plotting and numeric calculus. Runs in your browser, no sign-up, no external libraries.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://calculate.to/advanced-calculator.html">
+<meta property="og:image" content="https://calculate.to/og.png">
 <meta property="og:site_name" content="Calculate">
 <meta property="og:locale" content="en_US">
-<meta property="og:url" content="https://calculate.to/cagr-calculator.html">
-<meta property="og:image" content="https://calculate.to/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -250,6 +250,7 @@ footer{border-top:1px solid var(--hair);padding:40px 0 56px;margin-top:20px}
 /* ===== mega menu (full-width, responsive; trigger = Browse all pill) ===== */
 .top.menu-open 
 .mega-grid{columns:4 210px;column-gap:26px;padding-top:26px;padding-bottom:30px}
+.mega-col{break-inside:avoid;margin-bottom:20px}
 
 
 .mega-col h5{font-size:var(--fs-m);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;border-bottom:1px solid var(--hair);padding-bottom:8px}
@@ -271,6 +272,7 @@ footer{border-top:1px solid var(--hair);padding:40px 0 56px;margin-top:20px}
 .fbrand .brand{font-size:var(--fs-l)}
 .fbrand p{color:var(--muted);font-size:var(--fs-m);margin:.6em 0 0;max-width:28ch}
 .ftg{columns:4 210px;column-gap:26px}
+.ftcol{break-inside:avoid;margin-bottom:20px}
 
 
 .ftcol h5{font-size:var(--fs-m);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
@@ -280,25 +282,6 @@ footer{border-top:1px solid var(--hair);padding:40px 0 56px;margin-top:20px}
 .fbar .foot-note{margin:0}
 .ftl{font-family:var(--mono);font-size:var(--fs-m);color:var(--ink-2);text-decoration:none;letter-spacing:.04em;white-space:nowrap}
 .ftl:hover{color:var(--signal-deep)}
-
-.mega-col,.ftcol{break-inside:avoid;margin-bottom:20px}
-/* ripple rows + selects + sliders (shared calc widgets) */
-.ripple{margin-top:18px;padding-top:2px;border-top:1px solid var(--hair)}
-.rip{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 2px;border-bottom:1px solid var(--hair)}
-.rip:last-child{border-bottom:0}
-.rip-name{font-size:var(--fs-m);font-weight:600;color:var(--ink);line-height:var(--lh-ui);display:block}
-.rip-mech{font-size:var(--fs-m);color:var(--muted);line-height:var(--lh-ui);margin-top:3px}
-.rip-val{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-l);white-space:nowrap;text-align:right;flex:none;color:var(--ink)}
-.rip-val.amber{color:var(--signal)}
-.rip-val.cool{color:var(--slate)}
-.selin{position:relative}
-.selin select{font-family:var(--sans);font-size:var(--fs-m);font-weight:600;padding:.5em 2em .5em .7em;border:1px solid var(--hair-2);border-radius:10px;background:#f6f4ef;background:var(--paper);color:#1c1b19;color:var(--ink);outline:none;cursor:pointer;appearance:none;-webkit-appearance:none}
-.selin select:focus{border-color:var(--signal);box-shadow:0 0 0 3px rgba(201,106,27,.14)}
-.selin::after{content:"\25be";position:absolute;right:.7em;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:var(--fs-m)}
-input[type=range]{-webkit-appearance:none;appearance:none;width:150px;height:4px;border-radius:99px;background:#dcd8cf;background:var(--hair);outline:none;cursor:pointer}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:#c96a1b;background:var(--signal);border:2px solid #fff;box-shadow:0 1px 4px rgba(22,20,16,.3)}
-input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#c96a1b;background:var(--signal);border:2px solid #fff;box-shadow:0 1px 4px rgba(22,20,16,.3)}
-
 
 /* ---- cursor policy: arrow everywhere, pointer only on interactive things ---- */
 * { cursor: default; }
@@ -321,6 +304,26 @@ input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: point
 
 /* disabled controls */
 :disabled, [disabled], [aria-disabled="true"] { cursor: not-allowed; }
+
+/* ---- physical-calculator shelf (affiliate, contextual) ---- */
+.shelf{margin:2.5em 0 0}
+.shelf-h{font-size:var(--fs-m);letter-spacing:.02em;color:var(--muted);margin:0 0 2px}
+.shelf-d{font-size:var(--fs-m);color:var(--muted);margin:0 0 14px}
+.shelf-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.shelf-card{display:flex;flex-direction:column;gap:8px;background:#fbfaf7;background:var(--card);border:1px solid var(--hair-2);border-radius:14px;padding:12px;box-shadow:inset 0 1px 0 #fff;min-width:0;text-decoration:none}
+.shelf-card:hover .shelf-name{color:var(--signal-deep)}
+.shelf-imgwrap{aspect-ratio:1/1;border-radius:10px;background:#efece4;background:var(--paper-2);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.shelf-imgwrap img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+.shelf-name{font-size:var(--fs-m);font-weight:700;color:var(--ink);line-height:var(--lh-ui);padding:0 3px}
+.shelf-copy{font-size:var(--fs-m);color:var(--ink-2);line-height:1.5;flex:1;padding:0 3px}
+.shelf-go{font-size:var(--fs-m);font-weight:700;color:var(--signal-deep);padding:0 3px 2px}
+@media(max-width:640px){
+  .shelf-grid{display:flex;grid-template-columns:none;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scroll-padding:0 22px;scrollbar-width:none;
+    margin:0 -22px;padding:4px 22px 8px}
+  .shelf-grid::-webkit-scrollbar{display:none}
+  .shelf-card{flex:0 0 78%;scroll-snap-align:center}
+}
 
 /* ===== mega nav (one Explore trigger + search; stamped by stamp.py) ===== */
 .mn{position:sticky;top:0;z-index:500}
@@ -432,6 +435,45 @@ input,select,textarea,kbd,table,th,td,time,output,
 /* form controls never below 16px — iOS auto-zooms the page otherwise */
 input,select,textarea{font-size:max(16px,1em)}
 
+.mega-col,.ftcol{break-inside:avoid;margin-bottom:20px}
+/* ripple rows + selects + sliders (shared calc widgets) */
+.ripple{margin-top:18px;padding-top:2px;border-top:1px solid var(--hair)}
+.rip{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 2px;border-bottom:1px solid var(--hair)}
+.rip:last-child{border-bottom:0}
+.rip-name{font-size:var(--fs-m);font-weight:600;color:var(--ink);line-height:var(--lh-ui);display:block}
+.rip-mech{font-size:var(--fs-m);color:var(--muted);line-height:var(--lh-ui);margin-top:3px}
+.rip-val{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-l);white-space:nowrap;text-align:right;flex:none;color:var(--ink)}
+.rip-val.amber{color:var(--signal)}
+.rip-val.cool{color:var(--slate)}
+.selin{position:relative}
+.selin select{font-family:var(--sans);font-size:var(--fs-m);font-weight:600;padding:.5em 2em .5em .7em;border:1px solid var(--hair-2);border-radius:10px;background:#f6f4ef;background:var(--paper);color:#1c1b19;color:var(--ink);outline:none;cursor:pointer;appearance:none;-webkit-appearance:none}
+.selin select:focus{border-color:var(--signal);box-shadow:0 0 0 3px rgba(201,106,27,.14)}
+.selin::after{content:"\25be";position:absolute;right:.7em;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:var(--fs-m)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:150px;height:4px;border-radius:99px;background:#dcd8cf;background:var(--hair);outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:#c96a1b;background:var(--signal);border:2px solid #fff;box-shadow:0 1px 4px rgba(22,20,16,.3)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#c96a1b;background:var(--signal);border:2px solid #fff;box-shadow:0 1px 4px rgba(22,20,16,.3)}
+
+
+/* ---- advanced calculator notebook ---- */
+.adv-hint{font-size:var(--fs-m);color:#8a877e;color:var(--muted);line-height:var(--lh-ui);margin:0 0 12px}
+.adv-hint b{font-family:var(--mono);font-weight:500;color:#a5540f;color:var(--signal-deep)}
+.adv-io{margin-bottom:14px}
+.adv-lab{display:block;font-size:var(--fs-m);color:#4a4843;color:var(--ink-2);margin:0 0 6px}
+#advIn{width:100%;box-sizing:border-box;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:var(--fs-m);line-height:1.7;color:#1c1b19;color:var(--ink);background:#fbfaf7;background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:12px 14px;outline:none;resize:vertical;min-height:9em}
+#advIn:focus{border-color:#c96a1b;border-color:var(--signal);box-shadow:0 0 0 3px rgba(201,106,27,.13)}
+.adv-res{border-top:1px solid var(--hair);padding-top:10px}
+.adv-row{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:6px 2px;border-bottom:1px solid var(--hair)}
+.adv-row:last-child{border-bottom:0}
+.adv-src{font-family:var(--mono);font-size:var(--fs-m);color:#8a877e;color:var(--muted);min-width:0;word-break:break-word}
+.adv-val{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-l);color:#c96a1b;color:var(--signal);text-align:right;flex:1 1 0%;min-width:0;overflow-wrap:anywhere}
+.adv-bad .adv-val{color:#8a877e;color:var(--muted);font-size:var(--fs-m)}
+.adv-note{color:#8a877e;color:var(--muted);font-family:var(--mono);font-size:var(--fs-m);display:block}
+#advPlot{display:none;width:100%;height:auto;margin-top:14px;border:1px solid var(--hair);border-radius:12px;background:#fbfaf7;background:var(--card)}
+#advPlot.on{display:block}
+.adv-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.adv-chip{font-family:var(--mono);font-size:var(--fs-m);color:#4a4843;color:var(--ink-2);background:#f6f4ef;background:var(--paper);border:1px solid var(--hair);border-radius:999px;padding:.35em .8em;line-height:var(--lh-ui);transition:border-color .15s,color .15s}
+.adv-chip:hover{border-color:var(--hair-2);color:#a5540f;color:var(--signal-deep)}
+
 /* unit clearance: derive padding from the unit that is actually present,
    so a field can never have its number run into its $ or % symbol */
 .field .in:has(> .unit:not(.r)) input{padding-left:1.6em}
@@ -445,19 +487,19 @@ input,select,textarea{font-size:max(16px,1em)}
 .field .in:has(> .unit.r) input{padding-right:46px}
 </style>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "WebApplication", "name": "CAGR Calculator", "url": "https://calculate.to/cagr-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "description": "Work out the compound annual growth rate between a starting and ending value over any number of years — the honest average that accounts for compounding.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "Calculate", "url": "https://calculate.to/"}}
+{"@context": "https://schema.org", "@type": "WebApplication", "name": "Advanced Calculator", "url": "https://calculate.to/advanced-calculator.html", "applicationCategory": "UtilityApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "description": "A notebook calculator with variables, an equation solver, function plotting and numeric calculus. Runs in your browser, no sign-up, no external libraries.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "Calculate", "url": "https://calculate.to/"}}
 </script>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Calculate", "item": "https://calculate.to/"}, {"@type": "ListItem", "position": 2, "name": "CAGR Calculator", "item": "https://calculate.to/cagr-calculator.html"}]}
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Calculate", "item": "https://calculate.to/"}, {"@type": "ListItem", "position": 2, "name": "Advanced Calculator", "item": "https://calculate.to/advanced-calculator.html"}]}
 </script>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is CAGR?", "acceptedAnswer": {"@type": "Answer", "text": "Compound annual growth rate — the single steady yearly rate that would grow a starting value to an ending value over a period, with compounding. It's the standard like-for-like growth measure in finance."}}, {"@type": "Question", "name": "How do I calculate CAGR?", "acceptedAnswer": {"@type": "Answer", "text": "Divide the ending value by the starting value, raise the result to one over the number of years, then subtract one. For $10,000 to $25,000 in 7 years: 2.5^(1/7) − 1 ≈ 14% a year."}}, {"@type": "Question", "name": "Why is CAGR lower than the simple average?", "acceptedAnswer": {"@type": "Answer", "text": "Because compounding does part of the work each year. Averaging total growth over years ignores that and overstates the rate — the classic beginner mistake this calculator shows side by side."}}, {"@type": "Question", "name": "Can CAGR be negative?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. If the ending value is below the start, CAGR is negative — the steady yearly decline that matches the loss."}}]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I use variables in this calculator?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Write a line like r = 4 and the name r is available on every line below it. You can build up a calculation in steps, which makes long problems much easier to check than a single running total."}}, {"@type": "Question", "name": "How does the solve command work?", "acceptedAnswer": {"@type": "Answer", "text": "It scans the range for places where the expression changes sign, then narrows each one by bisection to around ten decimal places. Write solve x^2 - 4 to find where an expression equals zero, or solve x^2 = 9 to solve an equation directly. It reports every root it finds in the range."}}, {"@type": "Question", "name": "Is this a symbolic algebra system?", "acceptedAnswer": {"@type": "Answer", "text": "No. Answers are numerical, not symbolic. It will tell you a root is 1.41421356 rather than that it is exactly the square root of two, and it cannot simplify or factor an expression. For step-by-step algebra you want a computer algebra system; for fast accurate numbers, this is the quicker tool."}}, {"@type": "Question", "name": "What functions are available?", "acceptedAnswer": {"@type": "Answer", "text": "sqrt, cbrt, abs, sign, exp, ln, log, log2, sin, cos, tan and their inverses, sinh, cosh, tanh, round, floor, ceil, min, max, hypot, pow, mod, nCr, nPr and factorial with the exclamation mark. The constants pi, e and tau are built in."}}, {"@type": "Question", "name": "Does the plot handle any function?", "acceptedAnswer": {"@type": "Answer", "text": "It samples the expression across the visible range and draws what it finds, skipping points that are undefined or infinite. Curves with asymptotes, like tan(x) or 1/x, will show breaks where the function is undefined rather than drawing a false vertical line."}}]}
 </script>
 </head>
 <body>
 <a class="skip" href="#calc">Skip to the calculator</a>
 <!--NAV:START-->
-<header class="mn" id="mn" data-current="cagr-calculator">
+<header class="mn" id="mn" data-current="advanced-calculator">
  <div class="mn-shell"><div class="mn-bar">
   <a class="mn-logo" href="index.html" aria-label="Calculate home"><span class="mn-mark" aria-hidden="true">=</span>Calculate</a>
   <div class="mn-groups">
@@ -475,7 +517,7 @@ input,select,textarea{font-size:max(16px,1em)}
       <div class="mn-col-h mt">Investing</div>
       <a class="mn-link" href="sp500-dca-calculator.html"><span class="lbl">S&amp;P 500 since inception</span><span class="arr">&rarr;</span></a>
       <a class="mn-link" href="sp1-vs-sp500-calculator.html"><span class="lbl">S&amp;P 1 vs S&amp;P 500</span><span class="arr">&rarr;</span></a>
-      <a class="mn-link" href="cagr-calculator.html" aria-current="page"><span class="lbl">CAGR</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="cagr-calculator.html"><span class="lbl">CAGR</span><span class="arr">&rarr;</span></a>
       <a class="mn-link" href="drip-calculator.html"><span class="lbl">Dividend reinvestment</span><span class="arr">&rarr;</span></a>
       <a class="mn-link" href="retirement-calculator.html"><span class="lbl">Retirement / FIRE</span><span class="arr">&rarr;</span></a>
       <a class="mn-link" href="roi-calculator.html"><span class="lbl">ROI</span><span class="arr">&rarr;</span></a>
@@ -529,7 +571,7 @@ input,select,textarea{font-size:max(16px,1em)}
       <a class="mn-link" href="ratio-calculator.html"><span class="lbl">Ratio</span><span class="arr">&rarr;</span></a>
       <a class="mn-link" href="gcf-lcm-calculator.html"><span class="lbl">GCF &amp; LCM</span><span class="arr">&rarr;</span></a>
       <a class="mn-link" href="binary-hex-converter.html"><span class="lbl">Binary / hex</span><span class="arr">&rarr;</span></a>
-      <a class="mn-link" href="advanced-calculator.html"><span class="lbl">Advanced</span><span class="arr">&rarr;</span></a>
+      <a class="mn-link" href="advanced-calculator.html" aria-current="page"><span class="lbl">Advanced</span><span class="arr">&rarr;</span></a>
       <div class="mn-col-h mt">School</div>
       <a class="mn-link" href="gpa-calculator.html"><span class="lbl">GPA</span><span class="arr">&rarr;</span></a>
       <a class="mn-link" href="final-grade-calculator.html"><span class="lbl">Final grade</span><span class="arr">&rarr;</span></a>
@@ -587,7 +629,7 @@ input,select,textarea{font-size:max(16px,1em)}
      <div class="mn-acc-body"><div class="mn-acc-in"><div>
         <a class="mn-mlink" href="sp500-dca-calculator.html">S&amp;P 500 since inception</a>
         <a class="mn-mlink" href="sp1-vs-sp500-calculator.html">S&amp;P 1 vs S&amp;P 500</a>
-        <a class="mn-mlink" href="cagr-calculator.html" aria-current="page">CAGR</a>
+        <a class="mn-mlink" href="cagr-calculator.html">CAGR</a>
         <a class="mn-mlink" href="drip-calculator.html">Dividend reinvestment</a>
         <a class="mn-mlink" href="retirement-calculator.html">Retirement / FIRE</a>
         <a class="mn-mlink" href="roi-calculator.html">ROI</a>
@@ -649,7 +691,7 @@ input,select,textarea{font-size:max(16px,1em)}
         <a class="mn-mlink" href="ratio-calculator.html">Ratio</a>
         <a class="mn-mlink" href="gcf-lcm-calculator.html">GCF &amp; LCM</a>
         <a class="mn-mlink" href="binary-hex-converter.html">Binary / hex</a>
-        <a class="mn-mlink" href="advanced-calculator.html">Advanced</a>
+        <a class="mn-mlink" href="advanced-calculator.html" aria-current="page">Advanced</a>
      </div></div></div></div>
     <div class="mn-acc"><button class="mn-acc-top" type="button" aria-expanded="false">School<span class="caret"></span></button>
      <div class="mn-acc-body"><div class="mn-acc-in"><div>
@@ -704,63 +746,81 @@ input,select,textarea{font-size:max(16px,1em)}
 <main id="top">
 <nav class="crumbs" aria-label="Breadcrumb"><div class="wrap"><ol>
   <li><a href="index.html">Calculate</a></li>
-  <li><span aria-current="page">CAGR</span></li>
+  <li><span aria-current="page">Advanced</span></li>
 </ol></div></nav>
 <section class="tool-hero"><div class="wrap tool-hero-grid">
   <div>
-    <span class="eyebrow">Investing · Growth</span>
-    <h1>CAGR<br><span class="thin">calculator</span></h1>
-    <p class="lead">Went from $10,000 to $25,000 in 7 years — but what was the yearly rate? CAGR is the honest average: the single steady rate that would have produced the same journey, compounding included.</p>
-    <div class="meta"><span class="chipm">Start → end → rate</span><span class="chipm">Any period</span><span class="chipm">No sign-up</span></div>
+    <span class="eyebrow">Math & numbers · Notebook</span>
+    <h1>Advanced<br><span class="thin">calculator</span></h1>
+    <p class="lead">Write your working line by line, name results and reuse them, solve equations, plot curves and take derivatives or integrals — all computed in the page, with nothing sent anywhere.</p>
+    <div class="meta"><span class="chipm">Variables & multi-line</span><span class="chipm">Solve · plot · calculus</span><span class="chipm">No external libraries</span></div>
   </div>
   <div class="calc" id="calc">
-      <div class="calc-head"><span class="calc-chip" style="font-size:var(--fs-m);color:var(--ink-2)">Compound annual growth</span><span class="calc-chip">geometric mean</span></div>
-      <div class="field hasunit"><label for="a">Starting value</label><div class="in"><span class="unit">$</span><input id="a" type="number" inputmode="decimal" value="10000" style="padding-left:1.4em;text-align:right"></div></div>
-      <div class="field hasunit"><label for="b">Ending value</label><div class="in"><span class="unit">$</span><input id="b" type="number" inputmode="decimal" value="25000" style="padding-left:1.4em;text-align:right"></div></div>
-      <div class="field"><label for="y">Years</label><div class="in"><input id="y" type="number" inputmode="decimal" step="0.5" value="7" style="width:100px"></div></div>
-      <div class="readout"><div class="expr" id="expr">—</div><div class="result" id="result">—</div></div>
-      <div class="ripple">
-        <div class="rip"><div><span class="rip-name">Total growth</span><span class="rip-mech">the full-period change</span></div><span class="rip-val" id="r1">—</span></div>
-        <div class="rip"><div><span class="rip-name">Simple average (naive)</span><span class="rip-mech">total ÷ years — why it misleads</span></div><span class="rip-val cool" id="r2">—</span></div>
+      <div class="calc-head"><span class="calc-chip" style="color:var(--ink-2)">Notebook</span><span class="calc-chip">variables · solve · plot</span></div>
+      <div class="adv-hint">One expression per line. Assign with <b>=</b>, then reuse the name. Try <b>solve</b>, <b>plot</b>, <b>d/dx</b> or <b>integral</b>.</div>
+      <div class="adv-io">
+        <label class="adv-lab" for="advIn">Working</label>
+        <textarea id="advIn" spellcheck="false" autocomplete="off" rows="7">r = 4
+area = pi * r^2
+area / 2
+solve x^2 - 4
+plot sin(x)</textarea>
+      </div>
+      <div class="adv-res" id="advRes"></div>
+      <canvas id="advPlot" width="720" height="300" aria-label="Function plot"></canvas>
+      <div class="adv-chips">
+        <button type="button" class="adv-chip" data-ins="sqrt(2)">sqrt(2)</button>
+        <button type="button" class="adv-chip" data-ins="solve x^2 - 5*x + 6">solve quadratic</button>
+        <button type="button" class="adv-chip" data-ins="plot x^2 - 3">plot</button>
+        <button type="button" class="adv-chip" data-ins="d/dx x^3 at 2">derivative</button>
+        <button type="button" class="adv-chip" data-ins="integral x^2 from 0 to 3">integral</button>
+        <button type="button" class="adv-chip" data-ins="nCr(52,5)">nCr(52,5)</button>
       </div>
   </div>
 </div></section>
 <section><div class="wrap prose">
-    <h2>The honest average</h2>
-    <p><strong>CAGR</strong> — compound annual growth rate — is the one steady yearly rate that would carry a starting value to an ending value over a given period, with growth compounding on growth. It's the standard way to compare investments over different timespans.</p>
-    <div class="plate"><div class="lbl">The formula</div><div class="formula">CAGR = (end ÷ start)<sup>1/<span class="amber">years</span></sup> − 1</div></div>
-    <h3>Worked example</h3>
-    <div class="plate"><div class="lbl">$10,000 → $25,000 in 7 years</div><div class="eg">(25000 ÷ 10000)^(1/7) = 2.5^0.1429 ≈ 1.1399<br>CAGR ≈ <b>+14.0% a year</b></div></div>
-    <h3>Why not just divide by years?</h3>
-    <p>Dividing total growth by years ignores compounding and overstates the rate: 150% over 7 years is not 21.4% a year — it's 14%. The gap widens with time and with volatility, which is why CAGR is the number professionals quote. To run it forward instead of backward, the <a href="compound-interest-calculator.html">compound interest calculator</a> is the mirror image, and the <a href="rule-of-72-calculator.html">rule of 72</a> is the mental shortcut.</p>
+    <h2>A calculator that remembers what you just worked out</h2>
+    <p>Most calculators forget everything the moment you press equals. This one keeps your working on screen: write a line, name the result, and use that name further down. It is closer to a sheet of paper than a keypad — which is exactly what you want when a problem takes more than one step.</p>
+    <div class="plate"><div class="lbl">Assign and reuse</div><div class="eg">r = 4<br>area = pi * r^2<br>area / 2 → <b>25.13</b></div></div>
+    <h3>What it understands</h3>
+    <p>Standard arithmetic with correct precedence, powers with <b>^</b> (right-associative, so 2^3^2 is 512, not 64), factorials with <b>!</b>, and a full function library: sqrt, cbrt, exp, ln, log, log2, the trigonometric and hyperbolic families with their inverses, abs, sign, round, floor, ceil, min, max, hypot, pow, mod, nCr and nPr. The constants pi, e and tau are built in.</p>
+    <div class="plate"><div class="lbl">Four commands</div><div class="eg">solve x^2 - 4 → roots of an equation<br>plot sin(x) → draws the curve<br>d/dx x^3 at 2 → slope at a point<br>integral x^2 from 0 to 3 → area under the curve</div></div>
+    <h3>How the answers are worked out</h3>
+    <p>Roots are found numerically: the tool scans the range for sign changes, then bisects each one to about ten decimal places. Derivatives use a central difference, and integrals use Simpson's rule over two thousand slices. That means results are accurate to many decimal places for well-behaved functions, but they are numerical approximations rather than exact symbolic algebra — <b>solve</b> will find that x² = 2 has roots near ±1.41421356, not that they are exactly ±√2.</p>
+    <h3>Why there is no third-party maths library</h3>
+    <p>Everything here is parsed by hand: the text becomes tokens, the tokens become a queue in reverse Polish order, and that queue is evaluated. Nothing is ever handed to the browser as code to run, which is why an input like <b>alert(1)</b> is simply rejected as an unknown name rather than doing anything. It also means the page loads no external scripts at all — the same as every other page on this site. If you want a single-answer keypad instead, the <a href="scientific-calculator.html">scientific calculator</a> is the simpler tool, and the <a href="fraction-calculator.html">fraction calculator</a> handles exact fractions.</p>
 </div></section>
 <section><div class="wrap">
-  <div class="sec-head" style="max-width:68ch"><span class="eyebrow">Common questions</span><h2>CAGR FAQ</h2></div>
+  <div class="sec-head" style="max-width:68ch"><span class="eyebrow">Common questions</span><h2>Advanced FAQ</h2></div>
   <div class="acc" id="faq">
       <div class="acc-item">
-        <button class="acc-head" aria-expanded="false">What is CAGR?<span class="acc-chev" aria-hidden="true">+</span></button>
-        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>Compound annual growth rate — the single steady yearly rate that would grow a starting value to an ending value over a period, with compounding. It's the standard like-for-like growth measure in finance.</p></div></div></div>
+        <button class="acc-head" aria-expanded="false">Can I use variables in this calculator?<span class="acc-chev" aria-hidden="true">+</span></button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>Yes. Write a line like r = 4 and the name r is available on every line below it. You can build up a calculation in steps, which makes long problems much easier to check than a single running total.</p></div></div></div>
       </div>
       <div class="acc-item">
-        <button class="acc-head" aria-expanded="false">How do I calculate CAGR?<span class="acc-chev" aria-hidden="true">+</span></button>
-        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>Divide the ending value by the starting value, raise the result to one over the number of years, then subtract one. For $10,000 to $25,000 in 7 years: 2.5^(1/7) − 1 ≈ 14% a year.</p></div></div></div>
+        <button class="acc-head" aria-expanded="false">How does the solve command work?<span class="acc-chev" aria-hidden="true">+</span></button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>It scans the range for places where the expression changes sign, then narrows each one by bisection to around ten decimal places. Write solve x^2 - 4 to find where an expression equals zero, or solve x^2 = 9 to solve an equation directly. It reports every root it finds in the range.</p></div></div></div>
       </div>
       <div class="acc-item">
-        <button class="acc-head" aria-expanded="false">Why is CAGR lower than the simple average?<span class="acc-chev" aria-hidden="true">+</span></button>
-        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>Because compounding does part of the work each year. Averaging total growth over years ignores that and overstates the rate — the classic beginner mistake this calculator shows side by side.</p></div></div></div>
+        <button class="acc-head" aria-expanded="false">Is this a symbolic algebra system?<span class="acc-chev" aria-hidden="true">+</span></button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>No. Answers are numerical, not symbolic. It will tell you a root is 1.41421356 rather than that it is exactly the square root of two, and it cannot simplify or factor an expression. For step-by-step algebra you want a computer algebra system; for fast accurate numbers, this is the quicker tool.</p></div></div></div>
       </div>
       <div class="acc-item">
-        <button class="acc-head" aria-expanded="false">Can CAGR be negative?<span class="acc-chev" aria-hidden="true">+</span></button>
-        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>Yes. If the ending value is below the start, CAGR is negative — the steady yearly decline that matches the loss.</p></div></div></div>
+        <button class="acc-head" aria-expanded="false">What functions are available?<span class="acc-chev" aria-hidden="true">+</span></button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>sqrt, cbrt, abs, sign, exp, ln, log, log2, sin, cos, tan and their inverses, sinh, cosh, tanh, round, floor, ceil, min, max, hypot, pow, mod, nCr, nPr and factorial with the exclamation mark. The constants pi, e and tau are built in.</p></div></div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false">Does the plot handle any function?<span class="acc-chev" aria-hidden="true">+</span></button>
+        <div class="acc-panel"><div class="acc-body"><div class="acc-inner"><p>It samples the expression across the visible range and draws what it finds, skipping points that are undefined or infinite. Curves with asymptotes, like tan(x) or 1/x, will show breaks where the function is undefined rather than drawing a false vertical line.</p></div></div></div>
       </div>
   </div>
 </div></section>
 <section><div class="wrap">
   <div class="sec-head"><span class="eyebrow">Keep going</span><h2>Related calculators</h2></div>
   <div class="rel">
-      <a class="tool" href="compound-interest-calculator.html"><span class="ic">△</span><h3>Compound interest</h3><p>Growth over time</p><span class="go">Open →</span></a>
-      <a class="tool" href="rule-of-72-calculator.html"><span class="ic">72</span><h3>Rule of 72</h3><p>Doubling time shortcut</p><span class="go">Open →</span></a>
-      <a class="tool" href="roi-calculator.html"><span class="ic">±</span><h3>ROI</h3><p>Return on investment</p><span class="go">Open →</span></a>
+      <a class="tool" href="scientific-calculator.html"><span class="ic">√</span><h3>Scientific</h3><p>Full keypad</p><span class="go">Open →</span></a>
+      <a class="tool" href="fraction-calculator.html"><span class="ic">÷</span><h3>Fraction</h3><p>Four ops, simplified</p><span class="go">Open →</span></a>
+      <a class="tool" href="gcf-lcm-calculator.html"><span class="ic">∧</span><h3>GCF & LCM</h3><p>Factors & multiples</p><span class="go">Open →</span></a>
   </div>
 </div></section>
 </main>
@@ -773,7 +833,7 @@ input,select,textarea{font-size:max(16px,1em)}
       </div>
       <a class="btn pill" href="index.html#tools" style="padding:.5em .9em">Browse all →</a>
     </div>
-          <div class="ftg">
+    <div class="ftg">
       <div class="ftcol">
         <h5>Money &amp; the Fed</h5>
         <a class="mg-item" href="fed-rate-calculator.html"><span class="mg-ic">↓</span><span class="mg-t"><span class="mg-n">Fed rate cut</span><span class="mg-d">One cut, four ripples</span></span></a>
@@ -896,23 +956,339 @@ input,select,textarea{font-size:max(16px,1em)}
         <a class="mg-item" href="random-picker.html"><span class="mg-ic">✧</span><span class="mg-t"><span class="mg-n">Random picker</span><span class="mg-d">Pick winners from a list</span></span></a>
         <a class="mg-item" href="password-generator.html"><span class="mg-ic">*</span><span class="mg-t"><span class="mg-n">Password</span><span class="mg-d">Strong, generated locally</span></span></a>
       </div>
-      </div>
+    </div>
     <div class="fbar">
-      <p class="foot-note">© 2026 Calculate · Answers are for general use — check anything important with a professional. · Made with 🤎</p>
+      <p class="foot-note">© 2026 Calculate · Numerical results are approximations — check anything critical independently. · Made with 🤎</p>
       <span style="display:flex;gap:16px;flex-wrap:wrap;align-items:baseline"><a class="ftl" href="about.html">About</a><a class="ftl" href="privacy.html">Privacy</a><a class="ftl" href="support.html">Support</a><a class="ftl" href="https://luck.fyi" rel="nofollow noopener" title="From the same builder — probability &amp; crypto tools">luck.fyi ↗</a><a class="ftl" href="#top">Back to top ↑</a></span>
     </div>
   </div>
 </footer>
 <script>
-(function(){var $=function(i){return document.getElementById(i);};
-function run(){var a=parseFloat($('a').value)||0,b=parseFloat($('b').value)||0,y=parseFloat($('y').value)||0;
- if(a<=0||b<=0||y<=0){$('result').innerHTML='<span class="amber">—</span>';$('expr').textContent='—';return;}
- var c=(Math.pow(b/a,1/y)-1)*100,tot=(b/a-1)*100;
- $('expr').textContent='$'+a.toLocaleString('en-US')+' → $'+b.toLocaleString('en-US')+' over '+y+'yr';
- $('result').innerHTML='<span class="amber">'+(c>=0?'+':'')+(Math.round(c*100)/100)+'%</span><span class="small"> /yr</span>';
- $('r1').textContent=(tot>=0?'+':'')+(Math.round(tot*10)/10).toLocaleString('en-US')+'%';
- $('r2').textContent=(Math.round(tot/y*10)/10)+'% /yr';}
-['a','b','y'].forEach(function(i){$(i).addEventListener('input',run);});run();})();
+/* calculate.to advanced engine — notebook maths with variables, solving and plotting.
+   Same safety contract as the omnibox: tokeniser -> shunting-yard -> RPN.
+   No eval, no new Function, no third-party code. */
+(function () {
+  'use strict';
+
+  var CONST = { pi: Math.PI, e: Math.E, tau: Math.PI * 2 };
+  var F1 = {
+    sqrt: Math.sqrt, cbrt: Math.cbrt || function (x) { return Math.sign(x) * Math.pow(Math.abs(x), 1 / 3); },
+    abs: Math.abs, sign: Math.sign, exp: Math.exp, ln: Math.log,
+    log: function (x) { return Math.log(x) / Math.LN10; }, log2: function (x) { return Math.log(x) / Math.LN2; },
+    sin: Math.sin, cos: Math.cos, tan: Math.tan,
+    asin: Math.asin, acos: Math.acos, atan: Math.atan,
+    sinh: Math.sinh, cosh: Math.cosh, tanh: Math.tanh,
+    round: Math.round, floor: Math.floor, ceil: Math.ceil,
+    fact: function (n) { if (n < 0 || n !== Math.floor(n) || n > 170) return NaN; var r = 1; for (var i = 2; i <= n; i++) r *= i; return r; }
+  };
+  var F2 = {
+    pow: Math.pow, atan2: Math.atan2, mod: function (a, b) { return a % b; },
+    nCr: function (n, r) { return F1.fact(n) / (F1.fact(r) * F1.fact(n - r)); },
+    nPr: function (n, r) { return F1.fact(n) / F1.fact(n - r); }
+  };
+  var FN = { min: Math.min, max: Math.max, hypot: Math.hypot };   // variadic
+  var PREC = { '+': 1, '-': 1, '*': 2, '/': 2, '%': 2, '^': 4 };
+  var RIGHT = { '^': 1 };
+
+  function tokenize(src) {
+    var t = [], i = 0;
+    var s = src.replace(/[×✕]/g, '*').replace(/÷/g, '/').replace(/−/g, '-');
+    while (i < s.length) {
+      var c = s[i];
+      if (c === ' ' || c === '\t') { i++; continue; }
+      if (/[0-9.]/.test(c)) {
+        var n = '';
+        while (i < s.length && /[0-9.]/.test(s[i])) n += s[i++];
+        if (i < s.length && /[eE]/.test(s[i]) && /[0-9+\-]/.test(s[i + 1] || '')) {
+          n += s[i++]; if (/[+\-]/.test(s[i])) n += s[i++];
+          while (i < s.length && /[0-9]/.test(s[i])) n += s[i++];
+        }
+        if (!/^\d*\.?\d+(?:[eE][+-]?\d+)?$/.test(n)) throw new Error('bad number "' + n + '"');
+        t.push({ t: 'n', v: parseFloat(n) }); continue;
+      }
+      if (/[a-zA-Z_]/.test(c)) {
+        var w = '';
+        while (i < s.length && /[a-zA-Z_0-9]/.test(s[i])) w += s[i++];
+        t.push({ t: 'id', v: w }); continue;
+      }
+      if ('+-*/^%'.indexOf(c) > -1) { t.push({ t: 'op', v: c }); i++; continue; }
+      if (c === '(' || c === ')' || c === ',') { t.push({ t: c }); i++; continue; }
+      if (c === '!') { t.push({ t: 'op', v: '!' }); i++; continue; }
+      throw new Error('unexpected "' + c + '"');
+    }
+    return t;
+  }
+
+  function compile(tokens) {
+    var out = [], ops = [], argc = [], i, k, prev = null;
+    for (i = 0; i < tokens.length; i++) {
+      k = tokens[i];
+      if (k.t === 'n') out.push(k);
+      else if (k.t === 'id') {
+        var nxt = tokens[i + 1];
+        if (nxt && nxt.t === '(') { ops.push({ t: 'fn', v: k.v }); argc.push(0); }
+        else out.push({ t: 'var', v: k.v });
+      } else if (k.t === ',') {
+        while (ops.length && ops[ops.length - 1].t !== '(') out.push(ops.pop());
+        if (!argc.length) throw new Error('misplaced comma');
+        argc[argc.length - 1]++;
+      } else if (k.t === 'op') {
+        if (k.v === '!') { out.push({ t: 'post', v: '!' }); prev = k; continue; }
+        if (k.v === '-' && (prev === null || prev.t === 'op' || prev.t === '(' || prev.t === ',')) {
+          out.push({ t: 'n', v: 0 });
+        }
+        while (ops.length) {
+          var top = ops[ops.length - 1];
+          if (top.t === 'op' && (PREC[top.v] > PREC[k.v] || (PREC[top.v] === PREC[k.v] && !RIGHT[k.v]))) out.push(ops.pop());
+          else break;
+        }
+        ops.push(k);
+      } else if (k.t === '(') ops.push(k);
+      else if (k.t === ')') {
+        while (ops.length && ops[ops.length - 1].t !== '(') out.push(ops.pop());
+        if (!ops.length) throw new Error('unbalanced )');
+        ops.pop();
+        if (ops.length && ops[ops.length - 1].t === 'fn') {
+          var f = ops.pop(), n = argc.pop();
+          var empty = tokens[i - 1] && tokens[i - 1].t === '(';
+          out.push({ t: 'call', v: f.v, n: empty ? 0 : n + 1 });
+        }
+      }
+      prev = k;
+    }
+    while (ops.length) { var o = ops.pop(); if (o.t === '(') throw new Error('unbalanced ('); out.push(o); }
+    return out;
+  }
+
+  function run(rpn, scope) {
+    var st = [], i, k;
+    for (i = 0; i < rpn.length; i++) {
+      k = rpn[i];
+      if (k.t === 'n') st.push(k.v);
+      else if (k.t === 'var') {
+        var name = k.v;
+        if (scope && Object.prototype.hasOwnProperty.call(scope, name)) st.push(scope[name]);
+        else if (Object.prototype.hasOwnProperty.call(CONST, name)) st.push(CONST[name]);
+        else throw new Error('unknown name "' + name + '"');
+      } else if (k.t === 'post') {
+        if (!st.length) throw new Error('syntax');
+        st.push(F1.fact(st.pop()));
+      } else if (k.t === 'call') {
+        var args = [];
+        if (st.length < k.n) throw new Error('syntax');
+        for (var a = 0; a < k.n; a++) args.unshift(st.pop());
+        var nm = k.v;
+        if (F1[nm] && args.length === 1) st.push(F1[nm](args[0]));
+        else if (F2[nm] && args.length === 2) st.push(F2[nm](args[0], args[1]));
+        else if (FN[nm]) st.push(FN[nm].apply(null, args));
+        else throw new Error('unknown function "' + nm + '"');
+      } else {
+        if (st.length < 2) throw new Error('syntax');
+        var b = st.pop(), aa = st.pop();
+        st.push(k.v === '+' ? aa + b : k.v === '-' ? aa - b : k.v === '*' ? aa * b :
+                k.v === '/' ? aa / b : k.v === '%' ? aa % b : Math.pow(aa, b));
+      }
+    }
+    if (st.length !== 1) throw new Error('syntax');
+    return st[0];
+  }
+
+  function makeFn(src) {                       // expression -> f(x)
+    var rpn = compile(tokenize(src));
+    return function (x) { return run(rpn, { x: x }); };
+  }
+
+  /* numeric root find: bisection over a scan, Newton polish */
+  function solve(src, lo, hi) {
+    var f;
+    if (src.indexOf('=') > -1) {
+      var p = src.split('=');
+      if (p.length !== 2) throw new Error('one = only');
+      var L = makeFn(p[0]), R = makeFn(p[1]);
+      f = function (x) { return L(x) - R(x); };
+    } else f = makeFn(src);
+    lo = lo === undefined ? -50 : lo; hi = hi === undefined ? 50 : hi;
+    var roots = [], steps = 2000, prev = null, px = lo;
+    for (var i = 0; i <= steps; i++) {
+      var x = lo + (hi - lo) * i / steps, y;
+      try { y = f(x); } catch (e) { continue; }
+      if (!isFinite(y)) { prev = null; px = x; continue; }
+      if (prev !== null && ((prev < 0 && y > 0) || (prev > 0 && y < 0))) {
+        var a = px, b = x, fa = prev, m, fm;
+        for (var j = 0; j < 80; j++) {
+          m = (a + b) / 2; fm = f(m);
+          if (!isFinite(fm)) break;
+          if ((fa < 0) === (fm < 0)) { a = m; fa = fm; } else b = m;
+        }
+        var r = Math.round((a + b) / 2 * 1e10) / 1e10;
+        if (!roots.some(function (q) { return Math.abs(q - r) < 1e-7; })) roots.push(r);
+      } else if (y === 0) {
+        var r0 = Math.round(x * 1e10) / 1e10;
+        if (!roots.some(function (q) { return Math.abs(q - r0) < 1e-7; })) roots.push(r0);
+      }
+      prev = y; px = x;
+      if (roots.length >= 8) break;
+    }
+    return roots;
+  }
+
+  function derivative(src, at) { var f = makeFn(src), h = 1e-6; return (f(at + h) - f(at - h)) / (2 * h); }
+
+  function integral(src, a, b) {              // Simpson's rule
+    var f = makeFn(src), n = 2000, h = (b - a) / n, s = f(a) + f(b);
+    for (var i = 1; i < n; i++) s += f(a + i * h) * (i % 2 ? 4 : 2);
+    return s * h / 3;
+  }
+
+  window.CALC_ADV = {
+    evaluate: function (src, scope) { return run(compile(tokenize(src)), scope || {}); },
+    fn: makeFn, solve: solve, derivative: derivative, integral: integral,
+    names: function () {
+      return Object.keys(F1).concat(Object.keys(F2), Object.keys(FN), Object.keys(CONST)).sort();
+    }
+  };
+})();
+</script>
+<script>
+/* advanced calculator UI: evaluates each line, handles the four commands,
+   and draws plots on canvas. All maths goes through window.CALC_ADV. */
+(function () {
+  'use strict';
+  var A = window.CALC_ADV;
+  var ta = document.getElementById('advIn'), out = document.getElementById('advRes'),
+      cv = document.getElementById('advPlot');
+  if (!A || !ta || !out || !cv) return;
+  var ctx = cv.getContext ? cv.getContext('2d') : null;
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function fmt(n) {
+    if (typeof n !== 'number' || !isFinite(n)) return String(n);
+    var a = Math.abs(n);
+    if (a !== 0 && (a < 1e-6 || a >= 1e15)) return n.toExponential(8);
+    var v = Math.round(n * 1e10) / 1e10;
+    return v.toLocaleString('en-US', { maximumFractionDigits: 10 });
+  }
+
+  var CSS = { grid: '#dcd8cf', axis: '#8a877e', line: '#c96a1b', text: '#8a877e' };
+
+  function plot(expr) {
+    if (!ctx) return false;
+    var f;
+    try { f = A.fn(expr); } catch (e) { return false; }
+    var W = cv.width, H = cv.height, x0 = -10, x1 = 10;
+    /* auto-fit y from a sample */
+    var ys = [], i, x, y;
+    for (i = 0; i <= 600; i++) {
+      x = x0 + (x1 - x0) * i / 600;
+      try { y = f(x); } catch (e) { continue; }
+      if (isFinite(y)) ys.push(y);
+    }
+    if (!ys.length) return false;
+    ys.sort(function (a, b) { return a - b; });
+    var lo = ys[Math.floor(ys.length * 0.02)], hi = ys[Math.floor(ys.length * 0.98)];
+    if (!isFinite(lo) || !isFinite(hi) || lo === hi) { lo = -5; hi = 5; }
+    var pad = (hi - lo) * 0.15 || 1; lo -= pad; hi += pad;
+
+    ctx.clearRect(0, 0, W, H);
+    function px(x) { return (x - x0) / (x1 - x0) * W; }
+    function py(y) { return H - (y - lo) / (hi - lo) * H; }
+
+    ctx.strokeStyle = CSS.grid; ctx.lineWidth = 1;
+    for (i = -10; i <= 10; i += 2) {
+      ctx.beginPath(); ctx.moveTo(px(i), 0); ctx.lineTo(px(i), H); ctx.stroke();
+    }
+    var step = (hi - lo) / 6;
+    for (i = 0; i <= 6; i++) {
+      var gy = lo + step * i;
+      ctx.beginPath(); ctx.moveTo(0, py(gy)); ctx.lineTo(W, py(gy)); ctx.stroke();
+    }
+    ctx.strokeStyle = CSS.axis; ctx.lineWidth = 1.5;
+    if (lo < 0 && hi > 0) { ctx.beginPath(); ctx.moveTo(0, py(0)); ctx.lineTo(W, py(0)); ctx.stroke(); }
+    ctx.beginPath(); ctx.moveTo(px(0), 0); ctx.lineTo(px(0), H); ctx.stroke();
+
+    ctx.strokeStyle = CSS.line; ctx.lineWidth = 2.2; ctx.beginPath();
+    var pen = false, prevY = null;
+    for (i = 0; i <= W; i++) {
+      x = x0 + (x1 - x0) * i / W;
+      try { y = f(x); } catch (e) { pen = false; continue; }
+      if (!isFinite(y) || y > hi + (hi - lo) * 4 || y < lo - (hi - lo) * 4) { pen = false; prevY = null; continue; }
+      /* break the pen across an asymptote jump */
+      if (prevY !== null && Math.abs(y - prevY) > (hi - lo) * 0.9) pen = false;
+      if (!pen) { ctx.moveTo(i, py(y)); pen = true; } else ctx.lineTo(i, py(y));
+      prevY = y;
+    }
+    ctx.stroke();
+
+    ctx.fillStyle = CSS.text; ctx.font = '12px ui-monospace,monospace';
+    ctx.fillText(fmt(hi), 6, 14);
+    ctx.fillText(fmt(lo), 6, H - 6);
+    ctx.fillText('x \u2208 [\u221210, 10]', W - 96, H - 6);
+    cv.classList.add('on');
+    return true;
+  }
+
+  function evaluate() {
+    var lines = ta.value.split('\n'), scope = {}, rows = [], plotted = false;
+    for (var i = 0; i < lines.length; i++) {
+      var raw = lines[i], s = raw.trim();
+      if (!s) continue;
+      if (s.charAt(0) === '#') { rows.push(['note', raw, '']); continue; }
+      var m;
+      try {
+        /* plot <expr> */
+        if ((m = s.match(/^plot\s+(?:y\s*=\s*)?(.+)$/i))) {
+          rows.push(['cmd', s, plot(m[1]) ? 'drawn below' : 'cannot plot that']);
+          plotted = plotted || true; continue;
+        }
+        /* solve <expr>  |  solve <lhs> = <rhs> */
+        if ((m = s.match(/^solve\s+(.+)$/i))) {
+          var roots = A.solve(m[1]);
+          rows.push(['cmd', s, roots.length ? roots.map(fmt).join(',  ') : 'no root found in \u221250\u202610']);
+          continue;
+        }
+        /* d/dx <expr> at <n> */
+        if ((m = s.match(/^d\s*\/\s*dx\s+(.+?)\s+at\s+(-?[\d.]+)$/i))) {
+          rows.push(['cmd', s, fmt(A.derivative(m[1], parseFloat(m[2])))]); continue;
+        }
+        /* integral <expr> from <a> to <b> */
+        if ((m = s.match(/^integral\s+(.+?)\s+from\s+(-?[\d.]+)\s+to\s+(-?[\d.]+)$/i))) {
+          rows.push(['cmd', s, fmt(A.integral(m[1], parseFloat(m[2]), parseFloat(m[3])))]); continue;
+        }
+        /* assignment */
+        if ((m = s.match(/^([a-zA-Z_][a-zA-Z_0-9]*)\s*=\s*(.+)$/)) && !/[<>=!]=/.test(s)) {
+          var v = A.evaluate(m[2], scope);
+          scope[m[1]] = v;
+          rows.push(['set', s, m[1] + ' = ' + fmt(v)]);
+          continue;
+        }
+        rows.push(['val', s, fmt(A.evaluate(s, scope))]);
+      } catch (err) {
+        rows.push(['err', s, err.message || 'not valid']);
+      }
+    }
+    if (!plotted) cv.classList.remove('on');
+    out.innerHTML = rows.length ? rows.map(function (r) {
+      if (r[0] === 'note') return '<div class="adv-row adv-note">' + esc(r[1]) + '</div>';
+      return '<div class="adv-row' + (r[0] === 'err' ? ' adv-bad' : '') + '">' +
+             '<span class="adv-src">' + esc(r[1]) + '</span>' +
+             '<span class="adv-val">' + esc(r[2]) + '</span></div>';
+    }).join('') : '<div class="adv-row adv-note">Type an expression above.</div>';
+  }
+
+  ta.addEventListener('input', evaluate);
+  [].forEach.call(document.querySelectorAll('.adv-chip'), function (b) {
+    b.addEventListener('click', function () {
+      var v = ta.value.replace(/\s+$/, '');
+      ta.value = (v ? v + '\n' : '') + b.getAttribute('data-ins');
+      evaluate(); ta.focus();
+    });
+  });
+  evaluate();
+})();
 </script>
 <script>
 
@@ -937,8 +1313,6 @@ function run(){var a=parseFloat($('a').value)||0,b=parseFloat($('b').value)||0,y
     <div class="mns-res" id="mnsRes"></div>
   </div>
 </div>
-
-
 <script>
 /* calculate.to omnibox engine — parses maths, percentages and unit conversions.
    NO eval(): a tokeniser + shunting-yard + RPN evaluator, so a hostile string
@@ -1265,6 +1639,5 @@ window.CALC_OMNI = (function () {
  });
 })();
 </script>
-
 </body>
 </html>
