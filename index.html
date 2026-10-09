@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="theme-color" content="#f6f4ef">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon-96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<title>Calculate.to: 100+ Free Calculators for Money, Health & Life</title>
+<meta name="description" content="100+ free, instant calculators, mortgages, inflation, BMI, GPA, time zones, recipes and more. No ads, no sign-up, every answer verified.">
+<link rel="canonical" href="https://calculate.to/">
+<meta property="og:title" content="Calculate.to: Fast, Free Everyday Calculators">
+<meta property="og:description" content="100+ free, instant calculators, mortgages, inflation, BMI, GPA, time zones, recipes and more. No ads, no sign-up, every answer verified.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Calculate.to">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://calculate.to/">
+<meta property="og:image" content="https://calculate.to/assets/img/og/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculate.to, free everyday calculators, no sign-up">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://calculate.to/assets/img/og/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6f4ef;
+  --paper-2:#efece4;
+  --ink:#1c1b19;
+  --ink-2:#4a4843;
+  --muted:#6b6860;
+  --hair:#dcd8cf;
+  --hair-2:#cbc6bb;
+  --signal:#c96a1b;  --signal-deep:#a5540f;
+  --slate:#2f4858;  --good:#3f7d54;
+  --card:#fbfaf7;
+  --shadow:22,20,16;
+
+  --fs-m:16px;--fs-l:20px;     --fs-xl:28px;
+  --fs-2xl:clamp(38px,6.5vw,64px);  
+  --lh-display:1.02; --lh-head:1.15; --lh-ui:1.4; --lh-body:1.6;
+
+  --content:1040px;
+  --r:18px; --r-btn:12px;
+  --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --display:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:#f6f4ef;color-scheme:light}
+html,body{color-scheme:light}
+/* keep the palette under forced-colours (the preview panel triggers this) */
+html{forced-color-adjust:none}
+*{forced-color-adjust:none}
+body{
+  margin:0;
+  background-color:#f6f4ef;
+  color:#1c1b19;
+  font-family:var(--sans);font-size:var(--fs-m);line-height:var(--lh-body);
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(1100px 500px at 82% -8%, rgba(201,106,27,.06), transparent 60%),
+    radial-gradient(760px 460px at -5% 0%, rgba(47,72,88,.05), transparent 55%);
+  background-repeat:no-repeat;
+}
+/* absolute guarantee: paper base behind everything, even if a client kills bg-color */
+
+html::before{content:"";position:fixed;inset:0;background:#f6f4ef;z-index:-1;pointer-events:none}
+.wrap{max-width:var(--content);margin:0 auto;padding:0 22px}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(201,106,27,.22)}
+
+.skip{position:absolute;left:-9999px;top:0;background:var(--signal);color:#fff;text-decoration:none;padding:.7em 1.1em;border-radius:0 0 10px 0;z-index:50}
+.skip:focus{left:0}
+
+.brand{display:inline-flex;align-items:baseline;gap:.02em;font-family:var(--display);font-weight:600;font-size:var(--fs-l);letter-spacing:-.01em;text-decoration:none}
+.brand .eq{color:var(--signal);font-family:var(--mono);font-weight:500;margin-right:.12em;transform:translateY(-1px)}
+.top.menu-open 
+@media(max-width:620px){.top nav a:not(.pill){display:none}}
+.pill{border:1px solid var(--hair-2);background:linear-gradient(180deg,#fff,rgba(28,27,25,.03));box-shadow:inset 0 1px 0 #fff}
+
+.hero{padding:58px 0 30px;background:#f6f4ef}
+.hero-grid{display:grid;grid-template-columns:minmax(0,660px);gap:32px;align-items:center}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:32px}}
+.eyebrow{font-family:var(--mono);font-size:var(--fs-m);letter-spacing:.16em;text-transform:uppercase;color:var(--signal-deep);line-height:var(--lh-ui)}
+h1{font-family:var(--display);font-weight:600;font-size:var(--fs-2xl);line-height:var(--lh-display);letter-spacing:-.02em;margin:.24em 0 .3em}
+h1 .thin{font-weight:400;color:var(--ink-2)}
+.hero .eyebrow{display:block;margin:0 0 12px}
+.hero h1{margin-top:0}
+.hero p.lead{font-size:var(--fs-l);color:var(--ink-2);max-width:44ch;margin:0 0 26px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+@media(max-width:560px){
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%;justify-content:center}
+}
+
+.btn{font-family:var(--sans);font-weight:700;font-size:var(--fs-m);line-height:var(--lh-ui);
+  padding:.82em 1.3em;border-radius:var(--r-btn);border:1px solid var(--hair-2);cursor:pointer;
+  color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:.5em;
+  background:radial-gradient(120% 95% at 50% 14%,#fff,rgba(255,255,255,0) 60%),linear-gradient(180deg,#fff,rgba(28,27,25,.04));
+  box-shadow:inset 0 1.5px 1px #fff,inset 0 -2px 3px rgba(22,20,16,.10),0 4px 10px -8px rgba(22,20,16,.3);
+  transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease}
+.btn:hover{transform:translateY(1px);border-color:color-mix(in srgb,var(--signal) 45%,var(--hair-2))}
+.btn:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(22,20,16,.16),0 2px 6px -6px rgba(22,20,16,.3)}
+.btn.solid{color:#fff;border-color:transparent;
+  background:radial-gradient(120% 95% at 50% 14%,rgba(255,255,255,.28),rgba(255,255,255,0) 55%),linear-gradient(180deg,var(--signal),var(--signal-deep));
+  box-shadow:inset 0 1.5px 1px rgba(255,255,255,.4),inset 0 -2px 3px rgba(120,60,0,.4),0 6px 14px -8px rgba(201,106,27,.5)}
+.btn.solid:hover{border-color:transparent}
+
+
+.readout{font-family:var(--mono);text-align:right;padding:14px 4px 18px;border-bottom:1px solid var(--hair);margin-bottom:18px}
+.readout .expr{font-size:var(--fs-m);color:var(--muted);min-height:1.3em;line-height:var(--lh-ui)}
+.readout .result{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-xl);font-weight:500;line-height:1;letter-spacing:-.01em;
+  color:var(--ink);transition:color .2s}
+.readout .result .amber{color:var(--signal)}
+
+.field{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;margin:12px 0}
+.field label{font-size:var(--fs-m);color:var(--ink-2);font-weight:500;line-height:var(--lh-ui)}
+.field .in{position:relative}
+.field input{font-family:var(--mono);font-size:var(--fs-l);width:120px;text-align:right;
+  padding:.5em .7em;border:1px solid var(--hair-2);border-radius:10px;background:#f6f4ef;background:var(--paper);color:#1c1b19;
+  outline:none;transition:border-color .15s, box-shadow .15s}
+.field input:focus{border-color:var(--signal);box-shadow:0 0 0 3px rgba(201,106,27,.14)}
+.field .unit{position:absolute;left:.7em;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:var(--fs-m);color:var(--muted);pointer-events:none}
+.field.hasunit input{text-align:right;padding-left:1.4em}
+
+.seg{display:inline-flex;border:1px solid var(--hair-2);border-radius:10px;overflow:hidden}
+.seg button{font-family:var(--sans);font-size:var(--fs-m);font-weight:600;border:0;background:#f6f4ef;background:var(--paper);color:#4a4843;padding:.5em .8em;cursor:pointer;line-height:var(--lh-ui)}
+.seg button+button{border-left:1px solid var(--hair-2)}
+.seg button.on{background:#2f4858;background:var(--slate);color:#fff}
+
+
+section{padding:44px 0;background:#f6f4ef}
+.sec-head{margin-bottom:26px}
+.sec-head .eyebrow{display:block;margin-bottom:8px}
+.sec-head h2{font-family:var(--display);font-weight:600;font-size:var(--fs-xl);line-height:var(--lh-head);letter-spacing:-.015em;margin:0}
+.sec-head p{color:var(--ink-2);max-width:52ch;margin:10px 0 0}
+
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+.tool{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:#1c1b19;
+  background:#fbfaf7;background:var(--card);border:1px solid var(--hair);border-radius:var(--r);padding:18px 18px 16px;
+  box-shadow:inset 0 1.5px 0 #fff,inset 0 -3px 5px rgba(22,20,16,.04);
+  transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease}
+.tool:hover{transform:translateY(-3px);border-color:var(--hair-2);
+  box-shadow:inset 0 1.5px 0 #fff,0 16px 30px -20px rgba(22,20,16,.4)}
+.tool .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  font-family:var(--mono);font-size:var(--fs-m);font-weight:500;color:#2f4858;line-height:1;text-align:center;overflow:hidden;
+  background:#fff;background:linear-gradient(180deg,#fff,var(--paper-2));border:1px solid var(--hair);margin-bottom:4px}
+.tool h3{font-size:var(--fs-m);font-weight:600;margin:0;line-height:var(--lh-ui)}
+.tool p{font-size:var(--fs-m);color:var(--muted);margin:0;line-height:var(--lh-ui)}
+.tool .go{margin-top:auto;font-family:var(--mono);font-size:var(--fs-m);color:var(--signal-deep);letter-spacing:.03em;padding-top:8px}
+
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.cat{font-family:var(--mono);font-size:var(--fs-m);letter-spacing:.06em;text-transform:uppercase;color:#4a4843;
+  border:1px solid var(--hair-2);background:#fbfaf7;background:var(--card);padding:.5em .8em;border-radius:999px;line-height:1}
+
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:760px){.why{grid-template-columns:1fr}}
+.why .item{padding:0}
+.why .n{font-family:var(--mono);font-size:var(--fs-m);color:var(--signal);letter-spacing:.1em}
+.why h4{font-family:var(--display);font-weight:600;font-size:var(--fs-l);margin:.5em 0 .3em;line-height:var(--lh-head)}
+.why p{color:var(--ink-2);font-size:var(--fs-m);margin:0}
+
+footer{border-top:1px solid var(--hair);padding:40px 0 56px;margin-top:20px}
+.foot-note{margin-top:30px;font-size:var(--fs-m);color:var(--muted);font-family:var(--mono)}
+
+.acc{border-top:1px solid var(--hair);margin-top:4px}
+.acc-item{border-bottom:1px solid var(--hair)}
+.acc-head{width:100%;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:14px;
+  background:transparent;border:0;cursor:pointer;text-align:left;padding:15px 4px;font-family:var(--sans);color:var(--ink)}
+.acc-head:hover .acc-name{color:var(--signal-deep)}
+.acc-head:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:8px}
+.acc-ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex:none;
+  font-family:var(--mono);font-size:var(--fs-m);font-weight:500;color:#2f4858;color:var(--slate);
+  background:#fff;background:linear-gradient(180deg,#fff,var(--paper-2));border:1px solid var(--hair)}
+.acc-txt{display:flex;flex-direction:column;gap:1px;min-width:0}
+.acc-name{font-size:var(--fs-l);font-weight:600;line-height:var(--lh-ui)}
+.acc-sum{font-size:var(--fs-m);color:var(--muted);line-height:var(--lh-ui);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acc-tag{font-family:var(--mono);font-size:var(--fs-m);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);
+  border:1px solid var(--hair-2);border-radius:999px;padding:.32em .7em;line-height:1}
+.acc-chev{font-family:var(--mono);font-size:var(--fs-l);color:var(--muted);width:20px;text-align:center;transition:transform .25s ease,color .25s ease;line-height:1}
+.acc-item.open .acc-chev{transform:rotate(45deg);color:var(--signal)}
+@media(max-width:640px){.acc-sum{display:none}.acc-tag{display:none}.acc-head{grid-template-columns:auto 1fr auto}}
+.acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease}
+.acc-item.open .acc-panel{grid-template-rows:1fr}
+.acc-panel>.acc-body{overflow:hidden;min-height:0}
+.acc-inner{padding:2px 4px 22px}
+.mini{display:grid;grid-template-columns:1.05fr 1fr;gap:22px;align-items:center;
+  background:#efece4;background:var(--paper-2);border:1px solid var(--hair);border-radius:14px;padding:18px 20px}
+@media(max-width:640px){.mini{grid-template-columns:1fr;gap:18px;padding:16px}}
+.mini-fields{display:flex;flex-direction:column;gap:11px}
+.mf{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px}
+.mf label{font-size:var(--fs-m);color:var(--ink-2);font-weight:500;line-height:var(--lh-ui)}
+.mf-in{position:relative}
+.mf input{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-family:var(--mono);font-size:var(--fs-m);width:112px;text-align:right;
+  padding:.46em .66em;border:1px solid var(--hair-2);border-radius:9px;background:#fff;color:#1c1b19;color:var(--ink);outline:none;
+  transition:border-color .15s,box-shadow .15s}
+.mf input[type=date]{width:158px;text-align:left}
+.mf input:focus{border-color:var(--signal);box-shadow:0 0 0 3px rgba(201,106,27,.14)}
+.mf-u{position:absolute;right:.6em;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:var(--fs-m);color:var(--muted);pointer-events:none}
+.mf-l input{text-align:right;padding-left:1.5em}
+.mf-ul{right:auto;left:.6em}
+.mf-frac{display:inline-flex;align-items:center;gap:8px;justify-self:end}
+.mf-frac input{width:56px;text-align:center}
+.mf-frac span{font-family:var(--mono);color:var(--muted)}
+.mo{min-width:0}
+.mo-expr{font-family:var(--mono);font-size:var(--fs-m);color:var(--muted);min-height:1.2em;line-height:var(--lh-ui);letter-spacing:.02em}
+.mo-main{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-family:var(--mono);font-size:var(--fs-xl);font-weight:500;color:var(--signal);line-height:1.1;margin:4px 0 12px;word-break:break-word}
+.mo-sub{display:flex;gap:22px;flex-wrap:wrap}
+.moc{display:flex;flex-direction:column;gap:2px}
+.mok{font-family:var(--mono);font-size:var(--fs-m);color:var(--muted);text-transform:uppercase;letter-spacing:.05em;line-height:1}
+.mov{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-family:var(--mono);font-size:var(--fs-m);color:var(--ink)}
+.acc-cta{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:var(--fs-m);color:var(--signal-deep);text-decoration:none;line-height:var(--lh-ui)}
+.acc-cta:hover{text-decoration:none}
+.acc-cta b{font-weight:500}
+.mini-pv{grid-template-columns:1fr;text-align:left}
+.pv-ex{font-family:var(--mono);font-size:var(--fs-m);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.pv-main{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-family:var(--mono);font-size:var(--fs-xl);font-weight:500;color:var(--ink);line-height:1.1}
+.pv-note{font-size:var(--fs-m);color:var(--ink-2);margin-top:10px;max-width:56ch;line-height:var(--lh-ui)}
+.pv-keys{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.pv-keys span{font-family:var(--mono);font-size:var(--fs-m);color:var(--slate);background:#fff;border:1px solid var(--hair);border-radius:8px;padding:.4em .6em;min-width:2.2em;text-align:center}
+
+.mm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+@media(max-width:900px){.mm-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.mm-grid{grid-template-columns:1fr}}
+
+/* keep the light "paper" identity even if the client forces dark mode */
+
+@media (prefers-color-scheme: dark){
+  html,body{background:#f6f4ef;color:#1c1b19}
+  :root{
+    --paper:#f6f4ef;--paper-2:#efece4;--ink:#1c1b19;--ink-2:#4a4843;--muted:#6b6860;
+    --hair:#dcd8cf;--hair-2:#cbc6bb;--card:#fbfaf7;
+  }
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.top.menu-open 
+.mega-grid{columns:4 210px;column-gap:26px;padding-top:26px;padding-bottom:30px}
+.mega-col{break-inside:avoid;margin-bottom:20px}
+
+.mega-col h5{font-size:var(--fs-m);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;border-bottom:1px solid var(--hair);padding-bottom:8px}
+.mg-item{display:flex;align-items:flex-start;gap:10px;text-decoration:none;color:var(--ink);padding:7px 6px;margin:0 -6px;border-radius:10px}
+.mg-item:hover{background:#efece4;background:var(--paper-2)}
+.mg-ic{width:26px;height:26px;flex:none;border-radius:8px;display:grid;place-items:center;
+  font-family:var(--mono);font-size:var(--fs-m);font-weight:500;color:#2f4858;color:var(--slate);line-height:1;text-align:center;overflow:hidden;
+  background:#fff;background:linear-gradient(180deg,#fff,var(--paper-2));border:1px solid var(--hair);margin-top:1px}
+.mg-t{min-width:0}
+.mg-n{display:block;font-size:var(--fs-m);font-weight:600;line-height:var(--lh-ui)}
+.mg-item:hover .mg-n{color:var(--signal-deep)}
+.mg-d{display:block;font-size:var(--fs-m);color:var(--muted);line-height:var(--lh-ui)}
+
+
+.ftop{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  padding-bottom:26px;border-bottom:1px solid var(--hair);margin-bottom:26px}
+.fbrand .brand{font-size:var(--fs-l)}
+.fbrand p{color:var(--muted);font-size:var(--fs-m);margin:.6em 0 0;max-width:28ch}
+.ftg{columns:4 210px;column-gap:26px}
+.ftcol{break-inside:avoid;margin-bottom:20px}
+
+.ftcol h5{font-size:var(--fs-m);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 8px;border-bottom:1px solid var(--hair);padding-bottom:8px}
+.fbar{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;
+  border-top:1px solid var(--hair);margin-top:30px;padding-top:18px}
+.fbar .foot-note{margin:0}
+.ftl{font-family:var(--mono);font-size:var(--fs-m);color:var(--ink-2);text-decoration:none;letter-spacing:.04em;white-space:nowrap}
+.ftl:hover{color:var(--signal-deep)}
+
+* { cursor: default; }
+
+a, button, label, summary, select,
+[role="button"], [role="link"], [role="tab"],
+.btn, [onclick] {
+  cursor: pointer;
+}
+
+input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+textarea,
+[contenteditable="true"] {
+  cursor: text;
+}
+
+input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: pointer; }
+
+:disabled, [disabled], [aria-disabled="true"] { cursor: not-allowed; }
+
+
+.mn{position:sticky;top:0;z-index:500}
+.mn-shell{position:relative;z-index:495;background:#f6f4ef;background:var(--paper);border-bottom:1px solid var(--hair);transition:box-shadow .3s}
+.mn.is-scrolled .mn-shell{box-shadow:0 16px 44px -26px rgba(22,20,16,.32)}
+.mn-bar{max-width:1000px;max-width:var(--content);margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:12px;height:74px;transition:height .3s}
+.mn.is-scrolled .mn-bar{height:60px}
+.mn-logo{display:inline-flex;align-items:baseline;gap:.02em;margin-right:auto;text-decoration:none;color:#1c1b19;color:var(--ink);font-family:var(--display);font-weight:600;font-size:var(--fs-l);letter-spacing:-.01em}
+.mn-mark{color:#c96a1b;color:var(--signal);font-family:var(--mono);font-weight:500;margin-right:.12em}
+.mn-groups{display:flex;align-items:center}
+.mn-group{position:static}
+.mn-top{display:inline-flex;align-items:center;gap:.45em;font-family:inherit;font-weight:600;font-size:var(--fs-m);color:#4a4843;color:var(--ink-2);background:none;border:0;padding:.6em .85em;border-radius:999px;line-height:var(--lh-ui);transition:color .18s,background .18s}
+.mn-group:hover .mn-top,.mn-group.is-open .mn-top{color:#a5540f;color:var(--signal-deep);background:#efece4;background:var(--paper-2)}
+.mn-top .gi{width:18px;height:18px;flex:none}
+.mn-top .caret{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;margin-left:.15em;transition:transform .26s ease}
+.mn-group.is-open .mn-top .caret{transform:rotate(180deg)}
+.mn-panel{position:absolute;top:100%;left:0;right:0;background:#f6f4ef;background:var(--paper);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);box-shadow:0 26px 56px -32px rgba(22,20,16,.34);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .24s,transform .26s cubic-bezier(.2,1,.3,1),visibility .26s;z-index:10}
+.mn-group.is-open .mn-panel{opacity:1;visibility:visible;transform:none}
+.mn-panel-inner{max-width:1000px;max-width:var(--content);margin:0 auto;padding:24px 22px 28px;display:grid;gap:24px;grid-template-columns:repeat(4,1fr);max-height:min(74vh,660px);overflow-y:auto;overscroll-behavior:contain}
+.mn-col-h{font-size:var(--fs-m);font-family:var(--mono);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#6b6860;color:var(--muted);padding:0 8px 8px;border-bottom:1px solid var(--hair);margin-bottom:6px}
+.mn-col-h.mt{margin-top:18px}
+.mn-link{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 8px;border-radius:10px;text-decoration:none;font-weight:600;font-size:var(--fs-m);color:#1c1b19;color:var(--ink);line-height:var(--lh-ui);transition:background .15s,color .15s}
+.mn-link:hover{background:#efece4;background:var(--paper-2);color:#a5540f;color:var(--signal-deep)}
+.mn-link .lbl{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mn-link .arr{opacity:0;transform:translateX(-4px);transition:opacity .15s,transform .15s;color:#c96a1b;color:var(--signal)}
+.mn-link:hover .arr{opacity:1;transform:none}
+.mn-link[aria-current="page"]{background:#efece4;background:var(--paper-2);color:#a5540f;color:var(--signal-deep)}
+.mn-search{display:inline-flex;align-items:center;gap:.55em;min-width:290px;font-family:inherit;font-size:var(--fs-m);font-weight:500;color:#6b6860;color:var(--muted);background:#fbfaf7;background:var(--card);border:1px solid var(--hair);border-radius:999px;padding:.5em .9em;line-height:var(--lh-ui);transition:border-color .18s,color .18s,box-shadow .18s}
+.mn-search:hover{border-color:var(--hair-2);color:#4a4843;color:var(--ink-2);box-shadow:0 2px 10px -6px rgba(22,20,16,.35)}
+.mn-sq{flex:1;min-width:0;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mn-sq b{font-weight:600;color:#a5540f;color:var(--signal-deep)}
+.mn-car{display:inline-block;width:1px;height:1em;vertical-align:-.15em;background:currentColor;margin-left:1px;animation:mncar 1.05s steps(1) infinite}
+@keyframes mncar{0%,50%{opacity:1}51%,100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.mn-car{animation:none;opacity:0}}
+.mn-search svg{width:15px;height:15px;flex:none}
+.mn-search kbd{font-family:var(--mono);font-size:var(--fs-m);border:1px solid var(--hair);border-radius:5px;padding:0 .35em;background:#f6f4ef;background:var(--paper);color:var(--muted)}
+.mn-cta{display:inline-flex;align-items:center;text-decoration:none;font-size:var(--fs-m);font-weight:700;color:#f6f4ef;color:var(--paper);background:#1c1b19;background:var(--ink);border-radius:11px;padding:.62em 1em;line-height:var(--lh-ui);transition:background .18s}
+.mn-cta:hover{background:#a5540f;background:var(--signal-deep)}
+.mn-scrim{position:fixed;inset:0;background:rgba(22,20,16,.26);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .24s;z-index:1}
+html.mn-blur .mn-scrim{opacity:1;visibility:visible;pointer-events:auto}
+.mn-burger{display:none;width:42px;height:42px;flex:none;border:1px solid var(--hair);border-radius:12px;background:#fbfaf7;background:var(--card);position:relative;color:#6b6860;color:var(--muted);transition:border-color .18s,color .18s}
+.mn-burger:hover{border-color:var(--hair-2);color:#4a4843;color:var(--ink-2)}
+.mn-burger span,.mn-burger span:before,.mn-burger span:after{position:absolute;width:18px;height:1.5px;background:currentColor;border-radius:2px;transition:transform .28s ease,background .18s ease}
+.mn-burger span{left:calc(50% - 9px);top:calc(50% - .75px)}
+.mn-burger span:before{content:"";left:0;top:-6px}
+.mn-burger span:after{content:"";left:0;top:6px}
+.mn.is-drawer .mn-burger span{background:transparent}
+.mn.is-drawer .mn-burger span:before{transform:translateY(6px) rotate(45deg)}
+.mn.is-drawer .mn-burger span:after{transform:translateY(-6px) rotate(-45deg)}
+.mn-drawer{display:none}
+
+.mns{position:fixed;inset:0;z-index:600;display:flex;align-items:flex-start;justify-content:center;padding:12vh 20px 20px;background:rgba(22,20,16,.34);opacity:0;visibility:hidden;transition:opacity .22s,visibility .22s}
+html.mns-open .mns{opacity:1;visibility:visible}
+.mns-box{width:100%;max-width:560px;background:#f6f4ef;background:var(--paper);border:1px solid var(--hair);border-radius:18px;box-shadow:0 30px 70px -30px rgba(22,20,16,.5);overflow:hidden;transform:translateY(-8px);transition:transform .26s cubic-bezier(.2,1,.3,1)}
+html.mns-open .mns-box{transform:none}
+.mns-in{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--hair)}
+.mns-in svg{width:17px;height:17px;flex:none;color:#6b6860;color:var(--muted)}
+.mns-in input{flex:1;min-width:0;font-family:inherit;font-size:var(--fs-l);color:#1c1b19;color:var(--ink);background:transparent;border:0;outline:none;line-height:var(--lh-ui)}
+.mns-in input::placeholder{color:#6b6860;color:var(--muted)}
+.mns-esc{font-family:var(--mono);font-size:var(--fs-m);color:#6b6860;color:var(--muted);border:1px solid var(--hair);border-radius:5px;padding:1px .4em;background:#fbfaf7;background:var(--card)}
+.mns-res{max-height:min(52vh,420px);overflow-y:auto;overscroll-behavior:contain;padding:8px}
+.mns-r{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px;border-radius:10px;text-decoration:none;color:#1c1b19;color:var(--ink)}
+.mns-r:hover,.mns-r.on{background:#efece4;background:var(--paper-2)}
+.mns-rn{font-size:var(--fs-m);font-weight:600;line-height:var(--lh-ui);min-width:0}
+.mns-rc{font-size:var(--fs-m);font-family:var(--mono);color:#6b6860;color:var(--muted);flex:none}
+.mns-r.on .mns-rn{color:#a5540f;color:var(--signal-deep)}
+.mns-none{padding:22px 12px;text-align:center;font-size:var(--fs-m);color:#6b6860;color:var(--muted)}
+.mns-omni{margin:2px 2px 8px;padding:12px 13px;border:1px solid var(--hair);border-radius:12px;background:#fbfaf7;background:var(--card)}
+.mns-oq{font-family:var(--mono);font-size:var(--fs-m);color:#6b6860;color:var(--muted);line-height:var(--lh-ui);word-break:break-word}
+.mns-ov{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-xl);color:#c96a1b;color:var(--signal);line-height:var(--lh-head);margin-top:2px;word-break:break-word}
+.mns-osub{font-family:var(--mono);font-size:var(--fs-m);color:#6b6860;color:var(--muted);margin-top:2px}
+.mns-ot{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:var(--fs-m);color:#a5540f;color:var(--signal-deep);text-decoration:none}
+
+@media(max-width:960px){
+  .mn-groups,.mn-sq,.mn-search kbd,.mn-cta{display:none}
+  .mn-search{width:42px;height:42px;min-width:0;flex:none;padding:0;border-radius:12px;justify-content:center}
+  .mn-search svg{width:17px;height:17px}
+  .mn-burger{display:block}
+  .mn-drawer{display:flex;position:fixed;inset:0;top:0;z-index:490;height:100dvh;background:#f6f4ef;background:var(--paper);opacity:0;visibility:hidden;transform:translateY(-2%);transition:opacity .34s,transform .36s cubic-bezier(.2,1,.3,1),visibility .36s;flex-direction:column;padding:74px 0 24px}
+  .mn.is-drawer .mn-drawer{opacity:1;visibility:visible;transform:none}
+  .mn-drawer-scroll{overflow-y:auto;overscroll-behavior:contain;flex:1;padding:8px 22px 24px;max-width:560px;width:100%;margin:0 auto}
+  .mn-acc{border-bottom:1px solid var(--hair)}
+  .mn-acc-top{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;background:none;border:0;font-family:inherit;font-weight:600;font-size:var(--fs-l);color:#1c1b19;color:var(--ink);padding:15px 4px;line-height:var(--lh-ui)}
+  .mn-acc-top .caret{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--muted);transition:transform .3s ease}
+  .mn-acc.is-open .mn-acc-top{color:#a5540f;color:var(--signal-deep)}
+  .mn-acc.is-open .mn-acc-top .caret{transform:rotate(180deg)}
+  .mn-acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s ease}
+  .mn-acc.is-open .mn-acc-body{grid-template-rows:1fr}
+  .mn-acc-in{overflow:hidden;min-height:0}
+  .mn-acc-in>div{padding:0 0 10px}
+  .mn-mlink{display:block;padding:10px 12px;border-radius:10px;text-decoration:none;font-size:var(--fs-m);font-weight:500;color:#4a4843;color:var(--ink-2);line-height:var(--lh-ui)}
+  .mn-mlink:hover,.mn-mlink[aria-current="page"]{background:#efece4;background:var(--paper-2);color:#a5540f;color:var(--signal-deep)}
+  .mn-acc-direct{display:flex;align-items:center;justify-content:space-between;padding:15px 4px;text-decoration:none;font-weight:600;font-size:var(--fs-l);color:#1c1b19;color:var(--ink);border-bottom:1px solid var(--hair)}
+}
+@media(max-width:420px){.mn-bar{gap:8px;padding:0 16px}}
+@media(prefers-reduced-motion:reduce){.mn-panel,.mn-drawer,.mn-acc-body,.mns,.mns-box{transition:none}}
+
+
+input,select,textarea,kbd,table,th,td,time,output,
+.result,.expr,.readout,.rip-val,.rip-mech,.formula,.eg,.plate .lbl,
+.calc-chip,.chipm,.crumbs ol,.foot-note,
+.mns-rc,.shelf-copy,.mg-d,
+[class$="-val"],[class$="-num"],.tnum{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1,"lnum" 1}
+/* mono surfaces are inherently tabular; lock lining figures too */
+
+.eyebrow,.mn-col-h,.mg-ic,.tool .ic,.tool .go,.ftl,.brand .eq,.mn-mark,.acc-chev{font-feature-settings:"lnum" 1}
+
+/* form controls never below 16px, iOS auto-zooms the page otherwise */
+input,select,textarea{font-size:max(16px,1em)}
+
+.hsearch{position:relative;margin:0 0 18px;max-width:44ch}
+.hs-bar{display:flex;align-items:center;gap:.6em;background:#fbfaf7;background:var(--card);border:1px solid var(--hair-2);border-radius:14px;padding:.7em .9em;transition:border-color .18s,box-shadow .18s}
+.hs-bar svg{width:18px;height:18px;flex:none;color:#6b6860;color:var(--muted)}
+.hs-bar:focus-within{border-color:#c96a1b;border-color:var(--signal);box-shadow:0 0 0 3px rgba(201,106,27,.13)}
+.hs-bar input{flex:1;min-width:0;font-family:inherit;font-size:var(--fs-m);color:#1c1b19;color:var(--ink);background:transparent;border:0;outline:none;line-height:var(--lh-ui)}
+.hs-bar input::placeholder{color:#6b6860;color:var(--muted)}
+.hs-kbd{font-family:var(--mono);font-size:var(--fs-m);color:#6b6860;color:var(--muted);border:1px solid var(--hair);border-radius:6px;padding:.05em .45em;background:#f6f4ef;background:var(--paper);flex:none}
+.hs-res{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:60;background:#f6f4ef;background:var(--paper);border:1px solid var(--hair);border-radius:14px;box-shadow:0 24px 50px -28px rgba(22,20,16,.45);padding:6px;display:none;max-height:min(46vh,330px);overflow-y:auto;overscroll-behavior:contain}
+.hs-res.on{display:block}
+.hs-r{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px;border-radius:10px;text-decoration:none;color:#1c1b19;color:var(--ink)}
+.hs-r:hover,.hs-r.on{background:#efece4;background:var(--paper-2)}
+.hs-rn{font-size:var(--fs-m);font-weight:600;line-height:var(--lh-ui);min-width:0}
+.hs-rc{font-family:var(--mono);font-size:var(--fs-m);color:#6b6860;color:var(--muted);flex:none}
+.hs-none{padding:16px 10px;text-align:center;font-size:var(--fs-m);color:#6b6860;color:var(--muted)}
+.hs-omni{margin:2px 2px 8px;padding:13px 14px;border:1px solid var(--hair);border-radius:12px;background:#fbfaf7;background:var(--card)}
+.hs-oq{font-family:var(--mono);font-size:var(--fs-m);color:#6b6860;color:var(--muted);line-height:var(--lh-ui);word-break:break-word}
+.hs-ov{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-size:var(--fs-xl);color:#c96a1b;color:var(--signal);line-height:var(--lh-head);margin-top:2px;word-break:break-word}
+.hs-osub{font-family:var(--mono);font-size:var(--fs-m);color:#6b6860;color:var(--muted);margin-top:2px}
+.hs-ot{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:var(--fs-m);color:#a5540f;color:var(--signal-deep);text-decoration:none}
+@media(max-width:560px){.hsearch{max-width:none}}
+
+/* unit clearance: derive padding from the unit that is actually present,
+   so a field can never have its number run into its $ or % symbol */
+
+.field .in:has(> .unit:not(.r)) input{padding-left:1.6em}
+
+/* number inputs: hide spinners, they render on top of a right-hand unit */
+.field input[type="number"],.in input[type="number"]{-moz-appearance:textfield;appearance:textfield}
+.field input[type="number"]::-webkit-outer-spin-button,.field input[type="number"]::-webkit-inner-spin-button,
+.in input[type="number"]::-webkit-outer-spin-button,.in input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+/* guarantee clearance for a right-hand unit even without :has() support */
+
+.field.hasunit.r input,.in.hasunit.r input{padding-left:.7em;padding-right:46px}
+.field .unit.r,.in .unit.r{left:auto;right:12px}
+.field .in:has(> .unit.r) input{padding-right:46px}
+
+/* ---- mobile overflow guard: the page must never scroll sideways.
+   overflow-x:clip (not hidden) so the sticky nav keeps working ,
+   any overflow value except visible/clip would break position:sticky. */
+html,body{overflow-x:clip}
+img,svg,video,canvas,iframe{max-width:100%}
+img{height:auto}
+
+.pal-back{position:fixed;inset:0;z-index:9000;background:rgba(28,27,25,.34);display:none;align-items:flex-start;justify-content:center;padding:11vh 16px 16px}
+.pal-back.on{display:flex}
+html.pal-open,html.pal-open body{overflow:hidden}
+.pal{width:min(560px,100%);background:#fbfaf7;background:var(--card);border:1px solid #cbc6bb;border-radius:18px;box-shadow:0 24px 70px rgba(28,27,25,.22);overflow:hidden}
+.pal-in{width:100%;border:0;outline:0;background:transparent;padding:16px 18px;font-family:inherit;font-size:var(--fs-l);color:var(--ink)}
+.pal-hint{padding:0 18px 12px;font-family:var(--mono);font-size:var(--fs-m);color:#6b6860;color:var(--muted)}
+.pal-ans{display:none;margin:0 12px 10px;padding:12px 14px;border:1px solid var(--hair);border-radius:12px;background:#f6f4ef;background:var(--paper)}
+.pal-ans .k{font-family:var(--mono);font-size:var(--fs-m);color:var(--muted)}
+.pal-ans .v{font-family:var(--mono);font-weight:600;font-size:var(--fs-l);color:var(--ink)}
+.pal-list{max-height:min(430px,52vh);overflow:auto;border-top:1px solid var(--hair);padding:6px 0}
+.pal-it{display:flex;align-items:baseline;gap:12px;padding:11px 18px;cursor:pointer}
+.pal-it.on{background:#f6f4ef;background:var(--paper)}
+.pal-ic{font-family:var(--mono);color:#6b6860;color:var(--muted);min-width:2ch;text-align:center}
+.pal-n{font-weight:600}
+.pal-d{font-size:var(--fs-m);color:#6b6860;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ---- calc width lockdown: nothing inside a card may exceed it on mobile.
+   Unbreakable tokens (big exact integers, long expressions) wrap instead of
+   spilling; chip rows wrap; form controls can never exceed their card. */
+
+input,select,textarea{max-width:100%;min-width:0}
+.readout .result{overflow-wrap:anywhere;word-break:break-word;line-height:1.15}
+.readout .expr,.formula{overflow-wrap:anywhere}
+.calc-head{flex-wrap:wrap}
+.calc-chip{white-space:normal}
+.share-row{flex-wrap:wrap}
+
+.apps-sec{padding:16px 0 8px;background:#f6f4ef;background:var(--paper)}
+.appgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px 14px;max-width:460px;margin:8px auto 0}
+.app{display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;text-decoration:none}
+.app-sq{width:100%;display:grid;place-items:center;background:#fbfaf7;background:var(--card);border:1px solid #dcd8cf;border:1px solid var(--hair);border-radius:26%;box-shadow:inset 0 1px 0 rgba(255,255,255,.7);transition:transform .16s,border-color .16s,box-shadow .16s}
+.app:hover .app-sq{transform:translateY(-2px);border-color:#cbc6bb;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 10px 22px rgba(28,27,25,.08)}
+.app-sq svg{width:46%;height:46%;stroke:#1c1b19;stroke:var(--ink);stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.app.all .app-sq svg{stroke:#a5540f;stroke:var(--signal-deep)}
+.app-n{font-size:var(--fs-m);color:#4a4843;color:var(--ink-2);line-height:var(--lh-ui)}
+[id^="cat-"],#directory,#explore{scroll-margin-top:84px}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+.shelf{margin:2.5em 0 0}
+.shelf-h{font-size:var(--fs-m);letter-spacing:.02em;color:var(--muted);margin:0 0 2px}
+.shelf-d{font-size:var(--fs-m);color:var(--muted);margin:0 0 14px}
+.shelf-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.shelf-card{display:flex;flex-direction:column;gap:8px;background:#fbfaf7;background:var(--card);border:1px solid var(--hair-2);border-radius:14px;padding:12px;box-shadow:inset 0 1px 0 #fff;min-width:0;text-decoration:none}
+.shelf-card:hover .shelf-name{color:var(--signal-deep)}
+.shelf-imgwrap{border-radius:10px;background:#efece4;background:var(--paper-2);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.shelf-imgwrap img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+.shelf-name{font-size:var(--fs-m);font-weight:700;color:var(--ink);line-height:var(--lh-ui);padding:0 3px}
+.shelf-copy{font-size:var(--fs-m);color:var(--ink-2);line-height:1.5;flex:1;padding:0 3px}
+.shelf-go{font-size:var(--fs-m);font-weight:700;color:var(--signal-deep);padding:0 3px 2px}
+@media(max-width:640px){
+  .shelf-grid{display:flex;grid-template-columns:none;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scroll-padding:0 22px;scrollbar-width:none;
+    margin:0 -22px;padding:4px 22px 8px}
+  .shelf-grid::-webkit-scrollbar{display:none}
+  .shelf-card{flex:0 0 78%;scroll-snap-align:center}
+}
+.shelf-sec{padding:8px 0 30px;background:#f6f4ef;background:var(--paper)}
+.shelf-sec .shelf{margin:0}
+
+/* percent fields: left-align so the number never sits under the % suffix */
+
+.mf-in:has(.mf-u:not(.mf-ul)) input{text-align:left;padding-left:.7em;padding-right:1.7em}
+@media (min-width:768px){.appgrid{grid-template-columns:repeat(8,1fr);max-width:880px;gap:22px 16px}}
+
+body{background-image:none;font-optical-sizing:auto}
+html{scroll-padding-top:112px}
+[id^="cat-"],#directory,#explore{scroll-margin-top:0}
+.wrap.prose{max-width:1000px;max-width:var(--content)}
+.wrap.prose>*{max-width:68ch}
+.mn{padding:10px 12px 0;transition:transform .34s cubic-bezier(.2,1,.3,1)}
+.mn.is-tucked{transform:translateY(calc(-100% - 14px))}
+.mn-shell{max-width:1000px;max-width:var(--content);margin:0 auto;background:#fbfaf7;background:var(--card);border:1px solid #dcd8cf;border-radius:999px;box-shadow:inset 0 1px 0 #fff,0 10px 28px -22px rgba(22,20,16,.34)}
+.mn.is-scrolled .mn-shell{box-shadow:inset 0 1px 0 #fff,0 16px 40px -24px rgba(22,20,16,.36)}
+.mn-panel{top:calc(100% + 8px);border:1px solid #dcd8cf;border-radius:18px}
+.mn-panel::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+@media(max-width:820px){.mn{padding:8px 8px 0}.mn-drawer{padding-top:92px}}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .11 0 0 0 0 .1 0 0 0 0 .09 .7 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+html.embed body::after{display:none}
+.eyebrow{font-family:var(--sans);font-size:var(--fs-m);font-weight:500;letter-spacing:0;text-transform:none;color:#4a4843;color:var(--ink-2)}
+.tool-hero h1{letter-spacing:-.015em}
+.sec-head h2{letter-spacing:-.01em}
+.crumbs ol,.calc-chip,.tool .go,.ftl,.shelf-h{letter-spacing:0}
+.field input,.in input{box-shadow:inset 0 1px 2px rgba(22,20,16,.07)}
+.field input:focus,.in input:focus{box-shadow:inset 0 1px 2px rgba(22,20,16,.07),0 0 0 3px rgba(201,106,27,.14)}
+.acc-head,.shelf-card,.ftcat,.rel-a,.app-sq,.mn-cta,.mn-search,.mn-burger{transition:transform .14s ease,background-color .16s,color .16s,border-color .16s,box-shadow .16s}
+.acc-head:active,.shelf-card:active,.ftcat:active,.rel-a:active,.app-sq:active,.mn-cta:active,.mn-search:active,.mn-burger:active{transform:translateY(1px)}
+.shelf-card:hover{transform:translateY(-2px);border-color:#cbc6bb;box-shadow:inset 0 1px 0 #fff,0 14px 26px -18px rgba(22,20,16,.38)}
+.calc-note{margin:-4px 0 14px;font-size:var(--fs-m);line-height:1.45;color:#4a4843;color:var(--ink-2)}
+section.band{background:#fbfaf7;background:var(--card)}
+.band:not(.band + .band){border-top:1px solid #dcd8cf}
+.band + .band{padding-top:12px}
+.band + .faqsec{border-top:1px solid #dcd8cf}
+.relsec .sec-head{margin-bottom:14px}
+.rel-list{list-style:none;margin:0;padding:0;max-width:880px;border-top:1px solid #cbc6bb}
+.rel-list li{border-bottom:1px solid #dcd8cf}
+.rel-a{display:grid;grid-template-columns:40px minmax(0,13rem) minmax(0,1fr) 24px;grid-template-areas:"ic n d go";align-items:baseline;column-gap:16px;row-gap:2px;padding:15px 8px;text-decoration:none;color:#1c1b19;color:var(--ink)}
+.rel-a:hover{background:#f6f4ef;background:var(--paper);color:#a5540f;color:var(--signal-deep)}
+.rel-a:focus-visible{outline:2px solid #c96a1b;outline-offset:-2px}
+.rel-ic{grid-area:ic;font-family:var(--mono);font-size:var(--fs-m);color:#2f4858;text-align:center;line-height:1.2}
+.rel-n{grid-area:n;font-weight:600;font-size:var(--fs-m);line-height:var(--lh-ui)}
+.rel-d{grid-area:d;font-size:var(--fs-m);color:#4a4843;color:var(--ink-2);line-height:1.45}
+.rel-go{grid-area:go;justify-self:end;font-family:var(--mono);color:#a5540f;opacity:0;transform:translateX(-4px);transition:opacity .15s,transform .15s}
+.rel-a:hover .rel-go,.rel-a:focus-visible .rel-go{opacity:1;transform:none}
+.refsec h2{font-family:var(--display);font-weight:600;font-size:var(--fs-xl);line-height:var(--lh-head);letter-spacing:-.01em;margin:0 0 16px}
+.ref{margin:0;max-width:880px;border-top:1px solid #cbc6bb}
+.ref-r{display:grid;grid-template-columns:minmax(8rem,12rem) minmax(0,1fr);column-gap:28px;row-gap:4px;padding:15px 0;border-bottom:1px solid #dcd8cf}
+.ref-r dt{font-family:var(--mono);font-size:var(--fs-m);color:#4a4843;color:var(--ink-2);line-height:1.45}
+.ref-r dd{margin:0;font-size:var(--fs-m);color:#1c1b19;color:var(--ink);line-height:1.55;max-width:64ch}
+.ftcats{columns:3 13rem;column-gap:28px}
+.ftcat{display:block;break-inside:avoid;padding:9px 2px;border-bottom:1px solid #dcd8cf;text-decoration:none;color:#1c1b19;color:var(--ink);font-weight:600;font-size:var(--fs-m);line-height:var(--lh-ui)}
+.ftcat:hover{color:#a5540f;color:var(--signal-deep)}
+.ftcat.all{color:#a5540f;color:var(--signal-deep)}
+@media(max-width:640px){.rel-a{grid-template-columns:32px minmax(0,1fr) 20px;grid-template-areas:"ic n go" "ic d go";padding:14px 4px}.rel-go{opacity:1;transform:none}.ref-r{grid-template-columns:1fr}.ftcats{columns:2 9rem}}
+.readout.rp{animation:rp .22s ease-out}
+@keyframes rp{from{background-color:rgba(201,106,27,.1)}to{background-color:rgba(201,106,27,0)}}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .48s ease,transform .48s cubic-bezier(.2,1,.3,1)}
+.rv.rv-in{opacity:1;transform:none}
+@media(min-width:901px) and (prefers-reduced-motion:no-preference){.tool-hero-grid>div:first-child{animation:inl .48s cubic-bezier(.2,1,.3,1) both}.tool-hero-grid>.calc{animation:inr .48s cubic-bezier(.2,1,.3,1) both}}
+@keyframes inl{from{transform:translateX(-14px)}to{transform:none}}
+@keyframes inr{from{transform:translateX(14px)}to{transform:none}}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.mn{transition:none}.readout.rp{animation:none}}
+@media print{body::after{display:none}.rv{opacity:1;transform:none}}
+
+.amber{color:#a5540f;color:var(--signal-deep)}
+.readout .result .amber{color:#c96a1b;color:var(--signal)}
+.formula .amber,.rip-val.amber,.ch-out .v.amber{color:#a5540f;color:var(--signal-deep)}
+.btn.solid{background:radial-gradient(120% 95% at 50% 14%,rgba(255,255,255,.14),rgba(255,255,255,0) 55%),linear-gradient(180deg,#a5540f,#86400a)}
+.keys button.eq{font-weight:700}
+.skip{background:#a5540f;background:var(--signal-deep)}
+footer{background:#f6f4ef;background:var(--paper)}
+.mn-logo,.brand{letter-spacing:0}
+.readout .result .small,.mo-expr{letter-spacing:0}
+.share-link,.acc-cta{position:relative}
+.share-link::after,.acc-cta::after{content:"";position:absolute;left:0;right:0;top:-11px;bottom:-11px}
+.ftcat{padding:11px 2px}
+@media(max-width:960px){.mn-search,.mn-burger{width:44px;height:44px}}
+@media(max-width:640px){.btn{min-height:44px}}
+.app-sq{position:relative;display:block;height:0;padding-bottom:calc(100% - 2px)}
+.app-sq svg{position:absolute;left:27%;top:27%;width:46%;height:46%}
+.shelf-imgwrap{position:relative;display:block;height:0;padding-bottom:100%}
+.shelf-imgwrap img{position:absolute;left:0;top:0;width:100%;height:100%}
+.acc-panel{visibility:hidden;transition:grid-template-rows .28s ease,visibility 0s linear .28s}
+.acc-item.open .acc-panel{visibility:visible;transition:grid-template-rows .28s ease,visibility 0s}
+.mn-acc-body{visibility:hidden;transition:grid-template-rows .32s ease,visibility 0s linear .32s}
+.mn-acc.is-open .mn-acc-body{visibility:visible;transition:grid-template-rows .32s ease,visibility 0s}
+.appgrid{max-width:none;margin:8px 0 0}
+#all .mega-grid{columns:3 250px;column-gap:44px}
+#all .mega-col{break-inside:avoid;margin-bottom:26px}
+/* grid items may shrink below their content, so one wide child can never push the headline off a phone */
+
+.tool-hero-grid>*,.hero-grid>*{min-width:0}
+.calc{min-width:0;max-width:100%}
+.calc-head{flex-wrap:wrap}
+.in{min-width:0;max-width:100%}
+select{max-width:100%;min-width:0;text-overflow:ellipsis}
+.rip{flex-wrap:wrap}
+.rip-val{white-space:normal;overflow-wrap:anywhere;flex:0 1 auto;margin-left:auto}
+.field input,.in input,.mf input,.in select,.selin select{border-color:#8a857a}
+.in input:focus,.in select:focus{border-color:#c96a1b;border-color:var(--signal)}
+@media(max-width:640px){
+.calc-tab,.seg button,.keys button,.mf input,.degrad button{min-height:44px}
+.tool-hero{padding:16px 0 26px}
+.tool-hero-grid{gap:20px}
+.tool-hero p.lead{font-size:var(--fs-m);line-height:1.55}
+.tool-hero .meta{margin-top:14px}
+}
+@media(prefers-reduced-motion:reduce){.acc-panel,.acc-item.open .acc-panel,.mn-acc-body,.mn-acc.is-open .mn-acc-body{transition:none}}
+
+.calc-tab,.seg button{transition:transform .14s ease,background-color .16s,color .16s,box-shadow .16s}
+.calc-tab:not(.on):hover,.seg button:not(.on):hover{background:rgba(22,20,16,.07);color:#1c1b19;color:var(--ink)}
+.calc-tab:active,.seg button:active{transform:translateY(1px);box-shadow:inset 0 1px 2px rgba(22,20,16,.16)}
+.acc-item .acc-head:hover{background:rgba(22,20,16,.03)}
+.acc-item .acc-head:active{transform:translateY(1px);background:rgba(22,20,16,.05)}
+@media(prefers-reduced-motion:reduce){.calc-tab,.seg button{transition:none}}
+.mn-shell .mn-cta,.mn-shell .mn-search,.mn-shell .mn-burger{border-radius:999px}
+.calc-tabs .calc-tab{border-radius:11px}
+.hsearch .hs-try{border-radius:18px}
+.mns-box .mns-r{border-radius:18px}
+html.mns-open .mns{transition:opacity .18s ease,visibility 0s 0s}
+select{min-height:44px}
+.seg button{min-width:44px}
+.adv-chip,.swap,button[data-y]{min-height:44px}
+@keyframes mnCascade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+#mn.is-drawer .mn-drawer-scroll>*{animation:mnCascade .34s cubic-bezier(.2,.7,.2,1) both}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(1){animation-delay:30ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(2){animation-delay:60ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(3){animation-delay:90ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(4){animation-delay:120ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(5){animation-delay:150ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(6){animation-delay:180ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(7){animation-delay:210ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(8){animation-delay:240ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(9){animation-delay:270ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(10){animation-delay:300ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(11){animation-delay:330ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(12){animation-delay:360ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(13){animation-delay:390ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(14){animation-delay:420ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(15){animation-delay:450ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(16){animation-delay:480ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(17){animation-delay:510ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(18){animation-delay:540ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(19){animation-delay:570ms}
+#mn.is-drawer .mn-drawer-scroll>:nth-child(20){animation-delay:600ms}
+@media(prefers-reduced-motion:reduce){#mn.is-drawer .mn-drawer-scroll>*{animation:none}}
+
+.hs-wrap{position:relative}
+.hs-bar{border-color:#8a857a}
+.hs-bar{padding:0 .9em}
+.hs-bar input{min-height:44px}
+.hs-cap,.hs-tries{display:none}
+.hs-try{font-family:var(--mono);font-size:var(--fs-m);line-height:var(--lh-ui);color:#1c1b19;color:var(--ink);background:#f6f4ef;background:var(--paper);border:1px solid #cbc6bb;border-radius:999px;padding:.5em .75em;min-height:44px;cursor:pointer;box-shadow:inset 0 1px 0 #fff;transition:transform .14s ease,border-color .16s,color .16s}
+.hs-try:hover{border-color:#c96a1b;border-color:var(--signal);color:#a5540f;color:var(--signal-deep)}
+.hs-try:active{transform:translateY(1px)}
+.hs-try:focus-visible{outline:2px solid #c96a1b;outline-offset:2px}
+@media(min-width:1040px){
+.hero{padding:64px 0 40px}
+.hero-grid{grid-template-columns:minmax(0,1fr) 380px;grid-template-areas:"t s" "e s" "l s" "c s";column-gap:56px;row-gap:0;align-items:start}
+.hero-grid>div{display:contents}
+.hero h1{grid-area:t}
+.hero .eyebrow{grid-area:e}
+.hero p.lead{grid-area:l}
+.hero-cta{grid-area:c;flex-direction:row;align-items:center}
+.hero-cta .btn{width:auto}
+.hsearch{grid-area:s;align-self:center;margin:0;max-width:none;background:#fbfaf7;background:var(--card);border:1px solid #dcd8cf;border-radius:18px;padding:22px;box-shadow:inset 0 1.5px 0 #fff,inset 0 -3px 6px rgba(22,20,16,.05),0 24px 50px -30px rgba(22,20,16,.4)}
+.hs-cap{display:block;margin:0 0 12px;font-size:var(--fs-m);font-weight:500;line-height:var(--lh-ui);color:#4a4843;color:var(--ink-2)}
+.hs-tries{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+}
+@media(min-width:1040px) and (prefers-reduced-motion:no-preference){
+.hero h1,.hero .eyebrow,.hero p.lead,.hero-cta{animation:inl .48s cubic-bezier(.2,1,.3,1) both}
+.hsearch{animation:inr .48s cubic-bezier(.2,1,.3,1) both}
+}
+
+.calc3d{position:relative;overflow:hidden;background:#f6f4ef}
+.c3-bg{fill:#f6f4ef}
+.c3-svg{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+.calc3d.is-live .c3-svg{visibility:hidden;transition:visibility 0s .42s}
+.calc3d.no-webgl .c3-svg{visibility:visible}
+.c3-cv{position:absolute;left:0;top:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .36s ease;touch-action:manipulation}
+.calc3d.is-live .c3-cv{opacity:1}
+@media(prefers-reduced-motion:reduce){.c3-cv{transition:none}}
+
+/* phones: the calculator spans headline and subtitle, rises into the top padding and bleeds to the screen edge */
+
+@media(max-width:559px){
+.hero-top{font-size:32px;display:grid;grid-template-columns:6.3em minmax(0,1fr);column-gap:10px;row-gap:8px;align-items:start;margin:0 0 4px}
+.hero-top h1{font-size:32px;grid-column:1;grid-row:1;margin:0}
+.hero-top .eyebrow{grid-column:1;grid-row:2;margin:0;text-wrap:balance}
+.hero-top .lead{grid-column:1 / -1;grid-row:3;margin-top:14px}
+.hero-obj{grid-column:2;grid-row:1 / span 2;align-self:stretch;margin:-40px -22px 0 0;min-height:200px}
+}
+@media(max-width:359px){.hero-top{display:block}.hero-top .eyebrow{display:block;margin:0 0 12px}.hero-obj{display:none}}
+/* tablets: headline, subtitle and lead on the left, the calculator standing beside all three */
+
+@media(min-width:560px) and (max-width:1039px){
+.hero-grid{grid-template-columns:minmax(0,1fr)}
+.hsearch{max-width:660px}
+.hero-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,40%);column-gap:16px;align-items:start;margin:0 0 6px}
+.hero-top h1{grid-column:1;grid-row:1;max-width:7.6em;margin-bottom:0}
+.hero-top .eyebrow{grid-column:1;grid-row:2}
+.hero-top .lead{grid-column:1;grid-row:3}
+.hero-obj{grid-column:2;grid-row:1 / span 3;height:clamp(220px,30vw,320px);margin:-24px -22px 0 0}
+}
+/* desktop: the calculator stands above the search plate it mirrors */
+
+@media(min-width:1040px){
+.hero-grid{grid-template-areas:"t o" "e o" "l o" "c s" ". s"}
+.hero-top{display:contents}
+.hero-obj{grid-area:o;align-self:end;height:300px;margin:0 0 18px}
+.hsearch{align-self:start}
+}
+@media(min-width:1040px) and (prefers-reduced-motion:no-preference){.hero-obj{animation:inr .48s cubic-bezier(.2,1,.3,1) both}}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebSite", "name": "Calculate.to", "alternateName": "calculate.to", "url": "https://calculate.to/", "description": "Free, instant, ad-free calculators for money, health, home, school and everyday life.", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "Calculate.to", "url": "https://calculate.to/"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Organization", "name": "Calculate.to", "url": "https://calculate.to/", "logo": "https://calculate.to/assets/img/og/og.png", "description": "Everyday math, done properly. 100+ free calculators with honest, verified answers."}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "All calculators on Calculate.to", "numberOfItems": 101, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Fed rate change", "url": "https://calculate.to/fed-rate-calculator.html"}, {"@type": "ListItem", "position": 2, "name": "M2 money supply", "url": "https://calculate.to/m2-money-supply-calculator.html"}, {"@type": "ListItem", "position": 3, "name": "Gold vs USD", "url": "https://calculate.to/gold-vs-usd-calculator.html"}, {"@type": "ListItem", "position": 4, "name": "Inflation", "url": "https://calculate.to/inflation-calculator.html"}, {"@type": "ListItem", "position": 5, "name": "Gold / M2 ratio", "url": "https://calculate.to/gold-m2-ratio-calculator.html"}, {"@type": "ListItem", "position": 6, "name": "Dow-to-Gold", "url": "https://calculate.to/dow-to-gold-calculator.html"}, {"@type": "ListItem", "position": 7, "name": "S&P 500 since inception", "url": "https://calculate.to/sp500-dca-calculator.html"}, {"@type": "ListItem", "position": 8, "name": "S&P 1 vs S&P 500", "url": "https://calculate.to/sp1-vs-sp500-calculator.html"}, {"@type": "ListItem", "position": 9, "name": "CAGR", "url": "https://calculate.to/cagr-calculator.html"}, {"@type": "ListItem", "position": 10, "name": "Dividend reinvestment", "url": "https://calculate.to/drip-calculator.html"}, {"@type": "ListItem", "position": 11, "name": "Retirement / FIRE", "url": "https://calculate.to/retirement-calculator.html"}, {"@type": "ListItem", "position": 12, "name": "ROI", "url": "https://calculate.to/roi-calculator.html"}, {"@type": "ListItem", "position": 13, "name": "Rule of 72", "url": "https://calculate.to/rule-of-72-calculator.html"}, {"@type": "ListItem", "position": 14, "name": "Mortgage", "url": "https://calculate.to/mortgage-calculator.html"}, {"@type": "ListItem", "position": 15, "name": "Loan payment", "url": "https://calculate.to/loan-calculator.html"}, {"@type": "ListItem", "position": 16, "name": "Car loan", "url": "https://calculate.to/car-loan-calculator.html"}, {"@type": "ListItem", "position": 17, "name": "Debt payoff", "url": "https://calculate.to/debt-payoff-calculator.html"}, {"@type": "ListItem", "position": 18, "name": "Simple interest", "url": "https://calculate.to/simple-interest-calculator.html"}, {"@type": "ListItem", "position": 19, "name": "APR ↔ APY", "url": "https://calculate.to/apr-apy-calculator.html"}, {"@type": "ListItem", "position": 20, "name": "Percentage", "url": "https://calculate.to/percentage-calculator.html"}, {"@type": "ListItem", "position": 21, "name": "Tip & split", "url": "https://calculate.to/tip-calculator.html"}, {"@type": "ListItem", "position": 22, "name": "VAT / sales tax", "url": "https://calculate.to/vat-calculator.html"}, {"@type": "ListItem", "position": 23, "name": "Discount", "url": "https://calculate.to/discount-calculator.html"}, {"@type": "ListItem", "position": 24, "name": "Margin & markup", "url": "https://calculate.to/margin-markup-calculator.html"}, {"@type": "ListItem", "position": 25, "name": "Salary ↔ hourly", "url": "https://calculate.to/salary-to-hourly-calculator.html"}, {"@type": "ListItem", "position": 26, "name": "Savings goal", "url": "https://calculate.to/savings-goal-calculator.html"}, {"@type": "ListItem", "position": 27, "name": "Currency", "url": "https://calculate.to/currency-converter.html"}, {"@type": "ListItem", "position": 28, "name": "Compound interest", "url": "https://calculate.to/compound-interest-calculator.html"}, {"@type": "ListItem", "position": 29, "name": "BMI", "url": "https://calculate.to/bmi-calculator.html"}, {"@type": "ListItem", "position": 30, "name": "Calorie needs", "url": "https://calculate.to/calorie-calculator.html"}, {"@type": "ListItem", "position": 31, "name": "TDEE", "url": "https://calculate.to/tdee-calculator.html"}, {"@type": "ListItem", "position": 32, "name": "BMR", "url": "https://calculate.to/bmr-calculator.html"}, {"@type": "ListItem", "position": 33, "name": "Body fat %", "url": "https://calculate.to/body-fat-calculator.html"}, {"@type": "ListItem", "position": 34, "name": "Ideal weight", "url": "https://calculate.to/ideal-weight-calculator.html"}, {"@type": "ListItem", "position": 35, "name": "Macros", "url": "https://calculate.to/macro-calculator.html"}, {"@type": "ListItem", "position": 36, "name": "Water intake", "url": "https://calculate.to/water-intake-calculator.html"}, {"@type": "ListItem", "position": 37, "name": "Running pace", "url": "https://calculate.to/pace-calculator.html"}, {"@type": "ListItem", "position": 38, "name": "One-rep max", "url": "https://calculate.to/one-rep-max-calculator.html"}, {"@type": "ListItem", "position": 39, "name": "Heart-rate zones", "url": "https://calculate.to/heart-rate-zone-calculator.html"}, {"@type": "ListItem", "position": 40, "name": "Sleep cycles", "url": "https://calculate.to/sleep-calculator.html"}, {"@type": "ListItem", "position": 41, "name": "Age", "url": "https://calculate.to/age-calculator.html"}, {"@type": "ListItem", "position": 42, "name": "Date difference", "url": "https://calculate.to/date-difference-calculator.html"}, {"@type": "ListItem", "position": 43, "name": "Day of the week", "url": "https://calculate.to/day-of-week-calculator.html"}, {"@type": "ListItem", "position": 44, "name": "Days from today", "url": "https://calculate.to/days-from-today-calculator.html"}, {"@type": "ListItem", "position": 45, "name": "Time & hours", "url": "https://calculate.to/time-calculator.html"}, {"@type": "ListItem", "position": 46, "name": "Time zones", "url": "https://calculate.to/time-zone-converter.html"}, {"@type": "ListItem", "position": 47, "name": "Fraction", "url": "https://calculate.to/fraction-calculator.html"}, {"@type": "ListItem", "position": 48, "name": "Scientific", "url": "https://calculate.to/scientific-calculator.html"}, {"@type": "ListItem", "position": 49, "name": "Average", "url": "https://calculate.to/average-calculator.html"}, {"@type": "ListItem", "position": 50, "name": "Ratio", "url": "https://calculate.to/ratio-calculator.html"}, {"@type": "ListItem", "position": 51, "name": "GCF & LCM", "url": "https://calculate.to/gcf-lcm-calculator.html"}, {"@type": "ListItem", "position": 52, "name": "Binary / hex", "url": "https://calculate.to/binary-hex-converter.html"}, {"@type": "ListItem", "position": 53, "name": "Advanced", "url": "https://calculate.to/advanced-calculator.html"}, {"@type": "ListItem", "position": 54, "name": "GPA", "url": "https://calculate.to/gpa-calculator.html"}, {"@type": "ListItem", "position": 55, "name": "Final grade", "url": "https://calculate.to/final-grade-calculator.html"}, {"@type": "ListItem", "position": 56, "name": "Temperature", "url": "https://calculate.to/temperature-converter.html"}, {"@type": "ListItem", "position": 57, "name": "Length", "url": "https://calculate.to/length-converter.html"}, {"@type": "ListItem", "position": 58, "name": "Weight", "url": "https://calculate.to/weight-converter.html"}, {"@type": "ListItem", "position": 59, "name": "Cups to grams", "url": "https://calculate.to/cups-to-grams-converter.html"}, {"@type": "ListItem", "position": 60, "name": "Recipe scaler", "url": "https://calculate.to/recipe-converter.html"}, {"@type": "ListItem", "position": 61, "name": "Pan conversion", "url": "https://calculate.to/pan-conversion-calculator.html"}, {"@type": "ListItem", "position": 62, "name": "Coffee ratio", "url": "https://calculate.to/coffee-ratio-calculator.html"}, {"@type": "ListItem", "position": 63, "name": "Square footage", "url": "https://calculate.to/square-footage-calculator.html"}, {"@type": "ListItem", "position": 64, "name": "Concrete", "url": "https://calculate.to/concrete-calculator.html"}, {"@type": "ListItem", "position": 65, "name": "Paint", "url": "https://calculate.to/paint-calculator.html"}, {"@type": "ListItem", "position": 66, "name": "Flooring", "url": "https://calculate.to/flooring-calculator.html"}, {"@type": "ListItem", "position": 67, "name": "Mulch", "url": "https://calculate.to/mulch-calculator.html"}, {"@type": "ListItem", "position": 68, "name": "Fuel cost", "url": "https://calculate.to/fuel-cost-calculator.html"}, {"@type": "ListItem", "position": 69, "name": "MPG", "url": "https://calculate.to/mpg-calculator.html"}, {"@type": "ListItem", "position": 70, "name": "EV charging", "url": "https://calculate.to/ev-charging-cost-calculator.html"}, {"@type": "ListItem", "position": 71, "name": "Due date", "url": "https://calculate.to/due-date-calculator.html"}, {"@type": "ListItem", "position": 72, "name": "Ovulation", "url": "https://calculate.to/ovulation-calculator.html"}, {"@type": "ListItem", "position": 73, "name": "Random number", "url": "https://calculate.to/random-number-generator.html"}, {"@type": "ListItem", "position": 74, "name": "Dice roller", "url": "https://calculate.to/dice-roller.html"}, {"@type": "ListItem", "position": 75, "name": "Coin flip", "url": "https://calculate.to/coin-flip.html"}, {"@type": "ListItem", "position": 76, "name": "Random picker", "url": "https://calculate.to/random-picker.html"}, {"@type": "ListItem", "position": 77, "name": "Password", "url": "https://calculate.to/password-generator.html"}, {"@type": "ListItem", "position": 78, "name": "Derivative", "url": "https://calculate.to/derivative-calculator.html"}, {"@type": "ListItem", "position": 79, "name": "Integral", "url": "https://calculate.to/integral-calculator.html"}, {"@type": "ListItem", "position": 80, "name": "AI compute", "url": "https://calculate.to/ai-compute-calculator.html"}, {"@type": "ListItem", "position": 81, "name": "Quantum", "url": "https://calculate.to/quantum-calculator.html"}, {"@type": "ListItem", "position": 82, "name": "Calories burned", "url": "https://calculate.to/calories-burned-calculator.html"}, {"@type": "ListItem", "position": 83, "name": "Standard deviation", "url": "https://calculate.to/standard-deviation-calculator.html"}, {"@type": "ListItem", "position": 84, "name": "Quadratic formula", "url": "https://calculate.to/quadratic-formula-calculator.html"}, {"@type": "ListItem", "position": 85, "name": "Roman numerals", "url": "https://calculate.to/roman-numeral-converter.html"}, {"@type": "ListItem", "position": 86, "name": "Test score", "url": "https://calculate.to/test-score-calculator.html"}, {"@type": "ListItem", "position": 87, "name": "Weighted grade", "url": "https://calculate.to/weighted-grade-calculator.html"}, {"@type": "ListItem", "position": 88, "name": "Speed", "url": "https://calculate.to/speed-converter.html"}, {"@type": "ListItem", "position": 89, "name": "Area", "url": "https://calculate.to/area-converter.html"}, {"@type": "ListItem", "position": 90, "name": "Volume", "url": "https://calculate.to/volume-converter.html"}, {"@type": "ListItem", "position": 91, "name": "Business days", "url": "https://calculate.to/business-days-calculator.html"}, {"@type": "ListItem", "position": 92, "name": "Unit price", "url": "https://calculate.to/unit-price-calculator.html"}, {"@type": "ListItem", "position": 93, "name": "Gold-silver ratio", "url": "https://calculate.to/gold-silver-ratio-calculator.html"}, {"@type": "ListItem", "position": 94, "name": "Real interest rate", "url": "https://calculate.to/real-interest-rate-calculator.html"}, {"@type": "ListItem", "position": 95, "name": "Waist-to-height", "url": "https://calculate.to/waist-to-height-ratio-calculator.html"}, {"@type": "ListItem", "position": 96, "name": "Tile", "url": "https://calculate.to/tile-calculator.html"}, {"@type": "ListItem", "position": 97, "name": "Oven temp", "url": "https://calculate.to/oven-temperature-calculator.html"}, {"@type": "ListItem", "position": 98, "name": "Mileage", "url": "https://calculate.to/mileage-reimbursement-calculator.html"}, {"@type": "ListItem", "position": 99, "name": "Amortization", "url": "https://calculate.to/amortization-calculator.html"}, {"@type": "ListItem", "position": 100, "name": "Dollar-cost averaging", "url": "https://calculate.to/dollar-cost-averaging-calculator.html"}, {"@type": "ListItem", "position": 101, "name": "Pregnancy week", "url": "https://calculate.to/pregnancy-week-calculator.html"}]}</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are the calculators on Calculate.to really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, every calculator is completely free with no ads, no accounts and no locked features. The site is supported by optional donations only."}}, {"@type": "Question", "name": "How accurate are the results?", "acceptedAnswer": {"@type": "Answer", "text": "Every tool is verified against known benchmarks before publishing, loan math against standard amortization tables, inflation against official BLS CPI data, health formulas against their original published equations. Where a result is an estimate, the page says so plainly."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Completely. Calculations run entirely in your browser using JavaScript, the numbers you type never leave your device, and the site uses no cookies or tracking."}}, {"@type": "Question", "name": "Do the calculators work on mobile?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, every page is built for phones first and works instantly in any modern browser, with no app or sign-up required."}}]}
+</script>
+<link rel="manifest" href="/manifest.webmanifest">
+</head>
+<body data-kind="home">
+<a class="skip" href="#tools">Skip to calculators</a>
+
+<header class="mn" id="mn" data-current="">
+ <div class="mn-shell"><div class="mn-bar">
+  <a class="mn-logo" href="index.html" aria-label="Calculate.to home"><span class="mn-mark" aria-hidden="true">=</span>Calculate.to</a>
+  <div class="mn-groups">
+   <div class="mn-group" data-key="menu">
+    <button class="mn-top" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mnPanel"><svg class="gi" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h9"/></svg>Explore<span class="caret"></span></button>
+    <div class="mn-panel" id="mnPanel"><div class="mn-panel-inner" role="navigation" aria-label="All calculators"></div></div>
+   </div>
+  </div>
+  <button class="mn-search" type="button" id="mnSearchBtn" aria-label="Search calculators"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.3 3.3"/></svg><span class="mn-sq" id="mnSq">Search 100+ calculators…</span><kbd>/</kbd></button>
+  <a class="mn-cta" href="index.html#all">All tools</a>
+  <button class="mn-burger" id="mnBurger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnDrawer"><span></span></button>
+ </div></div>
+ <div class="mn-scrim" aria-hidden="true"></div>
+ <div class="mn-drawer" id="mnDrawer">
+  <div class="mn-drawer-scroll">
+    <a class="mn-acc-direct" href="index.html#all">All 100+ calculators <span aria-hidden="true">&rarr;</span></a>
+  </div>
+ </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-top"><h1>Free online calculators<span class="thin"> for everyday life</span></h1>
+ <span class="eyebrow">Everyday math, done properly</span>
+ <p class="lead">The answer, before you finish typing. A calm set of 100+ calculators for money, math, health, home and dates, no sign-up, no clutter, no waiting, they run the moment you type.</p>
+ <div class="calc3d hero-obj" data-mode="hero" aria-hidden="true"><svg class="c3-svg" viewBox="0 0 438 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><rect class="c3-bg" width="438" height="600" fill="#f3f1ec"/><image href="data:image/webp;base64,UklGRkgnAABXRUJQVlA4IDwnAADQEQGdASq2AVgCPmEsk0ckIqQho3ErcIAMCWduvca3VjznU1niMlEswDpm+Z/WLnBj912unFpLe4847QN+o/Uk8zH64eq3/n/2j92XoAfsl1p3oAfwvz5PZt/dv9o8yI9J/3j1U/Gf37/P+K/479e/kPyy558UH5N97/2P96/db2j/53i385dQv8f/oX+M/M3/B8k3uvmI+1v1v/nfr75gGqn4X9gL+f/uxx4dAb+X/5X1WP8b/2f7f0MfoX+v/bH4Ef55/cv+r67/sK9Ff9xS+e11gxljRjeWOiiy22ByxwEnPZ2YEe59TMVkMyPc6Dnw0CPs5QJFY0GghBkwT7P3+3Rp9FzE6M8a2GCw0IxcrokjoC9OYE4BgS8n32lgqD5kM12PdZ4xHqtUOGHQBzaQ54yRJfeZJ0zpsmNx5gF/c4SYzVeQiOU77GY4EK9cmLmqNYIjaR2d9Qcggm1R1yQjqYem2G25DDlUkC6vmJkRgyQSMoSYdMalsiYH+rk9yTLHx3v4opJKmkHq+JDZ9cKsBDxr+gy1/hctJcdPEyC/YAtUECy5coSOqGYQnKQCMENKlE5IkDlY9WxH+arCxbkMtZvzlXbIwu17Oaakj7w2XYw0/GZEl0s8EFzcWisvyZuERMTvoB3qIwXFbRYUaB2hp+HIDIFYDXspHc4JOFvYd4al0PvZx+JUfY0/i4iXvkcTD/dwtaG9TNnRy1DomkRwQV6vI6bVwf/wmymoTNnNrYsJMLSE2JPvGufatuSepHR9zRUvKOR6woezgHb+L72F4vkqTwpVWLKzU45e1yTb+NP4XN4boDOgFFhtcaIq9JQBeBo7u2d5iE5VBRlaQnU8lO44rdqGHF3gM4ZvI6i6QzWIvOTYfDzdapQB2XgJR+wupvTTV9auHVIPnjmecTsq9TD1k4EBW6CpKjPVxdM1tOcy16hnBe4SOzw/I8xz9FeuQujlTZdbm7FKi601CBwHvFdYmFSHOjgMofe1YYJOlRAfaPzBjQZ3S3+8OObBijBb6HsR3MDXGeyIjOAo0Mb1gkAtBc8i2ZEhEs8EFM9OxZQkG3KFP2R+tGVF8yL5CAdofHT5uZZ6XGZEnpYsuU4L0/I6IdzXZNfd+6GkyDwcxYtopCzCGYKHv2pbbOJGIAlssZa3Q5d1xxgbrvAyxsOoP47EI1Op8bXZ22NU4RdlMji1cc9gimnJ5xq2LZTAc6toCBWY7hsPN3gulRWsWF0wgOBAaO7U1XAb83XsPlogCQoPuztFsoccP0gIMaze+hYqMiqNM8jxTlzUgcQgTMGoSLGVXCAjh6/WjFE18X/S1XWe6RL9dwkEg0bo+eSBtdhoBqzd2H1kTKqyL3Esvj0CMdYx+FtfTclAllfAwDGsrQbJ8qdhw77ql97WOE4Gp/hUVYnPlTwzlrJGAzNiYnIEmN2SexHmBw7feUYh640yFxzeCFWFj92jtFWkqEvjAQI+bcIPfhCcZ/9/exiwbjZZEi2LgqVVvs5h+E7S+ek8AywwCBpqGwAraGn/GFdbKXThwel7+5t9dg7NAwBpvDz87oUkaBEQAvQb8nlM6RWQ6pO6SET8SsNmM2LnU4wEQP4hfxbGmT7fhYhGXlX8uwd29aR4Q4l7zbsOkF+RscGMR8Dh0IG7TdaIxQLhCrjcZq4h+L5QaWcnIkbt1DhWQnkBo3LkkIQzaEkd9oR/xd7L1G1h4xN9zB5FcteOfzcb9A3zVKPD9/fCX7sQX9cLhJRJ9fX+YRcTuj7Dvr/YBiXVNIvsFuHWDxPXdn0DV+GlwapxS9hoBsDH3DSE9ZNDzS3aBuvCg4/deyOK9eGPjyQWH+kLIoWeYK0l4VvRc5G/AWbC9IcrUleeUnPp5YaP/41z3UCh+hArCi20hXpf3Colg9+I5Ywrl62KqQ6O89I0RCLk2tSMLyddueKv12YZAqkutY0U28l0RTFSlztH5QvceVYhdY+bxDKnRNPLjFPfq399Rnyuts/eVC+aEuWlgEE/XdN8HWR0PEq4xOt3YlKSIFWNowb1IHvLqVhlCgRvp4gnce/uwywIJdlMSEEbFo6eUR1OO8XAroX6chNhRPFu+wztn+Ms9v9OZa9PJWBvKA9qzBAv0EVDJGN3BgI3p0wKAmXLAZV+VKdEAIvk4Dsf8L5aVOXqc220UG4JTKLYFoZmQbXyEK6XEtvlstiZhjAauRVOOwTcxCeKMFECJBUjrV3m2oQVl02vPDFleXmxcITkVUeySun6emDNsx9XJaKun4nrxlrPJyd53lZnSqa4U2jz4e1ZCTo9Qj8CtpjvWefT+RN8f1cB/pQa89KYoq4Ul/NHaz5WYtht3dQvokzNz2STgDa4YFNuR60+BxgG4sERoWhZW6kDqtyde9LFBjuB4hlQSeq9NVC/yVwip1aSptYQolRVWm51IQsmw6759KQPjScCaAAuqPGm9TUfYyhDRGxROvdj6EF8ESOgXup+5cj75p6WyWxGHRUsi74ET/+umYry9+gufydxz+b+U6pNDybm/puzZ1zfbUfd2+0r//YPtmb6pehwtXgyg1HsPEF5zEGgZ9MKBNUz+XrC8l4a5pPU/iaR8c9yln9WZ6FqM2LZYQ49AkENliRwF4qdn8rHNsrH0JoGReu/J6kp3yz/FFhSortVD5vpXD9F0eECMX7NVAjbvgFxURuSEEerAyTmXsM2uHVPkUvn7kRbhol4umQ2LRS3STTESyMmCppHB/3KlT0uCkXsf+URkjYolI80VM9XaOimpqVUjWmAiS7snWipmjbTpFaA2cxxv95UjQuVpFt3Dp1iimrWpswYC+HSoFTdj8gfKwNzmq7QcBFV3Wl3UtlfnewqDi2DxPpAKUTYMuvUm6lQb7C0vl501IqWW248ZkSXS0KwYLnjHAi+KuWUPMcqTDBF2hp+MyJLpZ4IMV0z5DAA/v5jshJwGQOXrIzwvIl41ibbeuN3xIRZWplxnQjyc7xgAQ7VN/35JHrDYUpDy9dDg4+6+cOSQAAM7zhwAAAMbzlsNZ5y0kGxVtOEp6tX9WzhuqsvP9U/x5p0DEBD7ul+snh1Juwpq4kUOUh9440B2312IlJhUjSx0PnjhWanZAWWdKg0WsROybUHPxGX7rygmrlnsqDSuC8abXe1JCLj2VdA9zbHmBF+QYncIyhCib6H6lgvCGM40yasJW00Oy2c055cXzKdWCZ98gf1yqkj8Ou/ZqdmW4ufKg1FhAW23h4KEScAFL4gvTBBxzGlznxDFLdU1Xyka6uxnFKCY4qgSyuvX109/DMEnHB+x7XmuVfyrXr+RrxkMyahu2G8aajddXlyj+zAIoNxsDBAxp1qU9hzG4LRbGRM5V1w3IFRJTyZl1p+FS3TeoAuV2K101Q27syVdDqcin561cgb8gxLfvsB1wTmQFx6UCrOdqs6aDF3tww4pAX7EPdCXOpG1Ae5deKHZy2yhxXHwflumRqRnWcJivk5UMkKjS0U5VXVwSQRgbf3gi6JyWRlB7tr6Ofgsp19/QgCnqPx+2CpsooCUlXSeQj9EtdJX7atPV2i+4w31YMYTM/9MKRCDcgXoCofVXFADHMzPKn1dRdIdoiUeVLbKwEbqDt30wjkoefeSK9WEjnEE7kk80u9CQMOGL3FKCftMXITfLqLV3IN+w5R57qe34xmmyvHQ8OaqbzL8+lw0MYksX3zYqHABE0oh1gpi4jiCdooijwg0nV8AGtlJB882gr4yDo4fV2gTKigwLBTE+vpLsX8nRWl43sljA8OWvdlLYhMdZhYeOcqRodmcfyJxLlk19oCSoqFKfuH363RajH6U0WUHyLIwBiIsTa9grto4ufE4XVcbyLrmqQfnR/uDS3DSqOvLGo2PwL/638ZK8Tba0t/PBe/NuJUcEiyNkJLNtvuFTDYbIKskWmHkz6CVSGT5OyDtHi9imxUrtDHksgh/9MGr6/+GwOiJuneJyjabxRsOFegFaBJoYgZ/t9ZR1cbXmdjqywrURGGrU4iBBYosn1wkw3oe+shuk0WeLFgT1Mg7wGuVKWd3xW3F61h1cNvGOEOSuyZhbK/amLZLLXN7a/y6r9YdYBad/IKkRf5TgDaYuRLBbHZoyzuyF6k1mJDRqJhy6Ko4bu/yyHmsDVcDmE+11LhgdlXU59j+OsC6mPuelfnsHXzq7qtu8xqGwaZJUJNxYx8rp4niuCfDGe5vJd/1iOsUA5yTinjhwBi7CvWs06cIVDBeBMzS24y1DD+3qeWVBorFAkDoc/JpHp2a0WMNbF1CTf+4+uTfIAHzXyNoAEXlTUbMki8of97tKFForj/jEDdhGortEVjCF+HgRnai6ssj8hwYdJG2t5RTnAdg6ltV/T9/7qBXmsqfxERI6AUbclvBUrhvkrgeb78q2UQEEd16U+HkGR6LU38hi+/U5cwiqWIv6HF0chtNRwS9xP3szEic5oWEBwAi3o6aTIUnRFYLNOrgSk6o4r/OcWKhZjq11lbLvkdkU4tEhuUW6GMzATSwF+bPHhfPEXkNAn2lvPvb5yjV54DcTVPuvfo5ZSivNyFClOT/eQMpqfWRrnqFq0+qx+mCzd1CBmp5DvHCB2KJTSwTJG1RFCAdJmL1OcDOMfjZ/BIabH2tFedZzxuDGRkQQ9MviX3VzXTFMTy18Z3zvV4t7PrTiQwPfIX8SZ68+wZ8LL7KdhAqhwsZBjthybXuIQh1DANrT/UGs+xYkbwEIOuGRsYCROtsrgy5GvaTBK4MzMzSYN3MTrIzj4GeyDlup/L/F00GH2wQIQ0C7D9c+MAhfHkaXLK/dQ20hzusAcXFnOFRNHH7fnOSXB5bcG2ylwFXpjbfjn04MwNYh3BEumDtrhrs6/LXljHXw0rQ9lxjdi7i7EyYLxLp2DYARL9wT6H5q2k6GEwyvyXPybgzR06/nb+9pvqN//8SPjAJq6Q8ILNADQ300qZ5eNKUNl0HqW0jfKGF9PYmP+Lo3+PzE8yGw2mMjsbFq/Qdcbdyl4jgJh6BMfmlJJtwKRQk9rvyWiD0zXv5ChHu0JhZHy5ZaWzTB02oOz0Ut8AC+hmsFCKNbRpbuWYN6ifDGHv/8K8OchZVuV4mNsF9H8nbuOKXhbBAXxtbyxsxsevDGOWprCxKWVWcv2avq45H4ut0uJfFeMAaNmkxZLXNGnrujfcmjXknG/2hHLciff2qatTXNKmVM0fT0peShrIM1MSA1Yz/AHPvAB2Wqa02hQ+eFPE0vaNEY78cCPAgFwzxa+bBR0VX0YJi/DJDqJqu2OlX0ei0jXeKt7bmSYj8lsy/aQeSUQhnKtfFVY8gr7VYtBD40BgmUwh2ZHff0ORuoQBrZrvotJ//dCEvR1GXUN1+8AiurTVu0t+9eW7NwqHcFYUAXVR8g5lZCcVkV23mabtZKb8N/R9oY2gDwYI5kKSOTgGi+a9B+iY/CmFyRvkRcAzS4TW9Zj4M1gfRBom9FB8DWoDvE/WuwEKAqvd9rwxOsuYW/S2nBGvtoSLAfK6k4PnGxgbXLJgScIhSIf3/qPzRDOnVNrIbjn/FU6qTeVYnRKJ95edmFXrwxFaBxHZNdRzgOlNrz9zO3X+KNSEJoozkQG5WGRKxbYL0iuVHH9TdK8Re0CgKFHcx8vB6w4cxzCJf2X/QK7k9AiGdoBQYBr5IGE4QfZTHRef9Oq/J4fgLAOwOXBOuALlKpNgagYO8VOrivD3YRI59Qql92mO7sGtKmdyOCmsB9qIlMPsJ6/dyjNrauKlerin9dsyfPdsrejjb6d3PH8zwWV5FIavJ378X5XG0MRqtOH+e7Sssul3iRXTLtp3gDSKev/bY7H06VjLN49p3Wsi4q4Fz15dGkrLLAudvTqtEcoHaRZ6sBQCj0l0lSiIbSxR+w2E5rvHPMDoDuhVPUWjjNIryF+/dvHllvcCna2JhxOAhgNCcj/5Ff+a77mn+xlDCqhAHVCl68EAFQflqU/XcCIdmYrzIwp2GGfMr7kGiLGd05aNU+v9jQ3ERadhr/ZxB+Na7gflXqCQyjU09tqw+G6et5JwMTX8HroMfMVgPcHMT3Q+OQ0GetkoyP2YC9OHvkVAe0f+8AmhGTBsOVLq766tvfoHRZvPPj43/hoCamLVjIqGBVH9mkGyMf5RIeGUQ57xcCcN8PhSRBl8BP/AmGZmKT1EHBYsJnUgy4pbtDCBEN+Nr9F6ZU4ODf9p60EU0wHon9OgEMU/LWtR7FlVuOR94LyXUuTT+Ud8N01WCD7haQ5NAk6RbMEhL4DBNZJnmdfkHNF7sRuzxbdzRYz0BxjAXhA47IlAA4wrCZ9MCuGdwO4aC3y9IMCI/sv0wSHkGof6VlOlvCog1JSSGMHX5m/BoPxJ5ULq0GdiPicTCerWVKrWD/6LY1ChhZ3NsmhGH2gmaLaZl4AsFh4wMRbcyM4PU77GXD28M5uACXrDP43ojZvCrvrKmCQgjFqdfA1qOBdxuJLNMoEz06spbMLKRCojk04dTMgkILyCtLB8Oi44KbF9IvVy9rP+uqAA0R95chuRqsh24lfPaLO3RhnDhjwjf4CEg+D8/TuXVvtn1czy9PzsHbiWxPhQOHDbwjaH87Ga4OOeekGCm9xDmu5rfW4Y5EaliqXfyASqRXlGFlj7mr/ndZQg3KppGCWWXQZVWB5MO8WHgCrLhRUT4J84yoHyyJ7ROF3sdxaVGQfWecZD+E5COIiiG9Yp9VmrpCj9cTGu5KOa0eKM9e3bfQj3p8SokzjcHZM4yAcXumCNy2iXoTSA2EETaREOnFyZNFonf9UNcCwERxZ3mS4OoRXGkG6Id0pjRhrqvJadLRvCmLgBT9d+sxBkCyhAI8oA87C8KuA77hYq6SaGCcQzTAWa0B2ABwdarCD6N00+GE+uQVLjJVCbTPwqBZuuSrWuevXYPvU4guW9GykflvYkUv6tsx9BW2+kurCMjX4Y8hkg39YsBM1OcNZrY6MaISwoNb3vYNTq9jalMlxkuuVquzf4rxL5VT69cvojMGW9oJpVu2o5J71tjK237AL5KlOI57s6w1gibRZH7B2FfgPh0GLl3e1ca2ek7BH5FGeI0MmXANa4zAgksSF8PL0eiRcUyjg5pizMtaZ3ue3Ev9ZyMLRjr8dtK2sY5QorRBvc5vSZ8Jb7H39zskY1NfUwTWpbm1fKQJaz9ZQgLT3vr4XiIjm5rEKx36GpuyaAVbIoYWdrKP/eo1ss5l+WGcgPRwqfCHqC/eEkH1BdaxwFnJcYpoqkmpCRWooWLy3j1kvb1imjT6UD6UJbsCZ/GHWQGD5HNA6sOWsso8nxUeJarQriy29EEbLBuuyyLZ0NXM+j7kKIpIN9sJDnC3tvtV9g+bozeu9KgjQ720/7kiive3gTtOsel5m5ctyuAJyGOwLy9e+Vi/fV/lGticf01MurRJbHHqo1JBx1hnHq2MR6ClXykAIwuG38EVLJBjgGWJ3AE2U6E+cFUTEVKWFGLvLdIFvgWZ9Nz/8UD4NP41nbhUdLPcrxKrMneSWvLbVN9wxftow/+IN31AzsNFtYboFfp2Zu6k+WU8vM39/5D6IQBYn9NknF7LnkSpHO6+qHve3JSxL+g2aSmW4dyi72UCvlJJM8pdS2xj3GPBK/aVZgNFQTY3eWQJd/u4gGucuAsTvifsQY2cxvKLR4I9JHo7ZR3Z1VrDDR0HpkD/Mcwb/t5ZP2L4HQS/GII6WiZo6WpE6DkEuqa5N/8+VPsBon9IKJGxNrfPrHTD4OnCss+UmwMXnjB7sHvojE2sVATh/LjRPHH2UJHky2khxmrMMv2CFvomnD7UjBzi24DZ2hriZ7VorPgyvpAPvUUk9471MAvRqpdu/wpLQznaan3qxi4qndSeg5yDK4VwVqGa6XSQ7KuWjDFK65FUEtLORftejmocoXeZMnOn/Ytk4SFIAgML7KQoXSWyb4+38nQLS+6Mt1XFN72CaN1gBHeqokWEwudSYeCJ3TYq6LU9p+8V+cQe1Gte0W7WaWejf0eetxWQNZ+MXsPjwZaVFCoOI8FEEoFb8cjAdG/tvg6HH3FP50FmaK5+ru2DewU+fJ8bnR7M/F2DEZVji2LLBHJoxUXRkT+Les1Dq1OusK0LIfwmTuSRiGL6dGYjXsj/cYl01zFb3q6HQewCkcN41Kp7YJEtYXnLGBX8L0wgirH0ffmg+gTdn0TnbjrkXyl0uOx+dZsSOZ9qKLzNxg8fLlCyiQbJKf8LhQw5nPPJYe1rQn07NwHCLY7ffq1H0vceuRj3XkA8HlZmWZZee3UZsf6Oqv8oFhj9UiUrbbOZkts8AOQvuz91xjWxhqs9H+zfU/lni3hwDzjk5ADmv1fx4GFXGEwcWAoidABlgcQARHh3W/bruD+kAbdoOkKcwck6xVc4+2vs9DwPY1UHEVSld4zV9ofmoBBIbVsAoBn9/8dKPH0dalO9n6npsaxrwmsZrXm+TMZcBHChK61G+ov27cDLc5X0M1V+gnWYY+4uDjrU59XU/XHEuqYwsQQBIbtl1LYpK6AK5PRHzSsow1tw8algFBFwq0WSFiOgCuEA+lnoCpjJvjgvx8eMK3N67jEdVmPKyx8acAqDc9UMOsy4IdurYMFy/mpcBX58d8VAb/zZ8rTsJ2Hxj/EZuohdGV6ElDpFuSEwt8e5s4wyXBJIE6y3E6zshnssCaufB//QPFaU3l18f0ehxMpwXOGALmo+8DJgtvfwNjIySypQSji/5NzuMD0VMHLEBVb+xfurPK/tA+ok37ievz1UitKaLiOEmmS5VYBAlZKfzkV/v8rG+R+/ivb9lvmQ776S4Jl5a5JMsigsZIzLWpEciItr/6HgFiLoUezwATM6gUL+FJQJ9TRdMfPd8WcClld/7r5ibg3b5/E7Cy57Paak/DtNFezP1FyUTITmYsfU5dvJCD6O42JkPsNwJfUcTaizb0wFsndkNgoIJO1Iwg6T7rCR9F6Acg7P7I3WNYVuSSh+e+2c8HbcHO4IkoinMRJDwEcV5jjbpGKUokLeOhvGrF2J8AHvTXmyTXPrpRMAU/DsDwFtVV5ORzviTI/fAEPFzOF0CzEQzqrp14eJ2zebF09LTNeAWH3Q7Jwfftnt5pgiBeNNmH0AhEuDbFoE+JQJE+zGym7ltasAPCw5H9V7cQf7J+qyhoK0ZXL3uzTkwnDTkzxxgMl890jWnOZz4CV4uGeW4ZcN/AMqqABQTF5GdTf6DoQq7Cuo6MmnnBp0UI/YarNZM4yNS/tcoEZ2qSdH8GnJyjAv040UsrCafbjBs3m47HeSVrU4RkXf1oCdaLfmQVjmKoqUoCFKYVDo0bx1pSb/K/Eo0hjcYLvPtIWEaWXnm7TBkpkkOhht9o7pOc+3qbWpt/3yXMmTbjCH85J1vkhnqhURbpkiOQs7LG1zhU74+b3J1w75nG32PN26xMTT/5W3xqsL4nwJwxj7xF9hpOaFuoC+LUw4TG0LkoLcmS/nIzz42lx7Phk+jCY6abTJp8ceF5hgHwQmSm6Oaan2L7fuK0VNjQ+dYChL6jXPQEQvB9BwaTcuPR7SsBM5D1IxfwVLnbYvE7Ew5QzEzZnU8q5GLZT2RtCVuem0aQbHqOJh8HQaTcLVVjXPqDtdzoithCcarbMR8ZcgAy1HnzqPu19cB+j7m6eAoZuczDfXiLYrY72wy5DDIaXLDO/17UL62LdS4FABP9a5drltNDkwseTB116cmn8E2C9wjYqWZDR6hGZ8Q5qjy6+AQJf+yAeK2Wlo1D8RvtNVqPU+GrM+gRSU/oa6rkfrc+xoMNw7Mo0z3uehTMSSyr2wqR8UwDOL0kKipBi4o0+ndw+8DYoGkOAclO5jdJXxAQ9E/qWY9/ghUnbrw75cjaTvEqcaH+DAATaEppRlO6fthpNyGzXDD9bDUD2WcvbUPrOuOKN8r73NrAThCZ1wbEeBmtoQEOTiKpyj6ZlFKIIcPzK1yYuqkNY2roJqkCK899KMWCX3HmMRXEibu05Ts4CVsOcQWAEKwlpfiX8uEJkOClS3/YBolv9tji4XvgEvBaJBOB8wlM5jIoQqrue6MkGwrXopTN7xIO85ILu6uBHIFt3RtOK9a4QlqNRjpwOLWSN8WQfngqEJbSESH+jq8a3xNe10eRZWTnURCjjZW5apqeh1s67iH/XzaSjc2ICvwM+mb6nkDx4pbPF/chIpThsTFmHj+nGp90dEFOkaRg/DVL8kxlMs/A0tZkv8edys41pS/WjMtqYRY3wqs61JJ0diBEgiwR5b24DoQ2EBbSf3n8pc6hPSgbkHsv+BUUbD/8I67SA1n2uHn06OGgD3cql6MTMwxShySYpcpQ5Y3CJzZq0K+TS91EzaQM8TOKOr0s2UkHKh3eQqCSB5giTfmHJqvQO8lk19T5NIpF4flqH6+oUWQb8TrT4m6Lq541f9SqsIGlDCXHjRseUdl/zcidwdKeys7MOo1m0QbZNGqSQDEAOJ72k+PL2CT3hz0aAtyY7NQfGjTVb8+GLTIt3qbhEX4ai1oImnrO34nHFUx1M8HRvKd4yFLGKAsuLJfdaIXUGtpPrb2sYJHKTTNgaG8DklZv+miYk9dxmhuhSq9Pml1zG/mXcA1P3oV89mVMwcikdyMKQunhYQM7CGWitxKddDwlNu/tzTy+qk38iDISZyCURgHwYOA4/RCv3F6mvubrJ+Mw9PxqtF/VH1f3q7I+nwZT/MRfpcxIK2bp57CViisf90j/P/nPXh6L0F0Hk13R7MaoW7hH1Gyt9jyU7FTkgBjA90tPmbvq11zl2lvP5ya0HUp9e9ko45pHgNSMeMzgArlnuYvyWgSSxfaLSGdmr9XGYosxpUiMmyJznlvQUQmTtvqBaxMTkSCc5tghC4WCq9tBXOnZwqF4IBm738GltLGXqdYXgyuO7iwbdlYj22oHZz1d6OuFrC9Osr3QyRKwrqZ1WfVhqRUhLMn8XqKlPrc7m9HXRt1jlgGwTpQCIGXzErZ3UKGgXIu+JXSf95f3PuVMvV+Qu2Q3W9ytujNJAAtoRyYtjvyIet5L5SAlJUqJKm5wmV3L/rSO45sWeECKn73LzbxxCr0pszB9KjNyqf73Fog8DIPZA9UcGnEzfFXAn/cGstgmIbez7X17fhbPakebKtArRQtpw0e7u56TkDPqSpzH/Nm5bDb7l2+zx+LIsBG3XKOZ+tj4UKQr2QFIamMOz0NgqRX1xurWr/1ONiZSUMMtpBfHU0l3Wt4WvluT3ko15itGbmpHBarlwZ8CISMpiOO5wEJ/9zP5nWqsOow/7W15+siEWHHS3k2yEER07T8lNpnVmMrgELkGeYDYsm7oudT8gBkTXrwB/Tbx6TvHdRBfK7gmvJROnL2HvRH7V2yq/GdteN+vD4Z9qvEoKSOrst5EWkTb3kzTMZRLyCS7mLYpnsrszoK1AQDkeQbVuvAkZONXBLQRp3AcXKqeaHrLXN0N/YOcVqfyYfI3wgvI42N2w8xvRhRPbKZ7n7NcinKF4G1Szks8+Qacpduv9bccnzXSiBJRkQK3mcNRQtpnouoozumWy8Q+LCilFkm4G/rRhUa18uBKJxu9O4kiHHDEv866e1dlcdu2ogfUPLHeTgWC/QDoucvgxR0wU4s4K1MJoJ3SUA6qn0Js6Qgnd1KI/ZV3wlisWwW15AjQ1H1nmDL2L98GZpC7z1kmvbyMjZ7q80ESpmyCU/DVCKX8drc6rCOiTPRDSzHoZG/XqEBOy/uQtDQFsJ5JGAs/pzRB99tW/AFFbMN1FIOXTGLP6apINscNBqv66Dbz7JdCg51SQ351D7asqgC66/F33oc0BQlMJ/EyoxGXc4grQwnLOaOvrrOEgOCa+rhDT+RA+Ag1MrNeBv2rciXmbQdpQufYxPh6cGG+9AVxBQHku2FKuo0LpVGMpQkFEzMAdd7jLHdt+A73LMuR4I3PQ6jMeWadCDfAB/rx/UvwVibva7YHj4LKDW2CkGsgwIvsNlg+q+77emaS/J1epRutQpFYyihYB0f0Jm/yaFxMheKR+q/0ae3qtbBtwrpDmJ2vLRf634v5p2h6TQjG4hYHkkoIUcdhRFkOuHgfqjFChhBlKiOvEBGnOhXwYNTHZsnELeavnIoTTVsyedtfJnowQ+QNUhItq+JRvsLShPc+kho88gAaSTrZzJzJ5WXb/qM9EmaGDj4ypXcxAy22jhw5v2TZK33SXewx24bn3Jv51bG8SYDOdxmkDsnJ3LJjf/oazL226mcWbD1MS42zXWaHiiyQTM/WfOdeYT4Uywpv5v9P1v5RWWY04Cg9tR9XnLAxSD3ktajZvS+JYm6nXsMkUHG/htjMwY9UfdRWUZTqcOme6tOEcYLAjPeSfZ3zCdm3pMbaRaBat8eqLfX7QmaoBJL+zTpoiR8zNTBfPWFj+atz+JD3+x9Wt4EkaKELVmTXyTxSbaRJzifqufaTl04hBpyvr0nHyqZ/Zl5rNwOG5LuI0FSAdjsrdTCcStK8Kw+aBgIFD6YMuqvkuQV9DRFkK/Ribcmv+gPF++3RCS12aQqQf0LGmB/wv46ZL2Yd2loIFh/ILoPLVaRAvcRjSdFBhSwpyMjnj18XWlARpx5v34TjIRN1UUZ3BLuxJ12zuafw8zjMKYUv/OZ0Q6ztk6D4uqgsuf6Arcad/WRd1KE/teV/pdc4zCSm6QP2+uDMCpXNeIxH+odKStMcjGkXu3BbfcYRVbfFiItuspD4q0UIKZR73AinbIqrWtqHPGLRmJKDj10Rx92QyjKA1KKLYS0MSb/68AfLbzQTMiaRAMrHAtWmklIWmlWbT413g1+MXGQ37GU/K8Y+6E1xiZ3Ez0eBuz32mDy0TbqsfX0pa3LQ+SqQQSXYzhF/mttv5R7FppAf2quul+N8y+EzjfnjcIIU87BC2LMvnFeArkFXPF/I8YFuC+K7OQSv3Z/KnmhjfrAx0jmo5I8TiqC3MPKhq3UB81LgeDstTBfW2ls2pr3k1G1EUOPVB1RylD1PtYrK04dQ9CZJkoSy+qaXFlOY0ToLuQGVQKlERDzcznFgTEK4shoH6TCwy+pJvq8aya2HRdkxO0Wge6fN4a7bFgaDRGBu73XbSJVJt1jRX9F6Qy1dkD31WT89k8A5fKAABJqnLPo/NS22vtkGxsRR36dd5wv59beoTCrpEpbJSOn2zgtJjIOPZIonujwU8oMrIZwKmXCeC/nvB3wbodxVF5VoCDmBy6vDNdpjFTE+0tufxh4DtdhfDZ3hZCg4xpoULidHJUPup8XPz5GZnEykYb4h9Z4j9/Stj/dDP5auXJiJ5dplXZPTxBsOPrYnOHCaPY2Q7gyCdgK4oC41nEwvCoy4WmjjrOzPtzjy9UrimQlDFJ1Tlv7otMioWH8irCZMsux0RbimpUqKpSVOKE5uTC5FuyPUAAA=" width="438" height="600"/></svg></div></div>
+      <div class="hsearch">
+ <p class="hs-cap">Type a sum or a conversion</p>
+ <div class="hs-wrap">
+        <div class="hs-bar" id="hsBar">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.3 3.3"/></svg>
+          <input id="hsInput" type="text" autocomplete="off" spellcheck="false" aria-label="Search calculators" aria-expanded="false" aria-controls="hsRes">
+          <kbd class="hs-kbd">100+ tools</kbd>
+        </div>
+        <div class="hs-res" id="hsRes" role="listbox" aria-label="Search results"></div>
+ </div>
+ <div class="hs-tries"><button class="hs-try" type="button" data-q="15% of 200">15% of 200</button><button class="hs-try" type="button" data-q="5 km in mi">5 km in mi</button><button class="hs-try" type="button" data-q="2^10">2^10</button></div>
+      </div>
+      <div class="hero-cta">
+        <a class="btn solid" href="#tools">Browse all calculators</a>
+        <a class="btn" href="#explore" id="heroPick">Money &amp; markets</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="apps-sec" id="explore" aria-label="Calculator categories">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Explore</span><h2>Pick a category</h2></div>
+    <div class="appgrid">
+      <a class="app" href="#cat-health-body" aria-label="Health & body calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5C7.2 17 3.5 13.6 3.5 9.8 3.5 7.2 5.4 5.5 7.7 5.5c1.8 0 3.2 1 4.3 2.5 1.1-1.5 2.5-2.5 4.3-2.5 2.3 0 4.2 1.7 4.2 4.3 0 3.8-3.7 7.2-8.5 10.7z"/></svg></span><span class="app-n">Health</span></a>
+      <a class="app" href="#cat-fitness-sleep" aria-label="Fitness & sleep calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7.5v9M17 7.5v9M4 10v4M20 10v4M7 12h10"/></svg></span><span class="app-n">Fitness</span></a>
+      <a class="app" href="#cat-dates-time" aria-label="Dates & time calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2v4.8l3.4 2"/></svg></span><span class="app-n">Time</span></a>
+      <a class="app" href="#cat-math-numbers" aria-label="Math & numbers calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 7h15M8.5 7v10.5M15.5 7v7.6c0 1.8 1 2.9 2.6 2.9"/></svg></span><span class="app-n">Math</span></a>
+      <a class="app" href="#cat-everyday-money" aria-label="Everyday money calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6.5" rx="7" ry="2.8"/><path d="M5 6.5v5.5c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8V6.5"/><path d="M5 12v5.5c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8V12"/></svg></span><span class="app-n">Money</span></a>
+      <a class="app" href="#cat-loans-debt" aria-label="Loans & debt calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18M6.5 14.5h5"/></svg></span><span class="app-n">Loans</span></a>
+      <a class="app" href="#cat-investing" aria-label="Investing calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 17.5l5-5 3.5 3 7.5-8"/><path d="M14.5 7.5h5v5"/></svg></span><span class="app-n">Investing</span></a>
+      <a class="app" href="#cat-school" aria-label="School calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5l9-4.5 9 4.5-9 4.5-9-4.5z"/><path d="M7 11.8v3.7c0 1.6 2.2 3 5 3s5-1.4 5-3v-3.7"/><path d="M21 9.5V14"/></svg></span><span class="app-n">School</span></a>
+      <a class="app" href="#cat-converters" aria-label="Converters calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h13l-3.2-3.2M20 15.5H7l3.2 3.2"/></svg></span><span class="app-n">Convert</span></a>
+      <a class="app" href="#cat-kitchen" aria-label="Kitchen calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 3.5v7.5M7.5 21v-6M5.5 3.5v4c0 1.5.8 2.5 2 2.5s2-1 2-2.5v-4"/><path d="M15 3.5c2.2 0 3.7 2 3.7 4.6 0 2.2-1.1 3.9-2.7 4.3V21"/></svg></span><span class="app-n">Kitchen</span></a>
+      <a class="app" href="#cat-home-garden" aria-label="Home & garden calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7"/><path d="M6.2 9.8V19h11.6V9.8"/><path d="M10 19v-4.6h4V19"/></svg></span><span class="app-n">Home</span></a>
+      <a class="app" href="#cat-cars-travel" aria-label="Cars & travel calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 15.5v-3.4l1.8-4.6h11.4l1.8 4.6v3.4"/><path d="M4.5 15.5h15"/><circle cx="8.2" cy="16.8" r="1.5"/><circle cx="15.8" cy="16.8" r="1.5"/></svg></span><span class="app-n">Cars</span></a>
+      <a class="app" href="#cat-family" aria-label="Family calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8.7" cy="8" r="2.7"/><path d="M3.6 19.2c0-3 2.3-5.1 5.1-5.1s5.1 2.1 5.1 5.1"/><circle cx="16.8" cy="9.4" r="2.1"/><path d="M14.6 19.2c.4-2.4 2-4 4.3-4 .6 0 1.2.1 1.7.3"/></svg></span><span class="app-n">Family</span></a>
+      <a class="app" href="#cat-random-fun" aria-label="Random & fun calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="4.5" width="15" height="15" rx="3.2"/><circle cx="9" cy="9" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="9" r="1.1" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/></svg></span><span class="app-n">Fun</span></a>
+      <a class="app" href="#cat-money-the-fed" aria-label="Money & the Fed calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="10" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6.5 10.5v3M17.5 10.5v3"/></svg></span><span class="app-n">The Fed</span></a>
+      <a class="app all" href="#all" aria-label="All 100+ calculators"><span class="app-sq"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="6" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="6" r="1.5" fill="currentColor" stroke="none"/><circle cx="6" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="6" cy="18" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="18" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="18" r="1.5" fill="currentColor" stroke="none"/></svg></span><span class="app-n">All 100+</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The full set</span>
+      <h2>Every calculator, one tap away</h2>
+      <p>Grouped by what you're actually trying to work out. Each one opens instantly and remembers nothing, your numbers stay on your device.</p>
+    </div>
+
+    <div class="cats">
+      <span class="cat">Finance</span>
+      <span class="cat">Money &amp; markets</span>
+      <span class="cat">Health</span>
+      <span class="cat">Date &amp; time</span>
+      <span class="cat">Math</span>
+      <span class="cat">Everyday</span>
+    </div>
+
+    <div class="acc" id="finance">
+
+      <div class="acc-item open" data-calc="pct">
+        <button class="acc-head" id="fh1" aria-controls="fp1" aria-expanded="true">
+          <span class="acc-ic">%</span>
+          <span class="acc-txt"><span class="acc-name">Percentage</span><span class="acc-sum">Increase, decrease, "% of", and the change between two numbers.</span></span>
+          <span class="acc-tag">Finance</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="fp1" role="region" aria-labelledby="fh1"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>What is</label><div class="mf-in"><input data-f="a" type="number" inputmode="decimal" value="15"><span class="mf-u">%</span></div></div>
+              <div class="mf"><label>of</label><div class="mf-in"><input data-f="b" type="number" inputmode="decimal" value="200"></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">–</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="percentage-calculator.html">Open the full <b>Percentage</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <div class="acc-item" data-calc="tip">
+        <button class="acc-head" id="fh2" aria-controls="fp2" aria-expanded="false">
+          <span class="acc-ic">$</span>
+          <span class="acc-txt"><span class="acc-name">Tip &amp; split</span><span class="acc-sum">Tip by percent and divide the bill evenly across the table.</span></span>
+          <span class="acc-tag">Finance</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="fp2" role="region" aria-labelledby="fh2"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>Bill</label><div class="mf-in mf-l"><span class="mf-u mf-ul">$</span><input data-f="bill" type="number" inputmode="decimal" value="60"></div></div>
+              <div class="mf"><label>Tip</label><div class="mf-in"><input data-f="tip" type="number" inputmode="decimal" value="18"><span class="mf-u">%</span></div></div>
+              <div class="mf"><label>Split between</label><div class="mf-in"><input data-f="ppl" type="number" inputmode="numeric" value="2"></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">–</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="tip-calculator.html">Open the full <b>Tip &amp; split</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <div class="acc-item" data-calc="loan">
+        <button class="acc-head" id="fh3" aria-controls="fp3" aria-expanded="false">
+          <span class="acc-ic">≈</span>
+          <span class="acc-txt"><span class="acc-name">Loan payment</span><span class="acc-sum">Monthly repayment and total interest over the full term.</span></span>
+          <span class="acc-tag">Finance</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="fp3" role="region" aria-labelledby="fh3"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>Loan amount</label><div class="mf-in mf-l"><span class="mf-u mf-ul">$</span><input data-f="amt" type="number" inputmode="decimal" value="20000"></div></div>
+              <div class="mf"><label>Interest rate</label><div class="mf-in"><input data-f="rate" type="number" inputmode="decimal" step="0.1" value="6.5"><span class="mf-u">%</span></div></div>
+              <div class="mf"><label>Term (years)</label><div class="mf-in"><input data-f="years" type="number" inputmode="numeric" value="5"></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">–</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="loan-calculator.html">Open the full <b>Loan</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <div class="acc-item" data-calc="comp">
+        <button class="acc-head" id="fh4" aria-controls="fp4" aria-expanded="false">
+          <span class="acc-ic">△</span>
+          <span class="acc-txt"><span class="acc-name">Compound interest</span><span class="acc-sum">Watch a lump sum grow, compounded monthly, over any period.</span></span>
+          <span class="acc-tag">Finance</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="fp4" role="region" aria-labelledby="fh4"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>Starting amount</label><div class="mf-in mf-l"><span class="mf-u mf-ul">$</span><input data-f="p" type="number" inputmode="decimal" value="5000"></div></div>
+              <div class="mf"><label>Annual rate</label><div class="mf-in"><input data-f="rate" type="number" inputmode="decimal" step="0.1" value="7"><span class="mf-u">%</span></div></div>
+              <div class="mf"><label>Years</label><div class="mf-in"><input data-f="years" type="number" inputmode="numeric" value="10"></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">–</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="compound-interest-calculator.html">Open the full <b>Compound interest</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <div class="acc-item" data-calc="vat">
+        <button class="acc-head" id="fh5" aria-controls="fp5" aria-expanded="false">
+          <span class="acc-ic">◷</span>
+          <span class="acc-txt"><span class="acc-name">VAT / sales tax</span><span class="acc-sum">Add tax to a net amount, see the tax and the gross total.</span></span>
+          <span class="acc-tag">Finance</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="fp5" role="region" aria-labelledby="fh5"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>Net amount</label><div class="mf-in mf-l"><span class="mf-u mf-ul">$</span><input data-f="amt" type="number" inputmode="decimal" value="100"></div></div>
+              <div class="mf"><label>Tax rate</label><div class="mf-in"><input data-f="rate" type="number" inputmode="decimal" step="0.1" value="20"><span class="mf-u">%</span></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">–</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="vat-calculator.html">Open the full <b>VAT / tax</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <div class="acc-item" data-calc="currency">
+        <button class="acc-head" id="fh6" aria-controls="fp6" aria-expanded="false">
+          <span class="acc-ic">↔</span>
+          <span class="acc-txt"><span class="acc-name">Currency</span><span class="acc-sum">Convert between currencies using the latest reference rates.</span></span>
+          <span class="acc-tag">Finance</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="fp6" role="region" aria-labelledby="fh6"><div class="acc-body"><div class="acc-inner">
+          <div class="mini mini-pv">
+            <div><div class="pv-ex">Example conversion</div><div class="pv-main">$100 &nbsp;→&nbsp; <span class="amber">€92.40</span></div>
+            <div class="pv-note">The full tool converts 21 major currencies with indicative reference rates and updates as you type.</div></div>
+          </div>
+          <a class="acc-cta" href="currency-converter.html">Open the full <b>Currency</b> converter →</a>
+        </div></div></div>
+      </div>
+
+      <div class="acc-item" data-calc="bmi" id="health">
+        <button class="acc-head" id="fh7" aria-controls="fp7" aria-expanded="false">
+          <span class="acc-ic">◐</span>
+          <span class="acc-txt"><span class="acc-name">BMI</span><span class="acc-sum">Body mass index with a clear, honest healthy-range band.</span></span>
+          <span class="acc-tag">Health</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="fp7" role="region" aria-labelledby="fh7"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>Weight</label><div class="mf-in"><input data-f="w" type="number" inputmode="decimal" value="75"><span class="mf-u">kg</span></div></div>
+              <div class="mf"><label>Height</label><div class="mf-in"><input data-f="h" type="number" inputmode="decimal" value="175"><span class="mf-u">cm</span></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">–</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="bmi-calculator.html">Open the full <b>BMI</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <div class="acc-item" data-calc="cal">
+        <button class="acc-head" id="fh8" aria-controls="fp8" aria-expanded="false">
+          <span class="acc-ic">⊙</span>
+          <span class="acc-txt"><span class="acc-name">Calorie needs</span><span class="acc-sum">Daily maintenance calories from height, weight and activity.</span></span>
+          <span class="acc-tag">Health</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="fp8" role="region" aria-labelledby="fh8"><div class="acc-body"><div class="acc-inner">
+          <div class="mini mini-pv">
+            <div><div class="pv-ex">Example, 30&nbsp;yrs, 175&nbsp;cm, 75&nbsp;kg, moderately active</div><div class="pv-main">≈ <span class="amber">2,633</span> kcal / day</div>
+            <div class="pv-note">The full tool uses the Mifflin–St Jeor equation with your sex, age and activity level.</div></div>
+          </div>
+          <a class="acc-cta" href="calorie-calculator.html">Open the full <b>Calorie</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <div class="acc-item" data-calc="age">
+        <button class="acc-head" id="fh9" aria-controls="fp9" aria-expanded="false">
+          <span class="acc-ic">◔</span>
+          <span class="acc-txt"><span class="acc-name">Age</span><span class="acc-sum">Your exact age in years, months, weeks and days.</span></span>
+          <span class="acc-tag">Everyday</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="fp9" role="region" aria-labelledby="fh9"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>Date of birth</label><div class="mf-in"><input data-f="date" type="date" value="1990-06-15"></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">–</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="age-calculator.html">Open the full <b>Age</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <div class="acc-item" data-calc="ddiff">
+        <button class="acc-head" id="fh10" aria-controls="fp10" aria-expanded="false">
+          <span class="acc-ic">▦</span>
+          <span class="acc-txt"><span class="acc-name">Date difference</span><span class="acc-sum">Calendar days, weeks and working days between two dates.</span></span>
+          <span class="acc-tag">Date</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="fp10" role="region" aria-labelledby="fh10"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>From</label><div class="mf-in"><input data-f="d1" type="date" value="2026-01-01"></div></div>
+              <div class="mf"><label>To</label><div class="mf-in"><input data-f="d2" type="date" value="2026-12-25"></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">–</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="date-difference-calculator.html">Open the full <b>Date difference</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <div class="acc-item" data-calc="frac">
+        <button class="acc-head" id="fh11" aria-controls="fp11" aria-expanded="false">
+          <span class="acc-ic">÷</span>
+          <span class="acc-txt"><span class="acc-name">Fraction</span><span class="acc-sum">Add two fractions, simplify, and convert to a decimal.</span></span>
+          <span class="acc-tag">Math</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="fp11" role="region" aria-labelledby="fh11"><div class="acc-body"><div class="acc-inner">
+          <div class="mini">
+            <div class="mini-fields">
+              <div class="mf"><label>First fraction</label><div class="mf-frac"><input data-f="a" type="number" inputmode="numeric" value="1"><span>/</span><input data-f="b" type="number" inputmode="numeric" value="2"></div></div>
+              <div class="mf"><label>Second fraction</label><div class="mf-frac"><input data-f="c" type="number" inputmode="numeric" value="1"><span>/</span><input data-f="d" type="number" inputmode="numeric" value="3"></div></div>
+            </div>
+            <div class="mo"><div class="mo-expr" data-out="expr"></div><div class="mo-main" data-out="main">–</div>
+              <div class="mo-sub"><div class="moc"><span class="mok" data-out="s1k"></span><span class="mov" data-out="s1v"></span></div><div class="moc"><span class="mok" data-out="s2k"></span><span class="mov" data-out="s2v"></span></div></div></div>
+          </div>
+          <a class="acc-cta" href="fraction-calculator.html">Open the full <b>Fraction</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+      <div class="acc-item" data-calc="sci">
+        <button class="acc-head" id="fh12" aria-controls="fp12" aria-expanded="false">
+          <span class="acc-ic">√</span>
+          <span class="acc-txt"><span class="acc-name">Scientific</span><span class="acc-sum">A full keypad for roots, powers, logs and trigonometry.</span></span>
+          <span class="acc-tag">Math</span><span class="acc-chev" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="fp12" role="region" aria-labelledby="fh12"><div class="acc-body"><div class="acc-inner">
+          <div class="mini mini-pv">
+            <div><div class="pv-ex">Full keypad</div><div class="pv-keys"><span>√</span><span>x²</span><span>xʸ</span><span>log</span><span>ln</span><span>sin</span><span>cos</span><span>tan</span><span>π</span><span>e</span><span>(</span><span>)</span></div>
+            <div class="pv-note">Everything you'd expect from a scientific calculator, with a running tape of your working.</div></div>
+          </div>
+          <a class="acc-cta" href="scientific-calculator.html">Open the full <b>Scientific</b> calculator →</a>
+        </div></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="shelf-sec" aria-label="Physical calculators">
+  <div class="wrap">
+    <div class="shelf">
+        <p class="shelf-h">Prefer a physical calculator?</p>
+        <p class="shelf-d">A few solid picks. As an Amazon Associate, Calculate.to earns from qualifying purchases, at no extra cost to you.</p>
+        <div class="shelf-grid">
+        <a class="shelf-card" href="https://amzn.to/3RbvOFU" rel="sponsored nofollow noopener" target="_blank">
+          <span class="shelf-imgwrap"><img src="assets/img/prod-osalo.jpg" alt="OSALO Desktop Calculator" loading="lazy" width="400" height="400"></span>
+          <span class="shelf-name">OSALO Desktop Calculator</span>
+          <span class="shelf-copy">Extra-large 12-digit LCD, giant buttons, solar + battery, the classic office desk workhorse.</span>
+          <span class="shelf-go">View on Amazon →</span>
+        </a>
+        <a class="shelf-card" href="https://amzn.to/4bGAoTm" rel="sponsored nofollow noopener" target="_blank">
+          <span class="shelf-imgwrap"><img src="assets/img/prod-helix.jpg" alt="Helix Oxford Scientific" loading="lazy" width="400" height="400"></span>
+          <span class="shelf-name">Helix Oxford Scientific</span>
+          <span class="shelf-copy">240-function scientific calculator for KS3–KS4 math, with hard cover. Exam-friendly, plastic-free packaging.</span>
+          <span class="shelf-go">View on Amazon →</span>
+        </a>
+        <a class="shelf-card" href="https://amzn.to/4yoBOf7" rel="sponsored nofollow noopener" target="_blank">
+          <span class="shelf-imgwrap"><img src="assets/img/prod-casio.jpg" alt="Casio fx-83GTCW+" loading="lazy" width="400" height="400"></span>
+          <span class="shelf-name">Casio fx-83GTCW+</span>
+          <span class="shelf-copy">The UK classroom-standard scientific calculator (also in pink), allowed in most UK exams.</span>
+          <span class="shelf-go">View on Amazon →</span>
+        </a>
+        <a class="shelf-card" href="https://amzn.to/4aVhBDE" rel="sponsored nofollow noopener" target="_blank">
+          <span class="shelf-imgwrap"><img src="assets/img/prod-roatee.jpg" alt="ROATEE Construction Calc" loading="lazy" width="400" height="400"></span>
+          <span class="shelf-name">ROATEE Construction Calc</span>
+          <span class="shelf-copy">Feet-inch-fraction engineering calculator for carpenters, framers and contractors on site.</span>
+          <span class="shelf-go">View on Amazon →</span>
+        </a>
+        </div>
+      </div>
+  </div>
+</section>
+
+<section id="all"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">The full collection</span><h2>Every calculator on the site</h2></div>
+  <div class="mega-grid" style="padding-top:0">
+    <div class="mega-col" id="cat-health-body">
+        <h5>Health &amp; body</h5>
+        <a class="mg-item" href="bmi-calculator.html"><span class="mg-ic">◐</span><span class="mg-t"><span class="mg-n">BMI</span><span class="mg-d">With healthy range</span></span></a>
+        <a class="mg-item" href="calorie-calculator.html"><span class="mg-ic">⊙</span><span class="mg-t"><span class="mg-n">Calorie needs</span><span class="mg-d">Mifflin–St Jeor</span></span></a>
+        <a class="mg-item" href="tdee-calculator.html"><span class="mg-ic">⚡</span><span class="mg-t"><span class="mg-n">TDEE</span><span class="mg-d">Total daily energy</span></span></a>
+        <a class="mg-item" href="bmr-calculator.html"><span class="mg-ic">☀</span><span class="mg-t"><span class="mg-n">BMR</span><span class="mg-d">Calories at rest</span></span></a>
+        <a class="mg-item" href="body-fat-calculator.html"><span class="mg-ic">◑</span><span class="mg-t"><span class="mg-n">Body fat %</span><span class="mg-d">US Navy method</span></span></a>
+        <a class="mg-item" href="ideal-weight-calculator.html"><span class="mg-ic">⚕</span><span class="mg-t"><span class="mg-n">Ideal weight</span><span class="mg-d">Four classic formulas</span></span></a>
+        <a class="mg-item" href="macro-calculator.html"><span class="mg-ic">◲</span><span class="mg-t"><span class="mg-n">Macros</span><span class="mg-d">Protein, carbs, fat split</span></span></a>
+        <a class="mg-item" href="water-intake-calculator.html"><span class="mg-ic">≋</span><span class="mg-t"><span class="mg-n">Water intake</span><span class="mg-d">Daily hydration</span></span></a>
+        <a class="mg-item" href="waist-to-height-ratio-calculator.html"><span class="mg-ic">◔</span><span class="mg-t"><span class="mg-n">Waist-to-height</span><span class="mg-d">A simple health marker</span></span></a>
+      </div>
+    <div class="mega-col" id="cat-fitness-sleep">
+        <h5>Fitness &amp; sleep</h5>
+        <a class="mg-item" href="pace-calculator.html"><span class="mg-ic">⏵</span><span class="mg-t"><span class="mg-n">Running pace</span><span class="mg-d">Pace, time, distance</span></span></a>
+        <a class="mg-item" href="one-rep-max-calculator.html"><span class="mg-ic">⚑</span><span class="mg-t"><span class="mg-n">One-rep max</span><span class="mg-d">Epley & Brzycki</span></span></a>
+        <a class="mg-item" href="heart-rate-zone-calculator.html"><span class="mg-ic">❤</span><span class="mg-t"><span class="mg-n">Heart-rate zones</span><span class="mg-d">Training zones</span></span></a>
+        <a class="mg-item" href="sleep-calculator.html"><span class="mg-ic">☾</span><span class="mg-t"><span class="mg-n">Sleep cycles</span><span class="mg-d">When to sleep or wake</span></span></a>
+        <a class="mg-item" href="calories-burned-calculator.html"><span class="mg-ic">△</span><span class="mg-t"><span class="mg-n">Calories burned</span><span class="mg-d">Any workout</span></span></a>
+      </div>
+    <div class="mega-col" id="cat-dates-time">
+        <h5>Dates &amp; time</h5>
+        <a class="mg-item" href="age-calculator.html"><span class="mg-ic">◔</span><span class="mg-t"><span class="mg-n">Age</span><span class="mg-d">Years, months, days</span></span></a>
+        <a class="mg-item" href="date-difference-calculator.html"><span class="mg-ic">▦</span><span class="mg-t"><span class="mg-n">Date difference</span><span class="mg-d">Days & working days</span></span></a>
+        <a class="mg-item" href="day-of-week-calculator.html"><span class="mg-ic">□</span><span class="mg-t"><span class="mg-n">Day of the week</span><span class="mg-d">What day was any date</span></span></a>
+        <a class="mg-item" href="days-from-today-calculator.html"><span class="mg-ic">⇢</span><span class="mg-t"><span class="mg-n">Days from today</span><span class="mg-d">Add days & business days</span></span></a>
+        <a class="mg-item" href="time-calculator.html"><span class="mg-ic">⏰</span><span class="mg-t"><span class="mg-n">Time & hours</span><span class="mg-d">Durations & work hours</span></span></a>
+        <a class="mg-item" href="time-zone-converter.html"><span class="mg-ic">⏲</span><span class="mg-t"><span class="mg-n">Time zones</span><span class="mg-d">Difference between cities</span></span></a>
+        <a class="mg-item" href="business-days-calculator.html"><span class="mg-ic">▤</span><span class="mg-t"><span class="mg-n">Business days</span><span class="mg-d">Weekdays between dates</span></span></a>
+      </div>
+    <div class="mega-col" id="cat-math-numbers">
+        <h5>Math &amp; numbers</h5>
+        <a class="mg-item" href="fraction-calculator.html"><span class="mg-ic">÷</span><span class="mg-t"><span class="mg-n">Fraction</span><span class="mg-d">Four ops, simplified</span></span></a>
+        <a class="mg-item" href="scientific-calculator.html"><span class="mg-ic">√</span><span class="mg-t"><span class="mg-n">Scientific</span><span class="mg-d">Full keypad</span></span></a>
+        <a class="mg-item" href="average-calculator.html"><span class="mg-ic">x̄</span><span class="mg-t"><span class="mg-n">Average</span><span class="mg-d">Mean, median, std dev</span></span></a>
+        <a class="mg-item" href="ratio-calculator.html"><span class="mg-ic">::</span><span class="mg-t"><span class="mg-n">Ratio</span><span class="mg-d">Solve & simplify a:b</span></span></a>
+        <a class="mg-item" href="gcf-lcm-calculator.html"><span class="mg-ic">∧</span><span class="mg-t"><span class="mg-n">GCF & LCM</span><span class="mg-d">Factors & multiples</span></span></a>
+        <a class="mg-item" href="binary-hex-converter.html"><span class="mg-ic">01</span><span class="mg-t"><span class="mg-n">Binary / hex</span><span class="mg-d">Dec, bin, hex, octal</span></span></a>
+        <a class="mg-item" href="advanced-calculator.html"><span class="mg-ic">f(x)</span><span class="mg-t"><span class="mg-n">Advanced</span><span class="mg-d">Variables, solve, plot</span></span></a>
+        <a class="mg-item" href="derivative-calculator.html"><span class="mg-ic">∂</span><span class="mg-t"><span class="mg-n">Derivative</span><span class="mg-d">Slope at a point</span></span></a>
+        <a class="mg-item" href="integral-calculator.html"><span class="mg-ic">∫</span><span class="mg-t"><span class="mg-n">Integral</span><span class="mg-d">Area under a curve</span></span></a>
+        <a class="mg-item" href="ai-compute-calculator.html"><span class="mg-ic">AI</span><span class="mg-t"><span class="mg-n">AI compute</span><span class="mg-d">FLOPs, GPU-hours, cost</span></span></a>
+        <a class="mg-item" href="quantum-calculator.html"><span class="mg-ic">ψ</span><span class="mg-t"><span class="mg-n">Quantum</span><span class="mg-d">Qubits & overhead</span></span></a>
+        <a class="mg-item" href="standard-deviation-calculator.html"><span class="mg-ic">σ</span><span class="mg-t"><span class="mg-n">Std deviation</span><span class="mg-d">Sample and population</span></span></a>
+        <a class="mg-item" href="quadratic-formula-calculator.html"><span class="mg-ic">ƒ</span><span class="mg-t"><span class="mg-n">Quadratic</span><span class="mg-d">Roots and vertex</span></span></a>
+        <a class="mg-item" href="roman-numeral-converter.html"><span class="mg-ic">Ⅿ</span><span class="mg-t"><span class="mg-n">Roman numerals</span><span class="mg-d">Numbers to Roman</span></span></a>
+      </div>
+    <div class="mega-col" id="cat-everyday-money">
+        <h5>Everyday money</h5>
+        <a class="mg-item" href="percentage-calculator.html"><span class="mg-ic">%</span><span class="mg-t"><span class="mg-n">Percentage</span><span class="mg-d">Of, change, add & subtract</span></span></a>
+        <a class="mg-item" href="tip-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">Tip & split</span><span class="mg-d">Tip and divide the bill</span></span></a>
+        <a class="mg-item" href="vat-calculator.html"><span class="mg-ic">◷</span><span class="mg-t"><span class="mg-n">VAT / sales tax</span><span class="mg-d">Add or remove tax</span></span></a>
+        <a class="mg-item" href="discount-calculator.html"><span class="mg-ic">✂</span><span class="mg-t"><span class="mg-n">Discount</span><span class="mg-d">Sale price & savings</span></span></a>
+        <a class="mg-item" href="margin-markup-calculator.html"><span class="mg-ic">◨</span><span class="mg-t"><span class="mg-n">Margin & markup</span><span class="mg-d">Price, cost, profit</span></span></a>
+        <a class="mg-item" href="salary-to-hourly-calculator.html"><span class="mg-ic">⏱</span><span class="mg-t"><span class="mg-n">Salary ↔ hourly</span><span class="mg-d">Pay, converted both ways</span></span></a>
+        <a class="mg-item" href="savings-goal-calculator.html"><span class="mg-ic">◎</span><span class="mg-t"><span class="mg-n">Savings goal</span><span class="mg-d">Time or monthly needed</span></span></a>
+        <a class="mg-item" href="currency-converter.html"><span class="mg-ic">↔</span><span class="mg-t"><span class="mg-n">Currency</span><span class="mg-d">21 major currencies</span></span></a>
+        <a class="mg-item" href="compound-interest-calculator.html"><span class="mg-ic">△</span><span class="mg-t"><span class="mg-n">Compound interest</span><span class="mg-d">Growth over time</span></span></a>
+        <a class="mg-item" href="unit-price-calculator.html"><span class="mg-ic">¤</span><span class="mg-t"><span class="mg-n">Unit price</span><span class="mg-d">Better-deal per unit</span></span></a>
+      </div>
+    <div class="mega-col" id="cat-loans-debt">
+        <h5>Loans &amp; debt</h5>
+        <a class="mg-item" href="mortgage-calculator.html"><span class="mg-ic">⌂</span><span class="mg-t"><span class="mg-n">Mortgage</span><span class="mg-d">Full monthly payment</span></span></a>
+        <a class="mg-item" href="loan-calculator.html"><span class="mg-ic">≈</span><span class="mg-t"><span class="mg-n">Loan payment</span><span class="mg-d">Monthly cost & interest</span></span></a>
+        <a class="mg-item" href="car-loan-calculator.html"><span class="mg-ic">⚙</span><span class="mg-t"><span class="mg-n">Car loan</span><span class="mg-d">With down & trade-in</span></span></a>
+        <a class="mg-item" href="debt-payoff-calculator.html"><span class="mg-ic">✂</span><span class="mg-t"><span class="mg-n">Debt payoff</span><span class="mg-d">Snowball vs avalanche</span></span></a>
+        <a class="mg-item" href="simple-interest-calculator.html"><span class="mg-ic">·</span><span class="mg-t"><span class="mg-n">Simple interest</span><span class="mg-d">I = P·r·t</span></span></a>
+        <a class="mg-item" href="apr-apy-calculator.html"><span class="mg-ic">⇄</span><span class="mg-t"><span class="mg-n">APR ↔ APY</span><span class="mg-d">Compounding conversions</span></span></a>
+        <a class="mg-item" href="amortization-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">Amortization</span><span class="mg-d">Payment and interest</span></span></a>
+      </div>
+    <div class="mega-col" id="cat-investing">
+        <h5>Investing</h5>
+        <a class="mg-item" href="sp500-dca-calculator.html"><span class="mg-ic">▲</span><span class="mg-t"><span class="mg-n">S&P 500 since inception</span><span class="mg-d">Real returns 1928–2025</span></span></a>
+        <a class="mg-item" href="sp1-vs-sp500-calculator.html"><span class="mg-ic">№1</span><span class="mg-t"><span class="mg-n">S&P 1 vs S&P 500</span><span class="mg-d">Throne vs kingdom</span></span></a>
+        <a class="mg-item" href="cagr-calculator.html"><span class="mg-ic">↗</span><span class="mg-t"><span class="mg-n">CAGR</span><span class="mg-d">Compound annual growth</span></span></a>
+        <a class="mg-item" href="drip-calculator.html"><span class="mg-ic">♻</span><span class="mg-t"><span class="mg-n">Dividend reinvestment</span><span class="mg-d">DRIP compounding</span></span></a>
+        <a class="mg-item" href="retirement-calculator.html"><span class="mg-ic">⌂</span><span class="mg-t"><span class="mg-n">Retirement / FIRE</span><span class="mg-d">Nest egg & the 4% rule</span></span></a>
+        <a class="mg-item" href="roi-calculator.html"><span class="mg-ic">±</span><span class="mg-t"><span class="mg-n">ROI</span><span class="mg-d">Return on investment</span></span></a>
+        <a class="mg-item" href="rule-of-72-calculator.html"><span class="mg-ic">72</span><span class="mg-t"><span class="mg-n">Rule of 72</span><span class="mg-d">Doubling time shortcut</span></span></a>
+        <a class="mg-item" href="dollar-cost-averaging-calculator.html"><span class="mg-ic">↗</span><span class="mg-t"><span class="mg-n">DCA</span><span class="mg-d">Invest monthly, compound</span></span></a>
+      </div>
+    <div class="mega-col" id="cat-school">
+        <h5>School</h5>
+        <a class="mg-item" href="gpa-calculator.html"><span class="mg-ic">☆</span><span class="mg-t"><span class="mg-n">GPA</span><span class="mg-d">Weighted 4.0 scale</span></span></a>
+        <a class="mg-item" href="final-grade-calculator.html"><span class="mg-ic">✓</span><span class="mg-t"><span class="mg-n">Final grade</span><span class="mg-d">What you need on the final</span></span></a>
+        <a class="mg-item" href="test-score-calculator.html"><span class="mg-ic">%</span><span class="mg-t"><span class="mg-n">Test score</span><span class="mg-d">Percent and letter</span></span></a>
+        <a class="mg-item" href="weighted-grade-calculator.html"><span class="mg-ic">Σ</span><span class="mg-t"><span class="mg-n">Weighted grade</span><span class="mg-d">By weight per task</span></span></a>
+      </div>
+    <div class="mega-col" id="cat-converters">
+        <h5>Converters</h5>
+        <a class="mg-item" href="temperature-converter.html"><span class="mg-ic">°</span><span class="mg-t"><span class="mg-n">Temperature</span><span class="mg-d">°C, °F and kelvin</span></span></a>
+        <a class="mg-item" href="length-converter.html"><span class="mg-ic">↔</span><span class="mg-t"><span class="mg-n">Length</span><span class="mg-d">mm to miles</span></span></a>
+        <a class="mg-item" href="weight-converter.html"><span class="mg-ic">⚖</span><span class="mg-t"><span class="mg-n">Weight</span><span class="mg-d">Grams to tons & stone</span></span></a>
+        <a class="mg-item" href="cups-to-grams-converter.html"><span class="mg-ic">☕</span><span class="mg-t"><span class="mg-n">Cups to grams</span><span class="mg-d">Real ingredient densities</span></span></a>
+        <a class="mg-item" href="speed-converter.html"><span class="mg-ic">→</span><span class="mg-t"><span class="mg-n">Speed</span><span class="mg-d">mph, km/h, knots</span></span></a>
+        <a class="mg-item" href="area-converter.html"><span class="mg-ic">▦</span><span class="mg-t"><span class="mg-n">Area</span><span class="mg-d">Acres, hectares, sq ft</span></span></a>
+        <a class="mg-item" href="volume-converter.html"><span class="mg-ic">◍</span><span class="mg-t"><span class="mg-n">Volume</span><span class="mg-d">Liters, gallons, cups</span></span></a>
+      </div>
+    <div class="mega-col" id="cat-kitchen">
+        <h5>Kitchen</h5>
+        <a class="mg-item" href="recipe-converter.html"><span class="mg-ic">×</span><span class="mg-t"><span class="mg-n">Recipe scaler</span><span class="mg-d">Resize any recipe</span></span></a>
+        <a class="mg-item" href="pan-conversion-calculator.html"><span class="mg-ic">▢</span><span class="mg-t"><span class="mg-n">Pan conversion</span><span class="mg-d">Swap baking pans</span></span></a>
+        <a class="mg-item" href="coffee-ratio-calculator.html"><span class="mg-ic">☕</span><span class="mg-t"><span class="mg-n">Coffee ratio</span><span class="mg-d">Water, beans, strength</span></span></a>
+        <a class="mg-item" href="oven-temperature-calculator.html"><span class="mg-ic">◓</span><span class="mg-t"><span class="mg-n">Oven temp</span><span class="mg-d">C, F, gas, fan</span></span></a>
+      </div>
+    <div class="mega-col" id="cat-home-garden">
+        <h5>Home &amp; garden</h5>
+        <a class="mg-item" href="square-footage-calculator.html"><span class="mg-ic">▤</span><span class="mg-t"><span class="mg-n">Square footage</span><span class="mg-d">Area & cost per sq ft</span></span></a>
+        <a class="mg-item" href="concrete-calculator.html"><span class="mg-ic">▧</span><span class="mg-t"><span class="mg-n">Concrete</span><span class="mg-d">Volume & bags</span></span></a>
+        <a class="mg-item" href="paint-calculator.html"><span class="mg-ic">▨</span><span class="mg-t"><span class="mg-n">Paint</span><span class="mg-d">Coverage & cans</span></span></a>
+        <a class="mg-item" href="flooring-calculator.html"><span class="mg-ic">▥</span><span class="mg-t"><span class="mg-n">Flooring</span><span class="mg-d">Boxes with waste</span></span></a>
+        <a class="mg-item" href="mulch-calculator.html"><span class="mg-ic">✿</span><span class="mg-t"><span class="mg-n">Mulch</span><span class="mg-d">Cubic yards & bags</span></span></a>
+        <a class="mg-item" href="tile-calculator.html"><span class="mg-ic">▧</span><span class="mg-t"><span class="mg-n">Tile</span><span class="mg-d">Count plus waste</span></span></a>
+      </div>
+    <div class="mega-col" id="cat-cars-travel">
+        <h5>Cars &amp; travel</h5>
+        <a class="mg-item" href="fuel-cost-calculator.html"><span class="mg-ic">⛽</span><span class="mg-t"><span class="mg-n">Fuel cost</span><span class="mg-d">Trip cost & split</span></span></a>
+        <a class="mg-item" href="mpg-calculator.html"><span class="mg-ic">⏱</span><span class="mg-t"><span class="mg-n">MPG</span><span class="mg-d">And L/100km</span></span></a>
+        <a class="mg-item" href="ev-charging-cost-calculator.html"><span class="mg-ic">⚡</span><span class="mg-t"><span class="mg-n">EV charging</span><span class="mg-d">Cost per charge & mile</span></span></a>
+        <a class="mg-item" href="mileage-reimbursement-calculator.html"><span class="mg-ic">↦</span><span class="mg-t"><span class="mg-n">Mileage</span><span class="mg-d">Miles by your rate</span></span></a>
+      </div>
+    <div class="mega-col" id="cat-family">
+        <h5>Family</h5>
+        <a class="mg-item" href="due-date-calculator.html"><span class="mg-ic">♡</span><span class="mg-t"><span class="mg-n">Due date</span><span class="mg-d">Naegele's rule</span></span></a>
+        <a class="mg-item" href="ovulation-calculator.html"><span class="mg-ic">♡</span><span class="mg-t"><span class="mg-n">Ovulation</span><span class="mg-d">Fertile window</span></span></a>
+        <a class="mg-item" href="pregnancy-week-calculator.html"><span class="mg-ic">○</span><span class="mg-t"><span class="mg-n">Pregnancy week</span><span class="mg-d">Weeks along and due date</span></span></a>
+      </div>
+    <div class="mega-col" id="cat-random-fun">
+        <h5>Random &amp; fun</h5>
+        <a class="mg-item" href="random-number-generator.html"><span class="mg-ic">#</span><span class="mg-t"><span class="mg-n">Random number</span><span class="mg-d">True random, any range</span></span></a>
+        <a class="mg-item" href="dice-roller.html"><span class="mg-ic">⚄</span><span class="mg-t"><span class="mg-n">Dice roller</span><span class="mg-d">d4 to d100, many dice</span></span></a>
+        <a class="mg-item" href="coin-flip.html"><span class="mg-ic">●</span><span class="mg-t"><span class="mg-n">Coin flip</span><span class="mg-d">Heads or tails, fairly</span></span></a>
+        <a class="mg-item" href="random-picker.html"><span class="mg-ic">✧</span><span class="mg-t"><span class="mg-n">Random picker</span><span class="mg-d">Pick winners from a list</span></span></a>
+        <a class="mg-item" href="password-generator.html"><span class="mg-ic">*</span><span class="mg-t"><span class="mg-n">Password</span><span class="mg-d">Strong, generated locally</span></span></a>
+      </div>
+    <div class="mega-col" id="cat-money-the-fed">
+        <h5>Money &amp; the Fed</h5>
+        <a class="mg-item" href="fed-rate-calculator.html"><span class="mg-ic">↓</span><span class="mg-t"><span class="mg-n">Fed rate change</span><span class="mg-d">Cut or hike, four ripples</span></span></a>
+        <a class="mg-item" href="m2-money-supply-calculator.html"><span class="mg-ic">$</span><span class="mg-t"><span class="mg-n">M2 money supply</span><span class="mg-d">Growth, doubling, dilution</span></span></a>
+        <a class="mg-item" href="gold-vs-usd-calculator.html"><span class="mg-ic">◆</span><span class="mg-t"><span class="mg-n">Gold vs USD</span><span class="mg-d">The dollar since 1971</span></span></a>
+        <a class="mg-item" href="inflation-calculator.html"><span class="mg-ic">▴</span><span class="mg-t"><span class="mg-n">Inflation</span><span class="mg-d">Dollar value, 1913–2025</span></span></a>
+        <a class="mg-item" href="gold-m2-ratio-calculator.html"><span class="mg-ic">⚖</span><span class="mg-t"><span class="mg-n">Gold / M2 ratio</span><span class="mg-d">Is gold cheap vs money?</span></span></a>
+        <a class="mg-item" href="dow-to-gold-calculator.html"><span class="mg-ic">⚔</span><span class="mg-t"><span class="mg-n">Dow-to-Gold</span><span class="mg-d">Stocks priced in gold</span></span></a>
+        <a class="mg-item" href="gold-silver-ratio-calculator.html"><span class="mg-ic">⇄</span><span class="mg-t"><span class="mg-n">Gold-silver</span><span class="mg-d">Ounces of silver</span></span></a>
+        <a class="mg-item" href="real-interest-rate-calculator.html"><span class="mg-ic">‰</span><span class="mg-t"><span class="mg-n">Real rate</span><span class="mg-d">After inflation</span></span></a>
+      </div>
+  </div>
+</div></section>
+<section id="site-faq"><div class="wrap prose">
+  <h2>Common questions about Calculate.to</h2>
+    <h3>Are the calculators on Calculate.to really free?</h3>
+    <p>Yes, every calculator is completely free with no ads, no accounts and no locked features. The site is supported by optional donations only.</p>
+    <h3>How accurate are the results?</h3>
+    <p>Every tool is verified against known benchmarks before publishing, loan math against standard amortization tables, inflation against official BLS CPI data, health formulas against their original published equations. Where a result is an estimate, the page says so plainly.</p>
+    <h3>Is my data private?</h3>
+    <p>Completely. Calculations run entirely in your browser using JavaScript, the numbers you type never leave your device, and the site uses no cookies or tracking.</p>
+    <h3>Do the calculators work on mobile?</h3>
+    <p>Yes, every page is built for phones first and works instantly in any modern browser, with no app or sign-up required.</p>
+</div></section>
+<section><div class="wrap">
+    </div></section></main>
+<footer>
+  <div class="wrap">
+    <div class="ftop">
+      <div class="fbrand">
+        <a class="brand" href="#top"><span class="eq" aria-hidden="true">=</span>Calculate.to</a>
+        <p>Everyday math, done properly. Free, instant, private.</p>
+      </div>
+      <a class="btn pill" href="#tools" style="padding:.5em .9em">Browse all →</a>
+    </div>
+          <nav class="ftcats" aria-label="Calculator categories">
+      <a class="ftcat" href="index.html#cat-health-body">Health &amp; body</a>
+      <a class="ftcat" href="index.html#cat-fitness-sleep">Fitness &amp; sleep</a>
+      <a class="ftcat" href="index.html#cat-dates-time">Dates &amp; time</a>
+      <a class="ftcat" href="index.html#cat-math-numbers">Math &amp; numbers</a>
+      <a class="ftcat" href="index.html#cat-everyday-money">Everyday money</a>
+      <a class="ftcat" href="index.html#cat-loans-debt">Loans &amp; debt</a>
+      <a class="ftcat" href="index.html#cat-investing">Investing</a>
+      <a class="ftcat" href="index.html#cat-school">School</a>
+      <a class="ftcat" href="index.html#cat-converters">Converters</a>
+      <a class="ftcat" href="index.html#cat-kitchen">Kitchen</a>
+      <a class="ftcat" href="index.html#cat-home-garden">Home &amp; garden</a>
+      <a class="ftcat" href="index.html#cat-cars-travel">Cars &amp; travel</a>
+      <a class="ftcat" href="index.html#cat-family">Family</a>
+      <a class="ftcat" href="index.html#cat-random-fun">Random &amp; fun</a>
+      <a class="ftcat" href="index.html#cat-money-the-fed">Money &amp; the Fed</a>
+      <a class="ftcat all" href="index.html#all">All 100+ calculators</a>
+    </nav>
+    <div class="fbar">
+      <p class="foot-note">© 2026 Calculate.to · Answers are for general use, check anything important with a professional. · Made with 🤎</p>
+      <span style="display:flex;gap:16px;flex-wrap:wrap;align-items:baseline"><a class="ftl" href="about.html">About</a><a class="ftl" href="privacy.html">Privacy</a><a class="ftl" href="support.html">Support</a><a class="ftl" href="embed.html">Embed</a><a class="ftl" href="https://luck.fyi" rel="nofollow noopener" title="From the same builder, probability &amp; crypto tools" target="_blank">luck.fyi ↗</a><a class="ftl" href="#top">Back to top ↑</a></span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  var money=function(n){return '$'+(isFinite(n)?n:0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+  var money0=function(n){return '$'+Math.round(isFinite(n)?n:0).toLocaleString('en-US');};
+  var num=function(n){return (Math.round((isFinite(n)?n:0)*100)/100).toLocaleString('en-US');};
+  var num1=function(n){return (isFinite(n)?n:0).toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+  var num2=function(n){return (isFinite(n)?n:0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+  function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){var t=b;b=a%b;a=t;}return a||1;}
+  function pdate(s){if(!s)return null;var d=new Date(s+'T00:00:00');return isNaN(d)?null:d;}
+
+  var F={
+    pct:function(v){var r=v.a/100*v.b;return {expr:num(v.a)+'% of '+num(v.b),main:num(r),
+      s1:{k:'Result',v:num(r)},s2:{k:'As fraction',v:num(r)+' / '+num(v.b)}};},
+    tip:function(v){var ppl=Math.max(1,v.ppl||1),t=v.bill*v.tip/100,tot=v.bill+t,each=tot/ppl;
+      return {expr:money(v.bill)+' · '+num(v.tip)+'% · ÷'+ppl,main:money(each)+' each',
+        s1:{k:'Tip total',v:money(t)},s2:{k:'Bill total',v:money(tot)}};},
+    loan:function(v){var r=v.rate/100/12,n=v.years*12,m=r===0?(n?v.amt/n:0):v.amt*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+      if(!isFinite(m))m=0;return {expr:money0(v.amt)+' · '+num(v.rate)+'% · '+num(v.years)+'yr',main:money(m)+' /mo',
+        s1:{k:'Total interest',v:money0(Math.max(0,m*n-v.amt))},s2:{k:'Total paid',v:money0(m*n)}};},
+    comp:function(v){var r=v.rate/100/12,n=v.years*12,A=v.p*Math.pow(1+r,n);if(!isFinite(A))A=v.p;
+      return {expr:money0(v.p)+' · '+num(v.rate)+'% · '+num(v.years)+'yr',main:money(A),
+        s1:{k:'Interest earned',v:money0(A-v.p)},s2:{k:'Growth',v:num1((v.p?(A/v.p-1)*100:0))+'%'}};},
+    vat:function(v){var tax=v.amt*v.rate/100,gross=v.amt+tax;
+      return {expr:money(v.amt)+' + '+num(v.rate)+'% tax',main:money(gross)+' gross',
+        s1:{k:'Tax',v:money(tax)},s2:{k:'Net',v:money(v.amt)}};},
+    bmi:function(v){var m=v.h/100,b=m>0?v.w/(m*m):0;var cat=b<18.5?'Underweight':b<25?'Healthy':b<30?'Overweight':'Obese';
+      return {expr:num(v.w)+'kg · '+num(v.h)+'cm',main:num1(b)+' BMI',
+        s1:{k:'Category',v:cat},s2:{k:'Healthy range',v:'18.5–24.9'}};},
+    age:function(v){var bd=pdate(v.date),now=new Date();if(!bd||bd>now)return {expr:'',main:'–',s1:{k:'',v:''},s2:{k:'',v:''}};
+      var y=now.getFullYear()-bd.getFullYear(),mo=now.getMonth()-bd.getMonth(),d=now.getDate()-bd.getDate();
+      if(d<0){mo--;d+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}if(mo<0){y--;mo+=12;}
+      var days=Math.floor((now-bd)/86400000);
+      return {expr:'born '+v.date,main:y+'y '+mo+'m '+d+'d',
+        s1:{k:'Total days',v:num(days)},s2:{k:'In weeks',v:num(Math.floor(days/7))}};},
+    ddiff:function(v){var a=pdate(v.d1),b=pdate(v.d2);if(!a||!b)return {expr:'',main:'–',s1:{k:'',v:''},s2:{k:'',v:''}};
+      if(b<a){var t=a;a=b;b=t;}var days=Math.round((b-a)/86400000);
+      var wd=0,d=new Date(a),g=0;while(d<=b&&g<40000){var dow=d.getDay();if(dow!==0&&dow!==6)wd++;d.setDate(d.getDate()+1);g++;}
+      return {expr:num(days)+' days apart',main:num(days)+' days',
+        s1:{k:'In weeks',v:Math.floor(days/7)+'w '+(days%7)+'d'},s2:{k:'Working days',v:num(wd)}};},
+    frac:function(v){var nu=v.a*v.d+v.c*v.b,de=v.b*v.d;if(de===0)return {expr:'',main:'–',s1:{k:'',v:''},s2:{k:'',v:''}};
+      var g=gcd(nu,de);return {expr:v.a+'/'+v.b+' + '+v.c+'/'+v.d,main:(nu/g)+' / '+(de/g),
+        s1:{k:'Decimal',v:num2(nu/de)},s2:{k:'Unsimplified',v:nu+' / '+de}};}
+  };
+
+  document.querySelectorAll('.acc-item[data-calc]').forEach(function(item){
+    var fn=F[item.dataset.calc];if(!fn)return;
+    var ins=[].slice.call(item.querySelectorAll('[data-f]'));
+    function set(sel,val){var e=item.querySelector('[data-out="'+sel+'"]');if(e)e.textContent=val;}
+    function run(){
+      var v={};ins.forEach(function(i){v[i.dataset.f]=i.type==='date'?i.value:(parseFloat(i.value)||0);});
+      var o=fn(v);set('expr',o.expr||'');set('main',o.main);
+      if(o.s1){set('s1k',o.s1.k);set('s1v',o.s1.v);}if(o.s2){set('s2k',o.s2.k);set('s2v',o.s2.v);}
+    }
+    ins.forEach(function(i){i.addEventListener('input',run);i.addEventListener('change',run);});
+    item._run=run;
+    if(item.classList.contains('open'))run();
+  });
+
+  var heads=[].slice.call(document.querySelectorAll('.acc-head'));
+  heads.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item=btn.closest('.acc-item'),isOpen=item.classList.contains('open');
+      document.querySelectorAll('.acc-item.open').forEach(function(o){o.classList.remove('open');o.querySelector('.acc-head').setAttribute('aria-expanded','false');});
+      if(!isOpen){item.classList.add('open');btn.setAttribute('aria-expanded','true');if(item._run)item._run();}
+    });
+    btn.addEventListener('keydown',function(e){
+      var i=heads.indexOf(btn),d=e.key==='ArrowDown'?1:e.key==='ArrowUp'?-1:0;if(!d)return;
+      e.preventDefault();heads[(i+d+heads.length)%heads.length].focus();
+    });
+  });
+})();
+</script>
+<div class="mns" id="mns" role="dialog" aria-modal="true" aria-label="Search calculators">
+  <div class="mns-box">
+    <div class="mns-in"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.3 3.3"/></svg><input id="mnsInput" aria-label="Search calculators" type="text" placeholder="Search, or type 15% of 80…" autocomplete="off" spellcheck="false"><span class="mns-esc">esc</span></div>
+    <div class="mns-res" id="mnsRes"></div>
+  </div>
+</div>
+
+<script src="site.js?v=86ebe54c3c"></script>
+<script>
+/* hero search: real search over every tool, with an animated placeholder that
+   stops the moment the user engages and never runs under prefers-reduced-motion. */
+
+(function(){
+  var inp=document.getElementById('hsInput'),res=document.getElementById('hsRes'),bar=document.getElementById('hsBar');
+  if(!inp||!res)return;
+  var IDX=window.CALC_INDEX||[];
+  var sel=0,shown=[];
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  var IDLE='Search 100+ calculators\u2026';
+
+  function draw(q){
+    q=(q||'').trim().toLowerCase();
+    if(!q){res.classList.remove('on');res.innerHTML='';inp.setAttribute('aria-expanded','false');return;}
+    shown=IDX.filter(function(t){return (t.n+' '+t.d+' '+t.c).toLowerCase().indexOf(q)>-1;}).slice(0,8);
+    sel=0;
+    var head='';
+    if(window.CALC_OMNI){
+      var o=null; try{o=window.CALC_OMNI(q);}catch(e){o=null;}
+      if(o){head='<div class="hs-omni"><div class="hs-oq">'+esc(o.label)+'</div>'+
+        '<div class="hs-ov">'+esc(o.v)+'</div>'+
+        (o.sub?'<div class="hs-osub">'+esc(o.sub)+'</div>':'')+
+        (o.tool?'<a class="hs-ot" href="'+o.tool[0]+'">'+esc(o.tool[1])+' \u2192</a>':'')+'</div>';}
+    }
+    res.innerHTML = head + (shown.length
+      ? shown.map(function(t,i){return '<a class="hs-r'+(i===0?' on':'')+'" role="option" href="'+t.u+'"><span class="hs-rn">'+t.n+'</span><span class="hs-rc">'+t.c+'</span></a>';}).join('')
+      : (head?'':'<div class="hs-none">No calculator matches that, try "loan", "BMI" or "date".</div>'));
+    res.classList.add('on'); inp.setAttribute('aria-expanded','true');
+  }
+  function mark(){var r=res.querySelectorAll('.hs-r');
+    for(var i=0;i<r.length;i++)r[i].classList.toggle('on',i===sel);
+    if(r[sel])r[sel].scrollIntoView({block:'nearest'});}
+
+  inp.addEventListener('input',function(){draw(inp.value);});
+  [].forEach.call(document.querySelectorAll('.hs-try'),function(b){b.addEventListener('click',function(e){e.stopPropagation();inp.value=b.getAttribute('data-q');inp.focus();inp.dispatchEvent(new Event('input'));});});
+  if(bar){bar.addEventListener('click',function(e){if(e.target!==inp)inp.focus();});}
+  inp.addEventListener('keydown',function(e){
+    var r=res.querySelectorAll('.hs-r');
+    if(e.key==='ArrowDown'){e.preventDefault();sel=Math.min(sel+1,r.length-1);mark();}
+    else if(e.key==='ArrowUp'){e.preventDefault();sel=Math.max(sel-1,0);mark();}
+    else if(e.key==='Enter'&&r[sel]){e.preventDefault();window.location.href=r[sel].getAttribute('href');}
+    else if(e.key==='Escape'){inp.value='';draw('');inp.blur();}
+  });
+  document.addEventListener('click',function(e){
+    if(bar&&!bar.contains(e.target)&&!res.contains(e.target)){res.classList.remove('on');inp.setAttribute('aria-expanded','false');}
+  });
+
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!IDX.length){inp.placeholder=IDLE;return;}
+  var PICKS=['15% of 80','20 miles in km','mortgage payment','2^10','5 kg to lb','compound interest',
+             '20% off 50','BMI','100 f to c','days between dates','sqrt(144)','fuel cost'];
+  var i=Math.floor(Math.random()*PICKS.length),j=0,del=false,stopped=false,timer=null;
+  function tick(){
+    if(stopped)return;
+    var w=PICKS[i%PICKS.length];
+    j=del?j-1:j+1;
+    inp.placeholder='Try \u201c'+w.slice(0,j)+'\u201d';
+    var wait=del?38:80;
+    if(!del&&j===w.length){del=true;wait=1600;}
+    else if(del&&j===0){del=false;i++;wait=400;}
+    timer=setTimeout(tick,wait);
+  }
+  function stop(){stopped=true;if(timer)clearTimeout(timer);inp.placeholder=IDLE;}
+  inp.addEventListener('focus',stop,{once:true});
+  inp.addEventListener('input',stop,{once:true});
+  if(bar)bar.addEventListener('mouseenter',stop,{once:true});
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden){if(timer)clearTimeout(timer);}
+    else if(!stopped){timer=setTimeout(tick,400);}
+  });
+  timer=setTimeout(tick,700);
+})();
+</script>
+<script>
+/* second hero button rotates through every tool each load, discovery, not decoration.
+   Static href stays crawlable; JS only enhances. */
+(function(){
+  var b=document.getElementById('heroPick'),IDX=window.CALC_INDEX;
+  if(!b||!IDX||!IDX.length||!window.crypto)return;
+  function rand(n){var max=Math.floor(4294967296/n)*n,u=new Uint32Array(1);
+    do{crypto.getRandomValues(u);}while(u[0]>=max);return u[0]%n;}
+  var t=IDX[rand(IDX.length)];
+  b.textContent=t.n+' \u2192';
+  b.href=t.u;
+  b.title='A different calculator every visit';
+})();
+</script>
+
+<script src="calc3d.js?v=e136cf4815" defer></script>
+</body>
+</html>

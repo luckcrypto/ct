@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<title>Page not found: Calculate.to</title>
+<meta name="description" content="The page you wanted has moved or never existed. Browse 100+ free calculators for money, health, math and more, or head back home.">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#f6f4ef">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--fs-m:16px;--fs-l:20px;--fs-xl:28px;--fs-2xl:clamp(38px,6.5vw,64px)}
+
+:root{--paper:#f6f4ef;--ink:#1c1b19;--muted:#6f6a60;--signal:#c96a1b;--hair:#dcd8cf;--card:#fbfaf7}
+*{box-sizing:border-box;margin:0;padding:0}
+html{cursor:default}
+body{font-family:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;background:#f6f4ef;background:var(--paper);color:#1c1b19;color:var(--ink);
+ min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;line-height:1.4}
+.card{max-width:560px;width:100%;background:#fbfaf7;background:var(--card);border:1px solid var(--hair);border-radius:18px;
+ padding:44px 36px;box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
+.brand{font-weight:700;font-size:var(--fs-l);color:#1c1b19;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.brand .eq{color:#c96a1b;color:var(--signal);margin-right:2px}
+h1{font-size:var(--fs-2xl);font-weight:700;letter-spacing:-.03em;line-height:1;margin:24px 0 8px;color:#c96a1b;color:var(--signal)}
+p.big{font-size:var(--fs-l);font-weight:600;margin-bottom:8px}
+p.sub{font-size:var(--fs-m);color:#6f6a60;color:var(--muted);margin-bottom:28px}
+a.btn{display:inline-block;font-size:var(--fs-m);font-weight:700;padding:.7em 1.2em;border-radius:11px;text-decoration:none;
+ background:#1c1b19;background:var(--ink);color:#f6f4ef;color:var(--paper);cursor:pointer;margin-right:10px;margin-bottom:10px}
+a.ghost{background:transparent;color:#1c1b19;color:var(--ink);border:1px solid var(--hair)}
+.links{margin-top:22px;padding-top:18px;border-top:1px solid var(--hair);font-size:var(--fs-m);color:#6f6a60;color:var(--muted)}
+.links a{color:#1c1b19;color:var(--ink);text-decoration:none;font-weight:600}
+.links a:hover{color:#c96a1b;color:var(--signal)}
+
+* { cursor: default; }
+
+a, button, label, summary, select,
+[role="button"], [role="link"], [role="tab"],
+.btn, [onclick] {
+  cursor: pointer;
+}
+
+input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+textarea,
+[contenteditable="true"] {
+  cursor: text;
+}
+
+input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: pointer; }
+
+:disabled, [disabled], [aria-disabled="true"] { cursor: not-allowed; }
+
+input,kbd,time,output{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1,"lnum" 1}
+
+a{text-decoration:none}
+
+/* form controls never below 16px, iOS auto-zooms the page otherwise */
+input,select,textarea{font-size:max(16px,1em)}
+
+@media(max-width:560px){.btn{display:flex;width:100%;justify-content:center;margin:0 0 10px}}
+
+/* number inputs: hide spinners, they render on top of a right-hand unit */
+.field input[type="number"],.in input[type="number"]{-moz-appearance:textfield;appearance:textfield}
+.field input[type="number"]::-webkit-outer-spin-button,.field input[type="number"]::-webkit-inner-spin-button,
+.in input[type="number"]::-webkit-outer-spin-button,.in input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+/* guarantee clearance for a right-hand unit even without :has() support */
+
+.field.hasunit.r input,.in.hasunit.r input{padding-left:.7em;padding-right:46px}
+.field .unit.r,.in .unit.r{left:auto;right:12px}
+.field .in:has(> .unit.r) input{padding-right:46px}
+
+/* ---- mobile overflow guard: the page must never scroll sideways.
+   overflow-x:clip (not hidden) so the sticky nav keeps working ,
+   any overflow value except visible/clip would break position:sticky. */
+html,body{overflow-x:clip}
+img,svg,video,canvas,iframe{max-width:100%}
+img{height:auto}
+
+/* ---- calc width lockdown: nothing inside a card may exceed it on mobile.
+   Unbreakable tokens (big exact integers, long expressions) wrap instead of
+   spilling; chip rows wrap; form controls can never exceed their card. */
+
+input,select,textarea{max-width:100%;min-width:0}
+.readout .result{overflow-wrap:anywhere;word-break:break-word;line-height:1.15}
+.readout .expr,.formula,.ch-out .v,.ch-out .k{overflow-wrap:anywhere}
+.calc-head{flex-wrap:wrap}
+.calc-chip{white-space:normal}
+.share-row{flex-wrap:wrap}
+
+:focus-visible{outline:2px solid var(--signal-deep);outline-offset:2px}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* percent fields: left-align so the number never sits under the % suffix */
+
+.mf-in:has(.mf-u:not(.mf-ul)) input{text-align:left;padding-left:.7em;padding-right:1.7em}
+@media (min-width:768px){.appgrid{grid-template-columns:repeat(8,1fr);max-width:880px;gap:22px 16px}}
+
+.calc3d{position:relative;overflow:hidden;background:#f6f4ef}
+.c3-bg{fill:#f6f4ef}
+.c3-svg{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+.calc3d.is-live .c3-svg{visibility:hidden;transition:visibility 0s .42s}
+.calc3d.no-webgl .c3-svg{visibility:visible}
+.c3-cv{position:absolute;left:0;top:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .36s ease;touch-action:manipulation}
+.calc3d.is-live .c3-cv{opacity:1}
+@media(prefers-reduced-motion:reduce){.c3-cv{transition:none}}
+
+h1{letter-spacing:-.025em}
+.brand{letter-spacing:0}
+.e404-top{display:grid;grid-template-columns:minmax(0,1fr) 170px;column-gap:16px;align-items:stretch}
+.e404-obj{min-height:180px;background:#fbfaf7}
+.e404-obj .c3-bg{fill:#fbfaf7}
+@media(max-width:400px){.e404-top{grid-template-columns:minmax(0,1fr) 112px}.e404-obj{min-height:120px}}
+</style>
+<link rel="manifest" href="/manifest.webmanifest">
+</head>
+<body>
+<main class="card">
+  <a class="brand" href="/"><span class="eq">=</span>Calculate.to</a>
+  <div class="e404-top"><div><h1>404</h1>
+  <p class="big">That page does not add up.</p></div>
+  <div class="calc3d e404-obj" data-mode="error" aria-hidden="true"><svg class="c3-svg" viewBox="0 0 259 359" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><rect class="c3-bg" width="259" height="359" fill="#fbfaf7"/><image href="data:image/webp;base64,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" width="259" height="359"/></svg></div></div>
+  <p class="sub">The address might be mistyped, or the page moved. Everything we have is one tap away.</p>
+  <a class="btn" href="/">Browse all 100+ calculators</a>
+  <a class="btn ghost" href="/percentage-calculator.html">Percentage</a>
+  <div class="links">Popular: <a href="/mortgage-calculator.html">Mortgage</a> · <a href="/inflation-calculator.html">Inflation</a> · <a href="/bmi-calculator.html">BMI</a> · <a href="/gpa-calculator.html">GPA</a> · <a href="/tip-calculator.html">Tip</a></div>
+</main>
+<script>
+/* calculate.to pwa, offline + installable */
+if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}
+</script>
+<script src="/calc3d.js?v=e136cf4815" defer></script>
+</body>
+</html>
